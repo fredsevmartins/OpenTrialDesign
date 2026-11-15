@@ -265,6 +265,21 @@ $stopping_probabilities
 $expected_information
 [1] 1.002721
 
+$expected_information_uncertainty
+    estimate         mcse        lower        upper 
+1.0027211482 0.0007093853 1.0013290919 1.0041132045 
+
+$stopping_uncertainty
+     estimate        mcse        lower       upper
+[1,]    0.002 0.001412799 0.0002423011 0.007205839
+[2,]    0.998 0.001412799 0.9927941611 0.999757699
+
+$mean_interval_method
+[1] "approximate t-based 95% Monte Carlo interval"
+
+$stopping_interval_method
+[1] "marginal exact binomial 95%; no simultaneous coverage claim"
+
 Validation: execution is not independent scientific validation 
 
  TD-019 seed 2026 nsim 1000 
@@ -304,6 +319,21 @@ $stopping_probabilities
 $expected_information
 [1] 0.9209176
 
+$expected_information_uncertainty
+   estimate        mcse       lower       upper 
+0.920917571 0.005893688 0.909352142 0.932483000 
+
+$stopping_uncertainty
+     estimate       mcse     lower     upper
+[1,]    0.165 0.01173776 0.1425073 0.1894842
+[2,]    0.835 0.01173776 0.8105158 0.8574927
+
+$mean_interval_method
+[1] "approximate t-based 95% Monte Carlo interval"
+
+$stopping_interval_method
+[1] "marginal exact binomial 95%; no simultaneous coverage claim"
+
 Validation: execution is not independent scientific validation 
 
  TD-020 seed 2026 nsim 1000 
@@ -314,9 +344,9 @@ $summary
        scenario effect nsim rejections estimate        mcse       lower
 1 equality null    0.0 1000         13    0.013 0.003582039 0.006939618
 2   alternative    0.5 1000        930    0.930 0.008068457 0.912383767
-      upper expected_n
-1 0.0221278   309.0116
-2 0.9450285   165.8338
+      upper expected_n expected_n_mcse expected_n_lower expected_n_upper
+1 0.0221278   309.0116        1.275799         306.5080         311.5151
+2 0.9450285   165.8338        2.770505         160.3971         171.2704
 
 Validation: execution is not independent scientific validation 
 
@@ -328,9 +358,9 @@ $summary
        scenario effect nsim rejections estimate        mcse       lower
 1 equality null    0.0 1000         13    0.013 0.003582039 0.006939618
 2   alternative    0.5 1000        878    0.878 0.010349686 0.856095781
-      upper expected_n
-1 0.0221278   197.2197
-2 0.8976489   138.8373
+      upper expected_n expected_n_mcse expected_n_lower expected_n_upper
+1 0.0221278   197.2197       0.4361665         196.3638         198.0756
+2 0.8976489   138.8373       1.4430448         136.0056         141.6691
 
 Validation: execution is not independent scientific validation 
 
@@ -389,6 +419,20 @@ $mean_events
 $mean_calendar_end
 [1] 30
 
+$mean_events_uncertainty
+   estimate        mcse       lower       upper 
+250.4620000   0.2933541 249.8863391 251.0376609 
+
+$mean_calendar_end_uncertainty
+estimate     mcse    lower    upper 
+      30        0       30       30 
+
+$target_attainment_uncertainty
+NULL
+
+$mean_interval_method
+[1] "approximate t-based 95% Monte Carlo interval"
+
 Validation: execution is not independent scientific validation 
 
  TD-026 seed 2026 nsim 1000 
@@ -425,6 +469,20 @@ $mean_events
 $mean_calendar_end
 [1] 30
 
+$mean_events_uncertainty
+   estimate        mcse       lower       upper 
+275.5220000   0.2903029 274.9523265 276.0916735 
+
+$mean_calendar_end_uncertainty
+estimate     mcse    lower    upper 
+      30        0       30       30 
+
+$target_attainment_uncertainty
+NULL
+
+$mean_interval_method
+[1] "approximate t-based 95% Monte Carlo interval"
+
 Validation: execution is not independent scientific validation 
 
  TD-027 seed 2026 nsim 1000 
@@ -460,6 +518,21 @@ $mean_events
 
 $mean_calendar_end
 [1] 29.81126
+
+$mean_events_uncertainty
+   estimate        mcse       lower       upper 
+230.7130000   0.2539983 230.2145686 231.2114314 
+
+$mean_calendar_end_uncertainty
+  estimate       mcse      lower      upper 
+29.8112629  0.0160549 29.7797577 29.8427681 
+
+$target_attainment_uncertainty
+  estimate       mcse      lower      upper 
+0.19600000 0.01255325 0.17181997 0.22198406 
+
+$mean_interval_method
+[1] "approximate t-based 95% Monte Carlo interval"
 
 Validation: execution is not independent scientific validation 
 

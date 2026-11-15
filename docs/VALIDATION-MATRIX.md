@@ -15,7 +15,7 @@
 | Survival simulation | 2000 null replications; nominal .025; four-MCSE tolerance | Limited exponential/null scenario diagnostic |
 | Event stopping/dropout | Deterministic seed; target attainment and calendar cap | Operational assumptions exercised |
 | Provisional examples | All 30 at nsim=1000, seed=2026; 30 saved result objects | Executed, not individually independently validated |
-| Shiny | testServer exercises all calculation families | Shared-engine server verification; no browser claim |
+| Shiny | testServer exercises all calculation families | Shared-engine server verification; separate Chromium smoke test passed |
 | HTML/PDF | Actual rendered reference files | Rendering dependencies verified locally |
 | Package | R CMD build, install and R CMD check Status OK | Current Linux/R/dependency baseline only |
 
@@ -24,3 +24,9 @@ No test infers noninferiority/equivalence, uniform null control, general adaptiv
 validity, or compatibility between different engines. Monte Carlo checks have
 sampling uncertainty even when they pass. The package has not undergone
 independent scientific or regulatory validation.
+
+Chromium/Playwright browser smoke verification exercised fixed sample size,
+sequential design with a rendered plot, adaptive simulation, survival planning,
+and HTML report download. There were no JavaScript page errors. Evidence is in
+validation/browser-smoke.json and validation/shiny-browser.png. This does not
+constitute exhaustive usability, mobile, or accessibility acceptance.

@@ -48,3 +48,16 @@ oc_result <- function(rejections, nsim, spec, engine, seed, method, extra = list
     conf_level = 0.95, lower = ci[1], upper = ci[2]), extra), spec, engine, method,
     "independent replications; exact Clopper-Pearson 95% interval; no multiplicity adjustment", seed)
 }
+
+# Monte Carlo uncertainty of a simulation mean; t interval is approximate.
+mc_mean <- function(x) {
+  estimate <- mean(x)
+  se <- stats::sd(x)/sqrt(length(x))
+  half <- stats::qt(0.975, df = length(x)-1)*se
+  c(estimate = estimate, mcse = se, lower = estimate-half, upper = estimate+half)
+}
+mc_binomial <- function(k, n) {
+  p <- k/n
+  ci <- unname(stats::binom.test(k, n)$conf.int)
+  c(estimate = p, mcse = sqrt(p*(1-p)/n), lower = ci[1], upper = ci[2])
+}

@@ -3,7 +3,7 @@ packages <- c("stats", "survival", "simsurv", "ggplot2", "gsDesign", "rpact",
 functions <- list(stats = c("power.t.test", "power.prop.test"),
   survival = c("Surv", "coxph", "survdiff"), simsurv = "simsurv",
   gsDesign = c("gsDesign", "nSurv", "gsProbability", "gsCP", "sfLDPocock", "sfLDOF"),
-  rpact = c("getDesignGroupSequential", "getDesignInverseNormal", "getSampleSizeMeans",
+  rpact = c("getDesignGroupSequential", "getDesignInverseNormal", "getData", "getSampleSizeMeans",
     "getSampleSizeRates", "getSampleSizeSurvival", "getSimulationMeans"))
 for (p in packages) {
   cat("\nPACKAGE", p, "\n")

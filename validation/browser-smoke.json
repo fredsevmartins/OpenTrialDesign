@@ -1,0 +1,25 @@
+{
+  "results": [
+    {
+      "workflow": "fixed sample size",
+      "passed": true
+    },
+    {
+      "workflow": "sequential design",
+      "passed": true
+    },
+    {
+      "workflow": "adaptive simulation",
+      "passed": true
+    },
+    {
+      "workflow": "survival planning",
+      "passed": true
+    },
+    {
+      "workflow": "HTML report download",
+      "passed": true
+    }
+  ],
+  "javascript_errors": []
+}

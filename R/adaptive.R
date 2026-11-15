@@ -50,6 +50,13 @@ adaptive_simulation <- function(effect = 0.5, sd = 1, stage1 = 80,
     minNumberOfSubjectsPerStage = c(stage1, min_stage2),
     maxNumberOfSubjectsPerStage = c(stage1, max_stage2),
     maxNumberOfIterations = nsim, seed = seed))
+  raw <- rpact::getData(native)
+  terminal <- raw[raw$trialStop, ]
+  means <- lapply(c(0, effect), function(a) {
+    values <- terminal$numberOfCumulatedSubjects[terminal$alternative == a]
+    if (length(values) != nsim) fail("unexpected rpact terminal replication count", "otd_engine_error")
+    mc_mean(values)
+  })
   p <- as.numeric(native$overallReject)
   if (length(p) != 2 || any(!is.finite(p))) fail("unexpected rpact simulation output", "otd_engine_error")
   counts <- round(p * nsim)
@@ -58,10 +65,14 @@ adaptive_simulation <- function(effect = 0.5, sd = 1, stage1 = 80,
   summary <- data.frame(scenario = c("equality null", "alternative"),
     effect = c(0, effect), nsim = nsim, rejections = counts, estimate = p,
     mcse = sqrt(p*(1-p)/nsim), lower = cis[1,], upper = cis[2,],
-    expected_n = as.numeric(native$expectedNumberOfSubjects))
+    expected_n = vapply(means, function(x) x["estimate"], numeric(1)),
+    expected_n_mcse = vapply(means, function(x) x["mcse"], numeric(1)),
+    expected_n_lower = vapply(means, function(x) x["lower"], numeric(1)),
+    expected_n_upper = vapply(means, function(x) x["upper"], numeric(1)))
   result("adaptive inverse normal simulation", list(summary = summary, native = native,
     design = design), spec, "rpact", "native inverse-normal combination test with conditional-power resizing",
     c("one-sided positive mean effect; independent normal stage data",
       "prespecified inverse-normal combination weights; equal allocation",
-      "no futility rule; bounded stage-two enrollment; exact binomial 95% intervals"), seed)
+      "no futility rule; bounded stage-two enrollment; exact binomial 95% rejection intervals",
+      "expected enrollment: approximate t-based 95% Monte Carlo interval; native effective sizes may be fractional"), seed)
 }

@@ -84,3 +84,17 @@ checks an extensionless download destination, with reports rendered from a
 temporary workspace so an installed library need not be writable. The final
 source tarball was rebuilt and R CMD check again returned Status OK, including
 manual PDF, installed examples, tests and vignette reconstruction.
+
+
+Extended verification: the local suite now passes 159 assertions. Expected
+sample size, information, event count and duration summaries include approximate
+t-based Monte Carlo intervals. Stopping and event-target probabilities have
+marginal exact binomial intervals, without simultaneous-coverage claims.
+The expanded suite, all 30 examples and reference experiments were rerun;
+R CMD check again returned Status OK. Chromium/Playwright smoke tests passed
+for fixed sample size, sequential design/plot, adaptive simulation, survival
+planning and HTML report download, with zero JavaScript page errors. The first
+browser attempt was blocked by local socket permissions; the permitted local
+server then passed. The first remote CI attempt failed before package checking
+because the action's error-on expression was incorrectly quoted; corrected to
+an R string expression. No remote passing status is inferred from local tests.

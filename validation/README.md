@@ -18,7 +18,10 @@
 - reference-report.html / .pdf: executed methodological report artifacts.
 
 Monte Carlo rejection estimates are not analytical results. Package/adapter
-agreement is not independent scientific validation. Expected information,
-expected sample size, event count and duration summaries do not yet include
-uncertainty intervals; only rejection probabilities have full MC intervals.
-Remote CI and browser-level UI checks have not been executed in this session.
+agreement is not independent scientific validation. Expected enrollment, information, event counts and duration means use
+approximate t-based Monte Carlo intervals; binomial estimates use marginal
+exact intervals without simultaneous coverage claims.
+Chromium/Playwright browser smoke tests passed for five workflows, including
+a real HTML report download; JSON, screenshot and downloaded report are saved.
+Remote CI was started; its first run exposed a check-action quoting defect,
+which is corrected. Current results must be read from the remote workflow.

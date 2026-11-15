@@ -57,7 +57,10 @@ Analytical power differs from a Monte Carlo estimate. Each simulation result
 contains the rejection count, replication count, seed, estimate, plug-in MCSE
 `sqrt(p_hat * (1-p_hat) / B)`, and exact Clopper-Pearson 95% interval. A zero
 MCSE at zero observed rejections does not imply absence of uncertainty; use the
-interval. Choose replication counts for the precision required: at true error
+interval. Expected enrollment, information, event-count and duration summaries
+include approximate t-based Monte Carlo intervals. Stopping and target-attainment
+probabilities use marginal exact binomial intervals; they do not have simultaneous
+95% coverage. Choose replication counts for the precision required: at true error
 0.025, 1000 replications give an approximate MCSE of 0.00494.
 
 ```{r simulation}
@@ -118,7 +121,8 @@ This workflow uses rpact's `getDesignInverseNormal` and `getSimulationMeans`
 with native conditional-power recalculation. The combination weights are fixed
 by the originally planned information fractions. Stage-one enrollment is total
 across both arms, and stage-two limits are additional enrollment across both
-arms. Independent normally distributed stage observations, equal allocation,
+arms. Native normal-approximation recalculations can yield fractional effective
+sample sizes; these simulations are not an integer operational enrollment rule. Independent normally distributed stage observations, equal allocation,
 and the rpact normal approximation are assumed. Null and alternative scenarios
 are always reported. There is no futility boundary in this adapter. The
 procedure does not authorize changing an ordinary pooled-test design after

@@ -108,7 +108,12 @@ simulate_sequential <- function(design, theta = 0, nsim = 10000, seed = 1,
     "canonical normal independent increments simulation",
     list(theta = theta, enforce_futility = enforce_futility,
       stopping_probabilities = tabulate(stage, nbins = k)/nsim,
-      expected_information = mean(d$n.I[stage])))
+      expected_information = mean(d$n.I[stage]),
+      expected_information_uncertainty = mc_mean(d$n.I[stage]),
+      stopping_uncertainty = t(vapply(seq_len(k), function(j)
+        mc_binomial(sum(stage == j), nsim), numeric(4))),
+      mean_interval_method = "approximate t-based 95% Monte Carlo interval",
+      stopping_interval_method = "marginal exact binomial 95%; no simultaneous coverage claim"))
 }
 #' Conditional power at an observed interim Z statistic
 #' @param design A gsDesign sequential design.

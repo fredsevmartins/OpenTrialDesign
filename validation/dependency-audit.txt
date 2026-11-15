@@ -661,6 +661,10 @@ $twoSidedPower
 $tolerance
 [1] 1e-08
 
+EXPORT getData 
+$x
+
+
 EXPORT getSampleSizeMeans 
 $design
 NULL

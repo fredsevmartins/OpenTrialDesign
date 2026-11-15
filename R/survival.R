@@ -108,5 +108,10 @@ simulate_survival <- function(n_per_arm, hazard_ratio = 0.7, median_control = 12
   oc_result(sum(sims["reject", ]), nsim, spec, c("simsurv", "survival"), seed,
     if (null) "logrank equality-null type I error" else "one-sided logrank empirical power",
     list(target_attainment = if (is.null(events)) NA_real_ else mean(sims["reached", ]),
-         mean_events = mean(sims["events", ]), mean_calendar_end = mean(sims["end", ])))
+         mean_events = mean(sims["events", ]), mean_calendar_end = mean(sims["end", ]),
+         mean_events_uncertainty = mc_mean(sims["events", ]),
+         mean_calendar_end_uncertainty = mc_mean(sims["end", ]),
+         target_attainment_uncertainty = if (is.null(events)) NULL else
+           mc_binomial(sum(sims["reached", ]), nsim),
+         mean_interval_method = "approximate t-based 95% Monte Carlo interval"))
 }

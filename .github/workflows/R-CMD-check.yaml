@@ -27,7 +27,7 @@ jobs:
         run: source("scripts/audit-dependencies.R")
       - uses: r-lib/actions/check-r-package@v2
         with:
-          error-on: 'warning'
+          error-on: '"warning"'
       - name: Execute all scientific examples
         shell: Rscript {0}
         run: |
