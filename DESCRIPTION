@@ -1,0 +1,22 @@
+Package: OpenTrialDesign
+Type: Package
+Title: Reproducible Clinical Trial Design and Operating Characteristics
+Version: 0.1.0
+Authors@R: c(person("Frederico", "Martins", role = c("aut", "cre"),
+    email = "45317633+fredsevmartins@users.noreply.github.com"),
+    person("OpenTrialDesign contributors", role = "aut"))
+Description: Explicit trial specifications and reproducible adapters to established
+    fixed sample, group sequential and survival design engines. Simulation outputs
+    include Monte Carlo uncertainty and methodological provenance. Engine-specific
+    assumptions and inferential limitations are retained.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Depends: R (>= 4.2.0)
+Imports: stats, utils, survival (>= 3.8.3), ggplot2 (>= 3.5.1), withr (>= 3.0.2)
+Suggests: gsDesign (>= 3.11.0), rpact (>= 4.4.0), simsurv (>= 1.0.1), shiny, rmarkdown, knitr, testthat (>= 3.0.0),
+    roxygen2, renv
+VignetteBuilder: knitr
+Config/testthat/edition: 3
+URL: https://github.com/fredsevmartins/OpenTrialDesign
+BugReports: https://github.com/fredsevmartins/OpenTrialDesign/issues
+RoxygenNote: 7.3.2

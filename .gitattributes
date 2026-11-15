@@ -1,0 +1,5 @@
+# Preserve raw execution evidence and generated reports without source-style whitespace checks.
+/validation/** -whitespace linguist-generated=true
+*.R text eol=lf
+*.Rmd text eol=lf
+*.csv text eol=lf

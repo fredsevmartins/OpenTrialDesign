@@ -1,0 +1,31 @@
+id,title,assumptions,status
+TD-001,Normal superiority,Independent normal observations; common SD 1; equal allocation; two-sided alpha .05; power .8.,provisional project-plan mapping
+TD-002,Normal directional benefit,Positive treatment-control mean; one-sided alpha .025.,provisional project-plan mapping
+TD-003,Normal directional reduction,Negative treatment-control mean; one-sided lower-tail alpha .025.,provisional project-plan mapping
+TD-004,Higher target power,Common SD 1; two-sided alpha .05; 90 percent power.,provisional project-plan mapping
+TD-005,Normal power at enrollment,64 independent participants per arm; pooled two-sample t test.,provisional project-plan mapping
+TD-006,Binary superiority,Response probabilities .30 versus .45; normal approximation; no continuity correction.,provisional project-plan mapping
+TD-007,Binary reduction,Treatment response .35 versus control .50; lower response beneficial; one-sided alpha .025.,provisional project-plan mapping
+TD-008,Binary analytical power,180 per arm; treatment .45; control .30; asymptotic power.,provisional project-plan mapping
+TD-009,gsDesign OF spending,Upper efficacy alpha .025; three information looks; no futility; canonical normal model.,provisional project-plan mapping
+TD-010,gsDesign Pocock spending,Two looks at .5 and 1; Lan-DeMets Pocock spending; upper efficacy alpha .025.,provisional project-plan mapping
+TD-011,rpact OF spending,Engine-specific OF spending; two looks; one-sided alpha .025; no futility.,provisional project-plan mapping
+TD-012,rpact Pocock spending,rpact asP spending; two looks; no futility.,provisional project-plan mapping
+TD-013,gsDesign binding futility,Binding lower beta-spending boundary; upper alpha .025; futility must be followed.,provisional project-plan mapping
+TD-014,gsDesign nonbinding futility,Upper alpha control ignores lower futility; actual power assumes lower stopping.,provisional project-plan mapping
+TD-015,rpact nonbinding futility,rpact Hwang-Shih-DeCani beta spending gamma -2; nonbinding futility.,provisional project-plan mapping
+TD-016,Interim conditional power,Interim Z 1.5 at half information; future drift at prespecified design alternative.,provisional project-plan mapping
+TD-017,Sequential analytical null,Numerical integration under zero canonical drift; one-sided alpha .025.,provisional project-plan mapping
+TD-018,Sequential Monte Carlo null,Independent canonical normal increments; zero drift; exact Monte Carlo interval.,provisional project-plan mapping
+TD-019,Sequential Monte Carlo power,Canonical drift from native design alternative; prespecified information times.,provisional project-plan mapping
+TD-020,Adaptive inverse normal,Independent normal stages; fixed combination weights; native conditional-power resizing; null and alternative.,provisional project-plan mapping
+TD-021,Adaptive capped enrollment,Stage-two total enrollment limited to 40--120; fixed inverse-normal weights; both hypotheses simulated.,provisional project-plan mapping
+TD-022,Survival planning,Treatment/control HR .7; exponential control median 12; uniform accrual 18; additional follow-up 12; no dropout.,provisional project-plan mapping
+TD-023,Survival dropout planning,Independent exponential dropout with 10 percent probability by month 12; proportional hazards.,provisional project-plan mapping
+TD-024,Longer survival follow-up,Additional follow-up 24 after accrual 18; exponential proportional hazards; equal allocation.,provisional project-plan mapping
+TD-025,Survival simulated power,Exponential HR .7; uniform entry; administrative cutoff at 30; one-sided logrank alpha .025.,provisional project-plan mapping
+TD-026,Survival equality null,HR 1 equality null; independent censoring; one-sided lower-tail logrank test.,provisional project-plan mapping
+TD-027,Survival event stopping,Stop at event 240 or administrative cap 30; independent dropout; target attainment explicitly reported.,provisional project-plan mapping
+TD-028,Binary simulated power,Uncorrected Pearson score test; .30 control and .45 treatment; finite-sample power may differ from planning.,provisional project-plan mapping
+TD-029,Binary equality null,Both response probabilities .30; two-sided uncorrected score test; empirical equality-null error.,provisional project-plan mapping
+TD-030,Normal simulated power,Independent normal observations; common SD 1; pooled t test; two-sided alpha .05.,provisional project-plan mapping

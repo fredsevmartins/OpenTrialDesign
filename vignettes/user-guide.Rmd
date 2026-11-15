@@ -1,0 +1,211 @@
+---
+title: "OpenTrialDesign user guide"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{OpenTrialDesign user guide}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup}
+library(OpenTrialDesign)
+```
+
+## Installation and scope
+
+Install from source with `install.packages("OpenTrialDesign_0.1.0.tar.gz",
+repos = NULL, type = "source")`. Optional engines can be installed with
+`install.packages(c("gsDesign", "rpact", "simsurv"))`; the interface requires
+`shiny`, and reporting requires `rmarkdown` plus Pandoc. PDF additionally
+requires a working LaTeX installation. The package core does not depend on Shiny.
+
+The first release supports equal-allocation, two-arm superiority calculations,
+canonical one-sided sequential designs, a specific two-stage adaptive
+inverse-normal procedure, and exponential proportional hazards survival trials.
+Noninferiority, equivalence, cluster trials, recurrent events, competing risks,
+and nonproportional hazards are outside these adapters' present scope. Such
+analyses require an appropriate validated engine and explicit estimand.
+
+## Specify the scientific question
+
+`trial_spec()` records endpoint, treatment minus control effect, sidedness,
+total alpha, target power and equal allocation. Positive and negative effects
+must agree with a directional alternative. No default margin is inferred.
+
+```{r fixed}
+spec <- trial_spec(effect = 0.5, sd = 1, alpha = 0.05, power = 0.8)
+sample_size(spec)
+trial_power(spec, 64)
+```
+
+The normal calculation uses `stats::power.t.test` for independent normal
+observations with a common variance, and includes rejection in both tails
+for two-sided power (`strict = TRUE`). Binary planning uses
+`stats::power.prop.test` without continuity correction. Sample size is rounded
+up per arm and analytical power recalculated at that integer size. All reported
+sizes are evaluable participants; no hidden attrition inflation is applied.
+
+```{r binary}
+binary <- trial_spec("binary", effect = 0.15, p_control = 0.3)
+sample_size(binary)
+compare_scenarios(list(base = spec, smaller_effect = trial_spec(effect = 0.3)))
+```
+
+## Monte Carlo operating characteristics
+
+Analytical power differs from a Monte Carlo estimate. Each simulation result
+contains the rejection count, replication count, seed, estimate, plug-in MCSE
+`sqrt(p_hat * (1-p_hat) / B)`, and exact Clopper-Pearson 95% interval. A zero
+MCSE at zero observed rejections does not imply absence of uncertainty; use the
+interval. Choose replication counts for the precision required: at true error
+0.025, 1000 replications give an approximate MCSE of 0.00494.
+
+```{r simulation}
+simulate_trial(spec, 64, nsim = 200, seed = 2026)
+simulate_trial(spec, 64, nsim = 200, seed = 2026, null = TRUE)
+```
+
+The equality null uses treatment effect zero, not the planning alternative.
+The normal test is the pooled t test. The binary analysis is `prop.test` with
+no continuity correction. All-zero or all-one binary samples cannot reject
+equality and are assigned p=1. Discreteness can affect nominal type I error.
+The equality null alone does not establish uniform control across all nuisance
+parameters. Broader null grids and multiplicity control are study-specific work.
+
+## Sequential designs and stopping
+
+```{r sequential}
+if (requireNamespace("gsDesign", quietly = TRUE)) {
+  seq_design <- sequential_design(information = c(0.33, 0.67, 1),
+                                  futility = "nonbinding")
+  print(seq_design)
+  plot_design(seq_design)
+  sequential_power(seq_design, theta = 0)
+  conditional_power(seq_design, z = 1.5)
+  simulate_sequential(seq_design, nsim = 200, seed = 2026)
+}
+```
+
+Sequential alpha is the **one-sided upper efficacy** error. A lower futility
+crossing does not reject the null. For gsDesign, no-futility uses test.type=1,
+binding beta-spending uses 3, and nonbinding beta-spending uses 4. Beta spending
+is Hwang-Shih-DeCani with gamma=-2. Nonbinding upper boundaries protect alpha
+if futility is ignored; power and expected information depend on whether
+futility is followed. The canonical simulator can evaluate that distinction,
+and refuses to ignore a binding rule. Analytical gsProbability enforces lower
+stopping even for a design calibrated with nonbinding futility.
+
+Information fractions are prespecified. The canonical simulation is a Brownian
+independent-increments experiment, not patient-level evidence for arbitrary
+endpoints or data-dependent information times. `theta` is canonical drift;
+the default analytical alternative is the native design's drift. Information
+is normalized to fixed-design information, not a patient count.
+
+The rpact adapter returns its own native object. Engine-specific OF and Pocock
+spending approximations are retained. Never transfer boundaries, power values,
+or information scales between engines without an explicit compatibility check.
+
+## Adaptive sample size recalculation
+
+```{r adaptive}
+if (requireNamespace("rpact", quietly = TRUE)) {
+  adaptive <- adaptive_simulation(nsim = 200, seed = 2026)
+  print(adaptive)
+}
+```
+
+This workflow uses rpact's `getDesignInverseNormal` and `getSimulationMeans`
+with native conditional-power recalculation. The combination weights are fixed
+by the originally planned information fractions. Stage-one enrollment is total
+across both arms, and stage-two limits are additional enrollment across both
+arms. Independent normally distributed stage observations, equal allocation,
+and the rpact normal approximation are assumed. Null and alternative scenarios
+are always reported. There is no futility boundary in this adapter. The
+procedure does not authorize changing an ordinary pooled-test design after
+observing an unblinded effect. Confirmatory use requires protocol-specific
+review of combination weights, independent stage p-values and the adaptation
+rule; a finite Monte Carlo experiment alone does not prove error control.
+
+## Survival planning and simulation
+
+```{r survival}
+if (requireNamespace("rpact", quietly = TRUE)) {
+  surv_design <- survival_design(hazard_ratio = 0.7, median_control = 12,
+    accrual = 18, followup = 12, dropout = 0.1)
+  print(surv_design$data$native)
+}
+if (requireNamespace("simsurv", quietly = TRUE)) {
+  simulate_survival(100, events = 120, nsim = 20, seed = 2026)
+}
+```
+
+The estimand is the treatment/control hazard ratio. Planning supports HR below
+one as benefit. The Schoenfeld approximation supplies the event target, and
+rpact translates that target into enrollment under uniform accrual, exponential
+survival, equal allocation and independent dropout. The returned native sizes
+are unrounded planning quantities; round enrollment and event targets upward
+when specifying an operational trial, then assess the resulting operating
+characteristics with the simulation API. No precision claim is made for
+unmodeled recruitment patterns or nonproportional hazards.
+
+Simulation uses simsurv event times, independent exponential dropout and
+administrative censoring. All durations use one common unit. `dropout` is a
+probability by `dropout_time`, not a hazard. The logrank signed treatment
+observed-minus-expected score supports benefit when negative. The p-value is
+lower-tail one-sided. If an event target is supplied, the trial stops at that
+calendar event or the administrative cap, whichever comes first. The result
+reports target attainment; it never assumes an unreachable event target was
+met. Participants not recruited by early stopping do not enter the analysis.
+
+## Reports, diagnostics and application
+
+```{r diagnostics}
+diagnose_design(simulate_trial(spec, 64, nsim = 50, seed = 2026))
+```
+
+`render_report(result, "report.html")` writes results, native engine output,
+assumptions, methods, versions, RNG details, seed and validation status.
+`render_report(result, "report.pdf", "pdf")` additionally needs LaTeX.
+`run_app()` launches the optional Shiny interface; calculations use this same
+public API. App actions trigger calculations explicitly. Results must be
+recomputed after changing inputs. The report selector chooses among the
+previously computed result objects.
+
+## Example library and scientific verification
+
+The installed `examples/catalog.csv` documents 30 independently executable
+scenarios, accessible through `run_example("TD-001")` and standalone scripts.
+**The supplied repository contained no project plan defining TD IDs; this is a
+provisional catalog, not a verified mapping to that missing specification.**
+
+Numerical reference checks compare normal/binary calculations directly to
+stats, sequential spending and power to engine integration, and survival events
+to the Schoenfeld expression. These verify adapter behavior, not independent
+validation of their engines. Monte Carlo checks use prespecified seeds and
+tolerances scaled to sampling error. A reference expectation is never replaced
+with a simulated point estimate merely to obtain passing tests.
+
+See repository `validation/` for actual execution logs and `docs/PHASE-STATUS.md`
+for limitations. No result should be described as scientifically validated
+solely because a function returned successfully. rpact installation
+qualification for GxP environments is separate and has not been performed here.
+
+## References
+
+Schoenfeld DA (1981). The asymptotic properties of nonparametric tests for
+comparing survival distributions. *Biometrika*, 68, 316-319.
+
+Lan KKG, DeMets DL (1983). Discrete sequential boundaries for clinical trials.
+*Biometrika*, 70, 659-663.
+
+Hwang IK, Shih WJ, DeCani JS (1990). Group sequential designs using a family
+of type I error probability spending functions. *Statistics in Medicine*, 9,
+1439-1445.
+
+Lehmacher W, Wassmer G (1999). Adaptive sample size calculations in group
+sequential trials. *Biometrics*, 55, 1286-1290.
+
+Brilleman SL, Wolfe R, Moreno-Betancur M, Crowther MJ (2021). Simulating
+survival data using the simsurv R package. *Journal of Statistical Software*,
+97(3), 1-27. Use `citation("rpact")`, `citation("gsDesign")`,
+`citation("survival")` and `citation("simsurv")` for current engine citations.

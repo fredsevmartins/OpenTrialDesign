@@ -1,0 +1,15 @@
+url: https://fredsevmartins.github.io/OpenTrialDesign/
+template:
+  bootstrap: 5
+articles:
+  - title: User guide
+    contents: user-guide
+reference:
+  - title: Specifications and fixed designs
+    contents: [trial_spec, sample_size, trial_power, compare_scenarios]
+  - title: Sequential and adaptive methods
+    contents: [sequential_design, sequential_power, conditional_power, simulate_sequential, adaptive_simulation]
+  - title: Simulation and survival
+    contents: [simulate_trial, survival_design, simulate_survival]
+  - title: Presentation and examples
+    contents: [plot_design, diagnose_design, render_report, run_app, run_example, print.otd_result]

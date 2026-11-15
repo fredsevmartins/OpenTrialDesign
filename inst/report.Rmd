@@ -1,0 +1,39 @@
+---
+title: "OpenTrialDesign methodological report"
+params:
+  result: null
+output: html_document
+---
+
+```{r setup, include=FALSE}
+x <- params$result
+```
+
+## Design and results
+
+```{r results, echo=FALSE}
+print(x)
+if (!is.null(x$data$native)) print(x$data$native)
+```
+
+## Statistical specification
+
+```{r assumptions, echo=FALSE}
+print(x$specification)
+```
+
+## Methodological provenance
+
+```{r provenance, echo=FALSE}
+print(x$provenance)
+```
+
+Monte Carlo estimates include Monte Carlo standard errors and exact 95%
+binomial confidence intervals. Analytical outputs are labeled separately.
+Computational execution alone does not establish scientific validation.
+
+## Rendering environment
+
+```{r session, echo=FALSE}
+utils::sessionInfo()
+```
