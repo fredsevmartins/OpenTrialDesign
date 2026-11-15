@@ -17,3 +17,8 @@ users, a standard working R installation plus CRAN packages is sufficient;
 platform dependency management belongs to that installation. renv.lock records
 R/dependency versions, not an entire OS image. Fresh lockfile restoration and
 multi-platform checks remain separate, unexecuted acceptance gates.
+
+Fresh source dependency restoration required local libxml2-dev and libicu-dev
+headers, with PKG_CONFIG_PATH pointing to the relocated development files.
+The first transactional attempt rolled back after missing libxml2 headers;
+a retry retains partial progress and uses a writable renv cache.

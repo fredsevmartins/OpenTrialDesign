@@ -27,3 +27,8 @@ Fortran linker search path, static V8 dependency for gt/gsDesign, relocated
 JavaScript assets, qpdf and inconsolata manual-build fonts. The standard package
 uses ordinary R/CRAN dependencies; these local provisioning repairs are not
 runtime code inside the package. rpact's GxP qualification was not performed.
+
+A fresh-library source restoration also required libxml2-dev and ICU development
+headers discoverable through pkg-config on the minimal Debian host. These are
+OS build dependencies, separate from the R lockfile. The initial failed restore
+log is retained rather than being treated as successful.

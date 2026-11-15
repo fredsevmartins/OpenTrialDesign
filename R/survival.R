@@ -23,7 +23,7 @@ survival_design <- function(hazard_ratio = 0.7, median_control = 12,
   scalar(median_control, "median_control", 0, Inf)
   scalar(accrual, "accrual", 0, Inf); scalar(followup, "followup", 0, Inf)
   scalar(dropout_time, "dropout_time", 0, Inf)
-  scalar(dropout, "dropout", -1e-15, 1)
+  scalar(dropout, "dropout", -Inf, 1); if (dropout < 0) fail("dropout must be nonnegative")
   scalar(alpha, "alpha", 0, 0.5); scalar(power, "power", alpha, 1)
   spec <- as.list(environment()); spec <- spec[setdiff(names(spec), "spec")]
   d <- rpact::getDesignGroupSequential(kMax = 1, alpha = alpha, beta = 1-power, sided = 1)
@@ -67,7 +67,7 @@ simulate_survival <- function(n_per_arm, hazard_ratio = 0.7, median_control = 12
   scalar(hazard_ratio, "hazard_ratio", 0, Inf)
   scalar(median_control, "median_control", 0, Inf)
   scalar(accrual, "accrual", 0, Inf); scalar(followup, "followup", 0, Inf)
-  scalar(dropout, "dropout", -1e-15, 1); scalar(dropout_time, "dropout_time", 0, Inf)
+  scalar(dropout, "dropout", -Inf, 1); if (dropout < 0) fail("dropout must be nonnegative"); scalar(dropout_time, "dropout_time", 0, Inf)
   scalar(alpha, "alpha", 0, 0.5)
   if (!is.logical(null) || length(null) != 1 || is.na(null)) fail("null must be logical")
   if (!is.null(events)) {
@@ -94,7 +94,11 @@ simulate_survival <- function(n_per_arm, hazard_ratio = 0.7, median_control = 12
     # Subjects not yet recruited at an early event stop do not enter the risk set.
     include <- entry < end
     dat$time <- pmin(times$eventtime, drop, pmax(0, end-entry))
-    dat$status <- as.integer(times$eventtime <= pmin(drop, pmax(0, end-entry)))
+    # Compare on the calendar scale used to select the stopping event.
+    # Subtracting entry from end can round below the triggering event time.
+    dat$status <- as.integer(include & times$eventtime <= drop &
+                               (entry + times$eventtime) <= end)
+    dat$time[dat$status == 1L] <- times$eventtime[dat$status == 1L]
     if (sum(dat$status) == 0 || length(unique(dat$treatment[include])) < 2) {
       p <- 1
     } else {

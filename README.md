@@ -32,8 +32,9 @@ Minimum adapter versions reflect inspected APIs: gsDesign 3.11.0, rpact 4.4.0,
 simsurv 1.0.1, survival 3.8-3, ggplot2 3.5.1 and withr 3.0.2.
 Other R/platform combinations require their own execution evidence.
 `renv.lock` captures the tested dependency graph. Restore it with
-`renv::restore(lockfile = "renv.lock")`; this has not been tested in a fresh
-remote environment. No project startup hook changes an existing R session.
+`renv::restore(lockfile = "renv.lock")`; the complete locked dependency graph and 181 package assertions were also
+tested in a fresh R library on the provisioned Debian host. A fresh OS image
+is a separate installation scenario. No project startup hook changes an existing R session.
 
 ## Quick start
 

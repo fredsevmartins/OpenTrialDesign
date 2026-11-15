@@ -1,29 +1,26 @@
 ✔ | F W  S  OK | Context
 
+⠏ |          0 | boundaries                                                     
+⠏ |         10 | boundaries                                                     
+⠹ |         13 | boundaries                                                     
+✔ |         18 | boundaries
+
 ⠏ |          0 | engines                                                        
-⠋ |          1 | engines                                                        
-⠧ |          8 | engines                                                        
 ⠋ |         11 | engines                                                        
-⠸ |         14 | engines                                                        
 ⠏ |         20 | engines                                                        
-⠴ |         26 | engines                                                        
 ⠦ |         27 | engines                                                        
-⠹ |         33 | engines                                                        
-✔ |         38 | engines [2.4s]
+✔ |         40 | engines [1.3s]
 
 ⠏ |          0 | examples                                                       
-⠧ |          8 | examples                                                       
-⠙ |         32 | examples                                                       
-⠴ |         46 | examples                                                       
-⠋ |         61 | examples                                                       
-⠏ |         70 | examples                                                       
+⠋ |         31 | examples                                                       
+⠇ |         49 | examples                                                       
+⠦ |         67 | examples                                                       
 ⠹ |         73 | examples                                                       
 ⠴ |         76 | examples                                                       
 ⠇ |         79 | examples                                                       
-✔ |         90 | examples [3.0s]
+✔ |         90 | examples [2.2s]
 
 ⠏ |          0 | fixed                                                          
-⠙ |         12 | fixed                                                          
 ⠴ |         16 | fixed                                                          
 ✔ |         16 | fixed
 
@@ -41,12 +38,11 @@ The following object is masked from 'package:OpenTrialDesign':
 ⠧ |          8 | presentation                                                   
 ⠇ |          9 | presentation                                                   
 ⠏ |         10 | presentation                                                   
-⠋ |         11 | presentation                                                   
 ⠙ |         12 | presentation                                                   
 ⠼ |         15 | presentation                                                   
-✔ |         15 | presentation [3.7s]
+✔ |         17 | presentation [2.8s]
 
 ══ Results ═════════════════════════════════════════════════════════════════════
-Duration: 9.8 s
+Duration: 7.2 s
 
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 159 ]
+[ FAIL 0 | WARN 0 | SKIP 0 | PASS 181 ]

@@ -25,3 +25,18 @@ Chromium/Playwright browser smoke tests passed for five workflows, including
 a real HTML report download; JSON, screenshot and downloaded report are saved.
 Remote CI was started; its first run exposed a check-action quoting defect,
 which is corrected. Current results must be read from the remote workflow.
+
+
+Final event-stop correction supersedes the earlier event-driven results; see
+event-stop-defect.txt. The full local and fresh-library suites each pass 181
+assertions, and the corrected source R CMD check returns Status OK. Fresh
+restore logs preserve failures and the successful OS-header-configured retry.
+fresh-lock-comparison.txt verifies all 98 locked versions against 92 restored
+packages and six recommended packages supplied by the R installation. The
+original development and site libraries were excluded from the fresh test.
+The c31d1b2 remote CI snapshot is historical and predates the event correction.
+
+The final reference table now contains 14 executed cases, including the exact
+40-event regression and event-driven/dropout equality-null error (0.0245 from
+2000 replications, nominal .025). Current event-driven result objects were
+regenerated after the correction. All 30 current examples executed successfully.

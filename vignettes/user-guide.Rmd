@@ -178,7 +178,9 @@ previously computed result objects.
 ## Example library and scientific verification
 
 The installed `examples/catalog.csv` documents 30 independently executable
-scenarios, accessible through `run_example("TD-001")` and standalone scripts.
+scenarios; installed `examples/ASSUMPTIONS.md` explains each rationale and
+limits the synthetic effects to teaching/planning demonstrations. They are
+accessible through `run_example("TD-001")` and standalone scripts.
 **The supplied repository contained no project plan defining TD IDs; this is a
 provisional catalog, not a verified mapping to that missing specification.**
 

@@ -5,7 +5,9 @@
 - [ ] Independent clinical/statistical review of intended use and limitations.
 - [ ] Review null scenario grids and simulation precision for each target study.
 - [ ] Review rpact installation qualification if GxP use is intended.
-- [ ] Confirm clean-environment and multi-platform CI results (not yet run remotely).
+- [x] Restore locked dependencies in a fresh R library and run all package tests.
+- [x] Browser smoke tests for fixed/sequential/adaptive/survival planning and HTML download.
+- [ ] Confirm multi-platform CI for the final event-stopping correction.
 - [ ] Approve release metadata and scientific validation status.
 - [ ] Publish documentation website and release artifacts when authorized.
 

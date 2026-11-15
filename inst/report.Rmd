@@ -13,7 +13,8 @@ x <- params$result
 
 ```{r results, echo=FALSE}
 print(x)
-if (!is.null(x$data$native)) print(x$data$native)
+if (!is.null(x$data$native) && length(setdiff(names(x$data), c("native", "design"))))
+  print(x$data$native)
 ```
 
 ## Statistical specification

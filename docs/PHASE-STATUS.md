@@ -98,3 +98,30 @@ browser attempt was blocked by local socket permissions; the permitted local
 server then passed. The first remote CI attempt failed before package checking
 because the action's error-on expression was incorrectly quoted; corrected to
 an R string expression. No remote passing status is inferred from local tests.
+
+
+Final scientific correction: calendar cutoff subtraction initially caused a
+triggering survival event to be censored by floating-point rounding. The
+original deterministic 40-event experiment averaged 39.7 recorded events;
+calendar-scale comparisons now preserve exactly 40. The defect, regression
+and superseded evidence are documented in validation/event-stop-defect.txt.
+Negative dropout probabilities, including -1e-16, are rejected. The updated
+local and fresh-library installed-package suites each passed 181 assertions,
+with zero failures/warnings/skips. The corrected source package passed the
+full standard R CMD check with Status OK. Earlier 12-case reference and
+remote CI passes predate this event correction and do not validate it.
+
+Locked dependency restoration completed after local OS-header configuration:
+92 separately installed packages plus six recommended packages supplied with
+R match all 98 locked versions. The first two failed restoration attempts are
+retained. The package installs with the original development/site libraries
+excluded, and all 181 installed-package assertions pass in that fresh library.
+This is an independent R library on the same provisioned OS, not a new OS image.
+
+Final reference extension: all 14 reference experiments passed. In addition to
+exact event-target preservation, 2000 independent event-driven equality-null
+trials with dropout gave rejection 0.0245 versus nominal one-sided alpha .025,
+within the predeclared four-MCSE tolerance 0.01396424. This is one diagnostic
+scenario, not proof of uniform error control. Full results are in the final
+scientific-reference CSV/text. Original TD mapping and independent scientific
+review remain unresolved; the pull request remains a draft.

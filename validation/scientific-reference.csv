@@ -11,3 +11,5 @@
 "binary equality null p 0.5",0.05,0.0522,0.012328828005938,TRUE,"asymptotic score test; four-MCSE diagnostic, not exact calibration"
 "adaptive inverse normal equality null",0.025,0.0234,0.00883176086632785,TRUE,"native rpact procedure; four theoretical MCSE"
 "survival logrank equality null",0.025,0.0255,0.0139642400437689,TRUE,"asymptotic signed logrank score; four theoretical MCSE"
+"reached event target preserved at calendar cutoff",40,40,0,TRUE,"deterministic event-stopping regression; target reached in every replication"
+"event-driven dropout logrank equality null",0.025,0.0245,0.0139642400437689,TRUE,"event target or administrative cap; independent dropout; four theoretical MCSE"

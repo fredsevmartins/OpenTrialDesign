@@ -6,7 +6,8 @@
 print.otd_result <- function(x, ...) {
   cat(x$kind, "\nEngine:", paste(x$provenance$engine, collapse = ", "),
       "\nMethod:", x$provenance$method, "\n")
-  print(x$data[setdiff(names(x$data), c("native", "design"))])
+  visible <- x$data[setdiff(names(x$data), c("native", "design"))]
+  if (length(visible)) print(visible) else if (!is.null(x$data$native)) print(x$data$native)
   cat("Validation:", x$provenance$validation, "\n")
   invisible(x)
 }

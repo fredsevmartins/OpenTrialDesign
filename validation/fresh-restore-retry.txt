@@ -1,0 +1,332 @@
+The following required system packages are not installed:
+- libicu-dev   [required by stringi]
+- libnode-dev  [required by V8]
+- libxml2-dev  [required by xml2]
+The R packages depending on these system packages may fail to install.
+
+An administrator can install these packages with:
+- sudo apt install libicu-dev libnode-dev libxml2-dev
+
+The following package(s) will be updated:
+
+# CRAN -----------------------------------------------------------------------
+- base64enc      [* -> 0.1-3]
+- bigD           [* -> 0.3.1]
+- bitops         [* -> 1.1-0]
+- brew           [* -> 1.0-10]
+- brio           [* -> 1.1.5]
+- bslib          [* -> 0.9.0]
+- cachem         [* -> 1.1.0]
+- callr          [* -> 3.7.6]
+- cli            [* -> 3.6.4]
+- colorspace     [* -> 2.1-1]
+- commonmark     [* -> 1.9.5]
+- cpp11          [* -> 0.5.2]
+- crayon         [* -> 1.5.3]
+- curl           [* -> 8.1.0]
+- desc           [* -> 1.4.3]
+- diffobj        [* -> 0.3.5]
+- digest         [* -> 0.6.37]
+- dplyr          [* -> 1.2.1]
+- evaluate       [* -> 1.0.3]
+- fansi          [* -> 1.0.6]
+- farver         [* -> 2.1.2]
+- fastmap        [* -> 1.2.0]
+- fontawesome    [* -> 0.5.3]
+- fs             [* -> 1.6.5]
+- generics       [* -> 0.1.4]
+- ggplot2        [* -> 3.5.1]
+- glue           [* -> 1.8.0]
+- gsDesign       [* -> 3.11.0]
+- gt             [* -> 1.4.0]
+- gtable         [* -> 0.3.6]
+- highr          [* -> 0.11]
+- htmltools      [* -> 0.5.8.1]
+- htmlwidgets    [* -> 1.6.4]
+- httpuv         [* -> 1.6.15]
+- isoband        [* -> 0.2.7]
+- jquerylib      [* -> 0.1.4]
+- jsonlite       [* -> 1.9.1]
+- juicyjuice     [* -> 0.1.0]
+- knitr          [* -> 1.50]
+- labeling       [* -> 0.4.3]
+- later          [* -> 1.4.1]
+- lifecycle      [* -> 1.0.5]
+- litedown       [* -> 1.0]
+- magrittr       [* -> 2.0.3]
+- markdown       [* -> 2.1]
+- memoise        [* -> 2.0.1]
+- mime           [* -> 0.12]
+- munsell        [* -> 0.5.1]
+- pillar         [* -> 1.10.1]
+- pkgbuild       [* -> 1.4.6]
+- pkgconfig      [* -> 2.0.3]
+- pkgload        [* -> 1.4.0]
+- praise         [* -> 1.0.0]
+- processx       [* -> 3.8.6]
+- promises       [* -> 1.3.2]
+- ps             [* -> 1.9.0]
+- purrr          [* -> 1.0.4]
+- r2rtf          [* -> 1.3.1]
+- R6             [* -> 2.6.1]
+- rappdirs       [* -> 0.3.3]
+- RColorBrewer   [* -> 1.1-3]
+- Rcpp           [* -> 1.0.14]
+- reactable      [* -> 0.4.5]
+- reactR         [* -> 0.6.1]
+- renv           [* -> 1.3.1]
+- rlang          [* -> 1.3.0]
+- rmarkdown      [* -> 2.29]
+- roxygen2       [* -> 7.3.2]
+- rpact          [* -> 4.4.0]
+- rprojroot      [* -> 2.0.4]
+- sass           [* -> 0.4.9]
+- scales         [* -> 1.3.0]
+- shiny          [* -> 1.10.0]
+- simsurv        [* -> 1.0.1]
+- sourcetools    [* -> 0.1.7-1]
+- stringi        [* -> 1.8.4]
+- stringr        [* -> 1.5.1]
+- testthat       [* -> 3.2.3]
+- tibble         [* -> 3.2.1]
+- tidyr          [* -> 1.3.2]
+- tidyselect     [* -> 1.2.1]
+- tinytex        [* -> 0.56]
+- utf8           [* -> 1.2.4]
+- V8             [* -> 8.2.1]
+- vctrs          [* -> 0.7.3]
+- viridisLite    [* -> 0.4.2]
+- waldo          [* -> 0.6.1]
+- withr          [* -> 3.0.2]
+- xfun           [* -> 0.62]
+- xml2           [* -> 1.3.8]
+- xtable         [* -> 1.8-4]
+- yaml           [* -> 2.3.10]
+
+# Downloading packages -------------------------------------------------------
+[?25l  (0/92) Downloading: tidyselect, juicyjuice, viridisLite, dplyr, ...                                                                                           [32m✔[0m fastmap 1.2.0                            [47 kB in 0.14s]
+  (1/92) Downloading: tidyselect, juicyjuice, viridisLite, dplyr, ...                                                                                           [32m✔[0m waldo 0.6.1                              [45 kB in 0.17s]
+  (2/92) Downloading: tidyselect, juicyjuice, viridisLite, dplyr, ...                                                                                           [32m✔[0m mime 0.12                                [13 kB in 0.2s]
+  (3/92) Downloading: tidyselect, juicyjuice, viridisLite, dplyr, ...                                                                                           [32m✔[0m tidyselect 1.2.1                         [104 kB in 0.2s]
+  (4/92) Downloading: juicyjuice, viridisLite, dplyr, farver, ...                                                                                               [32m✔[0m lifecycle 1.0.5                          [107 kB in 0.23s]
+  (5/92) Downloading: juicyjuice, viridisLite, dplyr, farver, ...                                                                                               [32m✔[0m processx 3.8.6                           [165 kB in 0.24s]
+  (6/92) Downloading: juicyjuice, viridisLite, dplyr, farver, ...                                                                                               [32m✔[0m labeling 0.4.3                           [10 kB in 39s]
+  (7/92) Downloading: juicyjuice, viridisLite, dplyr, farver, ...                                                                                               [32m✔[0m dplyr 1.2.1                              [924 kB in 0.28s]
+  (8/92) Downloading: juicyjuice, viridisLite, farver, bitops, ...                                                                                              [32m✔[0m promises 1.3.2                           [3.2 MB in 0.35s]
+  (9/92) Downloading: juicyjuice, viridisLite, farver, bitops, ...                                                                                              [32m✔[0m pkgbuild 1.4.6                           [48 kB in 95s]
+  (10/92) Downloading: juicyjuice, viridisLite, farver, bitops, ...                                                                                             [32m✔[0m farver 2.1.2                             [1.3 MB in 0.37s]
+  (11/92) Downloading: juicyjuice, viridisLite, bitops, digest, ...                                                                                             [32m✔[0m magrittr 2.0.3                           [267 kB in 0.4s]
+  (12/92) Downloading: juicyjuice, viridisLite, bitops, digest, ...                                                                                             [32m✔[0m sass 0.4.9                               [3.0 MB in 0.43s]
+  (13/92) Downloading: juicyjuice, viridisLite, bitops, digest, ...                                                                                             [32m✔[0m brew 1.0-10                              [71 kB in 0.2s]
+  (14/92) Downloading: juicyjuice, viridisLite, bitops, digest, ...                                                                                             [32m✔[0m gt 1.4.0                                 [3.5 MB in 0.24s]
+  (15/92) Downloading: juicyjuice, viridisLite, bitops, digest, ...                                                                                             [32m✔[0m yaml 2.3.10                              [95 kB in 0.29s]
+  (16/92) Downloading: juicyjuice, viridisLite, bitops, digest, ...                                                                                             [32m✔[0m knitr 1.50                               [534 kB in 0.25s]
+  (17/92) Downloading: juicyjuice, viridisLite, bitops, digest, ...                                                                                             [32m✔[0m htmlwidgets 1.6.4                        [869 kB in 0.19s]
+  (18/92) Downloading: juicyjuice, viridisLite, bitops, digest, ...                                                                                             [32m✔[0m utf8 1.2.4                               [241 kB in 0.29s]
+  (19/92) Downloading: juicyjuice, viridisLite, bitops, digest, ...                                                                                             [32m✔[0m RColorBrewer 1.1-3                       [12 kB in 73s]
+  (20/92) Downloading: juicyjuice, viridisLite, bitops, digest, ...                                                                                             [32m✔[0m viridisLite 0.4.2                        [1.3 MB in 0.47s]
+  (21/92) Downloading: juicyjuice, bitops, digest, rlang, ...                                                                                                   [32m✔[0m curl 8.1.0                               [731 kB in 0.14s]
+  (22/92) Downloading: juicyjuice, bitops, digest, rlang, ...                                                                                                   [32m✔[0m r2rtf 1.3.1                              [286 kB in 0.12s]
+  (23/92) Downloading: juicyjuice, bitops, digest, rlang, ...                                                                                                   [32m✔[0m pkgload 1.4.0                            [86 kB in 56s]
+  (24/92) Downloading: juicyjuice, bitops, digest, rlang, ...                                                                                                   [32m✔[0m xml2 1.3.8                               [153 kB in 0.12s]
+  (25/92) Downloading: juicyjuice, bitops, digest, rlang, ...                                                                                                   [32m✔[0m roxygen2 7.3.2                           [299 kB in 42s]
+  (26/92) Downloading: juicyjuice, bitops, digest, rlang, ...                                                                                                   [32m✔[0m withr 3.0.2                              [103 kB in 71s]
+  (27/92) Downloading: juicyjuice, bitops, digest, rlang, ...                                                                                                   [32m✔[0m xtable 1.8-4                             [565 kB in 59s]
+  (28/92) Downloading: juicyjuice, bitops, digest, rlang, ...                                                                                                   [32m✔[0m fansi 1.0.6                              [482 kB in 89s]
+  (29/92) Downloading: juicyjuice, bitops, digest, rlang, ...                                                                                                   [32m✔[0m diffobj 0.3.5                            [479 kB in 77s]
+  (30/92) Downloading: juicyjuice, bitops, digest, rlang, ...                                                                                                   [32m✔[0m crayon 1.5.3                             [40 kB in 0.11s]
+  (31/92) Downloading: juicyjuice, bitops, digest, rlang, ...                                                                                                   [32m✔[0m tinytex 0.56                             [36 kB in 0.15s]
+  (32/92) Downloading: juicyjuice, bitops, digest, rlang, ...                                                                                                   [32m✔[0m generics 0.1.4                           [47 kB in 0.11s]
+  (33/92) Downloading: juicyjuice, bitops, digest, rlang, ...                                                                                                   [32m✔[0m colorspace 2.1-1                         [2.1 MB in 0.19s]
+  (34/92) Downloading: juicyjuice, bitops, digest, rlang, ...                                                                                                   [32m✔[0m bitops 1.1-0                             [11 kB in 0.68s]
+  (35/92) Downloading: juicyjuice, digest, rlang, purrr, ...                                                                                                    [32m✔[0m isoband 0.2.7                            [1.6 MB in 0.2s]
+  (36/92) Downloading: juicyjuice, digest, rlang, purrr, ...                                                                                                    [32m✔[0m ggplot2 3.5.1                            [3.6 MB in 0.21s]
+  (37/92) Downloading: juicyjuice, digest, rlang, purrr, ...                                                                                                    [32m✔[0m commonmark 1.9.5                         [146 kB in 0.16s]
+  (38/92) Downloading: juicyjuice, digest, rlang, purrr, ...                                                                                                    [32m✔[0m desc 1.4.3                               [80 kB in 0.3s]
+  (39/92) Downloading: juicyjuice, digest, rlang, purrr, ...                                                                                                    [32m✔[0m juicyjuice 0.1.0                         [1.1 MB in 0.75s]
+  (40/92) Downloading: digest, rlang, purrr, scales, ...                                                                                                        [32m✔[0m cachem 1.1.0                             [27 kB in 0.11s]
+  (41/92) Downloading: digest, rlang, purrr, scales, ...                                                                                                        [32m✔[0m cli 3.6.4                                [638 kB in 0.24s]
+  (42/92) Downloading: digest, rlang, purrr, scales, ...                                                                                                        [32m✔[0m purrr 1.0.4                              [257 kB in 0.32s]
+  (43/92) Downloading: digest, rlang, scales, rmarkdown, ...                                                                                                    [32m✔[0m scales 1.3.0                             [303 kB in 0.27s]
+  (44/92) Downloading: digest, rlang, rmarkdown, rpact, ...                                                                                                     [32m✔[0m digest 0.6.37                            [232 kB in 0.78s]
+  (45/92) Downloading: rlang, rmarkdown, rpact, stringr, ...                                                                                                    [32m✔[0m rmarkdown 2.29                           [2.2 MB in 0.29s]
+  (46/92) Downloading: rlang, rpact, stringr, gsDesign, ...                                                                                                     [32m✔[0m base64enc 0.1-3                          [8 kB in 0.12s]
+  (47/92) Downloading: rlang, rpact, stringr, gsDesign, ...                                                                                                     [32m✔[0m rlang 1.3.0                              [784 kB in 0.8s]
+  (48/92) Downloading: rpact, stringr, gsDesign, vctrs, ...                                                                                                     [32m✔[0m rpact 4.4.0                              [894 kB in 0.17s]
+  (49/92) Downloading: stringr, gsDesign, vctrs, V8, ...                                                                                                        [32m✔[0m stringr 1.5.1                            [177 kB in 0.17s]
+  (50/92) Downloading: gsDesign, vctrs, V8, jsonlite, ...                                                                                                       [32m✔[0m vctrs 0.7.3                              [1.1 MB in 0.17s]
+  (51/92) Downloading: gsDesign, V8, jsonlite, cpp11, ...                                                                                                       [32m✔[0m V8 8.2.1                                 [623 kB in 0.2s]
+  (52/92) Downloading: gsDesign, jsonlite, cpp11, litedown, ...                                                                                                 [32m✔[0m jsonlite 1.9.1                           [1.1 MB in 0.2s]
+  (53/92) Downloading: gsDesign, cpp11, litedown, callr, ...                                                                                                    [32m✔[0m gsDesign 3.11.0                          [4.0 MB in 0.27s]
+  (54/92) Downloading: cpp11, litedown, callr, testthat, ...                                                                                                    [32m✔[0m litedown 1.0                             [302 kB in 0.2s]
+  (55/92) Downloading: cpp11, callr, testthat, fontawesome, ...                                                                                                 [32m✔[0m callr 3.7.6                              [104 kB in 0.19s]
+  (56/92) Downloading: cpp11, testthat, fontawesome, jquerylib, ...                                                                                             [32m✔[0m cpp11 0.5.2                              [292 kB in 0.23s]
+  (57/92) Downloading: testthat, fontawesome, jquerylib, tidyr, ...                                                                                             [32m✔[0m tidyr 1.3.2                              [809 kB in 0.2s]
+  (58/92) Downloading: testthat, fontawesome, jquerylib, glue, ...                                                                                              [32m✔[0m testthat 3.2.3                           [739 kB in 0.24s]
+  (59/92) Downloading: fontawesome, jquerylib, glue, reactR, ...                                                                                                [32m✔[0m fontawesome 0.5.3                        [1.3 MB in 0.23s]
+  (60/92) Downloading: jquerylib, glue, reactR, ps, ...                                                                                                         [32m✔[0m jquerylib 0.1.4                          [520 kB in 0.24s]
+  (61/92) Downloading: glue, reactR, ps, stringi, ...                                                                                                           [32m✔[0m reactR 0.6.1                             [712 kB in 0.22s]
+  (62/92) Downloading: glue, ps, stringi, gtable, ...                                                                                                           [32m✔[0m gtable 0.3.6                             [148 kB in 0.21s]
+  (63/92) Downloading: glue, ps, stringi, later, ...                                                                                                            [32m✔[0m glue 1.8.0                               [127 kB in 0.23s]
+  (64/92) Downloading: ps, stringi, later, munsell, ...                                                                                                         [32m✔[0m later 1.4.1                              [70 kB in 0.17s]
+  (65/92) Downloading: ps, stringi, munsell, tibble, ...                                                                                                        [32m✔[0m ps 1.9.0                                 [168 kB in 0.25s]
+  (66/92) Downloading: stringi, munsell, tibble, pillar, ...                                                                                                    [32m✔[0m munsell 0.5.1                            [182 kB in 0.15s]
+  (67/92) Downloading: stringi, tibble, pillar, rappdirs, ...                                                                                                   [32m✔[0m brio 1.1.5                               [13 kB in 92s]
+  (68/92) Downloading: stringi, tibble, pillar, rappdirs, ...                                                                                                   [32m✔[0m sourcetools 0.1.7-1                      [24 kB in 89s]
+  (69/92) Downloading: stringi, tibble, pillar, rappdirs, ...                                                                                                   [32m✔[0m praise 1.0.0                             [6 kB in 78s]
+  (70/92) Downloading: stringi, tibble, pillar, rappdirs, ...                                                                                                   [32m✔[0m rappdirs 0.3.3                           [12 kB in 0.13s]
+  (71/92) Downloading: stringi, tibble, pillar, htmltools, ...                                                                                                  [32m✔[0m R6 2.6.1                                 [65 kB in 74s]
+  (72/92) Downloading: stringi, tibble, pillar, htmltools, ...                                                                                                  [32m✔[0m rprojroot 2.0.4                          [60 kB in 73s]
+  (73/92) Downloading: stringi, tibble, pillar, htmltools, ...                                                                                                  [32m✔[0m pillar 1.10.1                            [407 kB in 0.16s]
+  (74/92) Downloading: stringi, tibble, htmltools, reactable, ...                                                                                               [32m✔[0m tibble 3.2.1                             [566 kB in 0.2s]
+  (75/92) Downloading: stringi, htmltools, reactable, evaluate, ...                                                                                             [32m✔[0m htmltools 0.5.8.1                        [135 kB in 0.17s]
+  (76/92) Downloading: stringi, reactable, evaluate, shiny, ...                                                                                                 [32m✔[0m markdown 2.1                             [21 kB in 86s]
+  (77/92) Downloading: stringi, reactable, evaluate, shiny, ...                                                                                                 [32m✔[0m reactable 0.4.5                          [981 kB in 0.14s]
+  (78/92) Downloading: stringi, evaluate, shiny, highr, ...                                                                                                     [32m✔[0m memoise 2.0.1                            [18 kB in 86s]
+  (79/92) Downloading: stringi, evaluate, shiny, highr, ...                                                                                                     [32m✔[0m evaluate 1.0.3                           [38 kB in 0.15s]
+  (80/92) Downloading: stringi, shiny, highr, renv, ...                                                                                                         [32m✔[0m highr 0.11                               [14 kB in 0.13s]
+  (81/92) Downloading: stringi, shiny, renv, httpuv, ...                                                                                                        [32m✔[0m pkgconfig 2.0.3                          [6 kB in 95s]
+  (82/92) Downloading: stringi, shiny, renv, httpuv, ...                                                                                                        [32m✔[0m simsurv 1.0.1                            [127 kB in 0.15s]
+  (83/92) Downloading: stringi, shiny, renv, httpuv, ...                                                                                                        [32m✔[0m httpuv 1.6.15                            [1.9 MB in 0.21s]
+  (84/92) Downloading: stringi, shiny, renv, bslib, ...                                                                                                         [32m✔[0m xfun 0.62                                [230 kB in 0.18s]
+  (85/92) Downloading: stringi, shiny, renv, bslib, ...                                                                                                         [32m✔[0m bigD 0.3.1                               [1.3 MB in 0.24s]
+  (86/92) Downloading: stringi, shiny, renv, bslib, ...                                                                                                         [32m✔[0m shiny 1.10.0                             [3.3 MB in 0.32s]
+  (87/92) Downloading: stringi, renv, bslib, Rcpp, ...                                                                                                          [32m✔[0m renv 1.3.1                               [1.6 MB in 0.34s]
+  (88/92) Downloading: stringi, bslib, Rcpp, fs                                                                                                                 [32m✔[0m fs 1.6.5                                 [1.2 MB in 0.32s]
+  (89/92) Downloading: stringi, bslib, Rcpp                                                                                                                     [32m✔[0m stringi 1.8.4                            [11.9 MB in 0.62s]
+  (90/92) Downloading: bslib, Rcpp                                                                                                                              [32m✔[0m Rcpp 1.0.14                              [3.0 MB in 0.37s]
+  (91/92) Downloading: bslib                                                                                                                                    [32m✔[0m bslib 0.9.0                              [5.4 MB in 0.42s]
+                                                                                Successfully downloaded 92 packages in 1.8 seconds.
+
+# Installing packages --------------------------------------------------------
+  (0/92) Installing: base64enc, bigD, bitops, brew                                (0/92) Installing: base64enc, bigD, bitops, brew                                (0/92) Installing: base64enc, bigD, bitops, brew                                (0/92) Installing: base64enc, bigD, bitops, brew                                (0/92) Installing: base64enc, bigD, bitops, brew                                                                                                              [32m✔[0m brew 1.0-10                              [built from source in 1.5s]
+  (1/92) Installing: base64enc, bigD, bitops                                      (1/92) Installing: base64enc, bigD, bitops, brio                                (1/92) Installing: base64enc, bigD, bitops, brio                                                                                                              [32m✔[0m bitops 1.1-0                             [built from source in 1.8s]
+  (2/92) Installing: base64enc, bigD, brio                                        (2/92) Installing: base64enc, bigD, brio, cli                                                                                                                 [32m✔[0m base64enc 0.1-3                          [built from source in 1.9s]
+  (3/92) Installing: bigD, brio, cli                                              (3/92) Installing: bigD, brio, cli, colorspace                                  (3/92) Installing: bigD, brio, cli, colorspace                                  (3/92) Installing: bigD, brio, cli, colorspace                                                                                                                [32m✔[0m brio 1.1.5                               [built from source in 1.9s]
+  (4/92) Installing: bigD, cli, colorspace                                        (4/92) Installing: bigD, cli, colorspace, commonmark                            (4/92) Installing: bigD, cli, colorspace, commonmark                                                                                                          [32m✔[0m bigD 0.3.1                               [built from source in 7.5s]
+  (5/92) Installing: cli, colorspace, commonmark                                  (5/92) Installing: cli, colorspace, commonmark, cpp11                           (5/92) Installing: cli, colorspace, commonmark, cpp11                                                                                                         [32m✔[0m colorspace 2.1-1                         [built from source in 6.1s]
+  (6/92) Installing: cli, commonmark, cpp11                                       (6/92) Installing: cli, commonmark, cpp11, crayon                               (6/92) Installing: cli, commonmark, cpp11, crayon                                                                                                             [32m✔[0m cpp11 0.5.2                              [built from source in 1.4s]
+  (7/92) Installing: cli, commonmark, crayon                                      (7/92) Installing: cli, commonmark, crayon, curl                                (7/92) Installing: cli, commonmark, crayon, curl                                                                                                              [32m✔[0m crayon 1.5.3                             [built from source in 1.9s]
+  (8/92) Installing: cli, commonmark, curl                                        (8/92) Installing: cli, commonmark, curl, digest                                (8/92) Installing: cli, commonmark, curl, digest                                                                                                              [32m✔[0m cli 3.6.4                                [built from source in 10s]
+  (9/92) Installing: commonmark, curl, digest                                     (9/92) Installing: commonmark, curl, digest, evaluate                           (9/92) Installing: commonmark, curl, digest, evaluate                                                                                                         [32m✔[0m commonmark 1.9.5                         [built from source in 9.0s]
+  (10/92) Installing: curl, digest, evaluate                                      (10/92) Installing: curl, digest, evaluate, fansi                               (10/92) Installing: curl, digest, evaluate, fansi                                                                                                             [32m✔[0m curl 8.1.0                               [built from source in 4.1s]
+  (11/92) Installing: digest, evaluate, fansi                                     (11/92) Installing: digest, evaluate, fansi, farver                             (11/92) Installing: digest, evaluate, fansi, farver                                                                                                           [32m✔[0m evaluate 1.0.3                           [built from source in 1.5s]
+  (12/92) Installing: digest, fansi, farver                                       (12/92) Installing: digest, fansi, farver, fastmap                              (12/92) Installing: digest, fansi, farver, fastmap                                                                                                            [32m✔[0m fansi 1.0.6                              [built from source in 4.0s]
+  (13/92) Installing: digest, farver, fastmap                                     (13/92) Installing: digest, farver, fastmap, fs                                                                                                               [32m✔[0m digest 0.6.37                            [built from source in 6.5s]
+  (14/92) Installing: farver, fastmap, fs                                         (14/92) Installing: farver, fastmap, fs, generics                               (14/92) Installing: farver, fastmap, fs, generics                                                                                                             [32m✔[0m fastmap 1.2.0                            [built from source in 3.1s]
+  (15/92) Installing: farver, fs, generics                                        (15/92) Installing: farver, fs, generics, glue                                  (15/92) Installing: farver, fs, generics, glue                                                                                                                [32m✔[0m generics 0.1.4                           [built from source in 1.2s]
+  (16/92) Installing: farver, fs, glue                                            (16/92) Installing: farver, fs, glue, isoband                                   (16/92) Installing: farver, fs, glue, isoband                                                                                                                 [32m✔[0m glue 1.8.0                               [built from source in 1.7s]
+  (17/92) Installing: farver, fs, isoband                                         (17/92) Installing: farver, fs, isoband, jsonlite                               (17/92) Installing: farver, fs, isoband, jsonlite                                                                                                             [32m✔[0m jsonlite 1.9.1                           [built from source in 4.3s]
+  (18/92) Installing: farver, fs, isoband                                         (18/92) Installing: farver, fs, isoband, labeling                                                                                                             [32m✔[0m isoband 0.2.7                            [built from source in 5.0s]
+  (19/92) Installing: farver, fs, labeling                                        (19/92) Installing: farver, fs, labeling, magrittr                              (19/92) Installing: farver, fs, labeling, magrittr                              (19/92) Installing: farver, fs, labeling, magrittr                                                                                                            [32m✔[0m labeling 0.4.3                           [built from source in 1.5s]
+  (20/92) Installing: farver, fs, magrittr                                        (20/92) Installing: farver, fs, magrittr, mime                                                                                                                [32m✔[0m magrittr 2.0.3                           [built from source in 1.5s]
+  (21/92) Installing: farver, fs, mime                                            (21/92) Installing: farver, fs, mime, pkgconfig                                 (21/92) Installing: farver, fs, mime, pkgconfig                                 (21/92) Installing: farver, fs, mime, pkgconfig                                                                                                               [32m✔[0m pkgconfig 2.0.3                          [built from source in 1.0s]
+  (22/92) Installing: farver, fs, mime                                            (22/92) Installing: farver, fs, mime, praise                                    (22/92) Installing: farver, fs, mime, praise                                                                                                                  [32m✔[0m mime 0.12                                [built from source in 1.3s]
+  (23/92) Installing: farver, fs, praise                                          (23/92) Installing: farver, fs, praise, ps                                      (23/92) Installing: farver, fs, praise, ps                                                                                                                    [32m✔[0m praise 1.0.0                             [built from source in 1.1s]
+  (24/92) Installing: farver, fs, ps                                              (24/92) Installing: farver, fs, ps, r2rtf                                       (24/92) Installing: farver, fs, ps, r2rtf                                                                                                                     [32m✔[0m r2rtf 1.3.1                              [built from source in 2.7s]
+  (25/92) Installing: farver, fs, ps                                              (25/92) Installing: farver, fs, ps, R6                                          (25/92) Installing: farver, fs, ps, R6                                                                                                                        [32m✔[0m ps 1.9.0                                 [built from source in 5.0s]
+  (26/92) Installing: farver, fs, R6                                              (26/92) Installing: farver, fs, R6, rappdirs                                                                                                                  [32m✔[0m R6 2.6.1                                 [built from source in 1.5s]
+  (27/92) Installing: farver, fs, rappdirs                                        (27/92) Installing: farver, fs, rappdirs, RColorBrewer                          (27/92) Installing: farver, fs, rappdirs, RColorBrewer                          (27/92) Installing: farver, fs, rappdirs, RColorBrewer                                                                                                        [32m✔[0m rappdirs 0.3.3                           [built from source in 1.3s]
+  (28/92) Installing: farver, fs, RColorBrewer                                    (28/92) Installing: farver, fs, RColorBrewer, Rcpp                              (28/92) Installing: farver, fs, RColorBrewer, Rcpp                                                                                                            [32m✔[0m RColorBrewer 1.1-3                       [built from source in 1.6s]
+  (29/92) Installing: farver, fs, Rcpp                                            (29/92) Installing: farver, fs, Rcpp, renv                                      (29/92) Installing: farver, fs, Rcpp, renv                                                                                                                    [32m✔[0m farver 2.1.2                             [built from source in 21s]
+  (30/92) Installing: fs, Rcpp, renv                                              (30/92) Installing: fs, Rcpp, renv, rlang                                       (30/92) Installing: fs, Rcpp, renv, rlang                                                                                                                     [32m✔[0m fs 1.6.5                                 [built from source in 23s]
+  (31/92) Installing: Rcpp, renv, rlang                                           (31/92) Installing: Rcpp, renv, rlang, rprojroot                                (31/92) Installing: Rcpp, renv, rlang, rprojroot                                                                                                              [32m✔[0m rprojroot 2.0.4                          [built from source in 1.3s]
+  (32/92) Installing: Rcpp, renv, rlang                                           (32/92) Installing: Rcpp, renv, rlang, simsurv                                  (32/92) Installing: Rcpp, renv, rlang, simsurv                                                                                                                [32m✔[0m simsurv 1.0.1                            [built from source in 2.0s]
+  (33/92) Installing: Rcpp, renv, rlang                                           (33/92) Installing: Rcpp, renv, rlang, sourcetools                              (33/92) Installing: Rcpp, renv, rlang, sourcetools                                                                                                            [32m✔[0m renv 1.3.1                               [built from source in 14s]
+  (34/92) Installing: Rcpp, rlang, sourcetools                                    (34/92) Installing: Rcpp, rlang, sourcetools, stringi                                                                                                         [32m✔[0m sourcetools 0.1.7-1                      [built from source in 4.0s]
+  (35/92) Installing: Rcpp, rlang, stringi                                        (35/92) Installing: Rcpp, rlang, stringi, utf8                                  (35/92) Installing: Rcpp, rlang, stringi, utf8                                  (35/92) Installing: Rcpp, rlang, stringi, utf8                                                                                                                [32m✔[0m rlang 1.3.0                              [built from source in 13s]
+  (36/92) Installing: Rcpp, stringi, utf8                                         (36/92) Installing: Rcpp, stringi, utf8, viridisLite                            (36/92) Installing: Rcpp, stringi, utf8, viridisLite                                                                                                          [32m✔[0m viridisLite 0.4.2                        [built from source in 1.3s]
+  (37/92) Installing: Rcpp, stringi, utf8                                         (37/92) Installing: Rcpp, stringi, utf8, withr                                  (37/92) Installing: Rcpp, stringi, utf8, withr                                                                                                                [32m✔[0m withr 3.0.2                              [built from source in 2.1s]
+  (38/92) Installing: Rcpp, stringi, utf8                                         (38/92) Installing: Rcpp, stringi, utf8, xfun                                   (38/92) Installing: Rcpp, stringi, utf8, xfun                                                                                                                 [32m✔[0m utf8 1.2.4                               [built from source in 4.5s]
+  (39/92) Installing: Rcpp, stringi, xfun                                         (39/92) Installing: Rcpp, stringi, xfun, xtable                                 (39/92) Installing: Rcpp, stringi, xfun, xtable                                                                                                               [32m✔[0m xtable 1.8-4                             [built from source in 2.5s]
+  (40/92) Installing: Rcpp, stringi, xfun                                         (40/92) Installing: Rcpp, stringi, xfun, yaml                                   (40/92) Installing: Rcpp, stringi, xfun, yaml                                                                                                                 [32m✔[0m Rcpp 1.0.14                              [built from source in 23s]
+  (41/92) Installing: stringi, xfun, yaml                                         (41/92) Installing: stringi, xfun, yaml, munsell                                (41/92) Installing: stringi, xfun, yaml, munsell                                                                                                              [32m✔[0m xfun 0.62                                [built from source in 6.7s]
+  (42/92) Installing: stringi, yaml, munsell                                      (42/92) Installing: stringi, yaml, munsell, diffobj                             (42/92) Installing: stringi, yaml, munsell, diffobj                                                                                                           [32m✔[0m munsell 0.5.1                            [built from source in 2.0s]
+  (43/92) Installing: stringi, yaml, diffobj                                      (43/92) Installing: stringi, yaml, diffobj, desc                                (43/92) Installing: stringi, yaml, diffobj, desc                                                                                                              [32m✔[0m yaml 2.3.10                              [built from source in 6.5s]
+  (44/92) Installing: stringi, diffobj, desc                                      (44/92) Installing: stringi, diffobj, desc, processx                            (44/92) Installing: stringi, diffobj, desc, processx                                                                                                          [32m✔[0m desc 1.4.3                               [built from source in 3.4s]
+  (45/92) Installing: stringi, diffobj, processx                                  (45/92) Installing: stringi, diffobj, processx, cachem                          (45/92) Installing: stringi, diffobj, processx, cachem                                                                                                        [32m✔[0m cachem 1.1.0                             [built from source in 2.7s]
+  (46/92) Installing: stringi, diffobj, processx                                  (46/92) Installing: stringi, diffobj, processx, htmltools                       (46/92) Installing: stringi, diffobj, processx, htmltools                                                                                                     [32m✔[0m processx 3.8.6                           [built from source in 6.2s]
+  (47/92) Installing: stringi, diffobj, htmltools                                 (47/92) Installing: stringi, diffobj, htmltools, lifecycle                                                                                                    [32m✔[0m diffobj 0.3.5                            [built from source in 9.6s]
+  (48/92) Installing: stringi, htmltools, lifecycle                               (48/92) Installing: stringi, htmltools, lifecycle, xml2                         (48/92) Installing: stringi, htmltools, lifecycle, xml2                         (48/92) Installing: stringi, htmltools, lifecycle, xml2                                                                                                       [31m✖[0m xml2 1.3.8                              
+  (49/92) Installing: stringi, htmltools, lifecycle                               (49/92) Installing: stringi, htmltools, lifecycle, later                        (49/92) Installing: stringi, htmltools, lifecycle, later                                                                                                      [32m✔[0m htmltools 0.5.8.1                        [built from source in 4.5s]
+  (50/92) Installing: stringi, lifecycle, later                                   (50/92) Installing: stringi, lifecycle, later, V8                               (50/92) Installing: stringi, lifecycle, later, V8                                                                                                             [32m✔[0m lifecycle 1.0.5                          [built from source in 2.3s]
+  (51/92) Installing: stringi, later, V8                                          (51/92) Installing: stringi, later, V8, highr                                   (51/92) Installing: stringi, later, V8, highr                                                                                                                 [32m✔[0m highr 0.11                               [built from source in 1.3s]
+  (52/92) Installing: stringi, later, V8                                          (52/92) Installing: stringi, later, V8, litedown                                (52/92) Installing: stringi, later, V8, litedown                                (52/92) Installing: stringi, later, V8, litedown                                (52/92) Installing: stringi, later, V8, litedown                                (52/92) Installing: stringi, later, V8, litedown                                                                                                              [32m✔[0m litedown 1.0                             [built from source in 17s]
+  (53/92) Installing: stringi, later, V8                                          (53/92) Installing: stringi, later, V8, tinytex                                 (53/92) Installing: stringi, later, V8, tinytex                                                                                                               [32m✔[0m later 1.4.1                              [built from source in 21s]
+  (54/92) Installing: stringi, V8, tinytex                                        (54/92) Installing: stringi, V8, tinytex, memoise                               (54/92) Installing: stringi, V8, tinytex, memoise                                                                                                             [32m✔[0m tinytex 0.56                             [built from source in 2.1s]
+  (55/92) Installing: stringi, V8, memoise                                        (55/92) Installing: stringi, V8, memoise, callr                                 (55/92) Installing: stringi, V8, memoise, callr                                                                                                               [32m✔[0m memoise 2.0.1                            [built from source in 2.1s]
+  (56/92) Installing: stringi, V8, callr                                          (56/92) Installing: stringi, V8, callr, waldo                                   (56/92) Installing: stringi, V8, callr, waldo                                                                                                                 [32m✔[0m waldo 0.6.1                              [built from source in 3.0s]
+  (57/92) Installing: stringi, V8, callr                                          (57/92) Installing: stringi, V8, callr, fontawesome                             (57/92) Installing: stringi, V8, callr, fontawesome                                                                                                           [32m✔[0m V8 8.2.1                                 [built from source in 27s]
+  (58/92) Installing: stringi, callr, fontawesome                                 (58/92) Installing: stringi, callr, fontawesome, jquerylib                      (58/92) Installing: stringi, callr, fontawesome, jquerylib                                                                                                    [32m✔[0m callr 3.7.6                              [built from source in 5.6s]
+  (59/92) Installing: stringi, fontawesome, jquerylib                             (59/92) Installing: stringi, fontawesome, jquerylib, reactR                     (59/92) Installing: stringi, fontawesome, jquerylib, reactR                                                                                                   [32m✔[0m fontawesome 0.5.3                        [built from source in 2.4s]
+  (60/92) Installing: stringi, jquerylib, reactR                                  (60/92) Installing: stringi, jquerylib, reactR, sass                                                                                                          [32m✔[0m jquerylib 0.1.4                          [built from source in 1.9s]
+  (61/92) Installing: stringi, reactR, sass                                       (61/92) Installing: stringi, reactR, sass, gtable                               (61/92) Installing: stringi, reactR, sass, gtable                               (61/92) Installing: stringi, reactR, sass, gtable                                                                                                             [32m✔[0m reactR 0.6.1                             [built from source in 2.0s]
+  (62/92) Installing: stringi, sass, gtable                                       (62/92) Installing: stringi, sass, gtable, scales                               (62/92) Installing: stringi, sass, gtable, scales                                                                                                             [32m✔[0m gtable 0.3.6                             [built from source in 3.0s]
+  (63/92) Installing: stringi, sass, scales                                       (63/92) Installing: stringi, sass, scales, vctrs                                (63/92) Installing: stringi, sass, scales, vctrs                                                                                                              [32m✔[0m scales 1.3.0                             [built from source in 5.8s]
+  (64/92) Installing: stringi, sass, vctrs                                        (64/92) Installing: stringi, sass, vctrs, knitr                                 (64/92) Installing: stringi, sass, vctrs, knitr                                 (64/92) Installing: stringi, sass, vctrs, knitr                                                                                                               [32m✔[0m knitr 1.50                               [built from source in 8.2s]
+  (65/92) Installing: stringi, sass, vctrs                                        (65/92) Installing: stringi, sass, vctrs, markdown                              (65/92) Installing: stringi, sass, vctrs, markdown                                                                                                            [32m✔[0m markdown 2.1                             [built from source in 2.0s]
+  (66/92) Installing: stringi, sass, vctrs                                        (66/92) Installing: stringi, sass, vctrs, promises                              (66/92) Installing: stringi, sass, vctrs, promises                              (66/92) Installing: stringi, sass, vctrs, promises                              (66/92) Installing: stringi, sass, vctrs, promises                                                                                                            [32m✔[0m promises 1.3.2                           [built from source in 11s]
+  (67/92) Installing: stringi, sass, vctrs                                        (67/92) Installing: stringi, sass, vctrs, juicyjuice                            (67/92) Installing: stringi, sass, vctrs, juicyjuice                                                                                                          [32m✔[0m stringi 1.8.4                            [built from source in 1.3m]
+  (68/92) Installing: sass, vctrs, juicyjuice                                     (68/92) Installing: sass, vctrs, juicyjuice, pkgbuild                           (68/92) Installing: sass, vctrs, juicyjuice, pkgbuild                                                                                                         [32m✔[0m juicyjuice 0.1.0                         [built from source in 1.6s]
+  (69/92) Installing: sass, vctrs, pkgbuild                                       (69/92) Installing: sass, vctrs, pkgbuild, rpact                                (69/92) Installing: sass, vctrs, pkgbuild, rpact                                                                                                              [32m✔[0m pkgbuild 1.4.6                           [built from source in 3.0s]
+  (70/92) Installing: sass, vctrs, rpact                                          (70/92) Installing: sass, vctrs, rpact, httpuv                                  (70/92) Installing: sass, vctrs, rpact, httpuv                                                                                                                [32m✔[0m vctrs 0.7.3                              [built from source in 32s]
+  (71/92) Installing: sass, rpact, httpuv                                         (71/92) Installing: sass, rpact, httpuv, pkgload                                (71/92) Installing: sass, rpact, httpuv, pkgload                                                                                                              [32m✔[0m pkgload 1.4.0                            [built from source in 4.2s]
+  (72/92) Installing: sass, rpact, httpuv                                         (72/92) Installing: sass, rpact, httpuv, pillar                                 (72/92) Installing: sass, rpact, httpuv, pillar                                                                                                               [32m✔[0m pillar 1.10.1                            [built from source in 5.0s]
+  (73/92) Installing: sass, rpact, httpuv                                         (73/92) Installing: sass, rpact, httpuv, purrr                                  (73/92) Installing: sass, rpact, httpuv, purrr                                  (73/92) Installing: sass, rpact, httpuv, purrr                                                                                                                [32m✔[0m purrr 1.0.4                              [built from source in 5.5s]
+  (74/92) Installing: sass, rpact, httpuv                                         (74/92) Installing: sass, rpact, httpuv, stringr                                (74/92) Installing: sass, rpact, httpuv, stringr                                                                                                              [32m✔[0m stringr 1.5.1                            [built from source in 4.1s]
+  (75/92) Installing: sass, rpact, httpuv                                         (75/92) Installing: sass, rpact, httpuv, tidyselect                             (75/92) Installing: sass, rpact, httpuv, tidyselect                                                                                                           [32m✔[0m tidyselect 1.2.1                         [built from source in 3.7s]
+  (76/92) Installing: sass, rpact, httpuv                                         (76/92) Installing: sass, rpact, httpuv, testthat                               (76/92) Installing: sass, rpact, httpuv, testthat                               (76/92) Installing: sass, rpact, httpuv, testthat                               (76/92) Installing: sass, rpact, httpuv, testthat                               (76/92) Installing: sass, rpact, httpuv, testthat                               (76/92) Installing: sass, rpact, httpuv, testthat                               (76/92) Installing: sass, rpact, httpuv, testthat                               (76/92) Installing: sass, rpact, httpuv, testthat                                                                                                             [32m✔[0m testthat 3.2.3                           [built from source in 33s]
+  (77/92) Installing: sass, rpact, httpuv                                         (77/92) Installing: sass, rpact, httpuv, tibble                                 (77/92) Installing: sass, rpact, httpuv, tibble                                                                                                               [32m✔[0m tibble 3.2.1                             [built from source in 4.6s]
+  (78/92) Installing: sass, rpact, httpuv                                         (78/92) Installing: sass, rpact, httpuv, dplyr                                  (78/92) Installing: sass, rpact, httpuv, dplyr                                  (78/92) Installing: sass, rpact, httpuv, dplyr                                  (78/92) Installing: sass, rpact, httpuv, dplyr                                                                                                                [32m✔[0m dplyr 1.2.1                              [built from source in 13s]
+  (79/92) Installing: sass, rpact, httpuv                                         (79/92) Installing: sass, rpact, httpuv, ggplot2                                (79/92) Installing: sass, rpact, httpuv, ggplot2                                (79/92) Installing: sass, rpact, httpuv, ggplot2                                (79/92) Installing: sass, rpact, httpuv, ggplot2                                                                                                              [32m✔[0m sass 0.4.9                               [built from source in 2.0m]
+  (80/92) Installing: rpact, httpuv, ggplot2                                      (80/92) Installing: rpact, httpuv, ggplot2, tidyr                               (80/92) Installing: rpact, httpuv, ggplot2, tidyr                               (80/92) Installing: rpact, httpuv, ggplot2, tidyr                                                                                                             [32m✔[0m ggplot2 3.5.1                            [built from source in 19s]
+  (81/92) Installing: rpact, httpuv, tidyr                                        (81/92) Installing: rpact, httpuv, tidyr, bslib                                 (81/92) Installing: rpact, httpuv, tidyr, bslib                                                                                                               [32m✔[0m tidyr 1.3.2                              [built from source in 9.2s]
+  (82/92) Installing: rpact, httpuv, bslib                                        (82/92) Installing: rpact, httpuv, bslib                                                                                                                      [32m✔[0m httpuv 1.6.15                            [built from source in 1.7m]
+  (83/92) Installing: rpact, bslib                                                (83/92) Installing: rpact, bslib                                                                                                                              [32m✔[0m bslib 0.9.0                              [built from source in 4.2s]
+  (84/92) Installing: rpact                                                       (84/92) Installing: rpact, rmarkdown, shiny                                     (84/92) Installing: rpact, rmarkdown, shiny                                     (84/92) Installing: rpact, rmarkdown, shiny                                                                                                                   [32m✔[0m rmarkdown 2.29                           [built from source in 4.8s]
+  (85/92) Installing: rpact, shiny                                                (85/92) Installing: rpact, shiny, htmlwidgets                                   (85/92) Installing: rpact, shiny, htmlwidgets                                                                                                                 [32m✔[0m htmlwidgets 1.6.4                        [built from source in 1.6s]
+  (86/92) Installing: rpact, shiny                                                (86/92) Installing: rpact, shiny, reactable                                     (86/92) Installing: rpact, shiny, reactable                                                                                                                   [32m✔[0m reactable 0.4.5                          [built from source in 2.1s]
+  (87/92) Installing: rpact, shiny                                                (87/92) Installing: rpact, shiny                                                (87/92) Installing: rpact, shiny                                                                                                                              [32m✔[0m shiny 1.10.0                             [built from source in 17s]
+  (88/92) Installing: rpact                                                       (88/92) Installing: rpact                                                                                                                                     [32m✔[0m rpact 4.4.0                              [built from source in 2.1m]
+Successfully installed 88 packages in 250 seconds.
+
+The following package(s) were not installed successfully:
+- [xml2]: install failed
+- [gsDesign]: dependency failed (gt)
+- [gt]: dependency failed (xml2)
+- [roxygen2]: dependency failed (xml2)
+You may need to manually download and install these packages.
+
+# xml2 -----------------------------------------------------------------------
+* installing *source* package ‘xml2’ ...
+** this is package ‘xml2’ version ‘1.3.8’
+** package ‘xml2’ successfully unpacked and MD5 sums checked
+** using staged installation
+Found pkg-config cflags and libs!
+Using PKG_CFLAGS=-I/usr/include/libxml2
+Using PKG_LIBS=-lxml2
+------------------------- ANTICONF ERROR ---------------------------
+Configuration failed because libxml-2.0 was not found. Try installing:
+ * deb: libxml2-dev (Debian, Ubuntu, etc)
+ * rpm: libxml2-devel (Fedora, CentOS, RHEL)
+ * csw: libxml2_dev (Solaris)
+If libxml-2.0 is already installed, check that 'pkg-config' is in your
+PATH and PKG_CONFIG_PATH contains a libxml-2.0.pc file. If pkg-config
+is unavailable you can set INCLUDE_DIR and LIB_DIR manually via:
+R CMD INSTALL --configure-vars='INCLUDE_DIR=... LIB_DIR=...'
+-------------------------- [ERROR MESSAGE] ---------------------------
+<stdin>:1:10: fatal error: libxml/tree.h: No such file or directory
+compilation terminated.
+--------------------------------------------------------------------
+ERROR: configuration failed for package ‘xml2’
+* removing ‘/workspace/otd-restore-library/xml2’
+
+[?25hError: failed to install "gsDesign", "gt", "roxygen2", "xml2"
+Traceback (most recent calls last):
+4: renv::restore(lockfile = "renv.lock", library = "/workspace/otd-restore-library", 
+       prompt = FALSE, transactional = FALSE)
+3: renv_restore_run_actions(project, diff, current, lockfile, rebuild, 
+       strict, descriptions, retry)
+2: stopf("failed to install %s", paste(dQuote(failed), collapse = ", "))
+1: stop(sprintf(fmt, ...), call. = call.)
+Execution halted

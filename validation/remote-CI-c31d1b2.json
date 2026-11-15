@@ -1,0 +1,25 @@
+{
+  "commit": "c31d1b2c2504efcec7accb43924d07ce6e076fae",
+  "run_url": "https://github.com/fredsevmartins/OpenTrialDesign/actions/runs/43769172674",
+  "jobs": [
+    {
+      "name": "check (windows-latest)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/fredsevmartins/OpenTrialDesign/actions/runs/43769172674/job/132980980634"
+    },
+    {
+      "name": "check (ubuntu-latest)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/fredsevmartins/OpenTrialDesign/actions/runs/43769172674/job/132980980889"
+    },
+    {
+      "name": "check (macos-latest)",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/fredsevmartins/OpenTrialDesign/actions/runs/43769172674/job/132980981021"
+    }
+  ],
+  "scope": "Actual remote package checks, 30-example execution and scientific reference experiments. Subsequent event-stopping, dropout-validation, boundary and printing corrections have separate local logs and require the next CI run."
+}

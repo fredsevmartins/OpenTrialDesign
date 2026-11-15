@@ -57,3 +57,9 @@ test_that("Shiny server executes sequential adaptive survival and library workfl
     expect_equal(example()$data$n_per_arm, 64)
   })
 })
+test_that("native-only planning results display scientific output", {
+  skip_if_not_installed("rpact")
+  text <- paste(capture.output(print(survival_design())), collapse = "\n")
+  expect_match(text, "Number of events")
+  expect_match(text, "Hazard ratio")
+})

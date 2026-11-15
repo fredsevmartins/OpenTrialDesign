@@ -14,12 +14,15 @@
 | Schoenfeld target | Independent closed form within 1e-4 events | Formula and adapter agreement |
 | Survival simulation | 2000 null replications; nominal .025; four-MCSE tolerance | Limited exponential/null scenario diagnostic |
 | Event stopping/dropout | Deterministic seed; target attainment and calendar cap | Operational assumptions exercised |
-| Provisional examples | All 30 at nsim=1000, seed=2026; 30 saved result objects | Executed, not individually independently validated |
+| Provisional examples | All 30 at nsim=1000, seed=2026; 30 saved result objects; synthetic assumptions and rationales documented | Executed, not individually independently validated |
 | Shiny | testServer exercises all calculation families | Shared-engine server verification; separate Chromium smoke test passed |
 | HTML/PDF | Actual rendered reference files | Rendering dependencies verified locally |
-| Package | R CMD build, install and R CMD check Status OK | Current Linux/R/dependency baseline only |
+| Package | R CMD build, install, fresh-library tests and R CMD check Status OK | Current Linux/R/dependency baseline only |
 
-Exact observed numerical results are in validation/scientific-reference.csv.
+The event-stopping floating-point defect and its correction are recorded in
+validation/event-stop-defect.txt. A deterministic reached-event regression
+requires exactly 40 events; event-driven null error with dropout is assessed
+separately. Exact observed numerical results are in validation/scientific-reference.csv.
 No test infers noninferiority/equivalence, uniform null control, general adaptive
 validity, or compatibility between different engines. Monte Carlo checks have
 sampling uncertainty even when they pass. The package has not undergone

@@ -1,0 +1,8 @@
+Initial remote macOS CI run: https://github.com/fredsevmartins/OpenTrialDesign/actions/runs/43768697929
+The following exact log excerpt records the workflow configuration failure.
+2026-11-15T22:21:21.2407700Z   error-on: warning
+2026-11-15T22:21:21.2434900Z [36;1mcheck_results <- rcmdcheck::rcmdcheck(args = (c("--no-manual", "--as-cran")), build_args = ("--no-manual"), error_on = (warning), check_dir = ("check"))[0m
+2026-11-15T22:21:21.4529920Z Error in match.arg(error_on, c("never", "error", "warning", "note")) : 
+2026-11-15T22:21:21.4530350Z   'arg' must be NULL or a character vector
+2026-11-15T22:21:21.4588190Z Execution halted
+2026-11-15T22:21:21.4666630Z ##[error]Process completed with exit code 1.

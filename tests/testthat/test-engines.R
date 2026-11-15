@@ -49,6 +49,8 @@ test_that("survival simulations are reproducible and report event target attainm
   expect_identical(x$data, simulate_survival(50, nsim = 20, seed = 42, events = 40)$data)
   expect_gte(x$data$target_attainment, 0)
   expect_lte(x$data$target_attainment, 1)
+  expect_equal(x$data$target_attainment, 1)
+  expect_equal(x$data$mean_events, 40)
   expect_lte(x$data$mean_calendar_end, 30)
   expect_error(simulate_survival(20, events = 41), "exceeds")
 })

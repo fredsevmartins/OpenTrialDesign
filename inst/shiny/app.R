@@ -80,7 +80,7 @@ server <- function(input, output, session) {
   output$sequential_result <- renderPrint(seq())
   output$sequential_plot <- renderPlot(plot_design(seq()))
   output$adaptive_result <- renderPrint(adaptive())
-  output$survival_result <- renderPrint({x <- surv(); print(x); print(x$data$native)})
+  output$survival_result <- renderPrint(surv())
   output$survsim_result <- renderPrint(survsim())
   output$simulation_result <- renderPrint(sim())
   output$simulation_plot <- renderPlot(plot_design(sim()))

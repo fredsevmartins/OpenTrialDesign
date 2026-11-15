@@ -1,0 +1,35 @@
+* installing *source* package ‘xml2’ ...
+** this is package ‘xml2’ version ‘1.3.8’
+** package ‘xml2’ successfully unpacked and MD5 sums checked
+** using staged installation
+Found INCLUDE_DIR and/or LIB_DIR!
+Using PKG_CFLAGS=-I/workspace/r-local/usr/include/libxml2 
+Using PKG_LIBS=-L/workspace/r-local/usr/lib/x86_64-linux-gnu -lxml2
+** libs
+using C compiler: ‘gcc (Debian 14.2.0-19) 14.2.0’
+using C++ compiler: ‘g++ (Debian 14.2.0-19) 14.2.0’
+g++ -std=gnu++17 -I"/workspace/r-local/usr/share/R/include" -DNDEBUG -I../inst/include -I/workspace/r-local/usr/include/libxml2  -DUCHAR_TYPE=wchar_t -DU_SHOW_CPLUSPLUS_API=0 -DSTRICT_R_HEADERS -DR_NO_REMAP     -fvisibility=hidden -fpic  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -Wdate-time -D_FORTIFY_SOURCE=2   -c connection.cpp -o connection.o
+gcc -std=gnu23 -I"/workspace/r-local/usr/share/R/include" -DNDEBUG -I../inst/include -I/workspace/r-local/usr/include/libxml2  -DUCHAR_TYPE=wchar_t -DU_SHOW_CPLUSPLUS_API=0 -DSTRICT_R_HEADERS -DR_NO_REMAP     -fvisibility=hidden -fpic  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -Wdate-time -D_FORTIFY_SOURCE=2  -c init.c -o init.o
+g++ -std=gnu++17 -I"/workspace/r-local/usr/share/R/include" -DNDEBUG -I../inst/include -I/workspace/r-local/usr/include/libxml2  -DUCHAR_TYPE=wchar_t -DU_SHOW_CPLUSPLUS_API=0 -DSTRICT_R_HEADERS -DR_NO_REMAP     -fvisibility=hidden -fpic  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -Wdate-time -D_FORTIFY_SOURCE=2   -c xml2_doc.cpp -o xml2_doc.o
+gcc -std=gnu23 -I"/workspace/r-local/usr/share/R/include" -DNDEBUG -I../inst/include -I/workspace/r-local/usr/include/libxml2  -DUCHAR_TYPE=wchar_t -DU_SHOW_CPLUSPLUS_API=0 -DSTRICT_R_HEADERS -DR_NO_REMAP     -fvisibility=hidden -fpic  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -Wdate-time -D_FORTIFY_SOURCE=2  -c xml2_init.c -o xml2_init.o
+g++ -std=gnu++17 -I"/workspace/r-local/usr/share/R/include" -DNDEBUG -I../inst/include -I/workspace/r-local/usr/include/libxml2  -DUCHAR_TYPE=wchar_t -DU_SHOW_CPLUSPLUS_API=0 -DSTRICT_R_HEADERS -DR_NO_REMAP     -fvisibility=hidden -fpic  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -Wdate-time -D_FORTIFY_SOURCE=2   -c xml2_namespace.cpp -o xml2_namespace.o
+g++ -std=gnu++17 -I"/workspace/r-local/usr/share/R/include" -DNDEBUG -I../inst/include -I/workspace/r-local/usr/include/libxml2  -DUCHAR_TYPE=wchar_t -DU_SHOW_CPLUSPLUS_API=0 -DSTRICT_R_HEADERS -DR_NO_REMAP     -fvisibility=hidden -fpic  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -Wdate-time -D_FORTIFY_SOURCE=2   -c xml2_node.cpp -o xml2_node.o
+g++ -std=gnu++17 -I"/workspace/r-local/usr/share/R/include" -DNDEBUG -I../inst/include -I/workspace/r-local/usr/include/libxml2  -DUCHAR_TYPE=wchar_t -DU_SHOW_CPLUSPLUS_API=0 -DSTRICT_R_HEADERS -DR_NO_REMAP     -fvisibility=hidden -fpic  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -Wdate-time -D_FORTIFY_SOURCE=2   -c xml2_output.cpp -o xml2_output.o
+g++ -std=gnu++17 -I"/workspace/r-local/usr/share/R/include" -DNDEBUG -I../inst/include -I/workspace/r-local/usr/include/libxml2  -DUCHAR_TYPE=wchar_t -DU_SHOW_CPLUSPLUS_API=0 -DSTRICT_R_HEADERS -DR_NO_REMAP     -fvisibility=hidden -fpic  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -Wdate-time -D_FORTIFY_SOURCE=2   -c xml2_schema.cpp -o xml2_schema.o
+g++ -std=gnu++17 -I"/workspace/r-local/usr/share/R/include" -DNDEBUG -I../inst/include -I/workspace/r-local/usr/include/libxml2  -DUCHAR_TYPE=wchar_t -DU_SHOW_CPLUSPLUS_API=0 -DSTRICT_R_HEADERS -DR_NO_REMAP     -fvisibility=hidden -fpic  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -Wdate-time -D_FORTIFY_SOURCE=2   -c xml2_url.cpp -o xml2_url.o
+g++ -std=gnu++17 -I"/workspace/r-local/usr/share/R/include" -DNDEBUG -I../inst/include -I/workspace/r-local/usr/include/libxml2  -DUCHAR_TYPE=wchar_t -DU_SHOW_CPLUSPLUS_API=0 -DSTRICT_R_HEADERS -DR_NO_REMAP     -fvisibility=hidden -fpic  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -Wdate-time -D_FORTIFY_SOURCE=2   -c xml2_xpath.cpp -o xml2_xpath.o
+g++ -std=gnu++17 -shared -L/workspace/r-local/usr/lib/R/lib -Wl,-z,relro -o xml2.so connection.o init.o xml2_doc.o xml2_init.o xml2_namespace.o xml2_node.o xml2_output.o xml2_schema.o xml2_url.o xml2_xpath.o -L/workspace/r-local/usr/lib/x86_64-linux-gnu -lxml2 -L/workspace/r-local/usr/lib/R/lib -lR
+installing to /workspace/otd-restore-library/00LOCK-xml2/00new/xml2/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (xml2)

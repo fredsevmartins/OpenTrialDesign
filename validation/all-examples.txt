@@ -213,7 +213,22 @@ Validation: execution is not independent scientific validation
 conditional power 
 Engine: gsDesign 
 Method: gsCP 
-named list()
+               Lower bounds   Upper bounds
+  Analysis N  Z   Nominal p  Z   Nominal p
+         1  1 -20         0 1.28    0.0996
+
+Boundary crossing probabilities and expected sample size assume
+any cross stops the trial
+
+Upper boundary
+          Analysis
+   Theta      1  Total E{N}
+  2.8016 0.7583 0.7583  0.5
+
+Lower boundary
+          Analysis
+   Theta 1 Total
+  2.8016 0     0
 Validation: execution is not independent scientific validation 
 
  TD-017 seed 2026 nsim 1000 
@@ -368,21 +383,141 @@ Validation: execution is not independent scientific validation
 survival planning 
 Engine: rpact 
 Method: Schoenfeld exponential proportional hazards planning 
-named list()
+Design plan parameters and output for survival data:
+
+Design parameters:
+  Critical values                              : 1.960 
+  Significance level                           : 0.0250 
+  Type II error rate                           : 0.2000 
+  Test                                         : one-sided 
+
+User defined parameters:
+  lambda(2)                                    : 0.0578 
+  Hazard ratio                                 : 0.700 
+  Accrual time                                 : 18.00 
+  Accrual intensity                            : 1.0 
+  Follow up time                               : 12.00 
+
+Default parameters:
+  Theta H0                                     : 1 
+  Type of computation                          : Schoenfeld 
+  Planned allocation ratio                     : 1 
+  kappa                                        : 1 
+  Piecewise survival times                     : 0.00 
+  Drop-out rate (1)                            : 0.000 
+  Drop-out rate (2)                            : 0.000 
+  Drop-out time                                : 12.00 
+
+Sample size and output:
+  Direction upper                              : FALSE 
+  median(1)                                    : 17.1 
+  median(2)                                    : 12.0 
+  lambda(1)                                    : 0.0404 
+  Number of events                             : 246.8 
+  Number of events fixed                       : 246.8 
+  Number of subjects fixed                     : 394.3 
+  Number of subjects fixed (1)                 : 197.1 
+  Number of subjects fixed (2)                 : 197.1 
+  Analysis time                                : 30.00 
+  Study duration                               : 30.00 
+  Critical values (treatment effect scale)     : 0.779 
+
+Legend:
+  (i): values of treatment arm i
 Validation: execution is not independent scientific validation 
 
  TD-023 seed 2026 nsim 1000 
 survival planning 
 Engine: rpact 
 Method: Schoenfeld exponential proportional hazards planning 
-named list()
+Design plan parameters and output for survival data:
+
+Design parameters:
+  Critical values                              : 1.960 
+  Significance level                           : 0.0250 
+  Type II error rate                           : 0.2000 
+  Test                                         : one-sided 
+
+User defined parameters:
+  lambda(2)                                    : 0.0578 
+  Hazard ratio                                 : 0.700 
+  Accrual time                                 : 18.00 
+  Accrual intensity                            : 1.0 
+  Follow up time                               : 12.00 
+  Drop-out rate (1)                            : 0.100 
+  Drop-out rate (2)                            : 0.100 
+
+Default parameters:
+  Theta H0                                     : 1 
+  Type of computation                          : Schoenfeld 
+  Planned allocation ratio                     : 1 
+  kappa                                        : 1 
+  Piecewise survival times                     : 0.00 
+  Drop-out time                                : 12.00 
+
+Sample size and output:
+  Direction upper                              : FALSE 
+  median(1)                                    : 17.1 
+  median(2)                                    : 12.0 
+  lambda(1)                                    : 0.0404 
+  Number of events                             : 246.8 
+  Number of events fixed                       : 246.8 
+  Number of subjects fixed                     : 425.5 
+  Number of subjects fixed (1)                 : 212.7 
+  Number of subjects fixed (2)                 : 212.7 
+  Analysis time                                : 30.00 
+  Study duration                               : 30.00 
+  Critical values (treatment effect scale)     : 0.779 
+
+Legend:
+  (i): values of treatment arm i
 Validation: execution is not independent scientific validation 
 
  TD-024 seed 2026 nsim 1000 
 survival planning 
 Engine: rpact 
 Method: Schoenfeld exponential proportional hazards planning 
-named list()
+Design plan parameters and output for survival data:
+
+Design parameters:
+  Critical values                              : 1.960 
+  Significance level                           : 0.0250 
+  Type II error rate                           : 0.2000 
+  Test                                         : one-sided 
+
+User defined parameters:
+  lambda(2)                                    : 0.0578 
+  Hazard ratio                                 : 0.700 
+  Accrual time                                 : 18.00 
+  Accrual intensity                            : 1.0 
+  Follow up time                               : 24.00 
+
+Default parameters:
+  Theta H0                                     : 1 
+  Type of computation                          : Schoenfeld 
+  Planned allocation ratio                     : 1 
+  kappa                                        : 1 
+  Piecewise survival times                     : 0.00 
+  Drop-out rate (1)                            : 0.000 
+  Drop-out rate (2)                            : 0.000 
+  Drop-out time                                : 12.00 
+
+Sample size and output:
+  Direction upper                              : FALSE 
+  median(1)                                    : 17.1 
+  median(2)                                    : 12.0 
+  lambda(1)                                    : 0.0404 
+  Number of events                             : 246.8 
+  Number of events fixed                       : 246.8 
+  Number of subjects fixed                     : 313.3 
+  Number of subjects fixed (1)                 : 156.7 
+  Number of subjects fixed (2)                 : 156.7 
+  Analysis time                                : 42.00 
+  Study duration                               : 42.00 
+  Critical values (treatment effect scale)     : 0.779 
+
+Legend:
+  (i): values of treatment arm i
 Validation: execution is not independent scientific validation 
 
  TD-025 seed 2026 nsim 1000 
@@ -514,14 +649,14 @@ $target_attainment
 [1] 0.196
 
 $mean_events
-[1] 230.713
+[1] 230.73
 
 $mean_calendar_end
 [1] 29.81126
 
 $mean_events_uncertainty
    estimate        mcse       lower       upper 
-230.7130000   0.2539983 230.2145686 231.2114314 
+230.7300000   0.2545858 230.2304158 231.2295842 
 
 $mean_calendar_end_uncertainty
   estimate       mcse      lower      upper 

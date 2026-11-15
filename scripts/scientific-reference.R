@@ -37,6 +37,15 @@ B <- 2000
 x <- simulate_survival(200, nsim = B, seed = 2026, null = TRUE)
 record("survival logrank equality null", .025, x$data$estimate,
        4*sqrt(.025*.975/B), "asymptotic signed logrank score; four theoretical MCSE")
+event_check <- simulate_survival(50, events = 40, nsim = 20, seed = 42)
+record("reached event target preserved at calendar cutoff", 40,
+       event_check$data$mean_events, 0,
+       "deterministic event-stopping regression; target reached in every replication")
+event_null <- simulate_survival(100, events = 100, dropout = 0.1,
+  nsim = 2000, seed = 2026, null = TRUE)
+record("event-driven dropout logrank equality null", .025, event_null$data$estimate,
+       4*sqrt(.025*.975/2000),
+       "event target or administrative cap; independent dropout; four theoretical MCSE")
 utils::write.csv(do.call(rbind, rows), "validation/scientific-reference.csv", row.names = FALSE)
 print(sessionInfo())
 if (!all(vapply(rows, function(x) x$passed, logical(1)))) stop("Reference check failed")
