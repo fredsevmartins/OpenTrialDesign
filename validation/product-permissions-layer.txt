@@ -1,0 +1,28 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from otd-permissions.Dockerfile
+#1 DONE 0.0s
+
+#1 [internal] load build definition from otd-permissions.Dockerfile
+#1 transferring dockerfile: 143B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/opentrialdesign:0.2.0
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 150B done
+#3 DONE 0.0s
+
+#4 [1/2] FROM docker.io/library/opentrialdesign:0.2.0
+#4 DONE 0.0s
+
+#5 [2/2] RUN chmod -R a+rX /opt/OpenTrialDesign
+#5 DONE 18.0s
+
+#6 exporting to image
+#6 exporting layers
+#6 exporting layers 0.9s done
+#6 writing image sha256:8d161adf037dbd012b0f28027ed5d1b9c843ff6f0f0c1ceb440a38081c1348c6 done
+#6 naming to docker.io/library/opentrialdesign:0.2.0 done
+#6 DONE 0.9s

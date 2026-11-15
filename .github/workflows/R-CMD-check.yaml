@@ -38,7 +38,9 @@ jobs:
           source("scripts/run-examples.R")
       - name: Scientific reference experiments
         shell: Rscript {0}
-        run: source("scripts/scientific-reference.R")
+        run: |
+          source("scripts/scientific-reference.R")
+          source("scripts/product-scientific-reference.R")
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -46,3 +48,49 @@ jobs:
           path: |
             validation/
             check/
+
+  container:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          load: true
+          tags: opentrialdesign:0.2.0
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+      - name: Start local product
+        run: |
+          docker run -d --name otd-product --read-only --tmpfs /tmp:size=512m,mode=1777 -p 127.0.0.1:3838:3838 opentrialdesign:0.2.0
+          for attempt in $(seq 1 90); do
+            if curl -fsS http://127.0.0.1:3838/ > /dev/null; then exit 0; fi
+            sleep 2
+          done
+          docker logs otd-product
+          exit 1
+      - name: Installed package and PDF in clean container
+        run: |
+          docker exec -w /tmp otd-product Rscript -e 'testthat::test_package("OpenTrialDesign"); OpenTrialDesign::render_report(OpenTrialDesign::sample_size(OpenTrialDesign::trial_spec()),"/tmp/report.pdf","pdf"); stopifnot(file.exists("/tmp/report.pdf"))'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Browser acceptance
+        env:
+          OTD_APP_URL: http://127.0.0.1:3838/
+          OTD_TEST_PDF: '1'
+        run: |
+          pip install playwright
+          python -m playwright install --with-deps chromium
+          python scripts/product-browser.py
+      - name: Container diagnostics
+        if: always()
+        run: |
+          docker logs otd-product || true
+          docker inspect otd-product || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: product-container-and-browser
+          path: validation/

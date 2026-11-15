@@ -7,3 +7,7 @@
 ^renv\.lock$
 ^\.Rprofile$
 ^scripts$
+^Dockerfile$
+^compose\.yaml$
+^deployment$
+^\.dockerignore$

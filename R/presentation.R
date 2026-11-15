@@ -17,7 +17,7 @@ print.otd_result <- function(x, ...) {
 #' @export
 plot_design <- function(x) {
   if (!inherits(x, "otd_result")) fail("x must be an otd_result")
-  if (x$kind == "group sequential design") {
+  if (x$kind %in% c("group sequential design", "sequential mean sample size")) {
     d <- x$data$boundaries
     dat <- rbind(data.frame(information = d$information, z = d$efficacy, rule = "efficacy"),
                  data.frame(information = d$information, z = d$futility, rule = "futility"))
@@ -88,11 +88,15 @@ render_report <- function(x, file, format = c("html", "pdf")) {
   invisible(normalizePath(requested, mustWork = TRUE))
 }
 #' Launch the optional shared-engine Shiny application
+#' @param host Address to bind; defaults to loopback.
+#' @param port Optional TCP port.
+#' @param launch.browser Whether to open a browser.
 #' @return The result of shiny::runApp.
 #' @export
-run_app <- function() {
+run_app <- function(host = "127.0.0.1", port = NULL, launch.browser = interactive()) {
   need("shiny")
-  shiny::runApp(system.file("shiny", package = "OpenTrialDesign"))
+  shiny::runApp(system.file("shiny", package = "OpenTrialDesign"), host = host,
+    port = port, launch.browser = launch.browser)
 }
 # Declare ggplot's tidy-evaluation pronoun without importing the UI.
 utils::globalVariables(".data")

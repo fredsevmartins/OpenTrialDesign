@@ -181,8 +181,9 @@ The installed `examples/catalog.csv` documents 30 independently executable
 scenarios; installed `examples/ASSUMPTIONS.md` explains each rationale and
 limits the synthetic effects to teaching/planning demonstrations. They are
 accessible through `run_example("TD-001")` and standalone scripts.
-**The supplied repository contained no project plan defining TD IDs; this is a
-provisional catalog, not a verified mapping to that missing specification.**
+The supplied repository contained no external plan defining TD IDs. This
+version defines its own explicit product catalog; equivalence to that missing
+external specification is not claimed.
 
 Numerical reference checks compare normal/binary calculations directly to
 stats, sequential spending and power to engine integration, and survival events
@@ -215,3 +216,62 @@ Brilleman SL, Wolfe R, Moreno-Betancur M, Crowther MJ (2021). Simulating
 survival data using the simsurv R package. *Journal of Statistical Software*,
 97(3), 1-27. Use `citation("rpact")`, `citation("gsDesign")`,
 `citation("survival")` and `citation("simsurv")` for current engine citations.
+
+## Portable projects and batch replay
+
+```{r projects}
+project <- trial_project("fixed_sample_size", list(effect = 0.5), "Demonstration")
+execute_project(project)
+```
+
+Projects freeze all default parameters and record schema and software versions.
+`write_project(project, "design.json")` saves non-executable JSON.
+`execute_project(read_project("design.json"))` replays it through the same core.
+Schema validation rejects unknown workflows, arguments, code-like numeric
+values and unsupported versions. Scientific input validation occurs in the
+engine when executed. JSON is configuration data; no R expressions from an
+import are evaluated. Only trusted local archival RDS files should be loaded
+by the user outside the application.
+
+Supported workflows are `fixed_sample_size`, `fixed_power`, `fixed_simulation`,
+`sequential_design`, `sequential_means`, `adaptive_simulation`, `survival_design`
+and `survival_simulation`. Fixed workflows take trial_spec parameters plus
+sample size and simulation settings as applicable. Other workflows take the
+corresponding public function's parameters.
+
+## Operational sequential enrollment
+
+```{r sequential-enrollment}
+if (requireNamespace("rpact", quietly=TRUE)) sequential_sample_size()
+```
+
+This positive-mean, one-sided, equal-allocation workflow uses rpact's native
+t-approximation planning and power functions. Cumulative per-arm stage sizes
+are rounded upward, the information fractions recomputed, and spending
+boundaries recalibrated in rpact. The maximum size is increased if recalculated
+power falls below target. Final output includes integer stage counts, realized
+information and achieved analytical power. No gsDesign boundaries or fixed
+stats t-test calculations are combined with this procedure.
+
+## Background jobs and reproducibility exports
+
+`start_simulation(project)` starts an isolated process for a fixed, adaptive or
+survival simulation project. `simulation_status(job)` is nonblocking;
+`collect_simulation(job)` requires successful completion. `cancel_simulation(job)`
+terminates an active worker and never returns a partial estimate as a completed
+run. The application allows one active job per session and remains interactive
+while it runs. Closing the session cancels its worker. API users can choose
+larger runs than the application's 100,000-replication limit.
+
+`result_table(result)` provides spreadsheet data. `export_bundle(result,
+"trial.zip", include_report = FALSE)` writes CSV, assumptions, provenance,
+session information, the exact result, the replay project when present and
+MD5 integrity checks. MD5 checks detect accidental changes, not authenticity.
+Use the Projects and exports tab to save JSON, CSV and ZIP, and Scientific
+reporting for HTML/PDF. The full guide is downloadable from the application.
+
+See the repository deployment guide for local, container and batch commands.
+The version-1 example catalog is now explicitly defined by the installed
+catalog and per-example rationales. It does not claim equivalence to an absent
+external project plan. These workflows support planning and simulation within
+the stated assumptions; they do not confer protocol-specific qualification.

@@ -1,5 +1,5 @@
 # TD-014: gsDesign nonbinding futility
-# PROVISIONAL catalog; original project plan unavailable.
+# Version-1 product catalog; no external-plan equivalence claimed.
 # Assumptions: Upper alpha control ignores lower futility; actual power assumes lower stopping.
 # Monte Carlo runs use 1000 replications and seed 2026 by default.
 library(OpenTrialDesign)

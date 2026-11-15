@@ -1,5 +1,5 @@
 # TD-007: Binary reduction
-# PROVISIONAL catalog; original project plan unavailable.
+# Version-1 product catalog; no external-plan equivalence claimed.
 # Assumptions: Treatment response .35 versus control .50; lower response beneficial; one-sided alpha .025.
 # Monte Carlo runs use 1000 replications and seed 2026 by default.
 library(OpenTrialDesign)

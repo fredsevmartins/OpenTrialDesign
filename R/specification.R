@@ -54,9 +54,14 @@ check_spec <- function(spec) {
   rebuilt <- do.call(trial_spec, spec[c("endpoint", "effect", "sd", "p_control", "alpha", "power", "alternative")])
   if (!identical(spec, rebuilt)) fail("spec was modified; construct a new trial_spec")
 }
+engine_minimum <- c(gsDesign = "3.11.0", rpact = "4.4.0", simsurv = "1.0.1",
+                    callr = "3.7.6", zip = "2.3.0")
 need <- function(package) {
   if (!requireNamespace(package, quietly = TRUE))
     fail(paste("Install optional dependency", package), "otd_dependency_error")
+  if (package %in% names(engine_minimum) &&
+      utils::packageVersion(package) < package_version(engine_minimum[[package]]))
+    fail(paste(package, "requires version", engine_minimum[[package]], "or newer"), "otd_dependency_error")
 }
 provenance <- function(engine, method, assumptions, seed = NULL) {
   packages <- unique(c("OpenTrialDesign", engine))

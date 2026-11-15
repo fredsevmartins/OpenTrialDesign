@@ -38,3 +38,9 @@ Computational execution alone does not establish scientific validation.
 ```{r session, echo=FALSE}
 utils::sessionInfo()
 ```
+
+## Replay project
+
+```{r replay, echo=FALSE}
+if (!is.null(x$project)) print(x$project)
+```

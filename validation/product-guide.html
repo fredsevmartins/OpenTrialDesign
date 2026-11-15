@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>OpenTrialDesign user guide</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">OpenTrialDesign user guide</h1>
+
+
+
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(OpenTrialDesign)</span></code></pre></div>
+<div id="installation-and-scope" class="section level2">
+<h2>Installation and scope</h2>
+<p>Install from source with
+<code>install.packages(&quot;OpenTrialDesign_0.1.0.tar.gz&quot;, repos = NULL, type = &quot;source&quot;)</code>.
+Optional engines can be installed with
+<code>install.packages(c(&quot;gsDesign&quot;, &quot;rpact&quot;, &quot;simsurv&quot;))</code>; the
+interface requires <code>shiny</code>, and reporting requires
+<code>rmarkdown</code> plus Pandoc. PDF additionally requires a working
+LaTeX installation. The package core does not depend on Shiny.</p>
+<p>The first release supports equal-allocation, two-arm superiority
+calculations, canonical one-sided sequential designs, a specific
+two-stage adaptive inverse-normal procedure, and exponential
+proportional hazards survival trials. Noninferiority, equivalence,
+cluster trials, recurrent events, competing risks, and nonproportional
+hazards are outside these adapters’ present scope. Such analyses require
+an appropriate validated engine and explicit estimand.</p>
+</div>
+<div id="specify-the-scientific-question" class="section level2">
+<h2>Specify the scientific question</h2>
+<p><code>trial_spec()</code> records endpoint, treatment minus control
+effect, sidedness, total alpha, target power and equal allocation.
+Positive and negative effects must agree with a directional alternative.
+No default margin is inferred.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>spec <span class="ot">&lt;-</span> <span class="fu">trial_spec</span>(<span class="at">effect =</span> <span class="fl">0.5</span>, <span class="at">sd =</span> <span class="dv">1</span>, <span class="at">alpha =</span> <span class="fl">0.05</span>, <span class="at">power =</span> <span class="fl">0.8</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">sample_size</span>(spec)</span></code></pre></div>
+<pre><code>## fixed sample size 
+## Engine: stats 
+## Method: Two-sample t test power calculation 
+## $n_per_arm
+## [1] 64
+## 
+## $n_total
+## [1] 128
+## 
+## $unrounded_n_per_arm
+## [1] 63.76561
+## 
+## $achieved_power
+## [1] 0.8014596
+## 
+## Validation: execution is not independent scientific validation</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">trial_power</span>(spec, <span class="dv">64</span>)</span></code></pre></div>
+<pre><code>## analytical power 
+## Engine: stats 
+## Method: Two-sample t test power calculation 
+## $power
+## [1] 0.8014596
+## 
+## $n_per_arm
+## [1] 64
+## 
+## Validation: execution is not independent scientific validation</code></pre>
+<p>The normal calculation uses <code>stats::power.t.test</code> for
+independent normal observations with a common variance, and includes
+rejection in both tails for two-sided power
+(<code>strict = TRUE</code>). Binary planning uses
+<code>stats::power.prop.test</code> without continuity correction.
+Sample size is rounded up per arm and analytical power recalculated at
+that integer size. All reported sizes are evaluable participants; no
+hidden attrition inflation is applied.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>binary <span class="ot">&lt;-</span> <span class="fu">trial_spec</span>(<span class="st">&quot;binary&quot;</span>, <span class="at">effect =</span> <span class="fl">0.15</span>, <span class="at">p_control =</span> <span class="fl">0.3</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="fu">sample_size</span>(binary)</span></code></pre></div>
+<pre><code>## fixed sample size 
+## Engine: stats 
+## Method: Two-sample comparison of proportions power calculation 
+## $n_per_arm
+## [1] 163
+## 
+## $n_total
+## [1] 326
+## 
+## $unrounded_n_per_arm
+## [1] 162.3341
+## 
+## $achieved_power
+## [1] 0.8016169
+## 
+## Validation: execution is not independent scientific validation</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">compare_scenarios</span>(<span class="fu">list</span>(<span class="at">base =</span> spec, <span class="at">smaller_effect =</span> <span class="fu">trial_spec</span>(<span class="at">effect =</span> <span class="fl">0.3</span>)))</span></code></pre></div>
+<pre><code>##         scenario endpoint effect alpha alternative target_power n_per_arm
+## 1           base   normal    0.5  0.05   two.sided          0.8        64
+## 2 smaller_effect   normal    0.3  0.05   two.sided          0.8       176
+##   achieved_power
+## 1      0.8014596
+## 2      0.8013794</code></pre>
+</div>
+<div id="monte-carlo-operating-characteristics" class="section level2">
+<h2>Monte Carlo operating characteristics</h2>
+<p>Analytical power differs from a Monte Carlo estimate. Each simulation
+result contains the rejection count, replication count, seed, estimate,
+plug-in MCSE <code>sqrt(p_hat * (1-p_hat) / B)</code>, and exact
+Clopper-Pearson 95% interval. A zero MCSE at zero observed rejections
+does not imply absence of uncertainty; use the interval. Expected
+enrollment, information, event-count and duration summaries include
+approximate t-based Monte Carlo intervals. Stopping and
+target-attainment probabilities use marginal exact binomial intervals;
+they do not have simultaneous 95% coverage. Choose replication counts
+for the precision required: at true error 0.025, 1000 replications give
+an approximate MCSE of 0.00494.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">simulate_trial</span>(spec, <span class="dv">64</span>, <span class="at">nsim =</span> <span class="dv">200</span>, <span class="at">seed =</span> <span class="dv">2026</span>)</span></code></pre></div>
+<pre><code>## Monte Carlo operating characteristics 
+## Engine: stats 
+## Method: empirical power 
+## $rejections
+## [1] 159
+## 
+## $nsim
+## [1] 200
+## 
+## $estimate
+## [1] 0.795
+## 
+## $mcse
+## [1] 0.02854602
+## 
+## $conf_level
+## [1] 0.95
+## 
+## $lower
+## [1] 0.7323461
+## 
+## $upper
+## [1] 0.8486894
+## 
+## $n_per_arm
+## [1] 64
+## 
+## $effect_simulated
+## [1] 0.5
+## 
+## Validation: execution is not independent scientific validation</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="fu">simulate_trial</span>(spec, <span class="dv">64</span>, <span class="at">nsim =</span> <span class="dv">200</span>, <span class="at">seed =</span> <span class="dv">2026</span>, <span class="at">null =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## Monte Carlo operating characteristics 
+## Engine: stats 
+## Method: empirical type I error at equality null 
+## $rejections
+## [1] 8
+## 
+## $nsim
+## [1] 200
+## 
+## $estimate
+## [1] 0.04
+## 
+## $mcse
+## [1] 0.01385641
+## 
+## $conf_level
+## [1] 0.95
+## 
+## $lower
+## [1] 0.01742481
+## 
+## $upper
+## [1] 0.07729197
+## 
+## $n_per_arm
+## [1] 64
+## 
+## $effect_simulated
+## [1] 0
+## 
+## Validation: execution is not independent scientific validation</code></pre>
+<p>The equality null uses treatment effect zero, not the planning
+alternative. The normal test is the pooled t test. The binary analysis
+is <code>prop.test</code> with no continuity correction. All-zero or
+all-one binary samples cannot reject equality and are assigned p=1.
+Discreteness can affect nominal type I error. The equality null alone
+does not establish uniform control across all nuisance parameters.
+Broader null grids and multiplicity control are study-specific work.</p>
+</div>
+<div id="sequential-designs-and-stopping" class="section level2">
+<h2>Sequential designs and stopping</h2>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">requireNamespace</span>(<span class="st">&quot;gsDesign&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>  seq_design <span class="ot">&lt;-</span> <span class="fu">sequential_design</span>(<span class="at">information =</span> <span class="fu">c</span>(<span class="fl">0.33</span>, <span class="fl">0.67</span>, <span class="dv">1</span>),</span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>                                  <span class="at">futility =</span> <span class="st">&quot;nonbinding&quot;</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>  <span class="fu">print</span>(seq_design)</span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>  <span class="fu">plot_design</span>(seq_design)</span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a>  <span class="fu">sequential_power</span>(seq_design, <span class="at">theta =</span> <span class="dv">0</span>)</span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a>  <span class="fu">conditional_power</span>(seq_design, <span class="at">z =</span> <span class="fl">1.5</span>)</span>
+<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a>  <span class="fu">simulate_sequential</span>(seq_design, <span class="at">nsim =</span> <span class="dv">200</span>, <span class="at">seed =</span> <span class="dv">2026</span>)</span>
+<span id="cb14-9"><a href="#cb14-9" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## group sequential design 
+## Engine: gsDesign 
+## Method: OF alpha spending 
+## $boundaries
+##   information efficacy   futility
+## 1        0.33 3.730665 -0.2302696
+## 2        0.67 2.503871  0.9355973
+## 3        1.00 1.993710  1.9937099
+## 
+## Validation: execution is not independent scientific validation</code></pre>
+<pre><code>## Monte Carlo operating characteristics 
+## Engine: gsDesign 
+## Method: canonical normal independent increments simulation 
+## $rejections
+## [1] 5
+## 
+## $nsim
+## [1] 200
+## 
+## $estimate
+## [1] 0.025
+## 
+## $mcse
+## [1] 0.0110397
+## 
+## $conf_level
+## [1] 0.95
+## 
+## $lower
+## [1] 0.008166166
+## 
+## $upper
+## [1] 0.05737435
+## 
+## $theta
+## [1] 0
+## 
+## $enforce_futility
+## [1] TRUE
+## 
+## $stopping_probabilities
+## [1] 0.410 0.445 0.145
+## 
+## $expected_information
+## [1] 0.6165006
+## 
+## $expected_information_uncertainty
+##  estimate      mcse     lower     upper 
+## 0.6165006 0.0176869 0.5816228 0.6513784 
+## 
+## $stopping_uncertainty
+##      estimate       mcse      lower     upper
+## [1,]    0.410 0.03477787 0.34113065 0.4815784
+## [2,]    0.445 0.03514079 0.37490109 0.5167537
+## [3,]    0.145 0.02489729 0.09930862 0.2015615
+## 
+## $mean_interval_method
+## [1] &quot;approximate t-based 95% Monte Carlo interval&quot;
+## 
+## $stopping_interval_method
+## [1] &quot;marginal exact binomial 95%; no simultaneous coverage claim&quot;
+## 
+## Validation: execution is not independent scientific validation</code></pre>
+<p>Sequential alpha is the <strong>one-sided upper efficacy</strong>
+error. A lower futility crossing does not reject the null. For gsDesign,
+no-futility uses test.type=1, binding beta-spending uses 3, and
+nonbinding beta-spending uses 4. Beta spending is Hwang-Shih-DeCani with
+gamma=-2. Nonbinding upper boundaries protect alpha if futility is
+ignored; power and expected information depend on whether futility is
+followed. The canonical simulator can evaluate that distinction, and
+refuses to ignore a binding rule. Analytical gsProbability enforces
+lower stopping even for a design calibrated with nonbinding
+futility.</p>
+<p>Information fractions are prespecified. The canonical simulation is a
+Brownian independent-increments experiment, not patient-level evidence
+for arbitrary endpoints or data-dependent information times.
+<code>theta</code> is canonical drift; the default analytical
+alternative is the native design’s drift. Information is normalized to
+fixed-design information, not a patient count.</p>
+<p>The rpact adapter returns its own native object. Engine-specific OF
+and Pocock spending approximations are retained. Never transfer
+boundaries, power values, or information scales between engines without
+an explicit compatibility check.</p>
+</div>
+<div id="adaptive-sample-size-recalculation" class="section level2">
+<h2>Adaptive sample size recalculation</h2>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">requireNamespace</span>(<span class="st">&quot;rpact&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>  adaptive <span class="ot">&lt;-</span> <span class="fu">adaptive_simulation</span>(<span class="at">nsim =</span> <span class="dv">200</span>, <span class="at">seed =</span> <span class="dv">2026</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a>  <span class="fu">print</span>(adaptive)</span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## adaptive inverse normal simulation 
+## Engine: rpact 
+## Method: native inverse-normal combination test with conditional-power resizing 
+## $summary
+##        scenario effect nsim rejections estimate        mcse       lower
+## 1 equality null    0.0  200          4     0.02 0.009899495 0.005475566
+## 2   alternative    0.5  200        190     0.95 0.015411035 0.909972462
+##        upper expected_n expected_n_mcse expected_n_lower expected_n_upper
+## 1 0.05041361    311.051        2.597837         305.9281         316.1738
+## 2 0.97576583    157.570        5.742766         146.2455         168.8944
+## 
+## Validation: execution is not independent scientific validation</code></pre>
+<p>This workflow uses rpact’s <code>getDesignInverseNormal</code> and
+<code>getSimulationMeans</code> with native conditional-power
+recalculation. The combination weights are fixed by the originally
+planned information fractions. Stage-one enrollment is total across both
+arms, and stage-two limits are additional enrollment across both arms.
+Native normal-approximation recalculations can yield fractional
+effective sample sizes; these simulations are not an integer operational
+enrollment rule. Independent normally distributed stage observations,
+equal allocation, and the rpact normal approximation are assumed. Null
+and alternative scenarios are always reported. There is no futility
+boundary in this adapter. The procedure does not authorize changing an
+ordinary pooled-test design after observing an unblinded effect.
+Confirmatory use requires protocol-specific review of combination
+weights, independent stage p-values and the adaptation rule; a finite
+Monte Carlo experiment alone does not prove error control.</p>
+</div>
+<div id="survival-planning-and-simulation" class="section level2">
+<h2>Survival planning and simulation</h2>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">requireNamespace</span>(<span class="st">&quot;rpact&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a>  surv_design <span class="ot">&lt;-</span> <span class="fu">survival_design</span>(<span class="at">hazard_ratio =</span> <span class="fl">0.7</span>, <span class="at">median_control =</span> <span class="dv">12</span>,</span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a>    <span class="at">accrual =</span> <span class="dv">18</span>, <span class="at">followup =</span> <span class="dv">12</span>, <span class="at">dropout =</span> <span class="fl">0.1</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a>  <span class="fu">print</span>(surv_design<span class="sc">$</span>data<span class="sc">$</span>native)</span>
+<span id="cb19-5"><a href="#cb19-5" tabindex="-1"></a>}</span></code></pre></div>
+<p><em>Design plan parameters and output for survival data</em></p>
+<p><em>Design parameters</em></p>
+<ul>
+<li><em>Critical values</em>: 1.960</li>
+<li><em>Significance level</em>: 0.0250</li>
+<li><em>Type II error rate</em>: 0.2000</li>
+<li><em>Test</em>: one-sided</li>
+</ul>
+<p><em>User defined parameters</em></p>
+<ul>
+<li><em>lambda(2)</em>: 0.0578</li>
+<li><em>Hazard ratio</em>: 0.700</li>
+<li><em>Accrual time</em>: 18.00</li>
+<li><em>Accrual intensity</em>: 1.0</li>
+<li><em>Follow up time</em>: 12.00</li>
+<li><em>Drop-out rate (1)</em>: 0.100</li>
+<li><em>Drop-out rate (2)</em>: 0.100</li>
+</ul>
+<p><em>Default parameters</em></p>
+<ul>
+<li><em>Theta H0</em>: 1</li>
+<li><em>Type of computation</em>: Schoenfeld</li>
+<li><em>Planned allocation ratio</em>: 1</li>
+<li><em>kappa</em>: 1</li>
+<li><em>Piecewise survival times</em>: 0.00</li>
+<li><em>Drop-out time</em>: 12.00</li>
+</ul>
+<p><em>Sample size and output</em></p>
+<ul>
+<li><em>Direction upper</em>: FALSE</li>
+<li><em>median(1)</em>: 17.1</li>
+<li><em>median(2)</em>: 12.0</li>
+<li><em>lambda(1)</em>: 0.0404</li>
+<li><em>Number of events</em>: 246.8</li>
+<li><em>Number of events fixed</em>: 246.8</li>
+<li><em>Number of subjects fixed</em>: 425.5</li>
+<li><em>Number of subjects fixed (1)</em>: 212.7</li>
+<li><em>Number of subjects fixed (2)</em>: 212.7</li>
+<li><em>Analysis time</em>: 30.00</li>
+<li><em>Study duration</em>: 30.00</li>
+<li><em>Critical values (treatment effect scale)</em>: 0.779</li>
+</ul>
+<p><em>Legend</em></p>
+<ul>
+<li><em>(i)</em>: values of treatment arm i</li>
+</ul>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">requireNamespace</span>(<span class="st">&quot;simsurv&quot;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a>  <span class="fu">simulate_survival</span>(<span class="dv">100</span>, <span class="at">events =</span> <span class="dv">120</span>, <span class="at">nsim =</span> <span class="dv">20</span>, <span class="at">seed =</span> <span class="dv">2026</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## Monte Carlo operating characteristics 
+## Engine: simsurv, survival 
+## Method: one-sided logrank empirical power 
+## $rejections
+## [1] 13
+## 
+## $nsim
+## [1] 20
+## 
+## $estimate
+## [1] 0.65
+## 
+## $mcse
+## [1] 0.1066536
+## 
+## $conf_level
+## [1] 0.95
+## 
+## $lower
+## [1] 0.4078115
+## 
+## $upper
+## [1] 0.8460908
+## 
+## $target_attainment
+## [1] 0.85
+## 
+## $mean_events
+## [1] 119.4
+## 
+## $mean_calendar_end
+## [1] 28.28447
+## 
+## $mean_events_uncertainty
+##    estimate        mcse       lower       upper 
+## 119.4000000   0.3356063 118.6975680 120.1024320 
+## 
+## $mean_calendar_end_uncertainty
+##   estimate       mcse      lower      upper 
+## 28.2844701  0.3263792 27.6013506 28.9675897 
+## 
+## $target_attainment_uncertainty
+##  estimate      mcse     lower     upper 
+## 0.8500000 0.0798436 0.6210732 0.9679291 
+## 
+## $mean_interval_method
+## [1] &quot;approximate t-based 95% Monte Carlo interval&quot;
+## 
+## Validation: execution is not independent scientific validation</code></pre>
+<p>The estimand is the treatment/control hazard ratio. Planning supports
+HR below one as benefit. The Schoenfeld approximation supplies the event
+target, and rpact translates that target into enrollment under uniform
+accrual, exponential survival, equal allocation and independent dropout.
+The returned native sizes are unrounded planning quantities; round
+enrollment and event targets upward when specifying an operational
+trial, then assess the resulting operating characteristics with the
+simulation API. No precision claim is made for unmodeled recruitment
+patterns or nonproportional hazards.</p>
+<p>Simulation uses simsurv event times, independent exponential dropout
+and administrative censoring. All durations use one common unit.
+<code>dropout</code> is a probability by <code>dropout_time</code>, not
+a hazard. The logrank signed treatment observed-minus-expected score
+supports benefit when negative. The p-value is lower-tail one-sided. If
+an event target is supplied, the trial stops at that calendar event or
+the administrative cap, whichever comes first. The result reports target
+attainment; it never assumes an unreachable event target was met.
+Participants not recruited by early stopping do not enter the
+analysis.</p>
+</div>
+<div id="reports-diagnostics-and-application" class="section level2">
+<h2>Reports, diagnostics and application</h2>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="fu">diagnose_design</span>(<span class="fu">simulate_trial</span>(spec, <span class="dv">64</span>, <span class="at">nsim =</span> <span class="dv">50</span>, <span class="at">seed =</span> <span class="dv">2026</span>))</span></code></pre></div>
+<pre><code>## $kind
+## [1] &quot;Monte Carlo operating characteristics&quot;
+## 
+## $provenance
+## $provenance$engine
+## [1] &quot;stats&quot;
+## 
+## $provenance$method
+## [1] &quot;empirical power&quot;
+## 
+## $provenance$assumptions
+## [1] &quot;independent replications; exact Clopper-Pearson 95% interval; no multiplicity adjustment&quot;
+## 
+## $provenance$seed
+## [1] 2026
+## 
+## $provenance$versions
+## OpenTrialDesign           stats 
+##         &quot;0.2.0&quot;         &quot;4.5.0&quot; 
+## 
+## $provenance$R
+## [1] &quot;R version 4.5.0 (2025-04-11)&quot;
+## 
+## $provenance$rng
+## [1] &quot;Mersenne-Twister&quot; &quot;Inversion&quot;        &quot;Rejection&quot;       
+## 
+## $provenance$validation
+## [1] &quot;execution is not independent scientific validation&quot;
+## 
+## 
+## $specification
+## $endpoint
+## [1] &quot;normal&quot;
+## 
+## $effect
+## [1] 0.5
+## 
+## $sd
+## [1] 1
+## 
+## $p_control
+## [1] 0.3
+## 
+## $alpha
+## [1] 0.05
+## 
+## $power
+## [1] 0.8
+## 
+## $alternative
+## [1] &quot;two.sided&quot;
+## 
+## $allocation
+##   control treatment 
+##         1         1 
+## 
+## $estimand
+## [1] &quot;treatment minus control&quot;
+## 
+## $hypothesis
+## [1] &quot;superiority&quot;
+## 
+## attr(,&quot;class&quot;)
+## [1] &quot;otd_spec&quot;
+## 
+## $monte_carlo
+## $monte_carlo$nsim
+## [1] 50
+## 
+## $monte_carlo$mcse
+## [1] 0.05184593
+## 
+## $monte_carlo$lower
+## [1] 0.7088737
+## 
+## $monte_carlo$upper
+## [1] 0.9282992</code></pre>
+<p><code>render_report(result, &quot;report.html&quot;)</code> writes results,
+native engine output, assumptions, methods, versions, RNG details, seed
+and validation status.
+<code>render_report(result, &quot;report.pdf&quot;, &quot;pdf&quot;)</code> additionally
+needs LaTeX. <code>run_app()</code> launches the optional Shiny
+interface; calculations use this same public API. App actions trigger
+calculations explicitly. Results must be recomputed after changing
+inputs. The report selector chooses among the previously computed result
+objects.</p>
+</div>
+<div id="example-library-and-scientific-verification" class="section level2">
+<h2>Example library and scientific verification</h2>
+<p>The installed <code>examples/catalog.csv</code> documents 30
+independently executable scenarios; installed
+<code>examples/ASSUMPTIONS.md</code> explains each rationale and limits
+the synthetic effects to teaching/planning demonstrations. They are
+accessible through <code>run_example(&quot;TD-001&quot;)</code> and standalone
+scripts. The supplied repository contained no external plan defining TD
+IDs. This version defines its own explicit product catalog; equivalence
+to that missing external specification is not claimed.</p>
+<p>Numerical reference checks compare normal/binary calculations
+directly to stats, sequential spending and power to engine integration,
+and survival events to the Schoenfeld expression. These verify adapter
+behavior, not independent validation of their engines. Monte Carlo
+checks use prespecified seeds and tolerances scaled to sampling error. A
+reference expectation is never replaced with a simulated point estimate
+merely to obtain passing tests.</p>
+<p>See repository <code>validation/</code> for actual execution logs and
+<code>docs/PHASE-STATUS.md</code> for limitations. No result should be
+described as scientifically validated solely because a function returned
+successfully. rpact installation qualification for GxP environments is
+separate and has not been performed here.</p>
+</div>
+<div id="references" class="section level2">
+<h2>References</h2>
+<p>Schoenfeld DA (1981). The asymptotic properties of nonparametric
+tests for comparing survival distributions. <em>Biometrika</em>, 68,
+316-319.</p>
+<p>Lan KKG, DeMets DL (1983). Discrete sequential boundaries for
+clinical trials. <em>Biometrika</em>, 70, 659-663.</p>
+<p>Hwang IK, Shih WJ, DeCani JS (1990). Group sequential designs using a
+family of type I error probability spending functions. <em>Statistics in
+Medicine</em>, 9, 1439-1445.</p>
+<p>Lehmacher W, Wassmer G (1999). Adaptive sample size calculations in
+group sequential trials. <em>Biometrics</em>, 55, 1286-1290.</p>
+<p>Brilleman SL, Wolfe R, Moreno-Betancur M, Crowther MJ (2021).
+Simulating survival data using the simsurv R package. <em>Journal of
+Statistical Software</em>, 97(3), 1-27. Use
+<code>citation(&quot;rpact&quot;)</code>, <code>citation(&quot;gsDesign&quot;)</code>,
+<code>citation(&quot;survival&quot;)</code> and <code>citation(&quot;simsurv&quot;)</code>
+for current engine citations.</p>
+</div>
+<div id="portable-projects-and-batch-replay" class="section level2">
+<h2>Portable projects and batch replay</h2>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a>project <span class="ot">&lt;-</span> <span class="fu">trial_project</span>(<span class="st">&quot;fixed_sample_size&quot;</span>, <span class="fu">list</span>(<span class="at">effect =</span> <span class="fl">0.5</span>), <span class="st">&quot;Demonstration&quot;</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a><span class="fu">execute_project</span>(project)</span></code></pre></div>
+<pre><code>## fixed sample size 
+## Engine: stats 
+## Method: Two-sample t test power calculation 
+## $n_per_arm
+## [1] 64
+## 
+## $n_total
+## [1] 128
+## 
+## $unrounded_n_per_arm
+## [1] 63.76561
+## 
+## $achieved_power
+## [1] 0.8014596
+## 
+## Validation: execution is not independent scientific validation</code></pre>
+<p>Projects freeze all default parameters and record schema and software
+versions. <code>write_project(project, &quot;design.json&quot;)</code> saves
+non-executable JSON.
+<code>execute_project(read_project(&quot;design.json&quot;))</code> replays it
+through the same core. Schema validation rejects unknown workflows,
+arguments, code-like numeric values and unsupported versions. Scientific
+input validation occurs in the engine when executed. JSON is
+configuration data; no R expressions from an import are evaluated. Only
+trusted local archival RDS files should be loaded by the user outside
+the application.</p>
+<p>Supported workflows are <code>fixed_sample_size</code>,
+<code>fixed_power</code>, <code>fixed_simulation</code>,
+<code>sequential_design</code>, <code>sequential_means</code>,
+<code>adaptive_simulation</code>, <code>survival_design</code> and
+<code>survival_simulation</code>. Fixed workflows take trial_spec
+parameters plus sample size and simulation settings as applicable. Other
+workflows take the corresponding public function’s parameters.</p>
+</div>
+<div id="operational-sequential-enrollment" class="section level2">
+<h2>Operational sequential enrollment</h2>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">requireNamespace</span>(<span class="st">&quot;rpact&quot;</span>, <span class="at">quietly=</span><span class="cn">TRUE</span>)) <span class="fu">sequential_sample_size</span>()</span></code></pre></div>
+<pre><code>## sequential mean sample size 
+## Engine: rpact 
+## Method: native t-approximation planning with same-engine spending recalibration 
+## $n_per_arm
+## [1] 65
+## 
+## $n_total
+## [1] 130
+## 
+## $achieved_power
+## [1] 0.8060358
+## 
+## $stage_plan
+##   stage n_per_arm n_total information
+## 1     1        33      66   0.5076923
+## 2     2        65     130   1.0000000
+## 
+## $boundaries
+##   information efficacy futility
+## 1   0.5076923 2.937040     -Inf
+## 2   1.0000000 1.969319     -Inf
+## 
+## Validation: execution is not independent scientific validation</code></pre>
+<p>This positive-mean, one-sided, equal-allocation workflow uses rpact’s
+native t-approximation planning and power functions. Cumulative per-arm
+stage sizes are rounded upward, the information fractions recomputed,
+and spending boundaries recalibrated in rpact. The maximum size is
+increased if recalculated power falls below target. Final output
+includes integer stage counts, realized information and achieved
+analytical power. No gsDesign boundaries or fixed stats t-test
+calculations are combined with this procedure.</p>
+</div>
+<div id="background-jobs-and-reproducibility-exports" class="section level2">
+<h2>Background jobs and reproducibility exports</h2>
+<p><code>start_simulation(project)</code> starts an isolated process for
+a fixed, adaptive or survival simulation project.
+<code>simulation_status(job)</code> is nonblocking;
+<code>collect_simulation(job)</code> requires successful completion.
+<code>cancel_simulation(job)</code> terminates an active worker and
+never returns a partial estimate as a completed run. The application
+allows one active job per session and remains interactive while it runs.
+Closing the session cancels its worker. API users can choose larger runs
+than the application’s 100,000-replication limit.</p>
+<p><code>result_table(result)</code> provides spreadsheet data.
+<code>export_bundle(result, &quot;trial.zip&quot;, include_report = FALSE)</code>
+writes CSV, assumptions, provenance, session information, the exact
+result, the replay project when present and MD5 integrity checks. MD5
+checks detect accidental changes, not authenticity. Use the Projects and
+exports tab to save JSON, CSV and ZIP, and Scientific reporting for
+HTML/PDF. The full guide is downloadable from the application.</p>
+<p>See the repository deployment guide for local, container and batch
+commands. The version-1 example catalog is now explicitly defined by the
+installed catalog and per-example rationales. It does not claim
+equivalence to an absent external project plan. These workflows support
+planning and simulation within the stated assumptions; they do not
+confer protocol-specific qualification.</p>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

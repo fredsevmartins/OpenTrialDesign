@@ -1,5 +1,5 @@
 # TD-017: Sequential analytical null
-# PROVISIONAL catalog; original project plan unavailable.
+# Version-1 product catalog; no external-plan equivalence claimed.
 # Assumptions: Numerical integration under zero canonical drift; one-sided alpha .025.
 # Monte Carlo runs use 1000 replications and seed 2026 by default.
 library(OpenTrialDesign)

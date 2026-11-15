@@ -1,4 +1,5 @@
 url: https://fredsevmartins.github.io/OpenTrialDesign/
+destination: docs/site
 template:
   bootstrap: 5
 articles:
@@ -8,8 +9,10 @@ reference:
   - title: Specifications and fixed designs
     contents: [trial_spec, sample_size, trial_power, compare_scenarios]
   - title: Sequential and adaptive methods
-    contents: [sequential_design, sequential_power, conditional_power, simulate_sequential, adaptive_simulation]
+    contents: [sequential_design, sequential_power, conditional_power, simulate_sequential, adaptive_simulation, sequential_sample_size]
   - title: Simulation and survival
     contents: [simulate_trial, survival_design, simulate_survival]
   - title: Presentation and examples
     contents: [plot_design, diagnose_design, render_report, run_app, run_example, print.otd_result]
+  - title: Reproducible projects and background jobs
+    contents: [trial_project, execute_project, write_project, read_project, result_table, export_bundle, runtime_diagnostics, start_simulation, simulation_status, collect_simulation, cancel_simulation]

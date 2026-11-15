@@ -1,106 +1,91 @@
 # OpenTrialDesign
 Scientific Clinical Trial Design, Simulation &amp; Operating Characteristics in R
 
-## Implementation status
+A reproducible R package and browser application for clinical trial planning
+and simulation, version 0.2.0. The statistical core is independent of Shiny.
+It delegates calculations to stats, gsDesign, rpact, survival and simsurv.
 
-An installable R package implements fixed normal/binary superiority designs,
-engine-specific group sequential designs, a two-stage adaptive inverse-normal
-procedure, exponential survival planning, and simulation of operating
-characteristics. The statistical core is independent of the optional Shiny app.
+## Start the product
 
-**Scientific scope:** equal-allocation two-arm superiority and the specific
-procedures documented in the [user guide](vignettes/user-guide.Rmd). This release
-is computationally verified against reference cases, not independently
-scientifically validated for confirmatory clinical use. The original plan
-specifying TD-001 through TD-030 was absent; the 30 implemented scenarios are
-an explicitly **provisional** catalog pending reconciliation.
+With Docker: `docker compose up --build -d`, then open **http://localhost:3838**.
+The default deployment stays on your computer; it does not expose a public site.
 
-## Install
+With R: install R and Pandoc, run `Rscript scripts/install-product.R`, then
+`OpenTrialDesign::run_app()`. The installer restores locked dependencies,
+builds the guide and installs the package. PDF additionally requires LaTeX.
+See [deployment and recovery instructions](deployment/README.md).
 
-```r
-install.packages(c("survival", "ggplot2", "withr"))
-# From the repository root, in a terminal:
-# R CMD build .
-# R CMD INSTALL OpenTrialDesign_0.1.0.tar.gz
+## Workflows
 
-# Optional scientific engines and user interface:
-install.packages(c("gsDesign", "rpact", "simsurv", "shiny", "rmarkdown"))
-```
+* Fixed normal and binary superiority sample size and analytical power.
+* Group sequential boundaries with explicit binding/nonbinding futility.
+* Integer sequential normal enrollment with native rpact recalibration.
+* Two-stage inverse-normal adaptation with native conditional-power resizing.
+* Exponential proportional-hazards survival planning and event-driven simulation.
+* Monte Carlo power and equality-null error, with uncertainty intervals.
+* Scenario comparison and a defined 30-example version-1 product catalog.
 
-R >= 4.2 is declared; the executed baseline is R 4.5.0 on Debian Linux.
-Minimum adapter versions reflect inspected APIs: gsDesign 3.11.0, rpact 4.4.0,
-simsurv 1.0.1, survival 3.8-3, ggplot2 3.5.1 and withr 3.0.2.
-Other R/platform combinations require their own execution evidence.
-`renv.lock` captures the tested dependency graph. Restore it with
-`renv::restore(lockfile = "renv.lock")`; the complete locked dependency graph and 181 package assertions were also
-tested in a fresh R library on the provisioned Debian host. A fresh OS image
-is a separate installation scenario. No project startup hook changes an existing R session.
+The application saves frozen JSON projects, replays them through the same API,
+runs simulations in separate cancellable processes, and exports CSV, complete
+reproducibility ZIPs, HTML and PDF. It includes runtime diagnostics and the full
+downloadable guide. Results retain the assumptions actually used even after
+controls change. Closing a session cancels its active worker.
 
-## Quick start
+## Reproduce an analysis
 
 ```r
 library(OpenTrialDesign)
-spec <- trial_spec(endpoint = "normal", effect = 0.5, sd = 1,
-                   alpha = 0.05, power = 0.8)
-sample_size(spec)                   # rounded per-arm size and achieved power
-trial_power(spec, n_per_arm = 64)   # analytical power
-simulate_trial(spec, 64, nsim = 5000, seed = 2026, null = TRUE)
-
-seq <- sequential_design(engine = "gsDesign", futility = "nonbinding")
-plot_design(seq)
-sequential_power(seq, theta = 0)
-simulate_sequential(seq, nsim = 10000, seed = 2026)
-conditional_power(seq, z = 1.5)
-
-adaptive_simulation(nsim = 5000, seed = 2026)
-survival_design(hazard_ratio = 0.7, median_control = 12,
-                accrual = 18, followup = 12, dropout = 0.1)
-simulate_survival(200, events = 240, nsim = 1000, seed = 2026)
-
-run_example("TD-001")
-run_app()
-render_report(sample_size(spec), "design.html")
-render_report(sample_size(spec), "design.pdf", "pdf")
+project <- trial_project("fixed_simulation",
+  list(effect = 0.5, n_per_arm = 64, nsim = 5000, seed = 2026, null = TRUE),
+  "Normal-trial null assessment")
+write_project(project, "design.json")
+result <- execute_project(read_project("design.json"))
+export_bundle(result, "trial.zip", include_report = FALSE)
+render_report(result, "trial.html")
 ```
 
-Reporting requires Pandoc; PDF requires LaTeX. Optional engine dependencies fail
-with a structured `otd_dependency_error` rather than returning fabricated output.
-All result objects preserve engine, version, assumptions, estimand, method,
-seed where applicable, and validation status. Monte Carlo outputs contain
-rejection counts, standard errors, and exact 95% binomial intervals.
+Batch: `Rscript exec/opentrialdesign.R --project design.json --output trial.zip`.
+Projects freeze default values and record a schema/software version. No R code
+from imported JSON is evaluated. ZIPs include results, provenance, assumptions,
+replay settings and integrity checks. Do not import untrusted RDS objects.
 
-## Documentation and verification
+## Scientific scope and evidence
 
-* [Comprehensive user guide](vignettes/user-guide.Rmd)
-* [Architecture](docs/ARCHITECTURE.md) and [roadmap](docs/ROADMAP.md)
-* [Phase status and limitations](docs/PHASE-STATUS.md)
-* [Scientific example catalog](inst/examples/catalog.csv)
-* [Executed examples](validation/example-execution.csv)
-* [Expected versus observed reference results](validation/scientific-reference.csv)
-* [Dependency API and license audit](validation/dependency-audit.txt)
-* [Release checklist](docs/RELEASE-CHECKLIST.md)
+Supported adapters assume equal-allocation two-arm superiority, and the specific
+models described in the [user guide](vignettes/user-guide.Rmd). Sequential alpha
+is one-sided. Adaptive resizing remains inside the inverse-normal procedure.
+Noninferiority, equivalence, nonproportional hazards, cluster and competing-risk
+methods are outside this version's adapters; no compatibility across engines
+is inferred. Monte Carlo estimates are distinguished from analytical results.
+
+The installed version-1 example catalog defines TD-001 through TD-030 for this
+product. Its assumptions and rationales are explicit. No equivalence to an
+absent external project plan is claimed. Effects are synthetic planning
+scenarios, not clinical recommendations or observed participant data.
+
+Actual execution evidence is in [validation](validation/README.md), including
+package checking, scientific references, browser workflows, background-job
+recovery, exports and installation checks. Computational verification and engine
+agreement do not establish qualification for a particular clinical protocol or
+GxP environment. Those require study-specific review.
+
+## Development and documentation
 
 ```sh
 Rscript -e 'roxygen2::roxygenise()'
 Rscript -e 'testthat::test_local()'
-Rscript scripts/audit-dependencies.R
 Rscript scripts/run-examples.R
 Rscript scripts/scientific-reference.R
 R CMD build .
-R CMD check OpenTrialDesign_0.1.0.tar.gz
+R CMD check OpenTrialDesign_0.2.0.tar.gz
 ```
 
-CI is configured for Linux, Windows and macOS. Local logs do not imply those
-remote jobs have run. Binding futility cannot be ignored; nonbinding futility
-can be evaluated with and without stopping. Adaptive resizing remains inside
-the inverse-normal procedure. No noninferiority margin, equivalence rule,
-allocation imbalance, or cross-engine compatibility is inferred.
+[Architecture](docs/ARCHITECTURE.md) · [Readiness scope](docs/PRODUCT-READINESS.md)
+· [Reference matrix](docs/VALIDATION-MATRIX.md) · [Dependency audit](validation/dependency-audit.txt).
+Generate the local documentation site with `pkgdown::build_site()`; output is
+`docs/site/`. CI covers Linux, Windows and macOS, with a separate container
+smoke test. Lockfile restoration captures the supported dependency graph.
 
-## Contributing
-
-Use a branch, document hypotheses and estimands, retain native engine semantics,
-and add independent reference cases for statistical changes. Record observed
-results and justified tolerances. Do not relabel an unexecuted check as passing.
-Report issues without participant-level data or other confidential information.
-This project is MIT licensed; engine licenses are recorded separately and must
-be respected when distributing their code. Cite the engines used in an analysis.
+The software is MIT licensed. Underlying engines retain their own licenses;
+cite them when using their methods. Report reproducible issues through this
+repository's GitHub Issues without confidential participant data.

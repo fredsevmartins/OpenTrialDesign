@@ -1,0 +1,280 @@
+$Version
+[1] "3.7.6"
+
+$License
+[1] "MIT + file LICENSE"
+
+$func
+
+
+$args
+list()
+
+$libpath
+.libPaths()
+
+$repos
+default_repos()
+
+$stdout
+[1] "|"
+
+$stderr
+[1] "|"
+
+$poll_connection
+[1] TRUE
+
+$error
+getOption("callr.error", "error")
+
+$cmdargs
+c("--slave", "--no-save", "--no-restore")
+
+$system_profile
+[1] FALSE
+
+$user_profile
+[1] "project"
+
+$env
+rcmd_safe_env()
+
+$supervise
+[1] FALSE
+
+$package
+[1] FALSE
+
+$arch
+[1] "same"
+
+$...
+
+
+$Version
+[1] "1.9.1"
+
+$License
+[1] "MIT + file LICENSE"
+
+$design
+NULL
+
+$...
+
+
+$groups
+[1] 2
+
+$normalApproximation
+[1] FALSE
+
+$meanRatio
+[1] FALSE
+
+$thetaH0
+ifelse(meanRatio, 1, 0)
+
+$alternative
+seq(0, 1, 0.2)
+
+$stDev
+[1] 1
+
+$directionUpper
+[1] NA
+
+$maxNumberOfSubjects
+[1] NA
+
+$allocationRatioPlanned
+[1] NA
+
+Design plan parameters and output for means:
+
+Design parameters:
+  Information rates                            : 0.500, 1.000 
+  Critical values                              : 2.963, 1.969 
+  Futility bounds (non-binding)                : -Inf 
+  Cumulative alpha spending                    : 0.001525, 0.025000 
+  Local one-sided significance levels          : 0.001525, 0.024500 
+  Significance level                           : 0.0250 
+  Type II error rate                           : 0.2000 
+  Test                                         : one-sided 
+
+User defined parameters:
+  Alternatives                                 : 0.5 
+
+Default parameters:
+  Mean ratio                                   : FALSE 
+  Theta H0                                     : 0 
+  Normal approximation                         : FALSE 
+  Standard deviation                           : 1 
+  Treatment groups                             : 2 
+  Planned allocation ratio                     : 1 
+
+Sample size and output:
+  Maximum number of subjects                   : 128 
+  Maximum number of subjects (1)               : 64 
+  Maximum number of subjects (2)               : 64 
+  Number of subjects [1]                       : 64 
+  Number of subjects [2]                       : 128 
+  Reject per stage [1]                         : 0.1641 
+  Reject per stage [2]                         : 0.6359 
+  Early stop                                   : 0.1641 
+  Expected number of subjects under H0         : 127.9 
+  Expected number of subjects under H0/H1      : 126.4 
+  Expected number of subjects under H1         : 117.5 
+  Critical values (treatment effect scale) [1] : 0.771 
+  Critical values (treatment effect scale) [2] : 0.351 
+
+Legend:
+  (i): values of treatment arm i
+  [k]: values at stage k
+ [1] "meanRatio"                      "thetaH0"                       
+ [3] "normalApproximation"            "alternative"                   
+ [5] "stDev"                          "groups"                        
+ [7] "allocationRatioPlanned"         "optimumAllocationRatio"        
+ [9] "directionUpper"                 "effect"                        
+[11] "maxNumberOfSubjects"            "maxNumberOfSubjects1"          
+[13] "maxNumberOfSubjects2"           "numberOfSubjects"              
+[15] "numberOfSubjects1"              "numberOfSubjects2"             
+[17] "overallReject"                  "rejectPerStage"                
+[19] "futilityStop"                   "futilityPerStage"              
+[21] "earlyStop"                      "expectedNumberOfSubjects"      
+[23] "nFixed"                         "nFixed1"                       
+[25] "nFixed2"                        "informationRates"              
+[27] "expectedNumberOfSubjectsH0"     "expectedNumberOfSubjectsH01"   
+[29] "expectedNumberOfSubjectsH1"     "criticalValuesEffectScale"     
+[31] "criticalValuesEffectScaleLower" "criticalValuesEffectScaleUpper"
+[33] "criticalValuesPValueScale"      "futilityBoundsEffectScale"     
+[35] "futilityBoundsEffectScaleLower" "futilityBoundsEffectScaleUpper"
+[37] "futilityBoundsPValueScale"     
+Design plan parameters and output for means:
+
+Design parameters:
+  Information rates                            : 0.500, 1.000 
+  Critical values                              : 2.963, 1.969 
+  Futility bounds (non-binding)                : -Inf 
+  Cumulative alpha spending                    : 0.001525, 0.025000 
+  Local one-sided significance levels          : 0.001525, 0.024500 
+  Significance level                           : 0.0250 
+  Test                                         : one-sided 
+
+User defined parameters:
+  Alternatives                                 : 0.5 
+  Standard deviation                           : 1, 1 
+  Maximum number of subjects                   : 130 
+
+Default parameters:
+  Mean ratio                                   : FALSE 
+  Theta H0                                     : 0 
+  Normal approximation                         : FALSE 
+  Treatment groups                             : 2 
+  Planned allocation ratio                     : 1 
+  Direction upper                              : TRUE 
+
+Power and output:
+  Effect                                       : 0.5 
+  Number of subjects [1]                       : 65 
+  Number of subjects [2]                       : 130 
+  Overall reject                               : 0.8061 
+  Reject per stage [1]                         : 0.1680 
+  Reject per stage [2]                         : 0.6382 
+  Early stop                                   : 0.1680 
+  Expected number of subjects                  : 119.1 
+  Critical values (treatment effect scale) [1] : 0.764 
+  Critical values (treatment effect scale) [2] : 0.349 
+
+Legend:
+  (i): values of treatment arm i
+  [k]: values at stage k
+ [1] "meanRatio"                      "thetaH0"                       
+ [3] "normalApproximation"            "alternative"                   
+ [5] "stDev"                          "groups"                        
+ [7] "allocationRatioPlanned"         "optimumAllocationRatio"        
+ [9] "directionUpper"                 "effect"                        
+[11] "maxNumberOfSubjects"            "maxNumberOfSubjects1"          
+[13] "maxNumberOfSubjects2"           "numberOfSubjects"              
+[15] "numberOfSubjects1"              "numberOfSubjects2"             
+[17] "overallReject"                  "rejectPerStage"                
+[19] "futilityStop"                   "futilityPerStage"              
+[21] "earlyStop"                      "expectedNumberOfSubjects"      
+[23] "nFixed"                         "nFixed1"                       
+[25] "nFixed2"                        "informationRates"              
+[27] "expectedNumberOfSubjectsH0"     "expectedNumberOfSubjectsH01"   
+[29] "expectedNumberOfSubjectsH1"     "criticalValuesEffectScale"     
+[31] "criticalValuesEffectScaleLower" "criticalValuesEffectScaleUpper"
+[33] "criticalValuesPValueScale"      "futilityBoundsEffectScale"     
+[35] "futilityBoundsEffectScaleLower" "futilityBoundsEffectScaleUpper"
+[37] "futilityBoundsPValueScale"     
+$zipfile
+
+
+$files
+
+
+$recurse
+[1] TRUE
+
+$compression_level
+[1] 9
+
+$include_directories
+[1] TRUE
+
+$root
+[1] "."
+
+$mode
+c("cherry-pick", "mirror")
+
+$keys
+NULL
+
+$password
+NULL
+
+$encryption
+c("aes256", "aes128", "zipcrypto")
+
+$Version
+[1] "3.0.2"
+
+$License
+[1] "MIT + file LICENSE"
+
+$design
+NULL
+
+$...
+
+
+$groups
+[1] 2
+
+$normalApproximation
+[1] FALSE
+
+$meanRatio
+[1] FALSE
+
+$thetaH0
+ifelse(meanRatio, 1, 0)
+
+$alternative
+seq(0, 1, 0.2)
+
+$stDev
+[1] 1
+
+$directionUpper
+[1] NA
+
+$maxNumberOfSubjects
+[1] NA
+
+$allocationRatioPlanned
+[1] NA
+

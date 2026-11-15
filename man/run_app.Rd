@@ -4,7 +4,14 @@
 \alias{run_app}
 \title{Launch the optional shared-engine Shiny application}
 \usage{
-run_app()
+run_app(host = "127.0.0.1", port = NULL, launch.browser = interactive())
+}
+\arguments{
+\item{host}{Address to bind; defaults to loopback.}
+
+\item{port}{Optional TCP port.}
+
+\item{launch.browser}{Whether to open a browser.}
 }
 \value{
 The result of shiny::runApp.

@@ -1,0 +1,13 @@
+.git
+.github
+validation
+scratch
+*.Rcheck
+*.tar.gz
+renv/library
+renv/staging
+docs/site
+.env
+.env.*
+*.key
+*.pem

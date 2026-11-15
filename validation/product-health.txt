@@ -1,0 +1,2 @@
+NAME                                IMAGE                   COMMAND                  SERVICE           CREATED              STATUS                        PORTS
+opentrialdesign-opentrialdesign-1   opentrialdesign:0.2.0   "Rscript -e 'options…"   opentrialdesign   About a minute ago   Up About a minute (healthy)   127.0.0.1:3838->3838/tcp

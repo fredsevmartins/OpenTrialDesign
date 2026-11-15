@@ -125,3 +125,37 @@ within the predeclared four-MCSE tolerance 0.01396424. This is one diagnostic
 scenario, not proof of uniform error control. Full results are in the final
 scientific-reference CSV/text. Original TD mapping and independent scientific
 review remain unresolved; the pull request remains a draft.
+
+## Product release 0.2.0
+
+Added schema-versioned JSON projects with frozen defaults/software version,
+whitelisted replay, CSV and reproducibility ZIP exports, background simulation
+processes, cancellation/error recovery and worker capacity control. All example
+jobs are cancellable. Added runtime minimum-version enforcement, native rpact
+integer-enrollment planning with recalibrated spending, event-target UI controls,
+project snapshots, PDF controls, a downloadable full guide and responsive UI.
+
+Execution evidence: product-tests.txt records 227 passing expectations, no
+failures/warnings/skips. Product R CMD check completed Status OK. All 30 examples
+were re-executed, along with 14 baseline and two new sequential reference cases.
+The new sequential MC estimates were .0282 under the equality null (nominal
+.025) and .8008 under the alternative (analytical .80603577), B=5000 each;
+both passed predeclared four-theoretical-MCSE tolerances. These are diagnostics,
+not uniform-error-control or protocol-qualification claims.
+
+The documentation site was generated, CLI success/failure paths executed and
+browser acceptance exercised 14 workflows including import/replay/checksums,
+error recovery, cancellation, background adaptation/survival, HTML, PDF and
+full-guide download. Mobile layout was checked for horizontal overflow.
+A nonroot/read-only Compose deployment was built and started. The local VFS
+driver exhausted disk on repeated builds; task-only intermediates were removed,
+and final permissions/library-priority metadata applied to the tested image.
+The standard Dockerfile contains the same final settings and is tested in CI.
+The base image's Renviron.site initially shadowed locked lattice/mgcv versions;
+explicit R_LIBS corrects precedence, and all 109 locked versions now match.
+Initial failed checks remain documented rather than being treated as passes.
+
+The version-1 product example specification is now defined in the repository;
+no mapping to an absent external TD plan is claimed. Local planning/simulation
+is the delivery scope. External hosting and protocol-specific/GxP qualification
+are not prerequisites invented for this local software release.

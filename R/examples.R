@@ -1,7 +1,8 @@
 #' Execute a documented scientific example
 #'
-#' The TD catalog is provisional: the upstream repository supplied no project
-#' plan defining these IDs. See the installed examples/catalog.csv for each
+#' The version-1 product catalog is defined here. The upstream supplied no project
+#' plan defining these IDs; equivalence to that external plan is not claimed.
+#' See the installed examples/catalog.csv for each
 #' scenario and its assumptions. Analytical and Monte Carlo outputs remain
 #' distinguishable. All Monte Carlo examples accept explicit seed and nsim.
 #' @param id Example ID TD-001 through TD-030.

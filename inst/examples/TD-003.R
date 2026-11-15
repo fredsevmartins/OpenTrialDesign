@@ -1,5 +1,5 @@
 # TD-003: Normal directional reduction
-# PROVISIONAL catalog; original project plan unavailable.
+# Version-1 product catalog; no external-plan equivalence claimed.
 # Assumptions: Negative treatment-control mean; one-sided lower-tail alpha .025.
 # Monte Carlo runs use 1000 replications and seed 2026 by default.
 library(OpenTrialDesign)

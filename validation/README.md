@@ -40,3 +40,16 @@ The final reference table now contains 14 executed cases, including the exact
 40-event regression and event-driven/dropout equality-null error (0.0245 from
 2000 replications, nominal .025). Current event-driven result objects were
 regenerated after the correction. All 30 current examples executed successfully.
+
+## Product 0.2.0 evidence
+
+Current release evidence uses product-* files: 227 local expectations, package
+check Status OK, 30 executed examples, 14 baseline plus two integer sequential
+reference experiments, batch CLI success/nonzero-error behavior, generated
+pkgdown documentation and 14 browser workflows. The container is run as UID
+10001 with a read-only filesystem. product-container-lock.txt verifies every
+locked runtime version; product-container-tests.txt records installed tests and
+PDF behavior. product-image.txt identifies the actual local runtime image.
+The documentation archive is OpenTrialDesign-docs-0.2.0.zip. The old v0.1 logs
+are historical. See product-container-initial-observation.txt and runtime-layer
+logs for the initial container failure, VFS storage limitation and final fixes.

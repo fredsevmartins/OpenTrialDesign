@@ -1,0 +1,24 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from otd-library-priority.Dockerfile
+#1 DONE 0.0s
+
+#1 [internal] load build definition from otd-library-priority.Dockerfile
+#1 transferring dockerfile: 113B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/opentrialdesign:0.2.0
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 150B done
+#3 DONE 0.0s
+
+#4 [1/1] FROM docker.io/library/opentrialdesign:0.2.0
+#4 CACHED
+
+#5 exporting to image
+#5 exporting layers done
+#5 writing image sha256:7c088f83acfda809488a03381ed5be2c183298defad8cb3798386819725188f5 done
+#5 naming to docker.io/library/opentrialdesign:0.2.0 done
+#5 DONE 0.0s

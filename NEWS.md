@@ -1,3 +1,15 @@
+# OpenTrialDesign 0.2.0
+
+* Added portable JSON projects with frozen defaults, replay and schema validation.
+* Added isolated cancellable jobs, worker limits and error recovery.
+* Added integer sequential enrollment with same-engine rpact recalibration.
+* Added runtime compatibility diagnostics, CSV/ZIP exports and batch execution.
+* Redesigned the responsive app with project import, exports, event targets,
+  worker status, reporting capabilities and a downloadable complete guide.
+* Added a pinned-base nonroot container, Compose health/resource controls,
+  generated documentation site and product acceptance tests.
+* Defined the version-1 example specification without claiming an external-plan mapping.
+
 # OpenTrialDesign 0.1.0
 
 * Introduced explicit equal-allocation superiority specifications and stats adapters.

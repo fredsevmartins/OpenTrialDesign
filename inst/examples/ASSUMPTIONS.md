@@ -187,4 +187,3 @@ Rationale: Equal binary probabilities evaluate the appropriate null; a limited n
 Assumptions: Independent normal observations; common SD 1; pooled t test; two-sided alpha .05.
 
 Rationale: Normal pooled-t simulation matches the analytical model and supplies an independent Monte Carlo view of achieved power.
-
