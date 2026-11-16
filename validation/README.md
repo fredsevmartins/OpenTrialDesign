@@ -129,3 +129,8 @@ that environment issue without weakening tests. The local server used for final
 acceptance was restarted after installation. Scientific comparisons and four
 standalone EXT examples executed successfully. Reports for equivalence and
 non-PH were rendered with methodological provenance. CI is a separate gate.
+
+0.4.0 remote CI status: blocked before execution by GitHub account billing or
+spending-limit policy. See method-ci-account-blocker.txt and run 43853719622.
+All four job step lists are empty. Local tests are not relabelled remote passes;
+release and stable integration have not been performed for this revision.

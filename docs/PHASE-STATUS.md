@@ -219,3 +219,11 @@ Local verification passed 321 expectations and 14 prespecified reference cases.
 Nine new Chromium workflows and three WCAG A/AA states passed; independent
 scientific and real-user review remain pending. Final CI/release URLs belong to
 the corresponding pull request and are not inferred from local execution.
+
+GitHub validation run 43853719622 did not start any jobs. The service annotation
+states: "The job was not started because recent account payments have failed or
+your spending limit needs to be increased." This is an account infrastructure
+blocker, not an executed R/package failure. No macOS, Windows or clean-container
+pass is claimed for 0.4.0. PR #3 contains the concrete implementation and local
+evidence; integration/release remains gated on actual CI execution after the
+account is unblocked. Existing v0.3.0 remains the published stable release.
