@@ -1,0 +1,103 @@
+sequential mean sample size 
+Engine: rpact 
+Method: native t-approximation planning with same-engine spending recalibration 
+$n_per_arm
+[1] 65
+
+$n_total
+[1] 130
+
+$achieved_power
+[1] 0.8060358
+
+$stage_plan
+  stage n_per_arm n_total information
+1     1        33      66   0.5076923
+2     2        65     130   1.0000000
+
+$boundaries
+  information efficacy futility
+1   0.5076923 2.937040     -Inf
+2   1.0000000 1.969319     -Inf
+
+Validation: execution is not independent scientific validation 
+Simulation of means (group sequential design):
+
+Design parameters:
+  Information rates                            : 0.508, 1.000 
+  Critical values                              : 2.937, 1.969 
+  Futility bounds (non-binding)                : -Inf 
+  Cumulative alpha spending                    : 0.001657, 0.025000 
+  Local one-sided significance levels          : 0.001657, 0.024458 
+  Significance level                           : 0.0250 
+  Test                                         : one-sided 
+
+User defined parameters:
+  Maximum number of iterations                 : 5000 
+  Seed                                         : 2026 
+  Planned cumulative subjects                  : 66, 130 
+  Alternatives                                 : 0.0, 0.5 
+  Normal approximation                         : FALSE 
+
+Default parameters:
+  Planned allocation ratio                     : 1 
+  Standard deviation                           : 1 
+  Direction upper                              : TRUE 
+  Treatment groups                             : 2 
+  Mean ratio                                   : FALSE 
+  Theta H0                                     : 0 
+
+Results:
+  Iterations [1]                               : 5000, 5000 
+  Iterations [2]                               : 4990, 4159 
+  Overall reject                               : 0.0282, 0.8008 
+  Reject per stage [1]                         : 0.0020, 0.1682 
+  Reject per stage [2]                         : 0.0262, 0.6326 
+  Overall futility stop                        : 0.0000, 0.0000 
+  Futility stop per stage                      : 0.0000, 0.0000 
+  Early stop                                   : 0.0020, 0.1682 
+  Expected number of subjects                  : 129.9, 119.2 
+  Sample sizes [1]                             : 66, 66 
+  Sample sizes [2]                             : 64, 64 
+  Conditional power (achieved) [1]             : NA, NA 
+  Conditional power (achieved) [2]             : 0.1090, 0.6517 
+
+Legend:
+  [k]: values at stage k
+
+                          scenario  expected observed nsim seed        mcse
+1 integer sequential equality null 0.0250000   0.0282 5000 2026 0.002341143
+2   integer sequential alternative 0.8060358   0.8008 5000 2026 0.005648351
+      lower      upper   tolerance passed
+1 0.0237886 0.03317304 0.008831761   TRUE
+2 0.7894552 0.81179249 0.022367269   TRUE
+                                                                                           method
+1 rpact normalApproximation=FALSE; actual integer information recalibrated; four theoretical MCSE
+2 rpact normalApproximation=FALSE; actual integer information recalibrated; four theoretical MCSE
+R version 4.5.0 (2025-04-11)
+Platform: x86_64-pc-linux-gnu
+Running under: Debian GNU/Linux 13 (trixie)
+
+Matrix products: default
+BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.12.1 
+LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.12.1;  LAPACK version 3.12.0
+
+locale:
+ [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
+ [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   
+ [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          
+[10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   
+
+time zone: Etc/UTC
+tzcode source: system (glibc)
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] OpenTrialDesign_0.2.0
+
+loaded via a namespace (and not attached):
+ [1] compiler_4.5.0 R6_2.6.1       cli_3.6.4      tools_4.5.0    rpact_4.4.0   
+ [6] rappdirs_0.3.3 Rcpp_1.0.14    knitr_1.50     xfun_0.62      rlang_1.3.0   
+[11] evaluate_1.0.3

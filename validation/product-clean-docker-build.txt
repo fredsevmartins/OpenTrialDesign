@@ -1,0 +1,1276 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 2.03kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/rocker/r-ver:4.5.0@sha256:f97b4944221bdc309583dfbc37dc0bf2654cfbd1f330cded047aeec4ae5df7e3
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 150B done
+#3 DONE 0.0s
+
+#4 [stage-0 1/8] FROM docker.io/rocker/r-ver:4.5.0@sha256:f97b4944221bdc309583dfbc37dc0bf2654cfbd1f330cded047aeec4ae5df7e3
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 461.04kB 0.0s done
+#5 DONE 0.0s
+
+#6 [stage-0 2/8] RUN apt-get update && apt-get install -y --no-install-recommends     ca-certificates curl pandoc pkg-config libcurl4-openssl-dev libssl-dev     libxml2-dev libicu-dev libfontconfig1-dev libfreetype6-dev libharfbuzz-dev     libfribidi-dev libpng-dev libjpeg-dev libtiff-dev libnode-dev     texlive-latex-base texlive-latex-recommended texlive-fonts-recommended lmodern     && rm -rf /var/lib/apt/lists/*
+#6 8.956 Get:1 http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+#6 9.172 Get:2 http://archive.ubuntu.com/ubuntu noble InRelease [256 kB]
+#6 9.413 Get:3 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1,557 kB]
+#6 9.970 Get:4 http://archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+#6 10.34 Get:5 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [2,211 kB]
+#6 10.68 Get:6 http://archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+#6 11.32 Get:7 http://archive.ubuntu.com/ubuntu noble/universe amd64 Packages [19.3 MB]
+#6 11.35 Get:8 http://security.ubuntu.com/ubuntu noble-security/main amd64 Packages [1,471 kB]
+#6 12.18 Get:9 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [55.6 kB]
+#6 12.68 Get:10 http://archive.ubuntu.com/ubuntu noble/main amd64 Packages [1,808 kB]
+#6 13.79 Get:11 http://archive.ubuntu.com/ubuntu noble/multiverse amd64 Packages [331 kB]
+#6 14.52 Get:12 http://archive.ubuntu.com/ubuntu noble/restricted amd64 Packages [117 kB]
+#6 14.83 Get:13 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [2,179 kB]
+#6 15.40 Get:14 http://archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [2,324 kB]
+#6 15.83 Get:15 http://archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [61.7 kB]
+#6 16.12 Get:16 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1,792 kB]
+#6 16.44 Get:17 http://archive.ubuntu.com/ubuntu noble-backports/multiverse amd64 Packages [669 B]
+#6 16.67 Get:18 http://archive.ubuntu.com/ubuntu noble-backports/main amd64 Packages [49.0 kB]
+#6 17.06 Get:19 http://archive.ubuntu.com/ubuntu noble-backports/universe amd64 Packages [36.0 kB]
+#6 17.21 Fetched 33.9 MB in 8s (4,026 kB/s)
+#6 17.21 Reading package lists...
+#6 18.02 Reading package lists...
+#6 18.94 Building dependency tree...
+#6 19.15 Reading state information...
+#6 19.35 The following additional packages will be installed:
+#6 19.35   bsdutils fonts-lmodern gir1.2-freedesktop gir1.2-freedesktop-dev
+#6 19.35   gir1.2-glib-2.0 gir1.2-glib-2.0-dev gir1.2-harfbuzz-0.0 icu-devtools
+#6 19.35   libblkid-dev libblkid1 libbrotli-dev libbrotli1 libbz2-1.0 libbz2-dev
+#6 19.35   libcairo-gobject2 libcares2 libcurl4t64 libdeflate-dev libexpat1
+#6 19.35   libexpat1-dev libffi-dev libfontconfig-dev libfreetype6 libgdbm-compat4t64
+#6 19.35   libgdbm6t64 libgirepository-2.0-0 libglib2.0-0t64 libglib2.0-bin
+#6 19.35   libglib2.0-data libglib2.0-dev libglib2.0-dev-bin libgraphite2-3
+#6 19.35   libgraphite2-dev libharfbuzz-cairo0 libharfbuzz-gobject0 libharfbuzz-icu0
+#6 19.35   libharfbuzz-subset0 libjbig-dev libjpeg8-dev libkpathsea6 liblerc-dev
+#6 19.35   liblua5.4-0 liblzma-dev liblzma-doc liblzma5 libmount-dev libmount1
+#6 19.35   libnode109 libpaper-utils libpaper1 libpcre2-16-0 libpcre2-32-0 libpcre2-8-0
+#6 19.35   libpcre2-dev libpcre2-posix3 libperl5.38t64 libpkgconf3 libpng16-16t64
+#6 19.35   libpotrace0 libptexenc1 libpython3-stdlib libpython3.12-minimal
+#6 19.35   libpython3.12-stdlib libselinux1-dev libsepol-dev libsharpyuv-dev
+#6 19.35   libsmartcols1 libsqlite3-0 libssl3t64 libsynctex2 libteckit0 libtexlua53-5
+#6 19.35   libtiff-doc libtiff-opengl libtiff-tools libtiff6 libtiffxx6 libuuid1
+#6 19.35   libuv1-dev libuv1t64 libwebp-dev libwebpdecoder3 libwebpdemux2 libwebpmux3
+#6 19.35   libxaw7 libxml2 libxmu6 libxpm4 libyaml-0-2 libzstd-dev libzzip-0-13t64
+#6 19.35   media-types mount netbase node-acorn node-busboy node-cjs-module-lexer
+#6 19.35   node-undici node-xtend nodejs openssl pandoc-data perl perl-base
+#6 19.35   perl-modules-5.38 pkgconf pkgconf-bin python3 python3-minimal
+#6 19.35   python3-packaging python3.12 python3.12-minimal t1utils tex-common
+#6 19.35   texlive-base texlive-binaries ucf util-linux uuid-dev xdg-utils zlib1g
+#6 19.35   zlib1g-dev
+#6 19.35 Suggested packages:
+#6 19.35   libcurl4-doc libidn-dev libkrb5-dev libldap2-dev librtmp-dev libssh2-1-dev
+#6 19.35   freetype2-doc gdbm-l10n low-memory-monitor libglib2.0-doc
+#6 19.35   libgdk-pixbuf2.0-bin libxml2-utils libgraphite2-utils icu-doc cryptsetup-bin
+#6 19.35   libssl-doc nfs-common npm texlive-xetex texlive-luatex pandoc-citeproc
+#6 19.35   texlive-latex-extra context wkhtmltopdf librsvg2-bin groff ghc php python
+#6 19.35   ruby r-base-core libjs-mathjax libjs-katex citation-style-language-styles
+#6 19.35   perl-doc libterm-readline-gnu-perl | libterm-readline-perl-perl
+#6 19.35   libtap-harness-archive-perl python3-doc python3-tk python3-venv
+#6 19.35   python3.12-venv python3.12-doc binfmt-support debhelper ghostscript gv
+#6 19.35   | postscript-viewer perl-tk xpdf | pdf-viewer xzdec texlive-binaries-sse2
+#6 19.35   hintview texlive-fonts-recommended-doc texlive-latex-base-doc wp2latex
+#6 19.35   texlive-latex-recommended-doc texlive-pstricks dosfstools kbd
+#6 19.35   util-linux-extra util-linux-locales
+#6 19.35 Recommended packages:
+#6 19.35   bsdextrautils bzip2-doc xdg-user-dirs libpng-tools uuid-runtime nodejs-doc
+#6 19.35   dvisvgm tex-gyre tipa libfile-mimeinfo-perl libnet-dbus-perl
+#6 19.35   libx11-protocol-perl x11-utils x11-xserver-utils
+#6 19.64 The following NEW packages will be installed:
+#6 19.64   curl fonts-lmodern gir1.2-freedesktop gir1.2-freedesktop-dev gir1.2-glib-2.0
+#6 19.64   gir1.2-glib-2.0-dev gir1.2-harfbuzz-0.0 icu-devtools libblkid-dev
+#6 19.64   libbrotli-dev libbz2-dev libcairo-gobject2 libcares2 libcurl4-openssl-dev
+#6 19.64   libdeflate-dev libexpat1-dev libffi-dev libfontconfig-dev libfontconfig1-dev
+#6 19.64   libfreetype-dev libfribidi-dev libgdbm-compat4t64 libgdbm6t64
+#6 19.64   libgirepository-2.0-0 libglib2.0-bin libglib2.0-dev libglib2.0-dev-bin
+#6 19.64   libgraphite2-dev libharfbuzz-cairo0 libharfbuzz-dev libharfbuzz-gobject0
+#6 19.64   libharfbuzz-icu0 libharfbuzz-subset0 libicu-dev libjbig-dev libjpeg-dev
+#6 19.64   libjpeg8-dev libkpathsea6 liblerc-dev liblua5.4-0 liblzma-dev libmount-dev
+#6 19.64   libnode-dev libnode109 libpaper-utils libpaper1 libpcre2-dev libperl5.38t64
+#6 19.64   libpkgconf3 libpng-dev libpotrace0 libptexenc1 libpython3-stdlib
+#6 19.64   libpython3.12-minimal libpython3.12-stdlib libselinux1-dev libsepol-dev
+#6 19.64   libsharpyuv-dev libsqlite3-0 libssl-dev libsynctex2 libteckit0 libtexlua53-5
+#6 19.64   libtiff-dev libuv1-dev libuv1t64 libwebp-dev libwebpdecoder3 libwebpdemux2
+#6 19.64   libwebpmux3 libxaw7 libxml2-dev libxmu6 libxpm4 libyaml-0-2 libzstd-dev
+#6 19.64   libzzip-0-13t64 lmodern media-types netbase node-acorn node-busboy
+#6 19.64   node-cjs-module-lexer node-undici node-xtend nodejs pandoc pandoc-data perl
+#6 19.64   perl-modules-5.38 pkg-config pkgconf pkgconf-bin python3 python3-minimal
+#6 19.64   python3-packaging python3.12 python3.12-minimal t1utils tex-common
+#6 19.64   texlive-base texlive-binaries texlive-fonts-recommended texlive-latex-base
+#6 19.64   texlive-latex-recommended ucf uuid-dev xdg-utils zlib1g-dev
+#6 19.64 The following packages will be upgraded:
+#6 19.64   bsdutils ca-certificates libblkid1 libbrotli1 libbz2-1.0 libcurl4t64
+#6 19.64   libexpat1 libfreetype6 libglib2.0-0t64 libglib2.0-data libgraphite2-3
+#6 19.64   liblzma-doc liblzma5 libmount1 libpcre2-16-0 libpcre2-32-0 libpcre2-8-0
+#6 19.64   libpcre2-posix3 libpng16-16t64 libsmartcols1 libssl3t64 libtiff-doc
+#6 19.64   libtiff-opengl libtiff-tools libtiff6 libtiffxx6 libuuid1 libxml2 mount
+#6 19.64   openssl perl-base util-linux zlib1g
+#6 19.77 33 upgraded, 109 newly installed, 0 to remove and 95 not upgraded.
+#6 19.77 Need to get 155 MB of archives.
+#6 19.77 After this operation, 640 MB of additional disk space will be used.
+#6 19.77 Get:1 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 bsdutils amd64 1:2.39.3-9ubuntu6.6 [96.4 kB]
+#6 19.98 Get:2 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 perl-base amd64 5.38.2-3.2ubuntu0.7 [1,828 kB]
+#6 20.82 Get:3 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 util-linux amd64 2.39.3-9ubuntu6.6 [1,128 kB]
+#6 21.26 Get:4 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 mount amd64 2.39.3-9ubuntu6.6 [118 kB]
+#6 21.81 Get:5 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libssl3t64 amd64 3.0.13-0ubuntu3.16 [1,945 kB]
+#6 22.10 Get:6 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libpython3.12-minimal amd64 3.12.3-1ubuntu0.17 [839 kB]
+#6 22.90 Get:7 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libexpat1 amd64 2.6.1-2ubuntu0.6 [98.9 kB]
+#6 23.27 Get:8 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 zlib1g amd64 1:1.3.dfsg-3.1ubuntu2.3 [63.2 kB]
+#6 23.44 Get:9 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 python3.12-minimal amd64 3.12.3-1ubuntu0.17 [2,335 kB]
+#6 23.73 Get:10 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 python3-minimal amd64 3.12.3-0ubuntu2.1 [27.4 kB]
+#6 23.99 Get:11 http://archive.ubuntu.com/ubuntu noble/main amd64 media-types all 10.1.0 [27.5 kB]
+#6 24.26 Get:12 http://archive.ubuntu.com/ubuntu noble/main amd64 netbase all 6.4 [13.1 kB]
+#6 24.41 Get:13 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libbz2-1.0 amd64 1.0.8-5.1ubuntu0.1 [34.6 kB]
+#6 24.66 Get:14 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 liblzma5 amd64 5.6.1+really5.4.5-1ubuntu0.4 [128 kB]
+#6 25.18 Get:15 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libsqlite3-0 amd64 3.45.1-1ubuntu2.9 [702 kB]
+#6 25.58 Get:16 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libpython3.12-stdlib amd64 3.12.3-1ubuntu0.17 [2,071 kB]
+#6 26.59 Get:17 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 python3.12 amd64 3.12.3-1ubuntu0.17 [651 kB]
+#6 27.29 Get:18 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libpython3-stdlib amd64 3.12.3-0ubuntu2.1 [10.1 kB]
+#6 27.42 Get:19 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 python3 amd64 3.12.3-0ubuntu2.1 [23.0 kB]
+#6 27.51 Get:20 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 perl-modules-5.38 all 5.38.2-3.2ubuntu0.7 [3,110 kB]
+#6 27.88 Get:21 http://archive.ubuntu.com/ubuntu noble/main amd64 libgdbm6t64 amd64 1.23-5.1build1 [34.4 kB]
+#6 28.02 Get:22 http://archive.ubuntu.com/ubuntu noble/main amd64 libgdbm-compat4t64 amd64 1.23-5.1build1 [6,710 B]
+#6 28.11 Get:23 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libperl5.38t64 amd64 5.38.2-3.2ubuntu0.7 [4,864 kB]
+#6 28.50 Get:24 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 perl amd64 5.38.2-3.2ubuntu0.7 [231 kB]
+#6 28.88 Get:25 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libblkid1 amd64 2.39.3-9ubuntu6.6 [124 kB]
+#6 29.43 Get:26 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libmount1 amd64 2.39.3-9ubuntu6.6 [134 kB]
+#6 30.03 Get:27 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libpcre2-8-0 amd64 10.42-4ubuntu2.2 [229 kB]
+#6 30.60 Get:28 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libsmartcols1 amd64 2.39.3-9ubuntu6.6 [66.3 kB]
+#6 30.88 Get:29 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libuuid1 amd64 2.39.3-9ubuntu6.6 [36.6 kB]
+#6 31.13 Get:30 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 openssl amd64 3.0.13-0ubuntu3.16 [1,004 kB]
+#6 31.69 Get:31 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 ca-certificates all 20260816ubuntu0.24.04.2 [140 kB]
+#6 32.02 Get:32 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libglib2.0-0t64 amd64 2.80.0-6ubuntu3.10 [1,548 kB]
+#6 33.00 Get:33 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 gir1.2-glib-2.0 amd64 2.80.0-6ubuntu3.10 [183 kB]
+#6 33.53 Get:34 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libglib2.0-data all 2.80.0-6ubuntu3.10 [50.2 kB]
+#6 33.63 Get:35 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libxml2 amd64 2.9.14+dfsg-1.3ubuntu3.10 [764 kB]
+#6 33.82 Get:36 http://archive.ubuntu.com/ubuntu noble/main amd64 libyaml-0-2 amd64 0.2.5-1build1 [51.5 kB]
+#6 33.92 Get:37 http://archive.ubuntu.com/ubuntu noble/main amd64 ucf all 3.0043+nmu1 [56.5 kB]
+#6 34.23 Get:38 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libpng16-16t64 amd64 1.6.43-5ubuntu0.7 [189 kB]
+#6 34.70 Get:39 http://archive.ubuntu.com/ubuntu noble/main amd64 libuv1t64 amd64 1.48.0-1.1build1 [97.3 kB]
+#6 34.95 Get:40 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libbrotli1 amd64 1.1.0-2ubuntu0.1 [331 kB]
+#6 35.50 Get:41 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libcurl4t64 amd64 8.5.0-2ubuntu10.16 [344 kB]
+#6 35.85 Get:42 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 curl amd64 8.5.0-2ubuntu10.16 [226 kB]
+#6 36.63 Get:43 http://archive.ubuntu.com/ubuntu noble/universe amd64 fonts-lmodern all 2.005-1 [4,799 kB]
+#6 37.88 Get:44 http://archive.ubuntu.com/ubuntu noble/main amd64 libcairo-gobject2 amd64 1.18.0-3build1 [127 kB]
+#6 38.41 Get:45 http://archive.ubuntu.com/ubuntu noble/main amd64 gir1.2-freedesktop amd64 1.80.1-1 [49.7 kB]
+#6 38.82 Get:46 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 gir1.2-glib-2.0-dev amd64 2.80.0-6ubuntu3.10 [848 kB]
+#6 39.63 Get:47 http://archive.ubuntu.com/ubuntu noble/main amd64 gir1.2-freedesktop-dev amd64 1.80.1-1 [28.8 kB]
+#6 39.99 Get:48 http://archive.ubuntu.com/ubuntu noble/main amd64 libharfbuzz-gobject0 amd64 8.3.0-2build2 [34.3 kB]
+#6 40.34 Get:49 http://archive.ubuntu.com/ubuntu noble/main amd64 gir1.2-harfbuzz-0.0 amd64 8.3.0-2build2 [44.5 kB]
+#6 40.61 Get:50 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 icu-devtools amd64 74.2-1ubuntu3.1 [212 kB]
+#6 40.85 Get:51 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libbrotli-dev amd64 1.1.0-2ubuntu0.1 [353 kB]
+#6 41.40 Get:52 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libbz2-dev amd64 1.0.8-5.1ubuntu0.1 [33.6 kB]
+#6 41.80 Get:53 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libcares2 amd64 1.27.0-1.0ubuntu1.1 [74.2 kB]
+#6 42.22 Get:54 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libcurl4-openssl-dev amd64 8.5.0-2ubuntu10.16 [447 kB]
+#6 42.67 Get:55 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libdeflate-dev amd64 1.19-1build1.1 [50.9 kB]
+#6 42.99 Get:56 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libexpat1-dev amd64 2.6.1-2ubuntu0.6 [147 kB]
+#6 43.40 Get:57 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libfreetype6 amd64 2.13.2+dfsg-1ubuntu0.2 [403 kB]
+#6 43.67 Get:58 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 zlib1g-dev amd64 1:1.3.dfsg-3.1ubuntu2.3 [894 kB]
+#6 44.03 Get:59 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libpng-dev amd64 1.6.43-5ubuntu0.7 [265 kB]
+#6 44.37 Get:60 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libfreetype-dev amd64 2.13.2+dfsg-1ubuntu0.2 [574 kB]
+#6 45.15 Get:61 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 uuid-dev amd64 2.39.3-9ubuntu6.6 [33.5 kB]
+#6 45.51 Get:62 http://archive.ubuntu.com/ubuntu noble/main amd64 libpkgconf3 amd64 1.8.1-2build1 [30.7 kB]
+#6 45.74 Get:63 http://archive.ubuntu.com/ubuntu noble/main amd64 pkgconf-bin amd64 1.8.1-2build1 [20.7 kB]
+#6 46.00 Get:64 http://archive.ubuntu.com/ubuntu noble/main amd64 pkgconf amd64 1.8.1-2build1 [16.8 kB]
+#6 46.22 Get:65 http://archive.ubuntu.com/ubuntu noble/main amd64 libfontconfig-dev amd64 2.15.0-1.1ubuntu2 [161 kB]
+#6 46.33 Get:66 http://archive.ubuntu.com/ubuntu noble/main amd64 libfontconfig1-dev amd64 2.15.0-1.1ubuntu2 [1,840 B]
+#6 46.44 Get:67 http://archive.ubuntu.com/ubuntu noble/main amd64 libfribidi-dev amd64 1.0.13-3build1 [64.8 kB]
+#6 46.70 Get:68 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libgirepository-2.0-0 amd64 2.80.0-6ubuntu3.10 [73.5 kB]
+#6 46.93 Get:69 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libglib2.0-bin amd64 2.80.0-6ubuntu3.10 [97.9 kB]
+#6 47.27 Get:70 http://archive.ubuntu.com/ubuntu noble/main amd64 libffi-dev amd64 3.4.6-1build1 [62.8 kB]
+#6 47.72 Get:71 http://archive.ubuntu.com/ubuntu noble/main amd64 python3-packaging all 24.0-1 [41.1 kB]
+#6 47.98 Get:72 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libglib2.0-dev-bin amd64 2.80.0-6ubuntu3.10 [138 kB]
+#6 48.21 Get:73 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libblkid-dev amd64 2.39.3-9ubuntu6.6 [205 kB]
+#6 48.62 Get:74 http://archive.ubuntu.com/ubuntu noble/main amd64 libsepol-dev amd64 3.5-2build1 [384 kB]
+#6 49.17 Get:75 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libpcre2-16-0 amd64 10.42-4ubuntu2.2 [212 kB]
+#6 49.60 Get:76 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libpcre2-32-0 amd64 10.42-4ubuntu2.2 [199 kB]
+#6 50.21 Get:77 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libpcre2-posix3 amd64 10.42-4ubuntu2.2 [6,680 B]
+#6 50.42 Get:78 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libpcre2-dev amd64 10.42-4ubuntu2.2 [737 kB]
+#6 51.07 Get:79 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libselinux1-dev amd64 3.5-2ubuntu2.1 [164 kB]
+#6 51.21 Get:80 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libmount-dev amd64 2.39.3-9ubuntu6.6 [14.9 kB]
+#6 51.35 Get:81 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libglib2.0-dev amd64 2.80.0-6ubuntu3.10 [1,861 kB]
+#6 51.69 Get:82 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libgraphite2-3 amd64 1.3.14-2ubuntu0.24.04.1 [73.4 kB]
+#6 51.82 Get:83 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libgraphite2-dev amd64 1.3.14-2ubuntu0.24.04.1 [14.7 kB]
+#6 51.93 Get:84 http://archive.ubuntu.com/ubuntu noble/main amd64 libharfbuzz-cairo0 amd64 8.3.0-2build2 [26.2 kB]
+#6 52.05 Get:85 http://archive.ubuntu.com/ubuntu noble/main amd64 libharfbuzz-icu0 amd64 8.3.0-2build2 [13.3 kB]
+#6 52.28 Get:86 http://archive.ubuntu.com/ubuntu noble/main amd64 libharfbuzz-subset0 amd64 8.3.0-2build2 [448 kB]
+#6 52.85 Get:87 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libicu-dev amd64 74.2-1ubuntu3.1 [11.9 MB]
+#6 53.28 Get:88 http://archive.ubuntu.com/ubuntu noble/main amd64 libharfbuzz-dev amd64 8.3.0-2build2 [142 kB]
+#6 53.57 Get:89 http://archive.ubuntu.com/ubuntu noble/main amd64 libjpeg8-dev amd64 8c-2ubuntu11 [1,484 B]
+#6 53.77 Get:90 http://archive.ubuntu.com/ubuntu noble/main amd64 libjpeg-dev amd64 8c-2ubuntu11 [1,482 B]
+#6 53.89 Get:91 http://archive.ubuntu.com/ubuntu noble/main amd64 libkpathsea6 amd64 2023.20230311.66589-9build3 [63.0 kB]
+#6 54.25 Get:92 http://archive.ubuntu.com/ubuntu noble/main amd64 liblerc-dev amd64 4.0.0+ds-4ubuntu2 [182 kB]
+#6 54.37 Get:93 http://archive.ubuntu.com/ubuntu noble/main amd64 liblua5.4-0 amd64 5.4.6-3build2 [166 kB]
+#6 54.64 Get:94 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libssl-dev amd64 3.0.13-0ubuntu3.16 [2,409 kB]
+#6 55.48 Get:95 http://archive.ubuntu.com/ubuntu noble/main amd64 libuv1-dev amd64 1.48.0-1.1build1 [136 kB]
+#6 55.62 Get:96 http://archive.ubuntu.com/ubuntu noble/universe amd64 node-xtend all 4.0.2-3 [3,902 B]
+#6 55.87 Get:97 http://archive.ubuntu.com/ubuntu noble/universe amd64 nodejs amd64 18.19.1+dfsg-6ubuntu5 [306 kB]
+#6 56.42 Get:98 http://archive.ubuntu.com/ubuntu noble/universe amd64 node-acorn all 8.8.1+ds+~cs25.17.7-2 [115 kB]
+#6 56.61 Get:99 http://archive.ubuntu.com/ubuntu noble/universe amd64 node-cjs-module-lexer all 1.2.3+dfsg-1 [32.1 kB]
+#6 56.69 Get:100 http://archive.ubuntu.com/ubuntu noble/universe amd64 node-busboy all 1.6.0+~cs2.6.0-2 [17.3 kB]
+#6 56.96 Get:101 http://archive.ubuntu.com/ubuntu noble/universe amd64 node-undici all 5.26.3+dfsg1+~cs23.10.12-2 [325 kB]
+#6 57.67 Get:102 http://archive.ubuntu.com/ubuntu noble/universe amd64 libnode109 amd64 18.19.1+dfsg-6ubuntu5 [11.6 MB]
+#6 58.69 Get:103 http://archive.ubuntu.com/ubuntu noble/universe amd64 libnode-dev amd64 18.19.1+dfsg-6ubuntu5 [501 kB]
+#6 58.81 Get:104 http://archive.ubuntu.com/ubuntu noble/main amd64 libpaper1 amd64 1.1.29build1 [13.4 kB]
+#6 59.03 Get:105 http://archive.ubuntu.com/ubuntu noble/main amd64 libpaper-utils amd64 1.1.29build1 [8,650 B]
+#6 59.14 Get:106 http://archive.ubuntu.com/ubuntu noble/universe amd64 libpotrace0 amd64 1.16-2build1 [17.7 kB]
+#6 59.39 Get:107 http://archive.ubuntu.com/ubuntu noble/main amd64 libptexenc1 amd64 2023.20230311.66589-9build3 [40.4 kB]
+#6 59.67 Get:108 http://archive.ubuntu.com/ubuntu noble/main amd64 libsharpyuv-dev amd64 1.3.2-0.4build3 [16.0 kB]
+#6 59.93 Get:109 http://archive.ubuntu.com/ubuntu noble/main amd64 libsynctex2 amd64 2023.20230311.66589-9build3 [59.6 kB]
+#6 60.40 Get:110 http://archive.ubuntu.com/ubuntu noble/universe amd64 libteckit0 amd64 2.5.12+ds1-1 [411 kB]
+#6 60.96 Get:111 http://archive.ubuntu.com/ubuntu noble/main amd64 libtexlua53-5 amd64 2023.20230311.66589-9build3 [123 kB]
+#6 61.28 Get:112 http://archive.ubuntu.com/ubuntu noble/main amd64 libjbig-dev amd64 2.1-6.1ubuntu2 [27.9 kB]
+#6 61.64 Get:113 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 liblzma-dev amd64 5.6.1+really5.4.5-1ubuntu0.4 [176 kB]
+#6 62.14 Get:114 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libzstd-dev amd64 1.5.5+dfsg2-2build1.1 [364 kB]
+#6 62.39 Get:115 http://archive.ubuntu.com/ubuntu noble/main amd64 libwebpdemux2 amd64 1.3.2-0.4build3 [12.4 kB]
+#6 62.49 Get:116 http://archive.ubuntu.com/ubuntu noble/main amd64 libwebpmux3 amd64 1.3.2-0.4build3 [25.7 kB]
+#6 62.75 Get:117 http://archive.ubuntu.com/ubuntu noble/main amd64 libwebpdecoder3 amd64 1.3.2-0.4build3 [114 kB]
+#6 63.28 Get:118 http://archive.ubuntu.com/ubuntu noble/main amd64 libwebp-dev amd64 1.3.2-0.4build3 [367 kB]
+#6 63.83 Get:119 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libtiff6 amd64 4.5.1+git230720-4ubuntu2.5 [200 kB]
+#6 64.14 Get:120 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libtiffxx6 amd64 4.5.1+git230720-4ubuntu2.5 [5,642 B]
+#6 64.25 Get:121 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libtiff-dev amd64 4.5.1+git230720-4ubuntu2.5 [338 kB]
+#6 64.47 Get:122 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libtiff-doc all 4.5.1+git230720-4ubuntu2.5 [563 kB]
+#6 64.69 Get:123 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 libtiff-opengl amd64 4.5.1+git230720-4ubuntu2.5 [10.4 kB]
+#6 64.93 Get:124 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 libtiff-tools amd64 4.5.1+git230720-4ubuntu2.5 [204 kB]
+#6 65.42 Get:125 http://archive.ubuntu.com/ubuntu noble/main amd64 libxmu6 amd64 2:1.1.3-3build2 [47.6 kB]
+#6 65.50 Get:126 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libxpm4 amd64 1:3.5.17-1ubuntu0.24.04.2 [36.7 kB]
+#6 65.76 Get:127 http://archive.ubuntu.com/ubuntu noble/main amd64 libxaw7 amd64 2:1.0.14-1build2 [187 kB]
+#6 66.30 Get:128 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libxml2-dev amd64 2.9.14+dfsg-1.3ubuntu3.10 [781 kB]
+#6 66.79 Get:129 http://archive.ubuntu.com/ubuntu noble/universe amd64 libzzip-0-13t64 amd64 0.13.72+dfsg.1-1.2build1 [28.1 kB]
+#6 67.14 Get:130 http://archive.ubuntu.com/ubuntu noble/universe amd64 tex-common all 6.18 [32.8 kB]
+#6 67.53 Get:131 http://archive.ubuntu.com/ubuntu noble/universe amd64 lmodern all 2.005-1 [9,542 kB]
+#6 68.91 Get:132 http://archive.ubuntu.com/ubuntu noble/universe amd64 pandoc-data all 3.1.3-1 [92.4 kB]
+#6 69.41 Get:133 http://archive.ubuntu.com/ubuntu noble/universe amd64 pandoc amd64 3.1.3+ds-2 [26.9 MB]
+#6 70.69 Get:134 http://archive.ubuntu.com/ubuntu noble/main amd64 pkg-config amd64 1.8.1-2build1 [7,264 B]
+#6 70.99 Get:135 http://archive.ubuntu.com/ubuntu noble/main amd64 t1utils amd64 1.41-4build3 [61.3 kB]
+#6 71.50 Get:136 http://archive.ubuntu.com/ubuntu noble/universe amd64 texlive-binaries amd64 2023.20230311.66589-9build3 [8,529 kB]
+#6 72.58 Get:137 http://archive.ubuntu.com/ubuntu noble/main amd64 xdg-utils all 1.1.3-4.1ubuntu3 [62.0 kB]
+#6 73.12 Get:138 http://archive.ubuntu.com/ubuntu noble/universe amd64 texlive-base all 2023.20240207-1 [21.7 MB]
+#6 73.85 Get:139 http://archive.ubuntu.com/ubuntu noble/universe amd64 texlive-fonts-recommended all 2023.20240207-1 [4,973 kB]
+#6 74.20 Get:140 http://archive.ubuntu.com/ubuntu noble/universe amd64 texlive-latex-base all 2023.20240207-1 [1,238 kB]
+#6 75.02 Get:141 http://archive.ubuntu.com/ubuntu noble/universe amd64 texlive-latex-recommended all 2023.20240207-1 [8,826 kB]
+#6 75.31 Get:142 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 liblzma-doc all 5.6.1+really5.4.5-1ubuntu0.4 [100 kB]
+#6 75.59 debconf: delaying package configuration, since apt-utils is not installed
+#6 75.62 Fetched 155 MB in 56s (2,774 kB/s)
+#6 75.64 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 12382 files and directories currently installed.)
+#6 75.64 Preparing to unpack .../bsdutils_1%3a2.39.3-9ubuntu6.6_amd64.deb ...
+#6 75.64 Unpacking bsdutils (1:2.39.3-9ubuntu6.6) over (1:2.39.3-9ubuntu6.2) ...
+#6 75.66 Setting up bsdutils (1:2.39.3-9ubuntu6.6) ...
+#6 75.69 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 12382 files and directories currently installed.)
+#6 75.70 Preparing to unpack .../perl-base_5.38.2-3.2ubuntu0.7_amd64.deb ...
+#6 75.71 Unpacking perl-base (5.38.2-3.2ubuntu0.7) over (5.38.2-3.2ubuntu0.1) ...
+#6 75.91 Setting up perl-base (5.38.2-3.2ubuntu0.7) ...
+#6 75.94 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 12382 files and directories currently installed.)
+#6 75.94 Preparing to unpack .../util-linux_2.39.3-9ubuntu6.6_amd64.deb ...
+#6 75.94 Unpacking util-linux (2.39.3-9ubuntu6.6) over (2.39.3-9ubuntu6.2) ...
+#6 75.99 Setting up util-linux (2.39.3-9ubuntu6.6) ...
+#6 76.09 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 12382 files and directories currently installed.)
+#6 76.09 Preparing to unpack .../mount_2.39.3-9ubuntu6.6_amd64.deb ...
+#6 76.10 Unpacking mount (2.39.3-9ubuntu6.6) over (2.39.3-9ubuntu6.2) ...
+#6 76.11 Preparing to unpack .../libssl3t64_3.0.13-0ubuntu3.16_amd64.deb ...
+#6 76.12 Unpacking libssl3t64:amd64 (3.0.13-0ubuntu3.16) over (3.0.13-0ubuntu3.5) ...
+#6 76.17 Setting up libssl3t64:amd64 (3.0.13-0ubuntu3.16) ...
+#6 76.19 Selecting previously unselected package libpython3.12-minimal:amd64.
+#6 76.19 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 12382 files and directories currently installed.)
+#6 76.19 Preparing to unpack .../libpython3.12-minimal_3.12.3-1ubuntu0.17_amd64.deb ...
+#6 76.19 Unpacking libpython3.12-minimal:amd64 (3.12.3-1ubuntu0.17) ...
+#6 76.25 Preparing to unpack .../libexpat1_2.6.1-2ubuntu0.6_amd64.deb ...
+#6 76.25 Unpacking libexpat1:amd64 (2.6.1-2ubuntu0.6) over (2.6.1-2ubuntu0.3) ...
+#6 76.27 Preparing to unpack .../zlib1g_1%3a1.3.dfsg-3.1ubuntu2.3_amd64.deb ...
+#6 76.27 Unpacking zlib1g:amd64 (1:1.3.dfsg-3.1ubuntu2.3) over (1:1.3.dfsg-3.1ubuntu2.1) ...
+#6 76.29 Setting up zlib1g:amd64 (1:1.3.dfsg-3.1ubuntu2.3) ...
+#6 76.32 Selecting previously unselected package python3.12-minimal.
+#6 76.32 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 12680 files and directories currently installed.)
+#6 76.32 Preparing to unpack .../python3.12-minimal_3.12.3-1ubuntu0.17_amd64.deb ...
+#6 76.32 Unpacking python3.12-minimal (3.12.3-1ubuntu0.17) ...
+#6 76.38 Setting up libpython3.12-minimal:amd64 (3.12.3-1ubuntu0.17) ...
+#6 76.39 Setting up libexpat1:amd64 (2.6.1-2ubuntu0.6) ...
+#6 76.39 Setting up python3.12-minimal (3.12.3-1ubuntu0.17) ...
+#6 77.06 Selecting previously unselected package python3-minimal.
+#6 77.06 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 12691 files and directories currently installed.)
+#6 77.06 Preparing to unpack .../python3-minimal_3.12.3-0ubuntu2.1_amd64.deb ...
+#6 77.06 Unpacking python3-minimal (3.12.3-0ubuntu2.1) ...
+#6 77.08 Selecting previously unselected package media-types.
+#6 77.08 Preparing to unpack .../media-types_10.1.0_all.deb ...
+#6 77.08 Unpacking media-types (10.1.0) ...
+#6 77.09 Selecting previously unselected package netbase.
+#6 77.09 Preparing to unpack .../archives/netbase_6.4_all.deb ...
+#6 77.09 Unpacking netbase (6.4) ...
+#6 77.11 Preparing to unpack .../libbz2-1.0_1.0.8-5.1ubuntu0.1_amd64.deb ...
+#6 77.11 Unpacking libbz2-1.0:amd64 (1.0.8-5.1ubuntu0.1) over (1.0.8-5.1build0.1) ...
+#6 77.13 Setting up libbz2-1.0:amd64 (1.0.8-5.1ubuntu0.1) ...
+#6 77.14 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 12720 files and directories currently installed.)
+#6 77.15 Preparing to unpack .../liblzma5_5.6.1+really5.4.5-1ubuntu0.4_amd64.deb ...
+#6 77.15 Unpacking liblzma5:amd64 (5.6.1+really5.4.5-1ubuntu0.4) over (5.6.1+really5.4.5-1ubuntu0.2) ...
+#6 77.17 Setting up liblzma5:amd64 (5.6.1+really5.4.5-1ubuntu0.4) ...
+#6 77.19 Selecting previously unselected package libsqlite3-0:amd64.
+#6 77.19 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 12720 files and directories currently installed.)
+#6 77.20 Preparing to unpack .../libsqlite3-0_3.45.1-1ubuntu2.9_amd64.deb ...
+#6 77.20 Unpacking libsqlite3-0:amd64 (3.45.1-1ubuntu2.9) ...
+#6 77.22 Selecting previously unselected package libpython3.12-stdlib:amd64.
+#6 77.22 Preparing to unpack .../libpython3.12-stdlib_3.12.3-1ubuntu0.17_amd64.deb ...
+#6 77.22 Unpacking libpython3.12-stdlib:amd64 (3.12.3-1ubuntu0.17) ...
+#6 77.33 Selecting previously unselected package python3.12.
+#6 77.33 Preparing to unpack .../python3.12_3.12.3-1ubuntu0.17_amd64.deb ...
+#6 77.33 Unpacking python3.12 (3.12.3-1ubuntu0.17) ...
+#6 77.35 Selecting previously unselected package libpython3-stdlib:amd64.
+#6 77.35 Preparing to unpack .../libpython3-stdlib_3.12.3-0ubuntu2.1_amd64.deb ...
+#6 77.35 Unpacking libpython3-stdlib:amd64 (3.12.3-0ubuntu2.1) ...
+#6 77.36 Setting up python3-minimal (3.12.3-0ubuntu2.1) ...
+#6 77.49 Selecting previously unselected package python3.
+#6 77.49 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 13133 files and directories currently installed.)
+#6 77.49 Preparing to unpack .../0-python3_3.12.3-0ubuntu2.1_amd64.deb ...
+#6 77.49 Unpacking python3 (3.12.3-0ubuntu2.1) ...
+#6 77.51 Selecting previously unselected package perl-modules-5.38.
+#6 77.51 Preparing to unpack .../1-perl-modules-5.38_5.38.2-3.2ubuntu0.7_all.deb ...
+#6 77.51 Unpacking perl-modules-5.38 (5.38.2-3.2ubuntu0.7) ...
+#6 77.88 Selecting previously unselected package libgdbm6t64:amd64.
+#6 77.88 Preparing to unpack .../2-libgdbm6t64_1.23-5.1build1_amd64.deb ...
+#6 77.88 Unpacking libgdbm6t64:amd64 (1.23-5.1build1) ...
+#6 77.90 Selecting previously unselected package libgdbm-compat4t64:amd64.
+#6 77.90 Preparing to unpack .../3-libgdbm-compat4t64_1.23-5.1build1_amd64.deb ...
+#6 77.90 Unpacking libgdbm-compat4t64:amd64 (1.23-5.1build1) ...
+#6 77.91 Selecting previously unselected package libperl5.38t64:amd64.
+#6 77.91 Preparing to unpack .../4-libperl5.38t64_5.38.2-3.2ubuntu0.7_amd64.deb ...
+#6 77.92 Unpacking libperl5.38t64:amd64 (5.38.2-3.2ubuntu0.7) ...
+#6 78.14 Selecting previously unselected package perl.
+#6 78.14 Preparing to unpack .../5-perl_5.38.2-3.2ubuntu0.7_amd64.deb ...
+#6 78.15 Unpacking perl (5.38.2-3.2ubuntu0.7) ...
+#6 78.17 Preparing to unpack .../6-libblkid1_2.39.3-9ubuntu6.6_amd64.deb ...
+#6 78.17 Unpacking libblkid1:amd64 (2.39.3-9ubuntu6.6) over (2.39.3-9ubuntu6.2) ...
+#6 78.20 Setting up libblkid1:amd64 (2.39.3-9ubuntu6.6) ...
+#6 78.22 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 15166 files and directories currently installed.)
+#6 78.22 Preparing to unpack .../libmount1_2.39.3-9ubuntu6.6_amd64.deb ...
+#6 78.23 Unpacking libmount1:amd64 (2.39.3-9ubuntu6.6) over (2.39.3-9ubuntu6.2) ...
+#6 78.25 Setting up libmount1:amd64 (2.39.3-9ubuntu6.6) ...
+#6 78.27 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 15166 files and directories currently installed.)
+#6 78.28 Preparing to unpack .../libpcre2-8-0_10.42-4ubuntu2.2_amd64.deb ...
+#6 78.28 Unpacking libpcre2-8-0:amd64 (10.42-4ubuntu2.2) over (10.42-4ubuntu2.1) ...
+#6 78.30 Setting up libpcre2-8-0:amd64 (10.42-4ubuntu2.2) ...
+#6 78.32 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 15166 files and directories currently installed.)
+#6 78.33 Preparing to unpack .../libsmartcols1_2.39.3-9ubuntu6.6_amd64.deb ...
+#6 78.33 Unpacking libsmartcols1:amd64 (2.39.3-9ubuntu6.6) over (2.39.3-9ubuntu6.2) ...
+#6 78.35 Setting up libsmartcols1:amd64 (2.39.3-9ubuntu6.6) ...
+#6 78.37 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 15166 files and directories currently installed.)
+#6 78.37 Preparing to unpack .../libuuid1_2.39.3-9ubuntu6.6_amd64.deb ...
+#6 78.37 Unpacking libuuid1:amd64 (2.39.3-9ubuntu6.6) over (2.39.3-9ubuntu6.2) ...
+#6 78.39 Setting up libuuid1:amd64 (2.39.3-9ubuntu6.6) ...
+#6 78.42 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 15166 files and directories currently installed.)
+#6 78.44 Preparing to unpack .../000-openssl_3.0.13-0ubuntu3.16_amd64.deb ...
+#6 78.44 Unpacking openssl (3.0.13-0ubuntu3.16) over (3.0.13-0ubuntu3.5) ...
+#6 78.47 Preparing to unpack .../001-ca-certificates_20260816ubuntu0.24.04.2_all.deb ...
+#6 78.47 Unpacking ca-certificates (20260816ubuntu0.24.04.2) over (20240203) ...
+#6 78.51 Preparing to unpack .../002-libglib2.0-0t64_2.80.0-6ubuntu3.10_amd64.deb ...
+#6 78.52 Unpacking libglib2.0-0t64:amd64 (2.80.0-6ubuntu3.10) over (2.80.0-6ubuntu3.4) ...
+#6 78.57 Selecting previously unselected package gir1.2-glib-2.0:amd64.
+#6 78.57 Preparing to unpack .../003-gir1.2-glib-2.0_2.80.0-6ubuntu3.10_amd64.deb ...
+#6 78.57 Unpacking gir1.2-glib-2.0:amd64 (2.80.0-6ubuntu3.10) ...
+#6 78.59 Preparing to unpack .../004-libglib2.0-data_2.80.0-6ubuntu3.10_all.deb ...
+#6 78.59 Unpacking libglib2.0-data (2.80.0-6ubuntu3.10) over (2.80.0-6ubuntu3.4) ...
+#6 78.60 Preparing to unpack .../005-libxml2_2.9.14+dfsg-1.3ubuntu3.10_amd64.deb ...
+#6 78.61 Unpacking libxml2:amd64 (2.9.14+dfsg-1.3ubuntu3.10) over (2.9.14+dfsg-1.3ubuntu3.3) ...
+#6 78.63 Selecting previously unselected package libyaml-0-2:amd64.
+#6 78.63 Preparing to unpack .../006-libyaml-0-2_0.2.5-1build1_amd64.deb ...
+#6 78.63 Unpacking libyaml-0-2:amd64 (0.2.5-1build1) ...
+#6 78.65 Selecting previously unselected package ucf.
+#6 78.65 Preparing to unpack .../007-ucf_3.0043+nmu1_all.deb ...
+#6 78.65 Moving old data out of the way
+#6 78.66 Unpacking ucf (3.0043+nmu1) ...
+#6 78.68 Preparing to unpack .../008-libpng16-16t64_1.6.43-5ubuntu0.7_amd64.deb ...
+#6 78.68 Unpacking libpng16-16t64:amd64 (1.6.43-5ubuntu0.7) over (1.6.43-5build1) ...
+#6 78.70 Selecting previously unselected package libuv1t64:amd64.
+#6 78.70 Preparing to unpack .../009-libuv1t64_1.48.0-1.1build1_amd64.deb ...
+#6 78.70 Unpacking libuv1t64:amd64 (1.48.0-1.1build1) ...
+#6 78.71 Preparing to unpack .../010-libbrotli1_1.1.0-2ubuntu0.1_amd64.deb ...
+#6 78.71 Unpacking libbrotli1:amd64 (1.1.0-2ubuntu0.1) over (1.1.0-2build2) ...
+#6 78.73 Preparing to unpack .../011-libcurl4t64_8.5.0-2ubuntu10.16_amd64.deb ...
+#6 78.73 Unpacking libcurl4t64:amd64 (8.5.0-2ubuntu10.16) over (8.5.0-2ubuntu10.6) ...
+#6 78.75 Selecting previously unselected package curl.
+#6 78.75 Preparing to unpack .../012-curl_8.5.0-2ubuntu10.16_amd64.deb ...
+#6 78.75 Unpacking curl (8.5.0-2ubuntu10.16) ...
+#6 78.77 Selecting previously unselected package fonts-lmodern.
+#6 78.77 Preparing to unpack .../013-fonts-lmodern_2.005-1_all.deb ...
+#6 78.77 Unpacking fonts-lmodern (2.005-1) ...
+#6 78.86 Selecting previously unselected package libcairo-gobject2:amd64.
+#6 78.86 Preparing to unpack .../014-libcairo-gobject2_1.18.0-3build1_amd64.deb ...
+#6 78.86 Unpacking libcairo-gobject2:amd64 (1.18.0-3build1) ...
+#6 78.87 Selecting previously unselected package gir1.2-freedesktop:amd64.
+#6 78.87 Preparing to unpack .../015-gir1.2-freedesktop_1.80.1-1_amd64.deb ...
+#6 78.87 Unpacking gir1.2-freedesktop:amd64 (1.80.1-1) ...
+#6 78.88 Selecting previously unselected package gir1.2-glib-2.0-dev:amd64.
+#6 78.89 Preparing to unpack .../016-gir1.2-glib-2.0-dev_2.80.0-6ubuntu3.10_amd64.deb ...
+#6 78.89 Unpacking gir1.2-glib-2.0-dev:amd64 (2.80.0-6ubuntu3.10) ...
+#6 78.97 Selecting previously unselected package gir1.2-freedesktop-dev:amd64.
+#6 78.97 Preparing to unpack .../017-gir1.2-freedesktop-dev_1.80.1-1_amd64.deb ...
+#6 78.97 Unpacking gir1.2-freedesktop-dev:amd64 (1.80.1-1) ...
+#6 78.98 Selecting previously unselected package libharfbuzz-gobject0:amd64.
+#6 78.99 Preparing to unpack .../018-libharfbuzz-gobject0_8.3.0-2build2_amd64.deb ...
+#6 78.99 Unpacking libharfbuzz-gobject0:amd64 (8.3.0-2build2) ...
+#6 79.00 Selecting previously unselected package gir1.2-harfbuzz-0.0:amd64.
+#6 79.00 Preparing to unpack .../019-gir1.2-harfbuzz-0.0_8.3.0-2build2_amd64.deb ...
+#6 79.00 Unpacking gir1.2-harfbuzz-0.0:amd64 (8.3.0-2build2) ...
+#6 79.02 Selecting previously unselected package icu-devtools.
+#6 79.02 Preparing to unpack .../020-icu-devtools_74.2-1ubuntu3.1_amd64.deb ...
+#6 79.02 Unpacking icu-devtools (74.2-1ubuntu3.1) ...
+#6 79.03 Selecting previously unselected package libbrotli-dev:amd64.
+#6 79.03 Preparing to unpack .../021-libbrotli-dev_1.1.0-2ubuntu0.1_amd64.deb ...
+#6 79.03 Unpacking libbrotli-dev:amd64 (1.1.0-2ubuntu0.1) ...
+#6 79.05 Selecting previously unselected package libbz2-dev:amd64.
+#6 79.05 Preparing to unpack .../022-libbz2-dev_1.0.8-5.1ubuntu0.1_amd64.deb ...
+#6 79.05 Unpacking libbz2-dev:amd64 (1.0.8-5.1ubuntu0.1) ...
+#6 79.07 Selecting previously unselected package libcares2:amd64.
+#6 79.07 Preparing to unpack .../023-libcares2_1.27.0-1.0ubuntu1.1_amd64.deb ...
+#6 79.07 Unpacking libcares2:amd64 (1.27.0-1.0ubuntu1.1) ...
+#6 79.09 Selecting previously unselected package libcurl4-openssl-dev:amd64.
+#6 79.09 Preparing to unpack .../024-libcurl4-openssl-dev_8.5.0-2ubuntu10.16_amd64.deb ...
+#6 79.09 Unpacking libcurl4-openssl-dev:amd64 (8.5.0-2ubuntu10.16) ...
+#6 79.11 Selecting previously unselected package libdeflate-dev:amd64.
+#6 79.11 Preparing to unpack .../025-libdeflate-dev_1.19-1build1.1_amd64.deb ...
+#6 79.11 Unpacking libdeflate-dev:amd64 (1.19-1build1.1) ...
+#6 79.12 Selecting previously unselected package libexpat1-dev:amd64.
+#6 79.13 Preparing to unpack .../026-libexpat1-dev_2.6.1-2ubuntu0.6_amd64.deb ...
+#6 79.13 Unpacking libexpat1-dev:amd64 (2.6.1-2ubuntu0.6) ...
+#6 79.14 Preparing to unpack .../027-libfreetype6_2.13.2+dfsg-1ubuntu0.2_amd64.deb ...
+#6 79.15 Unpacking libfreetype6:amd64 (2.13.2+dfsg-1ubuntu0.2) over (2.13.2+dfsg-1build3) ...
+#6 79.17 Selecting previously unselected package zlib1g-dev:amd64.
+#6 79.17 Preparing to unpack .../028-zlib1g-dev_1%3a1.3.dfsg-3.1ubuntu2.3_amd64.deb ...
+#6 79.17 Unpacking zlib1g-dev:amd64 (1:1.3.dfsg-3.1ubuntu2.3) ...
+#6 79.18 Selecting previously unselected package libpng-dev:amd64.
+#6 79.18 Preparing to unpack .../029-libpng-dev_1.6.43-5ubuntu0.7_amd64.deb ...
+#6 79.19 Unpacking libpng-dev:amd64 (1.6.43-5ubuntu0.7) ...
+#6 79.20 Selecting previously unselected package libfreetype-dev:amd64.
+#6 79.20 Preparing to unpack .../030-libfreetype-dev_2.13.2+dfsg-1ubuntu0.2_amd64.deb ...
+#6 79.20 Unpacking libfreetype-dev:amd64 (2.13.2+dfsg-1ubuntu0.2) ...
+#6 79.23 Selecting previously unselected package uuid-dev:amd64.
+#6 79.23 Preparing to unpack .../031-uuid-dev_2.39.3-9ubuntu6.6_amd64.deb ...
+#6 79.23 Unpacking uuid-dev:amd64 (2.39.3-9ubuntu6.6) ...
+#6 79.25 Selecting previously unselected package libpkgconf3:amd64.
+#6 79.25 Preparing to unpack .../032-libpkgconf3_1.8.1-2build1_amd64.deb ...
+#6 79.25 Unpacking libpkgconf3:amd64 (1.8.1-2build1) ...
+#6 79.26 Selecting previously unselected package pkgconf-bin.
+#6 79.26 Preparing to unpack .../033-pkgconf-bin_1.8.1-2build1_amd64.deb ...
+#6 79.26 Unpacking pkgconf-bin (1.8.1-2build1) ...
+#6 79.28 Selecting previously unselected package pkgconf:amd64.
+#6 79.28 Preparing to unpack .../034-pkgconf_1.8.1-2build1_amd64.deb ...
+#6 79.28 Unpacking pkgconf:amd64 (1.8.1-2build1) ...
+#6 79.30 Selecting previously unselected package libfontconfig-dev:amd64.
+#6 79.30 Preparing to unpack .../035-libfontconfig-dev_2.15.0-1.1ubuntu2_amd64.deb ...
+#6 79.30 Unpacking libfontconfig-dev:amd64 (2.15.0-1.1ubuntu2) ...
+#6 79.32 Selecting previously unselected package libfontconfig1-dev:amd64.
+#6 79.32 Preparing to unpack .../036-libfontconfig1-dev_2.15.0-1.1ubuntu2_amd64.deb ...
+#6 79.32 Unpacking libfontconfig1-dev:amd64 (2.15.0-1.1ubuntu2) ...
+#6 79.33 Selecting previously unselected package libfribidi-dev:amd64.
+#6 79.33 Preparing to unpack .../037-libfribidi-dev_1.0.13-3build1_amd64.deb ...
+#6 79.33 Unpacking libfribidi-dev:amd64 (1.0.13-3build1) ...
+#6 79.35 Selecting previously unselected package libgirepository-2.0-0:amd64.
+#6 79.35 Preparing to unpack .../038-libgirepository-2.0-0_2.80.0-6ubuntu3.10_amd64.deb ...
+#6 79.35 Unpacking libgirepository-2.0-0:amd64 (2.80.0-6ubuntu3.10) ...
+#6 79.36 Selecting previously unselected package libglib2.0-bin.
+#6 79.36 Preparing to unpack .../039-libglib2.0-bin_2.80.0-6ubuntu3.10_amd64.deb ...
+#6 79.37 Unpacking libglib2.0-bin (2.80.0-6ubuntu3.10) ...
+#6 79.38 Selecting previously unselected package libffi-dev:amd64.
+#6 79.38 Preparing to unpack .../040-libffi-dev_3.4.6-1build1_amd64.deb ...
+#6 79.38 Unpacking libffi-dev:amd64 (3.4.6-1build1) ...
+#6 79.40 Selecting previously unselected package python3-packaging.
+#6 79.40 Preparing to unpack .../041-python3-packaging_24.0-1_all.deb ...
+#6 79.40 Unpacking python3-packaging (24.0-1) ...
+#6 79.42 Selecting previously unselected package libglib2.0-dev-bin.
+#6 79.42 Preparing to unpack .../042-libglib2.0-dev-bin_2.80.0-6ubuntu3.10_amd64.deb ...
+#6 79.42 Unpacking libglib2.0-dev-bin (2.80.0-6ubuntu3.10) ...
+#6 79.44 Selecting previously unselected package libblkid-dev:amd64.
+#6 79.45 Preparing to unpack .../043-libblkid-dev_2.39.3-9ubuntu6.6_amd64.deb ...
+#6 79.45 Unpacking libblkid-dev:amd64 (2.39.3-9ubuntu6.6) ...
+#6 79.47 Selecting previously unselected package libsepol-dev:amd64.
+#6 79.47 Preparing to unpack .../044-libsepol-dev_3.5-2build1_amd64.deb ...
+#6 79.47 Unpacking libsepol-dev:amd64 (3.5-2build1) ...
+#6 79.50 Preparing to unpack .../045-libpcre2-16-0_10.42-4ubuntu2.2_amd64.deb ...
+#6 79.50 Unpacking libpcre2-16-0:amd64 (10.42-4ubuntu2.2) over (10.42-4ubuntu2.1) ...
+#6 79.52 Preparing to unpack .../046-libpcre2-32-0_10.42-4ubuntu2.2_amd64.deb ...
+#6 79.52 Unpacking libpcre2-32-0:amd64 (10.42-4ubuntu2.2) over (10.42-4ubuntu2.1) ...
+#6 79.54 Preparing to unpack .../047-libpcre2-posix3_10.42-4ubuntu2.2_amd64.deb ...
+#6 79.54 Unpacking libpcre2-posix3:amd64 (10.42-4ubuntu2.2) over (10.42-4ubuntu2.1) ...
+#6 79.55 Selecting previously unselected package libpcre2-dev:amd64.
+#6 79.55 Preparing to unpack .../048-libpcre2-dev_10.42-4ubuntu2.2_amd64.deb ...
+#6 79.55 Unpacking libpcre2-dev:amd64 (10.42-4ubuntu2.2) ...
+#6 79.58 Selecting previously unselected package libselinux1-dev:amd64.
+#6 79.58 Preparing to unpack .../049-libselinux1-dev_3.5-2ubuntu2.1_amd64.deb ...
+#6 79.58 Unpacking libselinux1-dev:amd64 (3.5-2ubuntu2.1) ...
+#6 79.59 Selecting previously unselected package libmount-dev:amd64.
+#6 79.59 Preparing to unpack .../050-libmount-dev_2.39.3-9ubuntu6.6_amd64.deb ...
+#6 79.60 Unpacking libmount-dev:amd64 (2.39.3-9ubuntu6.6) ...
+#6 79.61 Selecting previously unselected package libglib2.0-dev:amd64.
+#6 79.61 Preparing to unpack .../051-libglib2.0-dev_2.80.0-6ubuntu3.10_amd64.deb ...
+#6 79.61 Unpacking libglib2.0-dev:amd64 (2.80.0-6ubuntu3.10) ...
+#6 79.71 Preparing to unpack .../052-libgraphite2-3_1.3.14-2ubuntu0.24.04.1_amd64.deb ...
+#6 79.71 Unpacking libgraphite2-3:amd64 (1.3.14-2ubuntu0.24.04.1) over (1.3.14-2build1) ...
+#6 79.73 Selecting previously unselected package libgraphite2-dev:amd64.
+#6 79.73 Preparing to unpack .../053-libgraphite2-dev_1.3.14-2ubuntu0.24.04.1_amd64.deb ...
+#6 79.74 Unpacking libgraphite2-dev:amd64 (1.3.14-2ubuntu0.24.04.1) ...
+#6 79.75 Selecting previously unselected package libharfbuzz-cairo0:amd64.
+#6 79.75 Preparing to unpack .../054-libharfbuzz-cairo0_8.3.0-2build2_amd64.deb ...
+#6 79.76 Unpacking libharfbuzz-cairo0:amd64 (8.3.0-2build2) ...
+#6 79.77 Selecting previously unselected package libharfbuzz-icu0:amd64.
+#6 79.77 Preparing to unpack .../055-libharfbuzz-icu0_8.3.0-2build2_amd64.deb ...
+#6 79.77 Unpacking libharfbuzz-icu0:amd64 (8.3.0-2build2) ...
+#6 79.79 Selecting previously unselected package libharfbuzz-subset0:amd64.
+#6 79.79 Preparing to unpack .../056-libharfbuzz-subset0_8.3.0-2build2_amd64.deb ...
+#6 79.79 Unpacking libharfbuzz-subset0:amd64 (8.3.0-2build2) ...
+#6 79.82 Selecting previously unselected package libicu-dev:amd64.
+#6 79.82 Preparing to unpack .../057-libicu-dev_74.2-1ubuntu3.1_amd64.deb ...
+#6 79.82 Unpacking libicu-dev:amd64 (74.2-1ubuntu3.1) ...
+#6 80.13 Selecting previously unselected package libharfbuzz-dev:amd64.
+#6 80.13 Preparing to unpack .../058-libharfbuzz-dev_8.3.0-2build2_amd64.deb ...
+#6 80.14 Unpacking libharfbuzz-dev:amd64 (8.3.0-2build2) ...
+#6 80.17 Selecting previously unselected package libjpeg8-dev:amd64.
+#6 80.17 Preparing to unpack .../059-libjpeg8-dev_8c-2ubuntu11_amd64.deb ...
+#6 80.17 Unpacking libjpeg8-dev:amd64 (8c-2ubuntu11) ...
+#6 80.19 Selecting previously unselected package libjpeg-dev:amd64.
+#6 80.19 Preparing to unpack .../060-libjpeg-dev_8c-2ubuntu11_amd64.deb ...
+#6 80.19 Unpacking libjpeg-dev:amd64 (8c-2ubuntu11) ...
+#6 80.21 Selecting previously unselected package libkpathsea6:amd64.
+#6 80.21 Preparing to unpack .../061-libkpathsea6_2023.20230311.66589-9build3_amd64.deb ...
+#6 80.21 Unpacking libkpathsea6:amd64 (2023.20230311.66589-9build3) ...
+#6 80.31 Selecting previously unselected package liblerc-dev:amd64.
+#6 80.32 Preparing to unpack .../062-liblerc-dev_4.0.0+ds-4ubuntu2_amd64.deb ...
+#6 80.33 Unpacking liblerc-dev:amd64 (4.0.0+ds-4ubuntu2) ...
+#6 80.36 Selecting previously unselected package liblua5.4-0:amd64.
+#6 80.36 Preparing to unpack .../063-liblua5.4-0_5.4.6-3build2_amd64.deb ...
+#6 80.36 Unpacking liblua5.4-0:amd64 (5.4.6-3build2) ...
+#6 80.38 Selecting previously unselected package libssl-dev:amd64.
+#6 80.38 Preparing to unpack .../064-libssl-dev_3.0.13-0ubuntu3.16_amd64.deb ...
+#6 80.38 Unpacking libssl-dev:amd64 (3.0.13-0ubuntu3.16) ...
+#6 80.52 Selecting previously unselected package libuv1-dev:amd64.
+#6 80.52 Preparing to unpack .../065-libuv1-dev_1.48.0-1.1build1_amd64.deb ...
+#6 80.53 Unpacking libuv1-dev:amd64 (1.48.0-1.1build1) ...
+#6 80.55 Selecting previously unselected package node-xtend.
+#6 80.55 Preparing to unpack .../066-node-xtend_4.0.2-3_all.deb ...
+#6 80.55 Unpacking node-xtend (4.0.2-3) ...
+#6 80.57 Selecting previously unselected package nodejs.
+#6 80.57 Preparing to unpack .../067-nodejs_18.19.1+dfsg-6ubuntu5_amd64.deb ...
+#6 80.57 Unpacking nodejs (18.19.1+dfsg-6ubuntu5) ...
+#6 80.65 Selecting previously unselected package node-acorn.
+#6 80.65 Preparing to unpack .../068-node-acorn_8.8.1+ds+~cs25.17.7-2_all.deb ...
+#6 80.65 Unpacking node-acorn (8.8.1+ds+~cs25.17.7-2) ...
+#6 80.71 Selecting previously unselected package node-cjs-module-lexer.
+#6 80.71 Preparing to unpack .../069-node-cjs-module-lexer_1.2.3+dfsg-1_all.deb ...
+#6 80.71 Unpacking node-cjs-module-lexer (1.2.3+dfsg-1) ...
+#6 80.73 Selecting previously unselected package node-busboy.
+#6 80.73 Preparing to unpack .../070-node-busboy_1.6.0+~cs2.6.0-2_all.deb ...
+#6 80.74 Unpacking node-busboy (1.6.0+~cs2.6.0-2) ...
+#6 80.75 Selecting previously unselected package node-undici.
+#6 80.75 Preparing to unpack .../071-node-undici_5.26.3+dfsg1+~cs23.10.12-2_all.deb ...
+#6 80.76 Unpacking node-undici (5.26.3+dfsg1+~cs23.10.12-2) ...
+#6 80.79 Selecting previously unselected package libnode109:amd64.
+#6 80.79 Preparing to unpack .../072-libnode109_18.19.1+dfsg-6ubuntu5_amd64.deb ...
+#6 80.79 Unpacking libnode109:amd64 (18.19.1+dfsg-6ubuntu5) ...
+#6 81.04 Selecting previously unselected package libnode-dev.
+#6 81.05 Preparing to unpack .../073-libnode-dev_18.19.1+dfsg-6ubuntu5_amd64.deb ...
+#6 81.05 Unpacking libnode-dev (18.19.1+dfsg-6ubuntu5) ...
+#6 81.16 Selecting previously unselected package libpaper1:amd64.
+#6 81.16 Preparing to unpack .../074-libpaper1_1.1.29build1_amd64.deb ...
+#6 81.16 Unpacking libpaper1:amd64 (1.1.29build1) ...
+#6 81.18 Selecting previously unselected package libpaper-utils.
+#6 81.18 Preparing to unpack .../075-libpaper-utils_1.1.29build1_amd64.deb ...
+#6 81.18 Unpacking libpaper-utils (1.1.29build1) ...
+#6 81.20 Selecting previously unselected package libpotrace0:amd64.
+#6 81.20 Preparing to unpack .../076-libpotrace0_1.16-2build1_amd64.deb ...
+#6 81.20 Unpacking libpotrace0:amd64 (1.16-2build1) ...
+#6 81.21 Selecting previously unselected package libptexenc1:amd64.
+#6 81.21 Preparing to unpack .../077-libptexenc1_2023.20230311.66589-9build3_amd64.deb ...
+#6 81.21 Unpacking libptexenc1:amd64 (2023.20230311.66589-9build3) ...
+#6 81.23 Selecting previously unselected package libsharpyuv-dev:amd64.
+#6 81.23 Preparing to unpack .../078-libsharpyuv-dev_1.3.2-0.4build3_amd64.deb ...
+#6 81.23 Unpacking libsharpyuv-dev:amd64 (1.3.2-0.4build3) ...
+#6 81.25 Selecting previously unselected package libsynctex2:amd64.
+#6 81.25 Preparing to unpack .../079-libsynctex2_2023.20230311.66589-9build3_amd64.deb ...
+#6 81.25 Unpacking libsynctex2:amd64 (2023.20230311.66589-9build3) ...
+#6 81.27 Selecting previously unselected package libteckit0:amd64.
+#6 81.27 Preparing to unpack .../080-libteckit0_2.5.12+ds1-1_amd64.deb ...
+#6 81.27 Unpacking libteckit0:amd64 (2.5.12+ds1-1) ...
+#6 81.31 Selecting previously unselected package libtexlua53-5:amd64.
+#6 81.31 Preparing to unpack .../081-libtexlua53-5_2023.20230311.66589-9build3_amd64.deb ...
+#6 81.31 Unpacking libtexlua53-5:amd64 (2023.20230311.66589-9build3) ...
+#6 81.33 Selecting previously unselected package libjbig-dev:amd64.
+#6 81.33 Preparing to unpack .../082-libjbig-dev_2.1-6.1ubuntu2_amd64.deb ...
+#6 81.33 Unpacking libjbig-dev:amd64 (2.1-6.1ubuntu2) ...
+#6 81.35 Selecting previously unselected package liblzma-dev:amd64.
+#6 81.35 Preparing to unpack .../083-liblzma-dev_5.6.1+really5.4.5-1ubuntu0.4_amd64.deb ...
+#6 81.35 Unpacking liblzma-dev:amd64 (5.6.1+really5.4.5-1ubuntu0.4) ...
+#6 81.37 Selecting previously unselected package libzstd-dev:amd64.
+#6 81.37 Preparing to unpack .../084-libzstd-dev_1.5.5+dfsg2-2build1.1_amd64.deb ...
+#6 81.37 Unpacking libzstd-dev:amd64 (1.5.5+dfsg2-2build1.1) ...
+#6 81.40 Selecting previously unselected package libwebpdemux2:amd64.
+#6 81.40 Preparing to unpack .../085-libwebpdemux2_1.3.2-0.4build3_amd64.deb ...
+#6 81.40 Unpacking libwebpdemux2:amd64 (1.3.2-0.4build3) ...
+#6 81.42 Selecting previously unselected package libwebpmux3:amd64.
+#6 81.42 Preparing to unpack .../086-libwebpmux3_1.3.2-0.4build3_amd64.deb ...
+#6 81.42 Unpacking libwebpmux3:amd64 (1.3.2-0.4build3) ...
+#6 81.44 Selecting previously unselected package libwebpdecoder3:amd64.
+#6 81.44 Preparing to unpack .../087-libwebpdecoder3_1.3.2-0.4build3_amd64.deb ...
+#6 81.44 Unpacking libwebpdecoder3:amd64 (1.3.2-0.4build3) ...
+#6 81.46 Selecting previously unselected package libwebp-dev:amd64.
+#6 81.46 Preparing to unpack .../088-libwebp-dev_1.3.2-0.4build3_amd64.deb ...
+#6 81.46 Unpacking libwebp-dev:amd64 (1.3.2-0.4build3) ...
+#6 81.49 Preparing to unpack .../089-libtiff6_4.5.1+git230720-4ubuntu2.5_amd64.deb ...
+#6 81.49 Unpacking libtiff6:amd64 (4.5.1+git230720-4ubuntu2.5) over (4.5.1+git230720-4ubuntu2.2) ...
+#6 81.51 Preparing to unpack .../090-libtiffxx6_4.5.1+git230720-4ubuntu2.5_amd64.deb ...
+#6 81.52 Unpacking libtiffxx6:amd64 (4.5.1+git230720-4ubuntu2.5) over (4.5.1+git230720-4ubuntu2.2) ...
+#6 81.53 Selecting previously unselected package libtiff-dev:amd64.
+#6 81.53 Preparing to unpack .../091-libtiff-dev_4.5.1+git230720-4ubuntu2.5_amd64.deb ...
+#6 81.53 Unpacking libtiff-dev:amd64 (4.5.1+git230720-4ubuntu2.5) ...
+#6 81.55 Preparing to unpack .../092-libtiff-doc_4.5.1+git230720-4ubuntu2.5_all.deb ...
+#6 81.56 Unpacking libtiff-doc (4.5.1+git230720-4ubuntu2.5) over (4.5.1+git230720-4ubuntu2.2) ...
+#6 81.59 Preparing to unpack .../093-libtiff-opengl_4.5.1+git230720-4ubuntu2.5_amd64.deb ...
+#6 81.59 Unpacking libtiff-opengl (4.5.1+git230720-4ubuntu2.5) over (4.5.1+git230720-4ubuntu2.2) ...
+#6 81.60 Preparing to unpack .../094-libtiff-tools_4.5.1+git230720-4ubuntu2.5_amd64.deb ...
+#6 81.61 Unpacking libtiff-tools (4.5.1+git230720-4ubuntu2.5) over (4.5.1+git230720-4ubuntu2.2) ...
+#6 81.63 Selecting previously unselected package libxmu6:amd64.
+#6 81.63 Preparing to unpack .../095-libxmu6_2%3a1.1.3-3build2_amd64.deb ...
+#6 81.63 Unpacking libxmu6:amd64 (2:1.1.3-3build2) ...
+#6 81.65 Selecting previously unselected package libxpm4:amd64.
+#6 81.65 Preparing to unpack .../096-libxpm4_1%3a3.5.17-1ubuntu0.24.04.2_amd64.deb ...
+#6 81.65 Unpacking libxpm4:amd64 (1:3.5.17-1ubuntu0.24.04.2) ...
+#6 81.67 Selecting previously unselected package libxaw7:amd64.
+#6 81.67 Preparing to unpack .../097-libxaw7_2%3a1.0.14-1build2_amd64.deb ...
+#6 81.67 Unpacking libxaw7:amd64 (2:1.0.14-1build2) ...
+#6 81.69 Selecting previously unselected package libxml2-dev:amd64.
+#6 81.69 Preparing to unpack .../098-libxml2-dev_2.9.14+dfsg-1.3ubuntu3.10_amd64.deb ...
+#6 81.69 Unpacking libxml2-dev:amd64 (2.9.14+dfsg-1.3ubuntu3.10) ...
+#6 81.74 Selecting previously unselected package libzzip-0-13t64:amd64.
+#6 81.74 Preparing to unpack .../099-libzzip-0-13t64_0.13.72+dfsg.1-1.2build1_amd64.deb ...
+#6 81.74 Unpacking libzzip-0-13t64:amd64 (0.13.72+dfsg.1-1.2build1) ...
+#6 81.76 Selecting previously unselected package tex-common.
+#6 81.76 Preparing to unpack .../100-tex-common_6.18_all.deb ...
+#6 81.76 Unpacking tex-common (6.18) ...
+#6 81.80 Selecting previously unselected package lmodern.
+#6 81.80 Preparing to unpack .../101-lmodern_2.005-1_all.deb ...
+#6 81.80 Unpacking lmodern (2.005-1) ...
+#6 82.22 Selecting previously unselected package pandoc-data.
+#6 82.22 Preparing to unpack .../102-pandoc-data_3.1.3-1_all.deb ...
+#6 82.22 Unpacking pandoc-data (3.1.3-1) ...
+#6 82.28 Selecting previously unselected package pandoc.
+#6 82.28 Preparing to unpack .../103-pandoc_3.1.3+ds-2_amd64.deb ...
+#6 82.28 Unpacking pandoc (3.1.3+ds-2) ...
+#6 83.19 Selecting previously unselected package pkg-config:amd64.
+#6 83.19 Preparing to unpack .../104-pkg-config_1.8.1-2build1_amd64.deb ...
+#6 83.19 Unpacking pkg-config:amd64 (1.8.1-2build1) ...
+#6 83.21 Selecting previously unselected package t1utils.
+#6 83.21 Preparing to unpack .../105-t1utils_1.41-4build3_amd64.deb ...
+#6 83.21 Unpacking t1utils (1.41-4build3) ...
+#6 83.23 Selecting previously unselected package texlive-binaries.
+#6 83.23 Preparing to unpack .../106-texlive-binaries_2023.20230311.66589-9build3_amd64.deb ...
+#6 83.24 Unpacking texlive-binaries (2023.20230311.66589-9build3) ...
+#6 83.47 Selecting previously unselected package xdg-utils.
+#6 83.47 Preparing to unpack .../107-xdg-utils_1.1.3-4.1ubuntu3_all.deb ...
+#6 83.47 Unpacking xdg-utils (1.1.3-4.1ubuntu3) ...
+#6 83.50 Selecting previously unselected package texlive-base.
+#6 83.50 Preparing to unpack .../108-texlive-base_2023.20240207-1_all.deb ...
+#6 83.50 Unpacking texlive-base (2023.20240207-1) ...
+#6 84.68 Selecting previously unselected package texlive-fonts-recommended.
+#6 84.68 Preparing to unpack .../109-texlive-fonts-recommended_2023.20240207-1_all.deb ...
+#6 84.68 Unpacking texlive-fonts-recommended (2023.20240207-1) ...
+#6 85.32 Selecting previously unselected package texlive-latex-base.
+#6 85.32 Preparing to unpack .../110-texlive-latex-base_2023.20240207-1_all.deb ...
+#6 85.33 Unpacking texlive-latex-base (2023.20240207-1) ...
+#6 85.82 Selecting previously unselected package texlive-latex-recommended.
+#6 85.82 Preparing to unpack .../111-texlive-latex-recommended_2023.20240207-1_all.deb ...
+#6 85.82 Unpacking texlive-latex-recommended (2023.20240207-1) ...
+#6 86.59 Preparing to unpack .../112-liblzma-doc_5.6.1+really5.4.5-1ubuntu0.4_all.deb ...
+#6 86.59 Unpacking liblzma-doc (5.6.1+really5.4.5-1ubuntu0.4) over (5.6.1+really5.4.5-1ubuntu0.2) ...
+#6 86.61 Setting up media-types (10.1.0) ...
+#6 86.62 Setting up libgraphite2-3:amd64 (1.3.14-2ubuntu0.24.04.1) ...
+#6 86.62 Setting up libxmu6:amd64 (2:1.1.3-3build2) ...
+#6 86.62 Setting up libharfbuzz-icu0:amd64 (8.3.0-2build2) ...
+#6 86.62 Setting up libzstd-dev:amd64 (1.5.5+dfsg2-2build1.1) ...
+#6 86.62 Setting up libgdbm6t64:amd64 (1.23-5.1build1) ...
+#6 86.62 Setting up libxpm4:amd64 (1:3.5.17-1ubuntu0.24.04.2) ...
+#6 86.63 Setting up libgdbm-compat4t64:amd64 (1.23-5.1build1) ...
+#6 86.63 Setting up libyaml-0-2:amd64 (0.2.5-1build1) ...
+#6 86.63 Setting up libfribidi-dev:amd64 (1.0.13-3build1) ...
+#6 86.63 Setting up libwebpdemux2:amd64 (1.3.2-0.4build3) ...
+#6 86.63 Setting up libbrotli1:amd64 (1.1.0-2ubuntu0.1) ...
+#6 86.63 Setting up libsqlite3-0:amd64 (3.45.1-1ubuntu2.9) ...
+#6 86.64 Setting up libuv1t64:amd64 (1.48.0-1.1build1) ...
+#6 86.64 Setting up libjbig-dev:amd64 (2.1-6.1ubuntu2) ...
+#6 86.64 Setting up libwebpdecoder3:amd64 (1.3.2-0.4build3) ...
+#6 86.64 Setting up node-cjs-module-lexer (1.2.3+dfsg-1) ...
+#6 86.64 Setting up libxaw7:amd64 (2:1.0.14-1build2) ...
+#6 86.65 Setting up libffi-dev:amd64 (3.4.6-1build1) ...
+#6 86.65 Setting up libpcre2-16-0:amd64 (10.42-4ubuntu2.2) ...
+#6 86.65 Setting up libgraphite2-dev:amd64 (1.3.14-2ubuntu0.24.04.1) ...
+#6 86.65 Setting up libpcre2-32-0:amd64 (10.42-4ubuntu2.2) ...
+#6 86.65 Setting up libglib2.0-0t64:amd64 (2.80.0-6ubuntu3.10) ...
+#6 86.66 No schema files found: doing nothing.
+#6 86.66 Setting up liblzma-doc (5.6.1+really5.4.5-1ubuntu0.4) ...
+#6 86.66 Setting up libglib2.0-data (2.80.0-6ubuntu3.10) ...
+#6 86.67 Setting up libpkgconf3:amd64 (1.8.1-2build1) ...
+#6 86.67 Setting up libexpat1-dev:amd64 (2.6.1-2ubuntu0.6) ...
+#6 86.67 Setting up libzzip-0-13t64:amd64 (0.13.72+dfsg.1-1.2build1) ...
+#6 86.67 Setting up libharfbuzz-cairo0:amd64 (8.3.0-2build2) ...
+#6 86.67 Setting up libteckit0:amd64 (2.5.12+ds1-1) ...
+#6 86.68 Setting up uuid-dev:amd64 (2.39.3-9ubuntu6.6) ...
+#6 86.68 Setting up perl-modules-5.38 (5.38.2-3.2ubuntu0.7) ...
+#6 86.68 Setting up t1utils (1.41-4build3) ...
+#6 86.68 Setting up libtexlua53-5:amd64 (2023.20230311.66589-9build3) ...
+#6 86.68 Setting up libssl-dev:amd64 (3.0.13-0ubuntu3.16) ...
+#6 86.69 Setting up libpng16-16t64:amd64 (1.6.43-5ubuntu0.7) ...
+#6 86.69 Setting up libcares2:amd64 (1.27.0-1.0ubuntu1.1) ...
+#6 86.69 Setting up icu-devtools (74.2-1ubuntu3.1) ...
+#6 86.69 Setting up libsepol-dev:amd64 (3.5-2build1) ...
+#6 86.69 Setting up ucf (3.0043+nmu1) ...
+#6 86.77 Setting up pkgconf-bin (1.8.1-2build1) ...
+#6 86.77 Setting up gir1.2-glib-2.0:amd64 (2.80.0-6ubuntu3.10) ...
+#6 86.77 Setting up liblerc-dev:amd64 (4.0.0+ds-4ubuntu2) ...
+#6 86.77 Setting up libkpathsea6:amd64 (2023.20230311.66589-9build3) ...
+#6 86.78 Setting up liblzma-dev:amd64 (5.6.1+really5.4.5-1ubuntu0.4) ...
+#6 86.78 Setting up zlib1g-dev:amd64 (1:1.3.dfsg-3.1ubuntu2.3) ...
+#6 86.78 Setting up libpcre2-posix3:amd64 (10.42-4ubuntu2.2) ...
+#6 86.78 Setting up mount (2.39.3-9ubuntu6.6) ...
+#6 86.78 Setting up gir1.2-glib-2.0-dev:amd64 (2.80.0-6ubuntu3.10) ...
+#6 86.78 Setting up libtiff6:amd64 (4.5.1+git230720-4ubuntu2.5) ...
+#6 86.79 Setting up libharfbuzz-subset0:amd64 (8.3.0-2build2) ...
+#6 86.79 Setting up fonts-lmodern (2.005-1) ...
+#6 86.79 Setting up liblua5.4-0:amd64 (5.4.6-3build2) ...
+#6 86.79 Setting up netbase (6.4) ...
+#6 86.80 Setting up libtiff-doc (4.5.1+git230720-4ubuntu2.5) ...
+#6 86.80 Setting up libcairo-gobject2:amd64 (1.18.0-3build1) ...
+#6 86.81 Setting up libperl5.38t64:amd64 (5.38.2-3.2ubuntu0.7) ...
+#6 86.81 Setting up pandoc-data (3.1.3-1) ...
+#6 86.81 Setting up libjpeg8-dev:amd64 (8c-2ubuntu11) ...
+#6 86.81 Setting up node-xtend (4.0.2-3) ...
+#6 86.81 Setting up libsharpyuv-dev:amd64 (1.3.2-0.4build3) ...
+#6 86.82 Setting up openssl (3.0.13-0ubuntu3.16) ...
+#6 86.82 Setting up libwebpmux3:amd64 (1.3.2-0.4build3) ...
+#6 86.82 Setting up libtiffxx6:amd64 (4.5.1+git230720-4ubuntu2.5) ...
+#6 86.82 Setting up libtiff-tools (4.5.1+git230720-4ubuntu2.5) ...
+#6 86.83 Setting up libdeflate-dev:amd64 (1.19-1build1.1) ...
+#6 86.83 Setting up libicu-dev:amd64 (74.2-1ubuntu3.1) ...
+#6 86.83 Setting up libxml2:amd64 (2.9.14+dfsg-1.3ubuntu3.10) ...
+#6 86.83 Setting up xdg-utils (1.1.3-4.1ubuntu3) ...
+#6 86.84 update-alternatives: using /usr/bin/xdg-open to provide /usr/bin/open (open) in auto mode
+#6 86.84 update-alternatives: warning: skip creation of /usr/share/man/man1/open.1.gz because associated file /usr/share/man/man1/xdg-open.1.gz (of link group open) doesn't exist
+#6 86.84 Setting up libbrotli-dev:amd64 (1.1.0-2ubuntu0.1) ...
+#6 86.84 Setting up libsynctex2:amd64 (2023.20230311.66589-9build3) ...
+#6 86.84 Setting up libbz2-dev:amd64 (1.0.8-5.1ubuntu0.1) ...
+#6 86.84 Setting up node-busboy (1.6.0+~cs2.6.0-2) ...
+#6 86.85 Setting up libpotrace0:amd64 (1.16-2build1) ...
+#6 86.85 Setting up libuv1-dev:amd64 (1.48.0-1.1build1) ...
+#6 86.85 Setting up libblkid-dev:amd64 (2.39.3-9ubuntu6.6) ...
+#6 86.85 Setting up libpaper1:amd64 (1.1.29build1) ...
+#6 86.94 Setting up gir1.2-freedesktop:amd64 (1.80.1-1) ...
+#6 86.94 Setting up libpython3.12-stdlib:amd64 (3.12.3-1ubuntu0.17) ...
+#6 86.94 Setting up libpcre2-dev:amd64 (10.42-4ubuntu2.2) ...
+#6 86.95 Setting up libcurl4t64:amd64 (8.5.0-2ubuntu10.16) ...
+#6 86.95 Setting up libgirepository-2.0-0:amd64 (2.80.0-6ubuntu3.10) ...
+#6 86.96 Setting up libselinux1-dev:amd64 (3.5-2ubuntu2.1) ...
+#6 86.96 Setting up python3.12 (3.12.3-1ubuntu0.17) ...
+#6 87.69 Setting up libpng-dev:amd64 (1.6.43-5ubuntu0.7) ...
+#6 87.69 Setting up libjpeg-dev:amd64 (8c-2ubuntu11) ...
+#6 87.69 Setting up libglib2.0-bin (2.80.0-6ubuntu3.10) ...
+#6 87.70 Setting up libharfbuzz-gobject0:amd64 (8.3.0-2build2) ...
+#6 87.70 Setting up libpaper-utils (1.1.29build1) ...
+#6 87.70 Setting up gir1.2-harfbuzz-0.0:amd64 (8.3.0-2build2) ...
+#6 87.71 Setting up pkgconf:amd64 (1.8.1-2build1) ...
+#6 87.71 Setting up tex-common (6.18) ...
+#6 87.80 update-language: texlive-base not installed and configured, doing nothing!
+#6 87.84 Setting up ca-certificates (20260816ubuntu0.24.04.2) ...
+#6 89.06 Updating certificates in /etc/ssl/certs...
+#6 89.64 rehash: warning: skipping ca-certificates.crt,it does not contain exactly one certificate or CRL
+#6 89.64 17 added, 43 removed; done.
+#6 89.64 Running hooks in /etc/ca-certificates/update.d...
+#6 89.64 done.
+#6 89.65 Setting up perl (5.38.2-3.2ubuntu0.7) ...
+#6 89.66 Setting up libxml2-dev:amd64 (2.9.14+dfsg-1.3ubuntu3.10) ...
+#6 89.66 Setting up libwebp-dev:amd64 (1.3.2-0.4build3) ...
+#6 89.67 Setting up libptexenc1:amd64 (2023.20230311.66589-9build3) ...
+#6 89.67 Setting up pandoc (3.1.3+ds-2) ...
+#6 89.67 Setting up libfreetype6:amd64 (2.13.2+dfsg-1ubuntu0.2) ...
+#6 89.67 Setting up libtiff-dev:amd64 (4.5.1+git230720-4ubuntu2.5) ...
+#6 89.68 Setting up libcurl4-openssl-dev:amd64 (8.5.0-2ubuntu10.16) ...
+#6 89.68 Setting up gir1.2-freedesktop-dev:amd64 (1.80.1-1) ...
+#6 89.68 Setting up pkg-config:amd64 (1.8.1-2build1) ...
+#6 89.68 Setting up node-undici (5.26.3+dfsg1+~cs23.10.12-2) ...
+#6 89.68 Setting up texlive-binaries (2023.20230311.66589-9build3) ...
+#6 89.69 update-alternatives: using /usr/bin/xdvi-xaw to provide /usr/bin/xdvi.bin (xdvi.bin) in auto mode
+#6 89.69 update-alternatives: using /usr/bin/bibtex.original to provide /usr/bin/bibtex (bibtex) in auto mode
+#6 89.69 update-alternatives: warning: skip creation of /usr/share/man/man1/bibtex.1.gz because associated file /usr/share/man/man1/bibtex.original.1.gz (of link group bibtex) doesn't exist
+#6 89.70 Setting up libtiff-opengl (4.5.1+git230720-4ubuntu2.5) ...
+#6 89.70 Setting up lmodern (2.005-1) ...
+#6 89.80 Setting up curl (8.5.0-2ubuntu10.16) ...
+#6 89.80 Setting up texlive-base (2023.20240207-1) ...
+#6 90.14 tl-paper: setting paper size for dvips to a4: /var/lib/texmf/dvips/config/config-paper.ps
+#6 90.28 tl-paper: setting paper size for dvipdfmx to a4: /var/lib/texmf/dvipdfmx/dvipdfmx-paper.cfg
+#6 90.48 tl-paper: setting paper size for xdvi to a4: /var/lib/texmf/xdvi/XDvi-paper
+#6 90.89 tl-paper: setting paper size for pdftex to a4: /var/lib/texmf/tex/generic/tex-ini-files/pdftexconfig.tex
+#6 91.21 Setting up libmount-dev:amd64 (2.39.3-9ubuntu6.6) ...
+#6 91.22 Setting up libpython3-stdlib:amd64 (3.12.3-0ubuntu2.1) ...
+#6 91.22 Setting up python3 (3.12.3-0ubuntu2.1) ...
+#6 91.48 Setting up libfreetype-dev:amd64 (2.13.2+dfsg-1ubuntu0.2) ...
+#6 91.48 Setting up python3-packaging (24.0-1) ...
+#6 91.58 Setting up texlive-latex-base (2023.20240207-1) ...
+#6 91.59 Setting up texlive-latex-recommended (2023.20240207-1) ...
+#6 91.60 Setting up texlive-fonts-recommended (2023.20240207-1) ...
+#6 91.60 Setting up libglib2.0-dev-bin (2.80.0-6ubuntu3.10) ...
+#6 91.68 Setting up libfontconfig-dev:amd64 (2.15.0-1.1ubuntu2) ...
+#6 91.69 Setting up libglib2.0-dev:amd64 (2.80.0-6ubuntu3.10) ...
+#6 91.69 Setting up libharfbuzz-dev:amd64 (8.3.0-2build2) ...
+#6 91.69 Setting up libfontconfig1-dev:amd64 (2.15.0-1.1ubuntu2) ...
+#6 91.70 Setting up node-acorn (8.8.1+ds+~cs25.17.7-2) ...
+#6 91.70 Setting up libnode109:amd64 (18.19.1+dfsg-6ubuntu5) ...
+#6 91.70 Setting up nodejs (18.19.1+dfsg-6ubuntu5) ...
+#6 91.71 update-alternatives: using /usr/bin/nodejs to provide /usr/bin/js (js) in auto mode
+#6 91.71 update-alternatives: warning: skip creation of /usr/share/man/man1/js.1.gz because associated file /usr/share/man/man1/nodejs.1.gz (of link group js) doesn't exist
+#6 91.71 Setting up libnode-dev (18.19.1+dfsg-6ubuntu5) ...
+#6 91.71 Processing triggers for libc-bin (2.39-0ubuntu8.4) ...
+#6 91.73 Processing triggers for fontconfig (2.15.0-1.1ubuntu2) ...
+#6 91.88 Processing triggers for tex-common (6.18) ...
+#6 91.97 Running updmap-sys. This may take some time... done.
+#6 92.16 Running mktexlsr /var/lib/texmf ... done.
+#6 92.23 Building format(s) --all.
+#6 92.23 	This may take some time... done.
+#6 DONE 113.0s
+
+#7 [stage-0 3/8] WORKDIR /opt/OpenTrialDesign
+#7 DONE 7.8s
+
+#8 [stage-0 4/8] COPY renv.lock ./
+#8 DONE 5.6s
+
+#9 [stage-0 5/8] RUN --mount=type=secret,id=extra_ca,required=false     if [ -f /run/secrets/extra_ca ]; then cat /run/secrets/extra_ca >> /etc/ssl/certs/ca-certificates.crt; fi
+#9 DONE 4.8s
+
+#10 [stage-0 6/8] RUN mkdir -p /opt/otd-library && Rscript -e 'options(Ncpus=2); install.packages("renv", repos="https://cloud.r-project.org"); renv::consent(provided=TRUE); renv::restore(lockfile="renv.lock", library="/opt/otd-library", prompt=FALSE)'
+#10 6.393 Installing package into ‘/opt/otd-library’
+#10 6.393 (as ‘lib’ is unspecified)
+#10 8.109 trying URL 'https://cloud.r-project.org/src/contrib/renv_1.3.1.tar.gz'
+#10 8.493 Content type 'application/x-gzip' length 1571942 bytes (1.5 MB)
+#10 8.494 ==================================================
+#10 8.670 downloaded 1.5 MB
+#10 8.670 
+#10 9.245 * installing *source* package ‘renv’ ...
+#10 9.245 ** this is package ‘renv’ version ‘1.3.1’
+#10 9.258 ** package ‘renv’ successfully unpacked and MD5 sums checked
+#10 9.259 ** using staged installation
+#10 9.278 ** R
+#10 9.367 ** inst
+#10 9.382 ** byte-compile and prepare package for lazy loading
+#10 18.60 ** libs
+#10 18.60 using C compiler: ‘gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0’
+#10 18.60 gcc -std=gnu2x -I"/usr/local/lib/R/include" -DNDEBUG   -I/usr/local/include    -fpic  -g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c renv.c -o renv.o
+#10 18.60 gcc -std=gnu2x -shared -L/usr/local/lib/R/lib -L/usr/local/lib -o renv.so renv.o -L/usr/local/lib/R/lib -lR
+#10 18.60 ** help
+#10 18.71 *** installing help indices
+#10 18.82 *** copying figures
+#10 18.82 ** building package indices
+#10 19.04 ** installing vignettes
+#10 19.04 ** testing if installed package can be loaded from temporary location
+#10 19.25 ** checking absolute paths in shared objects and dynamic libraries
+#10 19.26 ** testing if installed package can be loaded from final location
+#10 20.16 ** testing if installed package keeps a record of temporary installation path
+#10 20.17 * DONE (renv)
+#10 20.18 
+#10 20.18 The downloaded source packages are in
+#10 20.18 	‘/tmp/Rtmp0v29bQ/downloaded_packages’
+#10 20.41 
+#10 20.41 renv: Project Environments for R
+#10 20.41 
+#10 20.41 Welcome to renv! It looks like this is your first time using renv.
+#10 20.41 This is a one-time message, briefly describing some of renv's functionality.
+#10 20.41 
+#10 20.41 renv will write to files within the active project folder, including:
+#10 20.41 
+#10 20.41   - A folder 'renv' in the project directory, and
+#10 20.41   - A lockfile called 'renv.lock' in the project directory.
+#10 20.41 
+#10 20.41 In particular, projects using renv will normally use a private, per-project
+#10 20.41 R library, in which new packages will be installed. This project library is
+#10 20.41 isolated from other R libraries on your system.
+#10 20.41 
+#10 20.41 In addition, renv will update files within your project directory, including:
+#10 20.41 
+#10 20.41   - .gitignore
+#10 20.41   - .Rbuildignore
+#10 20.41   - .Rprofile
+#10 20.41 
+#10 20.41 Finally, renv maintains a local cache of data on the filesystem, located at:
+#10 20.41 
+#10 20.41   - "/opt/renv"
+#10 20.41 
+#10 20.41 This path can be customized: please see the documentation in `?renv::paths`.
+#10 20.41 
+#10 20.41 Please read the introduction vignette with `vignette("renv")` for more information.
+#10 20.41 You can browse the package documentation online at https://rstudio.github.io/renv/.
+#10 20.41 - "/opt/renv" has been created.
+#10 20.92 The following package(s) will be updated:
+#10 20.92 
+#10 20.92 # CRAN -----------------------------------------------------------------------
+#10 20.92 - lattice        [0.22-6 -> 0.22-7]
+#10 20.92 - mgcv           [1.9-1 -> 1.9-3]
+#10 20.92 - askpass        [* -> 1.2.1]
+#10 20.92 - base64enc      [* -> 0.1-3]
+#10 20.92 - bigD           [* -> 0.3.1]
+#10 20.92 - bitops         [* -> 1.1-0]
+#10 20.92 - brew           [* -> 1.0-10]
+#10 20.92 - brio           [* -> 1.1.5]
+#10 20.92 - bslib          [* -> 0.9.0]
+#10 20.92 - cachem         [* -> 1.1.0]
+#10 20.92 - callr          [* -> 3.7.6]
+#10 20.92 - cli            [* -> 3.6.4]
+#10 20.92 - colorspace     [* -> 2.1-1]
+#10 20.92 - commonmark     [* -> 1.9.5]
+#10 20.92 - cpp11          [* -> 0.5.2]
+#10 20.92 - crayon         [* -> 1.5.3]
+#10 20.92 - curl           [* -> 8.1.0]
+#10 20.92 - desc           [* -> 1.4.3]
+#10 20.92 - diffobj        [* -> 0.3.5]
+#10 20.92 - digest         [* -> 0.6.37]
+#10 20.92 - downlit        [* -> 0.4.5]
+#10 20.92 - dplyr          [* -> 1.2.1]
+#10 20.92 - evaluate       [* -> 1.0.3]
+#10 20.92 - fansi          [* -> 1.0.6]
+#10 20.92 - farver         [* -> 2.1.2]
+#10 20.92 - fastmap        [* -> 1.2.0]
+#10 20.92 - fontawesome    [* -> 0.5.3]
+#10 20.92 - fs             [* -> 1.6.5]
+#10 20.92 - generics       [* -> 0.1.4]
+#10 20.92 - ggplot2        [* -> 3.5.1]
+#10 20.92 - glue           [* -> 1.8.0]
+#10 20.92 - gsDesign       [* -> 3.11.0]
+#10 20.92 - gt             [* -> 1.4.0]
+#10 20.92 - gtable         [* -> 0.3.6]
+#10 20.92 - highr          [* -> 0.11]
+#10 20.92 - htmltools      [* -> 0.5.8.1]
+#10 20.92 - htmlwidgets    [* -> 1.6.4]
+#10 20.92 - httpuv         [* -> 1.6.15]
+#10 20.92 - httr2          [* -> 1.3.0]
+#10 20.92 - isoband        [* -> 0.2.7]
+#10 20.92 - jquerylib      [* -> 0.1.4]
+#10 20.92 - jsonlite       [* -> 1.9.1]
+#10 20.92 - juicyjuice     [* -> 0.1.0]
+#10 20.92 - knitr          [* -> 1.50]
+#10 20.92 - labeling       [* -> 0.4.3]
+#10 20.92 - later          [* -> 1.4.1]
+#10 20.92 - lifecycle      [* -> 1.0.5]
+#10 20.92 - litedown       [* -> 1.0]
+#10 20.92 - magrittr       [* -> 2.0.3]
+#10 20.92 - markdown       [* -> 2.1]
+#10 20.92 - memoise        [* -> 2.0.1]
+#10 20.92 - mime           [* -> 0.12]
+#10 20.92 - munsell        [* -> 0.5.1]
+#10 20.92 - openssl        [* -> 2.5.0]
+#10 20.92 - pillar         [* -> 1.10.1]
+#10 20.92 - pkgbuild       [* -> 1.4.6]
+#10 20.92 - pkgconfig      [* -> 2.0.3]
+#10 20.92 - pkgdown        [* -> 2.1.1]
+#10 20.92 - pkgload        [* -> 1.4.0]
+#10 20.92 - praise         [* -> 1.0.0]
+#10 20.92 - processx       [* -> 3.8.6]
+#10 20.92 - promises       [* -> 1.3.2]
+#10 20.92 - ps             [* -> 1.9.0]
+#10 20.92 - purrr          [* -> 1.0.4]
+#10 20.92 - r2rtf          [* -> 1.3.1]
+#10 20.92 - R6             [* -> 2.6.1]
+#10 20.92 - ragg           [* -> 1.3.3]
+#10 20.92 - rappdirs       [* -> 0.3.3]
+#10 20.92 - RColorBrewer   [* -> 1.1-3]
+#10 20.92 - Rcpp           [* -> 1.0.14]
+#10 20.92 - reactable      [* -> 0.4.5]
+#10 20.92 - reactR         [* -> 0.6.1]
+#10 20.92 - rlang          [* -> 1.3.0]
+#10 20.92 - rmarkdown      [* -> 2.29]
+#10 20.92 - roxygen2       [* -> 7.3.2]
+#10 20.92 - rpact          [* -> 4.4.0]
+#10 20.92 - rprojroot      [* -> 2.0.4]
+#10 20.92 - sass           [* -> 0.4.9]
+#10 20.92 - scales         [* -> 1.3.0]
+#10 20.92 - shiny          [* -> 1.10.0]
+#10 20.92 - simsurv        [* -> 1.0.1]
+#10 20.92 - sourcetools    [* -> 0.1.7-1]
+#10 20.92 - stringi        [* -> 1.8.4]
+#10 20.92 - stringr        [* -> 1.5.1]
+#10 20.92 - sys            [* -> 3.4.3]
+#10 20.92 - systemfonts    [* -> 1.2.1]
+#10 20.92 - testthat       [* -> 3.2.3]
+#10 20.92 - textshaping    [* -> 0.3.7]
+#10 20.92 - tibble         [* -> 3.2.1]
+#10 20.92 - tidyr          [* -> 1.3.2]
+#10 20.92 - tidyselect     [* -> 1.2.1]
+#10 20.92 - tinytex        [* -> 0.56]
+#10 20.92 - utf8           [* -> 1.2.4]
+#10 20.92 - V8             [* -> 8.2.1]
+#10 20.92 - vctrs          [* -> 0.7.3]
+#10 20.92 - viridisLite    [* -> 0.4.2]
+#10 20.92 - waldo          [* -> 0.6.1]
+#10 20.92 - whisker        [* -> 0.4.1]
+#10 20.92 - withr          [* -> 3.0.2]
+#10 20.92 - xfun           [* -> 0.62]
+#10 20.92 - xml2           [* -> 1.3.8]
+#10 20.92 - xtable         [* -> 1.8-4]
+#10 20.92 - yaml           [* -> 2.3.10]
+#10 20.92 - zip            [* -> 3.0.2]
+#10 20.92 
+#10 21.20 - Querying repositories for available source packages ... Done!
+#10 32.60 # Downloading packages -------------------------------------------------------
+#10 33.65 [?25l  (0/104) Downloading: tidyselect, viridisLite, juicyjuice, dplyr, ...                                                                                          [32m✔[0m tidyselect 1.2.1                         [104 kB in 0.57s]
+#10 34.51   (1/104) Downloading: viridisLite, juicyjuice, dplyr, farver, ...                                                                                              [32m✔[0m fastmap 1.2.0                            [47 kB in 0.63s]
+#10 34.65   (2/104) Downloading: viridisLite, juicyjuice, dplyr, farver, ...                                                                                              [32m✔[0m waldo 0.6.1                              [45 kB in 0.63s]
+#10 34.65   (3/104) Downloading: viridisLite, juicyjuice, dplyr, farver, ...                                                                                              [32m✔[0m rlang 1.3.0                              [784 kB in 0.68s]
+#10 34.65   (4/104) Downloading: viridisLite, juicyjuice, dplyr, farver, ...                                                                                              [32m✔[0m yaml 2.3.10                              [95 kB in 0.15s]
+#10 34.65   (5/104) Downloading: viridisLite, juicyjuice, dplyr, farver, ...                                                                                              [32m✔[0m dplyr 1.2.1                              [924 kB in 0.77s]
+#10 34.73   (6/104) Downloading: viridisLite, juicyjuice, farver, bitops, ...                                                                                             [32m✔[0m digest 0.6.37                            [232 kB in 0.79s]
+#10 34.73   (7/104) Downloading: viridisLite, juicyjuice, farver, bitops, ...                                                                                             [32m✔[0m mime 0.12                                [13 kB in 0.79s]
+#10 34.73   (8/104) Downloading: viridisLite, juicyjuice, farver, bitops, ...                                                                                             [32m✔[0m lifecycle 1.0.5                          [107 kB in 0.79s]
+#10 34.73   (9/104) Downloading: viridisLite, juicyjuice, farver, bitops, ...                                                                                             [32m✔[0m magrittr 2.0.3                           [267 kB in 0.79s]
+#10 34.73   (10/104) Downloading: viridisLite, juicyjuice, farver, bitops, ...                                                                                            [32m✔[0m farver 2.1.2                             [1.3 MB in 0.8s]
+#10 34.74   (11/104) Downloading: viridisLite, juicyjuice, bitops, promises, ...                                                                                          [32m✔[0m viridisLite 0.4.2                        [1.3 MB in 0.82s]
+#10 34.75   (12/104) Downloading: juicyjuice, bitops, promises, processx, ...                                                                                             [32m✔[0m promises 1.3.2                           [3.2 MB in 0.83s]
+#10 34.76   (13/104) Downloading: juicyjuice, bitops, processx, sass, ...                                                                                                 [32m✔[0m bitops 1.1-0                             [11 kB in 0.84s]
+#10 34.77   (14/104) Downloading: juicyjuice, processx, sass, utf8, ...                                                                                                   [32m✔[0m brew 1.0-10                              [71 kB in 50s]
+#10 34.79   (15/104) Downloading: juicyjuice, processx, sass, utf8, ...                                                                                                   [32m✔[0m utf8 1.2.4                               [241 kB in 83s]
+#10 34.81   (16/104) Downloading: juicyjuice, processx, sass, gt, ...                                                                                                     [32m✔[0m htmlwidgets 1.6.4                        [869 kB in 69s]
+#10 34.81   (17/104) Downloading: juicyjuice, processx, sass, gt, ...                                                                                                     [32m✔[0m curl 8.1.0                               [731 kB in 82s]
+#10 34.83   (18/104) Downloading: juicyjuice, processx, sass, gt, ...                                                                                                     [32m✔[0m RColorBrewer 1.1-3                       [12 kB in 68s]
+#10 34.83   (19/104) Downloading: juicyjuice, processx, sass, gt, ...                                                                                                     [32m✔[0m askpass 1.2.1                            [6 kB in 0.1s]
+#10 34.83   (20/104) Downloading: juicyjuice, processx, sass, gt, ...                                                                                                     [32m✔[0m labeling 0.4.3                           [10 kB in 83s]
+#10 34.83   (21/104) Downloading: juicyjuice, processx, sass, gt, ...                                                                                                     [32m✔[0m xml2 1.3.8                               [153 kB in 0.12s]
+#10 34.87   (22/104) Downloading: juicyjuice, processx, sass, gt, ...                                                                                                     [32m✔[0m processx 3.8.6                           [165 kB in 0.97s]
+#10 34.91   (23/104) Downloading: juicyjuice, sass, gt, knitr, ...                                                                                                        [32m✔[0m pkgload 1.4.0                            [86 kB in 0.13s]
+#10 34.91   (24/104) Downloading: juicyjuice, sass, gt, knitr, ...                                                                                                        [32m✔[0m pkgbuild 1.4.6                           [48 kB in 0.17s]
+#10 34.91   (25/104) Downloading: juicyjuice, sass, gt, knitr, ...                                                                                                        [32m✔[0m knitr 1.50                               [534 kB in 0.2s]
+#10 34.92   (26/104) Downloading: juicyjuice, sass, gt, r2rtf, ...                                                                                                        [32m✔[0m sys 3.4.3                                [20 kB in 0.11s]
+#10 34.92   (27/104) Downloading: juicyjuice, sass, gt, r2rtf, ...                                                                                                        [32m✔[0m juicyjuice 0.1.0                         [1.1 MB in 1.0s]
+#10 34.94   (28/104) Downloading: sass, gt, r2rtf, withr, ...                                                                                                             [32m✔[0m r2rtf 1.3.1                              [286 kB in 0.19s]
+#10 34.94   (29/104) Downloading: sass, gt, withr, purrr, ...                                                                                                             [32m✔[0m desc 1.4.3                               [80 kB in 0.12s]
+#10 34.94   (30/104) Downloading: sass, gt, withr, purrr, ...                                                                                                             [32m✔[0m gt 1.4.0                                 [3.5 MB in 0.24s]
+#10 34.96   (31/104) Downloading: sass, withr, purrr, fansi, ...                                                                                                          [32m✔[0m sass 0.4.9                               [3.0 MB in 1.0s]
+#10 34.97   (32/104) Downloading: withr, purrr, fansi, roxygen2, ...                                                                                                      [32m✔[0m fansi 1.0.6                              [482 kB in 0.14s]
+#10 34.97   (33/104) Downloading: withr, purrr, roxygen2, diffobj, ...                                                                                                    [32m✔[0m purrr 1.0.4                              [257 kB in 0.17s]
+#10 34.98   (34/104) Downloading: withr, roxygen2, diffobj, xtable, ...                                                                                                   [32m✔[0m withr 3.0.2                              [103 kB in 0.18s]
+#10 34.98   (35/104) Downloading: roxygen2, diffobj, xtable, colorspace, ...                                                                                              [32m✔[0m diffobj 0.3.5                            [479 kB in 0.16s]
+#10 34.98   (36/104) Downloading: roxygen2, xtable, colorspace, ggplot2, ...                                                                                              [32m✔[0m roxygen2 7.3.2                           [299 kB in 0.16s]
+#10 34.99   (37/104) Downloading: xtable, colorspace, ggplot2, scales, ...                                                                                                [32m✔[0m xtable 1.8-4                             [565 kB in 0.13s]
+#10 35.00   (38/104) Downloading: colorspace, ggplot2, scales, tinytex, ...                                                                                               [32m✔[0m scales 1.3.0                             [303 kB in 0.11s]
+#10 35.02   (39/104) Downloading: colorspace, ggplot2, tinytex, isoband, ...                                                                                              [32m✔[0m crayon 1.5.3                             [40 kB in 72s]
+#10 35.02   (40/104) Downloading: colorspace, ggplot2, tinytex, isoband, ...                                                                                              [32m✔[0m tinytex 0.56                             [36 kB in 0.11s]
+#10 35.03   (41/104) Downloading: colorspace, ggplot2, isoband, cli, ...                                                                                                  [32m✔[0m cli 3.6.4                                [638 kB in 0.13s]
+#10 35.07   (42/104) Downloading: colorspace, ggplot2, isoband, rmarkdown, ...                                                                                            [32m✔[0m cachem 1.1.0                             [27 kB in 94s]
+#10 35.07   (43/104) Downloading: colorspace, ggplot2, isoband, rmarkdown, ...                                                                                            [32m✔[0m generics 0.1.4                           [47 kB in 0.11s]
+#10 35.07   (44/104) Downloading: colorspace, ggplot2, isoband, rmarkdown, ...                                                                                            [32m✔[0m isoband 0.2.7                            [1.6 MB in 0.17s]
+#10 35.09   (45/104) Downloading: colorspace, ggplot2, rmarkdown, ragg, ...                                                                                               [32m✔[0m commonmark 1.9.5                         [146 kB in 0.12s]
+#10 35.09   (46/104) Downloading: colorspace, ggplot2, rmarkdown, ragg, ...                                                                                               [32m✔[0m ragg 1.3.3                               [429 kB in 0.15s]
+#10 35.12   (47/104) Downloading: colorspace, ggplot2, rmarkdown, rpact, ...                                                                                              [32m✔[0m rpact 4.4.0                              [894 kB in 0.15s]
+#10 35.13   (48/104) Downloading: colorspace, ggplot2, rmarkdown, stringr, ...                                                                                            [32m✔[0m V8 8.2.1                                 [623 kB in 0.13s]
+#10 35.15   (49/104) Downloading: colorspace, ggplot2, rmarkdown, stringr, ...                                                                                            [32m✔[0m colorspace 2.1-1                         [2.1 MB in 0.25s]
+#10 35.16   (50/104) Downloading: ggplot2, rmarkdown, stringr, gsDesign, ...                                                                                              [32m✔[0m vctrs 0.7.3                              [1.1 MB in 0.16s]
+#10 35.16   (51/104) Downloading: ggplot2, rmarkdown, stringr, gsDesign, ...                                                                                              [32m✔[0m rmarkdown 2.29                           [2.2 MB in 0.22s]
+#10 35.17   (52/104) Downloading: ggplot2, stringr, gsDesign, base64enc, ...                                                                                              [32m✔[0m base64enc 0.1-3                          [8 kB in 0.16s]
+#10 35.18   (53/104) Downloading: ggplot2, stringr, gsDesign, jsonlite, ...                                                                                               [32m✔[0m litedown 1.0                             [302 kB in 0.14s]
+#10 35.21   (54/104) Downloading: ggplot2, stringr, gsDesign, jsonlite, ...                                                                                               [32m✔[0m ggplot2 3.5.1                            [3.6 MB in 0.34s]
+#10 35.26   (55/104) Downloading: stringr, gsDesign, jsonlite, cpp11, ...                                                                                                 [32m✔[0m cpp11 0.5.2                              [292 kB in 0.19s]
+#10 35.26   (56/104) Downloading: stringr, gsDesign, jsonlite, callr, ...                                                                                                 [32m✔[0m callr 3.7.6                              [104 kB in 0.19s]
+#10 35.27   (57/104) Downloading: stringr, gsDesign, jsonlite, systemfonts, ...                                                                                           [32m✔[0m jsonlite 1.9.1                           [1.1 MB in 0.24s]
+#10 35.28   (58/104) Downloading: stringr, gsDesign, systemfonts, testthat, ...                                                                                           [32m✔[0m testthat 3.2.3                           [739 kB in 0.2s]
+#10 35.29   (59/104) Downloading: stringr, gsDesign, systemfonts, fontawesome, ...                                                                                        [32m✔[0m gsDesign 3.11.0                          [4.0 MB in 0.31s]
+#10 35.30   (60/104) Downloading: stringr, systemfonts, fontawesome, jquerylib, ...                                                                                       [32m✔[0m systemfonts 1.2.1                        [102 kB in 0.21s]
+#10 35.30   (61/104) Downloading: stringr, fontawesome, jquerylib, tidyr, ...                                                                                             [32m✔[0m tidyr 1.3.2                              [809 kB in 0.18s]
+#10 35.33   (62/104) Downloading: stringr, fontawesome, jquerylib, glue, ...                                                                                              [32m✔[0m jquerylib 0.1.4                          [520 kB in 0.21s]
+#10 35.34   (63/104) Downloading: stringr, fontawesome, glue, reactR, ...                                                                                                 [32m✔[0m fontawesome 0.5.3                        [1.3 MB in 0.22s]
+#10 35.34   (64/104) Downloading: stringr, glue, reactR, pkgdown, ...                                                                                                     [32m✔[0m glue 1.8.0                               [127 kB in 0.19s]
+#10 35.34   (65/104) Downloading: stringr, reactR, pkgdown, ps, ...                                                                                                       [32m✔[0m reactR 0.6.1                             [712 kB in 0.2s]
+#10 35.37   (66/104) Downloading: stringr, pkgdown, ps, stringi, ...                                                                                                      [32m✔[0m ps 1.9.0                                 [168 kB in 0.19s]
+#10 35.37   (67/104) Downloading: stringr, pkgdown, stringi, gtable, ...                                                                                                  [32m✔[0m pkgdown 2.1.1                            [1.3 MB in 0.2s]
+#10 35.37   (68/104) Downloading: stringr, stringi, gtable, later, ...                                                                                                    [32m✔[0m gtable 0.3.6                             [148 kB in 0.12s]
+#10 35.37   (69/104) Downloading: stringr, stringi, later, downlit, ...                                                                                                   [32m✔[0m downlit 0.4.5                            [37 kB in 0.12s]
+#10 35.39   (70/104) Downloading: stringr, stringi, later, munsell, ...                                                                                                   [32m✔[0m later 1.4.1                              [70 kB in 0.12s]
+#10 35.39   (71/104) Downloading: stringr, stringi, munsell, tibble, ...                                                                                                  [32m✔[0m tibble 3.2.1                             [566 kB in 0.12s]
+#10 35.41   (72/104) Downloading: stringr, stringi, munsell, pillar, ...                                                                                                  [32m✔[0m rappdirs 0.3.3                           [12 kB in 0.1s]
+#10 35.41   (73/104) Downloading: stringr, stringi, munsell, pillar, ...                                                                                                  [32m✔[0m munsell 0.5.1                            [182 kB in 0.13s]
+#10 35.41   (74/104) Downloading: stringr, stringi, pillar, htmltools, ...                                                                                                [32m✔[0m pillar 1.10.1                            [407 kB in 0.11s]
+#10 35.42   (75/104) Downloading: stringr, stringi, htmltools, brio, ...                                                                                                  [32m✔[0m brio 1.1.5                               [13 kB in 87s]
+#10 35.42   (76/104) Downloading: stringr, stringi, htmltools, sourcetools, ...                                                                                           [32m✔[0m R6 2.6.1                                 [65 kB in 60s]
+#10 35.43   (77/104) Downloading: stringr, stringi, htmltools, sourcetools, ...                                                                                           [32m✔[0m htmltools 0.5.8.1                        [135 kB in 0.1s]
+#10 35.43   (78/104) Downloading: stringr, stringi, sourcetools, openssl, ...                                                                                             [32m✔[0m httr2 1.3.0                              [302 kB in 80s]
+#10 35.45   (79/104) Downloading: stringr, stringi, sourcetools, openssl, ...                                                                                             [32m✔[0m openssl 2.5.0                            [1.0 MB in 0.11s]
+#10 35.46   (80/104) Downloading: stringr, stringi, sourcetools, praise, ...                                                                                              [32m✔[0m stringr 1.5.1                            [177 kB in 0.48s]
+#10 35.47   (81/104) Downloading: stringi, sourcetools, praise, reactable, ...                                                                                            [32m✔[0m praise 1.0.0                             [6 kB in 0.11s]
+#10 35.47   (82/104) Downloading: stringi, sourcetools, reactable, textshaping, ...                                                                                       [32m✔[0m reactable 0.4.5                          [981 kB in 0.12s]
+#10 35.49   (83/104) Downloading: stringi, sourcetools, textshaping, rprojroot, ...                                                                                       [32m✔[0m rprojroot 2.0.4                          [60 kB in 98s]
+#10 35.49   (84/104) Downloading: stringi, sourcetools, textshaping, evaluate, ...                                                                                        [32m✔[0m textshaping 0.3.7                        [35 kB in 100s]
+#10 35.49   (85/104) Downloading: stringi, sourcetools, evaluate, shiny, ...                                                                                              [32m✔[0m markdown 2.1                             [21 kB in 71s]
+#10 35.49   (86/104) Downloading: stringi, sourcetools, evaluate, shiny, ...                                                                                              [32m✔[0m memoise 2.0.1                            [18 kB in 56s]
+#10 35.49   (87/104) Downloading: stringi, sourcetools, evaluate, shiny, ...                                                                                              [32m✔[0m evaluate 1.0.3                           [38 kB in 94s]
+#10 35.50   (88/104) Downloading: stringi, sourcetools, shiny, lattice, ...                                                                                               [32m✔[0m highr 0.11                               [14 kB in 90s]
+#10 35.51   (89/104) Downloading: stringi, sourcetools, shiny, lattice, ...                                                                                               [32m✔[0m zip 3.0.2                                [447 kB in 52s]
+#10 35.52   (90/104) Downloading: stringi, sourcetools, shiny, lattice, ...                                                                                               [32m✔[0m lattice 0.22-7                           [599 kB in 0.13s]
+#10 35.54   (91/104) Downloading: stringi, sourcetools, shiny, httpuv, ...                                                                                                [32m✔[0m simsurv 1.0.1                            [127 kB in 0.12s]
+#10 35.57   (92/104) Downloading: stringi, sourcetools, shiny, httpuv, ...                                                                                                [32m✔[0m whisker 0.4.1                            [29 kB in 0.14s]
+#10 35.63   (93/104) Downloading: stringi, sourcetools, shiny, httpuv, ...                                                                                                [32m✔[0m xfun 0.62                                [230 kB in 0.14s]
+#10 35.63   (94/104) Downloading: stringi, sourcetools, shiny, httpuv, ...                                                                                                [32m✔[0m pkgconfig 2.0.3                          [6 kB in 0.13s]
+#10 35.64   (95/104) Downloading: stringi, sourcetools, shiny, httpuv, ...                                                                                                [32m✔[0m shiny 1.10.0                             [3.3 MB in 0.25s]
+#10 35.66   (96/104) Downloading: stringi, sourcetools, httpuv, bslib, ...                                                                                                [32m✔[0m httpuv 1.6.15                            [1.9 MB in 0.25s]
+#10 35.68   (97/104) Downloading: stringi, sourcetools, bslib, bigD, ...                                                                                                  [32m✔[0m bigD 0.3.1                               [1.3 MB in 0.21s]
+#10 35.69   (98/104) Downloading: stringi, sourcetools, bslib, Rcpp, ...                                                                                                  [32m✔[0m fs 1.6.5                                 [1.2 MB in 0.29s]
+#10 35.78   (99/104) Downloading: stringi, sourcetools, bslib, Rcpp, ...                                                                                                  [32m✔[0m mgcv 1.9-3                               [1.1 MB in 0.29s]
+#10 35.78   (100/104) Downloading: stringi, sourcetools, bslib, Rcpp                                                                                                      [32m✔[0m Rcpp 1.0.14                              [3.0 MB in 0.35s]
+#10 35.84   (101/104) Downloading: stringi, sourcetools, bslib                                                                                                            [32m✔[0m bslib 0.9.0                              [5.4 MB in 0.38s]
+#10 35.84   (102/104) Downloading: stringi, sourcetools                                                                                                                   [32m✔[0m stringi 1.8.4                            [11.9 MB in 0.64s]
+#10 35.85   (103/104) Downloading: sourcetools                                                                                                                            [32m✔[0m sourcetools 0.1.7-1                      [24 kB in 0.68s]
+#10 36.05                                                                                 Successfully downloaded 104 packages in 2.4 seconds.
+#10 36.05 
+#10 36.05 # Installing packages --------------------------------------------------------
+#10 37.83   (0/104) Installing: base64enc, bigD, bitops, brew                               (0/104) Installing: base64enc, bigD, bitops, brew                               (0/104) Installing: base64enc, bigD, bitops, brew                               (0/104) Installing: base64enc, bigD, bitops, brew                               (0/104) Installing: base64enc, bigD, bitops, brew                                                                                                             [32m✔[0m brew 1.0-10                              [built from source in 1.8s]
+#10 39.71   (1/104) Installing: base64enc, bigD, bitops                                     (1/104) Installing: base64enc, bigD, bitops, brio                                                                                                             [32m✔[0m base64enc 0.1-3                          [built from source in 1.9s]
+#10 39.79   (2/104) Installing: bigD, bitops, brio                                          (2/104) Installing: bigD, bitops, brio, cli                                     (2/104) Installing: bigD, bitops, brio, cli                                     (2/104) Installing: bigD, bitops, brio, cli                                                                                                                   [32m✔[0m bitops 1.1-0                             [built from source in 2.3s]
+#10 40.14   (3/104) Installing: bigD, brio, cli                                             (3/104) Installing: bigD, brio, cli, colorspace                                 (3/104) Installing: bigD, brio, cli, colorspace                                                                                                               [32m✔[0m brio 1.1.5                               [built from source in 2.0s]
+#10 41.80   (4/104) Installing: bigD, cli, colorspace                                       (4/104) Installing: bigD, cli, colorspace, commonmark                           (4/104) Installing: bigD, cli, colorspace, commonmark                                                                                                         [32m✔[0m bigD 0.3.1                               [built from source in 8.7s]
+#10 46.55   (5/104) Installing: cli, colorspace, commonmark                                 (5/104) Installing: cli, colorspace, commonmark, cpp11                          (5/104) Installing: cli, colorspace, commonmark, cpp11                                                                                                        [32m✔[0m colorspace 2.1-1                         [built from source in 7.1s]
+#10 47.41   (6/104) Installing: cli, commonmark, cpp11                                      (6/104) Installing: cli, commonmark, cpp11, crayon                              (6/104) Installing: cli, commonmark, cpp11, crayon                                                                                                            [32m✔[0m cpp11 0.5.2                              [built from source in 1.9s]
+#10 48.50   (7/104) Installing: cli, commonmark, crayon                                     (7/104) Installing: cli, commonmark, crayon, curl                               (7/104) Installing: cli, commonmark, crayon, curl                                                                                                             [32m✔[0m crayon 1.5.3                             [built from source in 2.7s]
+#10 50.19   (8/104) Installing: cli, commonmark, curl                                       (8/104) Installing: cli, commonmark, curl, digest                               (8/104) Installing: cli, commonmark, curl, digest                                                                                                             [32m✔[0m commonmark 1.9.5                         [built from source in 10s]
+#10 52.18   (9/104) Installing: cli, curl, digest                                           (9/104) Installing: cli, curl, digest, evaluate                                 (9/104) Installing: cli, curl, digest, evaluate                                                                                                               [32m✔[0m cli 3.6.4                                [built from source in 13s]
+#10 52.74   (10/104) Installing: curl, digest, evaluate                                     (10/104) Installing: curl, digest, evaluate, fansi                              (10/104) Installing: curl, digest, evaluate, fansi                                                                                                            [32m✔[0m curl 8.1.0                               [built from source in 5.4s]
+#10 53.96   (11/104) Installing: digest, evaluate, fansi                                    (11/104) Installing: digest, evaluate, fansi, farver                                                                                                          [32m✔[0m evaluate 1.0.3                           [built from source in 1.9s]
+#10 54.10   (12/104) Installing: digest, fansi, farver                                      (12/104) Installing: digest, fansi, farver, fastmap                             (12/104) Installing: digest, fansi, farver, fastmap                             (12/104) Installing: digest, fansi, farver, fastmap                                                                                                           [32m✔[0m fansi 1.0.6                              [built from source in 4.8s]
+#10 57.68   (13/104) Installing: digest, farver, fastmap                                    (13/104) Installing: digest, farver, fastmap, fs                                (13/104) Installing: digest, farver, fastmap, fs                                                                                                              [32m✔[0m fastmap 1.2.0                            [built from source in 3.9s]
+#10 58.07   (14/104) Installing: digest, farver, fs                                         (14/104) Installing: digest, farver, fs, generics                                                                                                             [32m✔[0m digest 0.6.37                            [built from source in 8.1s]
+#10 58.34   (15/104) Installing: farver, fs, generics                                       (15/104) Installing: farver, fs, generics, glue                                 (15/104) Installing: farver, fs, generics, glue                                 (15/104) Installing: farver, fs, generics, glue                                                                                                               [32m✔[0m generics 0.1.4                           [built from source in 2.0s]
+#10 60.08   (16/104) Installing: farver, fs, glue                                           (16/104) Installing: farver, fs, glue, isoband                                  (16/104) Installing: farver, fs, glue, isoband                                                                                                                [32m✔[0m glue 1.8.0                               [built from source in 2.5s]
+#10 60.90   (17/104) Installing: farver, fs, isoband                                        (17/104) Installing: farver, fs, isoband, jsonlite                              (17/104) Installing: farver, fs, isoband, jsonlite                                                                                                            [32m✔[0m jsonlite 1.9.1                           [built from source in 4.1s]
+#10 65.09   (18/104) Installing: farver, fs, isoband                                        (18/104) Installing: farver, fs, isoband, labeling                                                                                                            [32m✔[0m isoband 0.2.7                            [built from source in 5.2s]
+#10 65.38   (19/104) Installing: farver, fs, labeling                                       (19/104) Installing: farver, fs, labeling, lattice                              (19/104) Installing: farver, fs, labeling, lattice                              (19/104) Installing: farver, fs, labeling, lattice                                                                                                            [32m✔[0m labeling 0.4.3                           [built from source in 2.0s]
+#10 67.14   (20/104) Installing: farver, fs, lattice                                        (20/104) Installing: farver, fs, lattice, magrittr                              (20/104) Installing: farver, fs, lattice, magrittr                                                                                                            [32m✔[0m magrittr 2.0.3                           [built from source in 1.9s]
+#10 69.06   (21/104) Installing: farver, fs, lattice                                        (21/104) Installing: farver, fs, lattice, mgcv                                  (21/104) Installing: farver, fs, lattice, mgcv                                  (21/104) Installing: farver, fs, lattice, mgcv                                                                                                                [32m✔[0m lattice 0.22-7                           [built from source in 12s]
+#10 77.10   (22/104) Installing: farver, fs, mgcv                                           (22/104) Installing: farver, fs, mgcv, mime                                     (22/104) Installing: farver, fs, mgcv, mime                                                                                                                   [32m✔[0m mime 0.12                                [built from source in 1.9s]
+#10 79.08   (23/104) Installing: farver, fs, mgcv                                           (23/104) Installing: farver, fs, mgcv, pkgconfig                                                                                                              [32m✔[0m farver 2.1.2                             [built from source in 25s]
+#10 79.24   (24/104) Installing: fs, mgcv, pkgconfig                                        (24/104) Installing: fs, mgcv, pkgconfig, praise                                (24/104) Installing: fs, mgcv, pkgconfig, praise                                (24/104) Installing: fs, mgcv, pkgconfig, praise                                                                                                              [32m✔[0m pkgconfig 2.0.3                          [built from source in 1.3s]
+#10 80.42   (25/104) Installing: fs, mgcv, praise                                           (25/104) Installing: fs, mgcv, praise, ps                                                                                                                     [32m✔[0m praise 1.0.0                             [built from source in 1.2s]
+#10 80.45   (26/104) Installing: fs, mgcv, ps                                               (26/104) Installing: fs, mgcv, ps, r2rtf                                        (26/104) Installing: fs, mgcv, ps, r2rtf                                        (26/104) Installing: fs, mgcv, ps, r2rtf                                                                                                                      [32m✔[0m r2rtf 1.3.1                              [built from source in 3.5s]
+#10 83.97   (27/104) Installing: fs, mgcv, ps                                               (27/104) Installing: fs, mgcv, ps, R6                                           (27/104) Installing: fs, mgcv, ps, R6                                                                                                                         [32m✔[0m fs 1.6.5                                 [built from source in 27s]
+#10 84.86   (28/104) Installing: mgcv, ps, R6                                               (28/104) Installing: mgcv, ps, R6, rappdirs                                     (28/104) Installing: mgcv, ps, R6, rappdirs                                                                                                                   [32m✔[0m R6 2.6.1                                 [built from source in 1.7s]
+#10 85.75   (29/104) Installing: mgcv, ps, rappdirs                                         (29/104) Installing: mgcv, ps, rappdirs, RColorBrewer                           (29/104) Installing: mgcv, ps, rappdirs, RColorBrewer                                                                                                         [32m✔[0m ps 1.9.0                                 [built from source in 5.7s]
+#10 86.14   (30/104) Installing: mgcv, rappdirs, RColorBrewer                               (30/104) Installing: mgcv, rappdirs, RColorBrewer, Rcpp                         (30/104) Installing: mgcv, rappdirs, RColorBrewer, Rcpp                                                                                                       [32m✔[0m rappdirs 0.3.3                           [built from source in 1.8s]
+#10 86.69   (31/104) Installing: mgcv, RColorBrewer, Rcpp                                   (31/104) Installing: mgcv, RColorBrewer, Rcpp, rlang                            (31/104) Installing: mgcv, RColorBrewer, Rcpp, rlang                                                                                                          [32m✔[0m RColorBrewer 1.1-3                       [built from source in 1.8s]
+#10 87.58   (32/104) Installing: mgcv, Rcpp, rlang                                          (32/104) Installing: mgcv, Rcpp, rlang, rprojroot                               (32/104) Installing: mgcv, Rcpp, rlang, rprojroot                                                                                                             [32m✔[0m rprojroot 2.0.4                          [built from source in 1.7s]
+#10 89.28   (33/104) Installing: mgcv, Rcpp, rlang                                          (33/104) Installing: mgcv, Rcpp, rlang, simsurv                                 (33/104) Installing: mgcv, Rcpp, rlang, simsurv                                                                                                               [32m✔[0m simsurv 1.0.1                            [built from source in 1.7s]
+#10 91.00   (34/104) Installing: mgcv, Rcpp, rlang                                          (34/104) Installing: mgcv, Rcpp, rlang, sourcetools                             (34/104) Installing: mgcv, Rcpp, rlang, sourcetools                                                                                                           [32m✔[0m sourcetools 0.1.7-1                      [built from source in 3.2s]
+#10 94.27   (35/104) Installing: mgcv, Rcpp, rlang                                          (35/104) Installing: mgcv, Rcpp, rlang, stringi                                 (35/104) Installing: mgcv, Rcpp, rlang, stringi                                                                                                               [32m✔[0m rlang 1.3.0                              [built from source in 12s]
+#10 98.64   (36/104) Installing: mgcv, Rcpp, stringi                                        (36/104) Installing: mgcv, Rcpp, stringi, sys                                   (36/104) Installing: mgcv, Rcpp, stringi, sys                                                                                                                 [32m✔[0m sys 3.4.3                                [built from source in 1.5s]
+#10 100.2   (37/104) Installing: mgcv, Rcpp, stringi                                        (37/104) Installing: mgcv, Rcpp, stringi, utf8                                  (37/104) Installing: mgcv, Rcpp, stringi, utf8                                                                                                                [32m✔[0m utf8 1.2.4                               [built from source in 3.3s]
+#10 103.5   (38/104) Installing: mgcv, Rcpp, stringi                                        (38/104) Installing: mgcv, Rcpp, stringi, viridisLite                           (38/104) Installing: mgcv, Rcpp, stringi, viridisLite                                                                                                         [32m✔[0m viridisLite 0.4.2                        [built from source in 1.3s]
+#10 104.8   (39/104) Installing: mgcv, Rcpp, stringi                                        (39/104) Installing: mgcv, Rcpp, stringi, whisker                               (39/104) Installing: mgcv, Rcpp, stringi, whisker                                                                                                             [32m✔[0m whisker 0.4.1                            [built from source in 1.3s]
+#10 106.1   (40/104) Installing: mgcv, Rcpp, stringi                                        (40/104) Installing: mgcv, Rcpp, stringi, withr                                 (40/104) Installing: mgcv, Rcpp, stringi, withr                                                                                                               [32m✔[0m Rcpp 1.0.14                              [built from source in 21s]
+#10 107.5   (41/104) Installing: mgcv, stringi, withr                                       (41/104) Installing: mgcv, stringi, withr, xfun                                 (41/104) Installing: mgcv, stringi, withr, xfun                                                                                                               [32m✔[0m withr 3.0.2                              [built from source in 1.9s]
+#10 108.1   (42/104) Installing: mgcv, stringi, xfun                                        (42/104) Installing: mgcv, stringi, xfun, xtable                                (42/104) Installing: mgcv, stringi, xfun, xtable                                                                                                              [32m✔[0m xtable 1.8-4                             [built from source in 2.1s]
+#10 110.2   (43/104) Installing: mgcv, stringi, xfun                                        (43/104) Installing: mgcv, stringi, xfun, yaml                                  (43/104) Installing: mgcv, stringi, xfun, yaml                                                                                                                [32m✔[0m xfun 0.62                                [built from source in 5.1s]
+#10 112.6   (44/104) Installing: mgcv, stringi, yaml                                        (44/104) Installing: mgcv, stringi, yaml, munsell                               (44/104) Installing: mgcv, stringi, yaml, munsell                                                                                                             [32m✔[0m munsell 0.5.1                            [built from source in 1.6s]
+#10 114.3   (45/104) Installing: mgcv, stringi, yaml                                        (45/104) Installing: mgcv, stringi, yaml, diffobj                               (45/104) Installing: mgcv, stringi, yaml, diffobj                                                                                                             [32m✔[0m yaml 2.3.10                              [built from source in 4.6s]
+#10 114.8   (46/104) Installing: mgcv, stringi, diffobj                                     (46/104) Installing: mgcv, stringi, diffobj, zip                                (46/104) Installing: mgcv, stringi, diffobj, zip                                (46/104) Installing: mgcv, stringi, diffobj, zip                                                                                                              [32m✔[0m mgcv 1.9-3                               [built from source in 53s]
+#10 121.9   (47/104) Installing: stringi, diffobj, zip                                      (47/104) Installing: stringi, diffobj, zip, desc                                (47/104) Installing: stringi, diffobj, zip, desc                                                                                                              [32m✔[0m diffobj 0.3.5                            [built from source in 7.9s]
+#10 122.2   (48/104) Installing: stringi, zip, desc                                         (48/104) Installing: stringi, zip, desc, processx                               (48/104) Installing: stringi, zip, desc, processx                                                                                                             [32m✔[0m desc 1.4.3                               [built from source in 3.1s]
+#10 125.1   (49/104) Installing: stringi, zip, processx                                     (49/104) Installing: stringi, zip, processx, cachem                             (49/104) Installing: stringi, zip, processx, cachem                                                                                                           [32m✔[0m cachem 1.1.0                             [built from source in 2.3s]
+#10 127.4   (50/104) Installing: stringi, zip, processx                                     (50/104) Installing: stringi, zip, processx, htmltools                                                                                                        [32m✔[0m processx 3.8.6                           [built from source in 5.3s]
+#10 127.5   (51/104) Installing: stringi, zip, htmltools                                    (51/104) Installing: stringi, zip, htmltools, lifecycle                         (51/104) Installing: stringi, zip, htmltools, lifecycle                         (51/104) Installing: stringi, zip, htmltools, lifecycle                                                                                                       [32m✔[0m zip 3.0.2                                [built from source in 13s]
+#10 127.9   (52/104) Installing: stringi, htmltools, lifecycle                              (52/104) Installing: stringi, htmltools, lifecycle, xml2                        (52/104) Installing: stringi, htmltools, lifecycle, xml2                                                                                                      [32m✔[0m lifecycle 1.0.5                          [built from source in 2.5s]
+#10 130.1   (53/104) Installing: stringi, htmltools, xml2                                   (53/104) Installing: stringi, htmltools, xml2, askpass                          (53/104) Installing: stringi, htmltools, xml2, askpass                                                                                                        [32m✔[0m askpass 1.2.1                            [built from source in 1.6s]
+#10 131.7   (54/104) Installing: stringi, htmltools, xml2                                   (54/104) Installing: stringi, htmltools, xml2, later                            (54/104) Installing: stringi, htmltools, xml2, later                                                                                                          [32m✔[0m htmltools 0.5.8.1                        [built from source in 4.9s]
+#10 132.4   (55/104) Installing: stringi, xml2, later                                       (55/104) Installing: stringi, xml2, later, V8                                   (55/104) Installing: stringi, xml2, later, V8                                                                                                                 [32m✔[0m xml2 1.3.8                               [built from source in 9.2s]
+#10 137.2   (56/104) Installing: stringi, later, V8                                         (56/104) Installing: stringi, later, V8, highr                                  (56/104) Installing: stringi, later, V8, highr                                                                                                                [32m✔[0m highr 0.11                               [built from source in 1.4s]
+#10 138.6   (57/104) Installing: stringi, later, V8                                         (57/104) Installing: stringi, later, V8, litedown                               (57/104) Installing: stringi, later, V8, litedown                               (57/104) Installing: stringi, later, V8, litedown                                                                                                             [32m✔[0m later 1.4.1                              [built from source in 17s]
+#10 149.0   (58/104) Installing: stringi, V8, litedown                                      (58/104) Installing: stringi, V8, litedown, tinytex                             (58/104) Installing: stringi, V8, litedown, tinytex                                                                                                           [32m✔[0m tinytex 0.56                             [built from source in 2.4s]
+#10 151.5   (59/104) Installing: stringi, V8, litedown                                      (59/104) Installing: stringi, V8, litedown, waldo                               (59/104) Installing: stringi, V8, litedown, waldo                                                                                                             [32m✔[0m litedown 1.0                             [built from source in 14s]
+#10 152.4   (60/104) Installing: stringi, V8, waldo                                         (60/104) Installing: stringi, V8, waldo, memoise                                (60/104) Installing: stringi, V8, waldo, memoise                                                                                                              [32m✔[0m memoise 2.0.1                            [built from source in 1.7s]
+#10 154.2   (61/104) Installing: stringi, V8, waldo                                         (61/104) Installing: stringi, V8, waldo, callr                                  (61/104) Installing: stringi, V8, waldo, callr                                                                                                                [32m✔[0m waldo 0.6.1                              [built from source in 3.2s]
+#10 154.7   (62/104) Installing: stringi, V8, callr                                         (62/104) Installing: stringi, V8, callr, gtable                                 (62/104) Installing: stringi, V8, callr, gtable                                                                                                               [32m✔[0m V8 8.2.1                                 [built from source in 25s]
+#10 157.1   (63/104) Installing: stringi, callr, gtable                                     (63/104) Installing: stringi, callr, gtable, scales                             (63/104) Installing: stringi, callr, gtable, scales                                                                                                           [32m✔[0m gtable 0.3.6                             [built from source in 2.8s]
+#10 157.5   (64/104) Installing: stringi, callr, scales                                     (64/104) Installing: stringi, callr, scales, systemfonts                        (64/104) Installing: stringi, callr, scales, systemfonts                                                                                                      [32m✔[0m callr 3.7.6                              [built from source in 5.5s]
+#10 159.7   (65/104) Installing: stringi, scales, systemfonts                               (65/104) Installing: stringi, scales, systemfonts, vctrs                        (65/104) Installing: stringi, scales, systemfonts, vctrs                                                                                                      [32m✔[0m scales 1.3.0                             [built from source in 5.2s]
+#10 162.4   (66/104) Installing: stringi, systemfonts, vctrs                                (66/104) Installing: stringi, systemfonts, vctrs, openssl                       (66/104) Installing: stringi, systemfonts, vctrs, openssl                                                                                                     [32m✔[0m stringi 1.8.4                            [built from source in 1.2m]
+#10 165.7   (67/104) Installing: systemfonts, vctrs, openssl                                (67/104) Installing: systemfonts, vctrs, openssl, fontawesome                   (67/104) Installing: systemfonts, vctrs, openssl, fontawesome                                                                                                 [32m✔[0m fontawesome 0.5.3                        [built from source in 1.8s]
+#10 167.5   (68/104) Installing: systemfonts, vctrs, openssl                                (68/104) Installing: systemfonts, vctrs, openssl, jquerylib                     (68/104) Installing: systemfonts, vctrs, openssl, jquerylib                                                                                                   [32m✔[0m jquerylib 0.1.4                          [built from source in 1.6s]
+#10 169.2   (69/104) Installing: systemfonts, vctrs, openssl                                (69/104) Installing: systemfonts, vctrs, openssl, reactR                                                                                                      [32m✔[0m openssl 2.5.0                            [built from source in 6.9s]
+#10 169.4   (70/104) Installing: systemfonts, vctrs, reactR                                 (70/104) Installing: systemfonts, vctrs, reactR, sass                           (70/104) Installing: systemfonts, vctrs, reactR, sass                           (70/104) Installing: systemfonts, vctrs, reactR, sass                                                                                                         [32m✔[0m reactR 0.6.1                             [built from source in 2.1s]
+#10 171.3   (71/104) Installing: systemfonts, vctrs, sass                                   (71/104) Installing: systemfonts, vctrs, sass, knitr                            (71/104) Installing: systemfonts, vctrs, sass, knitr                            (71/104) Installing: systemfonts, vctrs, sass, knitr                                                                                                          [32m✔[0m knitr 1.50                               [built from source in 5.6s]
+#10 177.0   (72/104) Installing: systemfonts, vctrs, sass                                   (72/104) Installing: systemfonts, vctrs, sass, promises                         (72/104) Installing: systemfonts, vctrs, sass, promises                         (72/104) Installing: systemfonts, vctrs, sass, promises                                                                                                       [32m✔[0m vctrs 0.7.3                              [built from source in 24s]
+#10 184.1   (73/104) Installing: systemfonts, sass, promises                                (73/104) Installing: systemfonts, sass, promises, markdown                      (73/104) Installing: systemfonts, sass, promises, markdown                                                                                                    [32m✔[0m systemfonts 1.2.1                        [built from source in 27s]
+#10 185.0   (74/104) Installing: sass, promises, markdown                                   (74/104) Installing: sass, promises, markdown, juicyjuice                                                                                                     [32m✔[0m promises 1.3.2                           [built from source in 8.4s]
+#10 185.5   (75/104) Installing: sass, markdown, juicyjuice                                 (75/104) Installing: sass, markdown, juicyjuice, pkgbuild                       (75/104) Installing: sass, markdown, juicyjuice, pkgbuild                       (75/104) Installing: sass, markdown, juicyjuice, pkgbuild                                                                                                     [32m✔[0m markdown 2.1                             [built from source in 1.7s]
+#10 185.9   (76/104) Installing: sass, juicyjuice, pkgbuild                                 (76/104) Installing: sass, juicyjuice, pkgbuild, rpact                          (76/104) Installing: sass, juicyjuice, pkgbuild, rpact                                                                                                        [32m✔[0m juicyjuice 0.1.0                         [built from source in 1.7s]
+#10 186.7   (77/104) Installing: sass, pkgbuild, rpact                                      (77/104) Installing: sass, pkgbuild, rpact, downlit                             (77/104) Installing: sass, pkgbuild, rpact, downlit                                                                                                           [32m✔[0m pkgbuild 1.4.6                           [built from source in 2.8s]
+#10 188.3   (78/104) Installing: sass, rpact, downlit                                       (78/104) Installing: sass, rpact, downlit, httr2                                (78/104) Installing: sass, rpact, downlit, httr2                                                                                                              [32m✔[0m downlit 0.4.5                            [built from source in 2.4s]
+#10 189.2   (79/104) Installing: sass, rpact, httr2                                         (79/104) Installing: sass, rpact, httr2, pillar                                 (79/104) Installing: sass, rpact, httr2, pillar                                                                                                               [32m✔[0m pillar 1.10.1                            [built from source in 3.7s]
+#10 192.9   (80/104) Installing: sass, rpact, httr2                                         (80/104) Installing: sass, rpact, httr2, purrr                                  (80/104) Installing: sass, rpact, httr2, purrr                                                                                                                [32m✔[0m httr2 1.3.0                              [built from source in 7.6s]
+#10 196.0   (81/104) Installing: sass, rpact, purrr                                         (81/104) Installing: sass, rpact, purrr, stringr                                (81/104) Installing: sass, rpact, purrr, stringr                                                                                                              [32m✔[0m purrr 1.0.4                              [built from source in 4.3s]
+#10 197.2   (82/104) Installing: sass, rpact, stringr                                       (82/104) Installing: sass, rpact, stringr, tidyselect                           (82/104) Installing: sass, rpact, stringr, tidyselect                                                                                                         [32m✔[0m stringr 1.5.1                            [built from source in 2.7s]
+#10 198.7   (83/104) Installing: sass, rpact, tidyselect                                    (83/104) Installing: sass, rpact, tidyselect, textshaping                       (83/104) Installing: sass, rpact, tidyselect, textshaping                                                                                                     [32m✔[0m tidyselect 1.2.1                         [built from source in 2.7s]
+#10 200.0   (84/104) Installing: sass, rpact, textshaping                                   (84/104) Installing: sass, rpact, textshaping, httpuv                           (84/104) Installing: sass, rpact, textshaping, httpuv                           (84/104) Installing: sass, rpact, textshaping, httpuv                                                                                                         [32m✔[0m textshaping 0.3.7                        [built from source in 9.2s]
+#10 208.0   (85/104) Installing: sass, rpact, httpuv                                        (85/104) Installing: sass, rpact, httpuv, pkgload                               (85/104) Installing: sass, rpact, httpuv, pkgload                                                                                                             [32m✔[0m pkgload 1.4.0                            [built from source in 3.6s]
+#10 211.6   (86/104) Installing: sass, rpact, httpuv                                        (86/104) Installing: sass, rpact, httpuv, tibble                                (86/104) Installing: sass, rpact, httpuv, tibble                                                                                                              [32m✔[0m tibble 3.2.1                             [built from source in 3.7s]
+#10 215.4   (87/104) Installing: sass, rpact, httpuv                                        (87/104) Installing: sass, rpact, httpuv, ragg                                  (87/104) Installing: sass, rpact, httpuv, ragg                                  (87/104) Installing: sass, rpact, httpuv, ragg                                  (87/104) Installing: sass, rpact, httpuv, ragg                                  (87/104) Installing: sass, rpact, httpuv, ragg                                  (87/104) Installing: sass, rpact, httpuv, ragg                                  (87/104) Installing: sass, rpact, httpuv, ragg                                  (87/104) Installing: sass, rpact, httpuv, ragg                                  (87/104) Installing: sass, rpact, httpuv, ragg                                                                                                                [32m✔[0m httpuv 1.6.15                            [built from source in 51s]
+#10 250.9   (88/104) Installing: sass, rpact, ragg                                          (88/104) Installing: sass, rpact, ragg, roxygen2                                (88/104) Installing: sass, rpact, ragg, roxygen2                                (88/104) Installing: sass, rpact, ragg, roxygen2                                                                                                              [32m✔[0m roxygen2 7.3.2                           [built from source in 10s]
+#10 261.3   (89/104) Installing: sass, rpact, ragg                                          (89/104) Installing: sass, rpact, ragg, testthat                                (89/104) Installing: sass, rpact, ragg, testthat                                                                                                              [32m✔[0m sass 0.4.9                               [built from source in 1.6m]
+#10 263.7   (90/104) Installing: rpact, ragg, testthat                                      (90/104) Installing: rpact, ragg, testthat, dplyr                               (90/104) Installing: rpact, ragg, testthat, dplyr                               (90/104) Installing: rpact, ragg, testthat, dplyr                                                                                                             [32m✔[0m dplyr 1.2.1                              [built from source in 10s]
+#10 273.8   (91/104) Installing: rpact, ragg, testthat                                      (91/104) Installing: rpact, ragg, testthat, ggplot2                             (91/104) Installing: rpact, ragg, testthat, ggplot2                             (91/104) Installing: rpact, ragg, testthat, ggplot2                             (91/104) Installing: rpact, ragg, testthat, ggplot2                                                                                                           [32m✔[0m testthat 3.2.3                           [built from source in 26s]
+#10 287.4   (92/104) Installing: rpact, ragg, ggplot2                                       (92/104) Installing: rpact, ragg, ggplot2, bslib                                (92/104) Installing: rpact, ragg, ggplot2, bslib                                                                                                              [32m✔[0m rpact 4.4.0                              [built from source in 1.7m]
+#10 288.0   (93/104) Installing: ragg, ggplot2, bslib                                       (93/104) Installing: ragg, ggplot2, bslib, tidyr                                (93/104) Installing: ragg, ggplot2, bslib, tidyr                                                                                                              [32m✔[0m ggplot2 3.5.1                            [built from source in 17s]
+#10 291.0   (94/104) Installing: ragg, bslib, tidyr                                         (94/104) Installing: ragg, bslib, tidyr                                                                                                                       [32m✔[0m bslib 0.9.0                              [built from source in 5.4s]
+#10 292.8   (95/104) Installing: ragg, tidyr                                                (95/104) Installing: ragg, tidyr, rmarkdown, shiny                              (95/104) Installing: ragg, tidyr, rmarkdown, shiny                              (95/104) Installing: ragg, tidyr, rmarkdown, shiny                                                                                                            [32m✔[0m tidyr 1.3.2                              [built from source in 8.7s]
+#10 296.8   (96/104) Installing: ragg, rmarkdown, shiny                                     (96/104) Installing: ragg, rmarkdown, shiny                                                                                                                   [32m✔[0m rmarkdown 2.29                           [built from source in 5.3s]
+#10 298.2   (97/104) Installing: ragg, shiny                                                (97/104) Installing: ragg, shiny, htmlwidgets                                   (97/104) Installing: ragg, shiny, htmlwidgets                                                                                                                 [32m✔[0m htmlwidgets 1.6.4                        [built from source in 2.3s]
+#10 300.5   (98/104) Installing: ragg, shiny                                                (98/104) Installing: ragg, shiny, reactable                                     (98/104) Installing: ragg, shiny, reactable                                                                                                                   [32m✔[0m reactable 0.4.5                          [built from source in 2.5s]
+#10 303.1   (99/104) Installing: ragg, shiny                                                (99/104) Installing: ragg, shiny, gt                                            (99/104) Installing: ragg, shiny, gt                                            (99/104) Installing: ragg, shiny, gt                                            (99/104) Installing: ragg, shiny, gt                                                                                                                          [32m✔[0m shiny 1.10.0                             [built from source in 21s]
+#10 313.5   (100/104) Installing: ragg, gt                                                  (100/104) Installing: ragg, gt                                                  (100/104) Installing: ragg, gt                                                  (100/104) Installing: ragg, gt                                                                                                                                [32m✔[0m gt 1.4.0                                 [built from source in 25s]
+#10 328.3   (101/104) Installing: ragg                                                      (101/104) Installing: ragg, gsDesign                                            (101/104) Installing: ragg, gsDesign                                            (101/104) Installing: ragg, gsDesign                                            (101/104) Installing: ragg, gsDesign                                                                                                                          [32m✔[0m gsDesign 3.11.0                          [built from source in 15s]
+#10 343.7   (102/104) Installing: ragg                                                      (102/104) Installing: ragg                                                      (102/104) Installing: ragg                                                      (102/104) Installing: ragg                                                      (102/104) Installing: ragg                                                                                                                                    [32m✔[0m ragg 1.3.3                               [built from source in 2.4m]
+#10 359.3   (103/104) Installing: pkgdown                                                   (103/104) Installing: pkgdown                                                   (103/104) Installing: pkgdown                                                                                                                                 [32m✔[0m pkgdown 2.1.1                            [built from source in 5.7s]
+#10 365.2 Successfully installed 104 packages in 330 seconds.
+#10 365.2 [?25h
+#10 DONE 365.4s
+
+#11 [stage-0 7/8] COPY . .
+#11 DONE 19.8s
+
+#12 [stage-0 8/8] RUN R CMD build . && R CMD INSTALL --install-tests OpenTrialDesign_0.2.0.tar.gz     && Rscript -e 'library(OpenTrialDesign); stopifnot(sample_size(trial_spec())$data$n_per_arm == 64)'     && useradd --uid 10001 --create-home otd && chmod -R a+rX /opt/otd-library /opt/OpenTrialDesign
+#12 14.14 * checking for file ‘./DESCRIPTION’ ... OK
+#12 14.15 * preparing ‘OpenTrialDesign’:
+#12 14.15 * checking DESCRIPTION meta-information ... OK
+#12 14.28 * installing the package to build vignettes
+#12 16.38 * creating vignettes ... OK
+#12 21.13 * checking for LF line-endings in source and make files and shell scripts
+#12 21.13 * checking for empty or unneeded directories
+#12 21.21 * building ‘OpenTrialDesign_0.2.0.tar.gz’
+#12 21.24 
+#12 21.55 * installing to library ‘/opt/otd-library’
+#12 21.56 * installing *source* package ‘OpenTrialDesign’ ...
+#12 21.56 ** this is package ‘OpenTrialDesign’ version ‘0.2.0’
+#12 21.56 ** using staged installation
+#12 21.58 ** R
+#12 21.58 ** exec
+#12 21.58 ** inst
+#12 21.59 ** tests
+#12 21.59 ** byte-compile and prepare package for lazy loading
+#12 22.21 ** help
+#12 22.26 *** installing help indices
+#12 22.29 ** building package indices
+#12 22.48 ** installing vignettes
+#12 22.48 ** testing if installed package can be loaded from temporary location
+#12 22.63 ** testing if installed package can be loaded from final location
+#12 22.78 ** testing if installed package keeps a record of temporary installation path
+#12 22.78 * DONE (OpenTrialDesign)
+#12 DONE 23.0s
+
+#13 exporting to image
+#13 exporting layers
+#13 exporting layers 7.5s done
+#13 writing image sha256:ad2eae339a175a97d1ecde44163da375970a5ccb34ef2cd75a77e9a5de3429e2 done
+#13 naming to docker.io/library/opentrialdesign:0.2.0 done
+#13 DONE 7.5s

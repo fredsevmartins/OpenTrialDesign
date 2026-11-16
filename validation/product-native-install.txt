@@ -1,0 +1,45 @@
+- Consent to use renv has already been provided -- nothing to do.
+The following required system packages are not installed:
+- libfontconfig1-dev  [required by systemfonts]
+- libfreetype6-dev    [required by ragg, systemfonts, textshaping]
+- libfribidi-dev      [required by textshaping]
+- libharfbuzz-dev     [required by textshaping]
+- libicu-dev          [required by stringi]
+- libjpeg-dev         [required by ragg]
+- libnode-dev         [required by V8]
+- libpng-dev          [required by ragg]
+- libtiff-dev         [required by ragg]
+- libxml2-dev         [required by xml2]
+The R packages depending on these system packages may fail to install.
+
+An administrator can install these packages with:
+- sudo apt install libfontconfig1-dev libfreetype6-dev libfribidi-dev libharfbuzz-dev libicu-dev libjpeg-dev libnode-dev libpng-dev libtiff-dev libxml2-dev
+
+- The library is already synchronized with the lockfile.
+* checking for file ‘./DESCRIPTION’ ... OK
+* preparing ‘OpenTrialDesign’:
+* checking DESCRIPTION meta-information ... OK
+* installing the package to build vignettes
+* creating vignettes ... OK
+* checking for LF line-endings in source and make files and shell scripts
+* checking for empty or unneeded directories
+* building ‘OpenTrialDesign_0.2.0.tar.gz’
+
+* installing *source* package ‘OpenTrialDesign’ ...
+** this is package ‘OpenTrialDesign’ version ‘0.2.0’
+** using staged installation
+** R
+** exec
+** inst
+** tests
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (OpenTrialDesign)
+Installed in /workspace/toolchain/cache/R/OpenTrialDesign/library/0.2.0/R-4.5.0/x86_64-pc-linux-gnu
+Start: Rscript scripts/start-product.R

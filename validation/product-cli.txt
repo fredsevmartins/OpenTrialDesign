@@ -1,0 +1,17 @@
+fixed sample size 
+Engine: stats 
+Method: Two-sample t test power calculation 
+$n_per_arm
+[1] 64
+
+$n_total
+[1] 128
+
+$unrounded_n_per_arm
+[1] 63.76561
+
+$achieved_power
+[1] 0.8014596
+
+Validation: execution is not independent scientific validation 
+Bundle written to /workspace/OpenTrialDesign/validation/product-cli.zip

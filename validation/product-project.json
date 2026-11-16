@@ -1,0 +1,16 @@
+{
+  "format": "OpenTrialDesign-project",
+  "schema_version": 1,
+  "created_with": "0.2.0",
+  "title": "Fixed trial sample size",
+  "workflow": "fixed_sample_size",
+  "parameters": {
+    "endpoint": "normal",
+    "effect": 0.5,
+    "sd": 1,
+    "p_control": 0.29999999999999999,
+    "alpha": 0.050000000000000003,
+    "power": 0.80000000000000004,
+    "alternative": "two.sided"
+  }
+}

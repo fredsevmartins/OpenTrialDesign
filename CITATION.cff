@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "Please cite this software and the underlying statistical engines."
+title: OpenTrialDesign
+version: 0.2.0
+type: software
+authors:
+  - name: OpenTrialDesign contributors
+license: MIT
+repository-code: https://github.com/fredsevmartins/OpenTrialDesign

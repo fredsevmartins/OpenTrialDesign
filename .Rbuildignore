@@ -1,0 +1,13 @@
+^docs$
+^validation$
+^\.github$
+^CITATION\.cff$
+^_pkgdown\.yml$
+^renv$
+^renv\.lock$
+^\.Rprofile$
+^scripts$
+^Dockerfile$
+^compose\.yaml$
+^deployment$
+^\.dockerignore$

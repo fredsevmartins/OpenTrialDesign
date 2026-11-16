@@ -1,0 +1,73 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 2.03kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/rocker/r-ver:4.5.0@sha256:f97b4944221bdc309583dfbc37dc0bf2654cfbd1f330cded047aeec4ae5df7e3
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 150B done
+#3 DONE 0.0s
+
+#4 [stage-0 1/8] FROM docker.io/rocker/r-ver:4.5.0@sha256:f97b4944221bdc309583dfbc37dc0bf2654cfbd1f330cded047aeec4ae5df7e3
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 29.09kB done
+#5 DONE 0.0s
+
+#6 [stage-0 5/8] RUN --mount=type=secret,id=extra_ca,required=false     if [ -f /run/secrets/extra_ca ]; then cat /run/secrets/extra_ca >> /etc/ssl/certs/ca-certificates.crt; fi
+#6 CACHED
+
+#7 [stage-0 4/8] COPY renv.lock ./
+#7 CACHED
+
+#8 [stage-0 2/8] RUN apt-get update && apt-get install -y --no-install-recommends     ca-certificates curl pandoc pkg-config libcurl4-openssl-dev libssl-dev     libxml2-dev libicu-dev libfontconfig1-dev libfreetype6-dev libharfbuzz-dev     libfribidi-dev libpng-dev libjpeg-dev libtiff-dev libnode-dev     texlive-latex-base texlive-latex-recommended texlive-fonts-recommended lmodern     && rm -rf /var/lib/apt/lists/*
+#8 CACHED
+
+#9 [stage-0 3/8] WORKDIR /opt/OpenTrialDesign
+#9 CACHED
+
+#10 [stage-0 6/8] RUN mkdir -p /opt/otd-library && Rscript -e 'options(Ncpus=2); install.packages("renv", repos="https://cloud.r-project.org"); renv::consent(provided=TRUE); renv::restore(lockfile="renv.lock", library="/opt/otd-library", prompt=FALSE)'
+#10 CACHED
+
+#11 [stage-0 7/8] COPY . .
+#11 DONE 19.2s
+
+#12 [stage-0 8/8] RUN R CMD build . && R CMD INSTALL --install-tests OpenTrialDesign_0.2.0.tar.gz     && Rscript -e 'library(OpenTrialDesign); stopifnot(sample_size(trial_spec())$data$n_per_arm == 64)'     && useradd --uid 10001 --create-home otd && chmod -R a+rX /opt/otd-library /opt/OpenTrialDesign
+#12 19.45 * checking for file ‘./DESCRIPTION’ ... OK
+#12 19.46 * preparing ‘OpenTrialDesign’:
+#12 19.47 * checking DESCRIPTION meta-information ... OK
+#12 19.60 * installing the package to build vignettes
+#12 22.07 * creating vignettes ... OK
+#12 27.61 * checking for LF line-endings in source and make files and shell scripts
+#12 27.61 * checking for empty or unneeded directories
+#12 27.61 * building ‘OpenTrialDesign_0.2.0.tar.gz’
+#12 27.66 
+#12 27.91 * installing to library ‘/opt/otd-library’
+#12 27.92 * installing *source* package ‘OpenTrialDesign’ ...
+#12 27.92 ** this is package ‘OpenTrialDesign’ version ‘0.2.0’
+#12 27.92 ** using staged installation
+#12 27.93 ** R
+#12 27.94 ** exec
+#12 27.94 ** inst
+#12 27.95 ** tests
+#12 27.95 ** byte-compile and prepare package for lazy loading
+#12 28.76 ** help
+#12 28.86 *** installing help indices
+#12 28.89 ** building package indices
+#12 29.25 ** installing vignettes
+#12 29.28 ** testing if installed package can be loaded from temporary location
+#12 29.47 ** testing if installed package can be loaded from final location
+#12 29.62 ** testing if installed package keeps a record of temporary installation path
+#12 29.62 * DONE (OpenTrialDesign)
+#12 DONE 29.9s
+
+#13 exporting to image
+#13 exporting layers
+#13 exporting layers 1.1s done
+#13 writing image sha256:2c62b7cea4e3bed77b9a8561e919d3168077f571ad061354155347e4f9f53bda done
+#13 naming to docker.io/library/opentrialdesign:0.2.0 done
+#13 DONE 1.1s

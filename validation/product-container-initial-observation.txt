@@ -1,0 +1,15 @@
+The first container test invocation reported one failure while the browser and
+startup checks ran concurrently. Default testthat diagnostics then attempted
+to write testthat-problems.rds in a read-only working directory and could not
+produce their diagnostic file. The original assertion detail was unavailable.
+Detailed reruns with reporter=summary passed all 227 expectations, both in /tmp
+and in the original read-only working directory. A further default-reporter run
+in /tmp also passed all 227 expectations and PDF generation. The initial failure
+is not relabeled as a pass; subsequent logs record their actual outcomes.
+
+The local Docker daemon uses the VFS storage driver; repeated intermediate
+filesystem copies exhausted the 32-GB workspace. Task-specific unused image
+7e115d3d34752fc0ddacd2d09c73be8bd4872aa678b804b716bf88b2ac14ca24
+and task-created build cache were removed. The final source-readable permission
+change was applied as a runtime layer on the already tested image, matching the
+permission change in the standard Dockerfile. CI builds the standard Dockerfile.

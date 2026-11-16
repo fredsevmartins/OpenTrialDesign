@@ -1,0 +1,3 @@
+ Container opentrialdesign-opentrialdesign-1  Creating
+ Container opentrialdesign-opentrialdesign-1  Error response from daemon: mkdir /home/dockerd/.local/share/docker/vfs/dir/b109b59255bc08ac25466b55cf10b14572e967409c1b8875117f52e0088169fd/var/log/journal: no space left on device
+Error response from daemon: mkdir /home/dockerd/.local/share/docker/vfs/dir/b109b59255bc08ac25466b55cf10b14572e967409c1b8875117f52e0088169fd/var/log/journal: no space left on device

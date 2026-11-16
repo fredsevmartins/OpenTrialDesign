@@ -1,0 +1,16 @@
+Run: https://github.com/fredsevmartins/OpenTrialDesign/actions/runs/43780493929
+Test harness assumed active_job was still present, although a fast completed job could already be harvested.
+Assertions remain required; the harness now waits only when a job still exists.
+2026-11-16T00:30:13.1091224Z   [ FAIL 2 | WARN 0 | SKIP 0 | PASS 233 ]
+2026-11-16T00:30:19.6085423Z [ FAIL 2 | WARN 0 | SKIP 0 | PASS 233 ]
+2026-11-16T00:30:19.6087387Z ── Error ('test-presentation.R:32:5'): Shiny server delegates calculations to shared API ──
+2026-11-16T00:30:19.6088822Z Error in `rlang::eval_tidy(quosure, mask, rlang::caller_env())`: attempt to apply non-function
+2026-11-16T00:30:19.6106747Z ── Error ('test-presentation.R:60:5'): Shiny server executes sequential adaptive survival and library workflows ──
+2026-11-16T00:30:19.6108038Z Error in `rlang::eval_tidy(quosure, mask, rlang::caller_env())`: attempt to apply non-function
+2026-11-16T00:30:19.6126384Z [ FAIL 2 | WARN 0 | SKIP 0 | PASS 233 ]
+2026-11-16T00:30:20.0251865Z [ FAIL 2 | WARN 0 | SKIP 0 | PASS 233 ]
+2026-11-16T00:30:20.0254861Z ── Error ('test-presentation.R:32:5'): Shiny server delegates calculations to shared API ──
+2026-11-16T00:30:20.0256563Z Error in `rlang::eval_tidy(quosure, mask, rlang::caller_env())`: attempt to apply non-function
+2026-11-16T00:30:20.0282896Z ── Error ('test-presentation.R:60:5'): Shiny server executes sequential adaptive survival and library workflows ──
+2026-11-16T00:30:20.0287408Z Error in `rlang::eval_tidy(quosure, mask, rlang::caller_env())`: attempt to apply non-function
+2026-11-16T00:30:20.0303315Z [ FAIL 2 | WARN 0 | SKIP 0 | PASS 233 ]

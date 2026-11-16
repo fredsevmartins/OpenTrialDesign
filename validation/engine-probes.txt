@@ -1,0 +1,195 @@
+Installation qualification for rpact 4.4.0 has not yet been performed.
+Please run testPackage() before using the package in GxP relevant environments.
+Design parameters and output of inverse normal combination test design:
+
+User defined parameters:
+  Type of design                               : O'Brien & Fleming type alpha spending 
+
+Derived from user defined parameters:
+  Maximum number of stages                     : 2 
+  Stages                                       : 1, 2 
+  Futility bounds (non-binding)                : -Inf 
+
+Default parameters:
+  Information rates                            : 0.500, 1.000 
+  Significance level                           : 0.0250 
+  Type II error rate                           : 0.2000 
+  Binding futility                             : FALSE 
+  Test                                         : one-sided 
+  Tolerance                                    : 1e-08 
+  Type of beta spending                        : none 
+
+Output:
+  Cumulative alpha spending                    : 0.001525, 0.025000 
+  Critical values                              : 2.963, 1.969 
+  Stage levels (one-sided)                     : 0.001525, 0.024500 
+
+Simulation of means (inverse normal combination test design):
+
+Design parameters:
+  Information rates                            : 0.500, 1.000 
+  Critical values                              : 2.963, 1.969 
+  Futility bounds (non-binding)                : -Inf 
+  Cumulative alpha spending                    : 0.001525, 0.025000 
+  Local one-sided significance levels          : 0.001525, 0.024500 
+  Significance level                           : 0.0250 
+  Test                                         : one-sided 
+
+User defined parameters:
+  Maximum number of iterations                 : 100 
+  Seed                                         : 42 
+  Conditional power                            : 0.8 
+  Maximum number of subjects per stage         : 80, 240 
+  Minimum number of subjects per stage         : 80, 40 
+  Planned cumulative subjects                  : 80, 160 
+  Alternatives                                 : 0.0, 0.5 
+
+Default parameters:
+  Planned allocation ratio                     : 1 
+  Standard deviation                           : 1 
+  Direction upper                              : TRUE 
+  Treatment groups                             : 2 
+  Mean ratio                                   : FALSE 
+  Normal approximation                         : TRUE 
+  Theta H0                                     : 0 
+
+Results:
+  Iterations [1]                               : 100, 100 
+  Iterations [2]                               : 100, 80 
+  Overall reject                               : 0.0100, 0.9300 
+  Reject per stage [1]                         : 0.0000, 0.2000 
+  Reject per stage [2]                         : 0.0100, 0.7300 
+  Overall futility stop                        : 0.0000, 0.0000 
+  Futility stop per stage                      : 0.0000, 0.0000 
+  Early stop                                   : 0.0000, 0.2000 
+  Expected number of subjects                  : 310.9, 164 
+  Sample sizes [1]                             : 80, 80 
+  Sample sizes [2]                             : 230.9, 105 
+  Conditional power (achieved) [1]             : NA, NA 
+  Conditional power (achieved) [2]             : 0.1330, 0.7671 
+
+Legend:
+  [k]: values at stage k
+
+ [1] ".design"                     ".data"                      
+ [3] ".rawData"                    "maxNumberOfIterations"      
+ [5] "seed"                        "allocationRatioPlanned"     
+ [7] "conditionalPower"            "iterations"                 
+ [9] "futilityPerStage"            "futilityStop"               
+[11] "calcSubjectsFunction"        "expectedNumberOfSubjects"   
+[13] "maxNumberOfSubjectsPerStage" "minNumberOfSubjectsPerStage"
+[15] "plannedSubjects"             "stDev"                      
+[17] "stDevH1"                     "thetaH1"                    
+[19] "alternative"                 "conditionalPowerAchieved"   
+[21] "directionUpper"              "earlyStop"                  
+[23] "effect"                      "groups"                     
+[25] "meanRatio"                   "normalApproximation"        
+[27] "overallReject"               "rejectPerStage"             
+[29] "sampleSizes"                 "thetaH0"                    
+  stages alternative maxNumberOfIterations seed allocationRatioPlanned
+1      1         0.0                   100   42                      1
+2      1         0.5                   100   42                      1
+3      2         0.0                   100   42                      1
+4      2         0.5                   100   42                      1
+  conditionalPower maxNumberOfSubjectsPerStage minNumberOfSubjectsPerStage
+1              0.8                          80                          80
+2              0.8                         240                          40
+3              0.8                          80                          80
+4              0.8                         240                          40
+  plannedSubjects stDev directionUpper groups meanRatio normalApproximation
+1              80     1           TRUE      2     FALSE                TRUE
+2             160     1           TRUE      2     FALSE                TRUE
+3              80     1           TRUE      2     FALSE                TRUE
+4             160     1           TRUE      2     FALSE                TRUE
+  thetaH0 iterations overallReject rejectPerStage futilityStop futilityPerStage
+1       0        100          0.01           0.00            0                0
+2       0        100          0.93           0.20            0                0
+3       0        100          0.01           0.01            0               NA
+4       0         80          0.93           0.73            0               NA
+  earlyStop expectedNumberOfSubjects sampleSizes conditionalPowerAchieved
+1       0.0                 310.9164     80.0000                       NA
+2       0.2                 164.0383     80.0000                       NA
+3       0.0                 310.9164    230.9164                0.1329626
+4       0.2                 164.0383    105.0479                0.7670918
+Design plan parameters and output for survival data:
+
+Design parameters:
+  Critical values                              : 1.960 
+  Significance level                           : 0.0250 
+  Type II error rate                           : 0.2000 
+  Test                                         : one-sided 
+
+User defined parameters:
+  lambda(2)                                    : 0.0578 
+  Hazard ratio                                 : 0.700 
+  Accrual time                                 : 18.00 
+  Accrual intensity                            : 1.0 
+  Follow up time                               : 12.00 
+
+Default parameters:
+  Theta H0                                     : 1 
+  Type of computation                          : Schoenfeld 
+  Planned allocation ratio                     : 1 
+  kappa                                        : 1 
+  Piecewise survival times                     : 0.00 
+  Drop-out rate (1)                            : 0.000 
+  Drop-out rate (2)                            : 0.000 
+  Drop-out time                                : 12.00 
+
+Sample size and output:
+  Direction upper                              : FALSE 
+  median(1)                                    : 17.1 
+  median(2)                                    : 12.0 
+  lambda(1)                                    : 0.0404 
+  Number of events                             : 246.8 
+  Number of events fixed                       : 246.8 
+  Number of subjects fixed                     : 394.3 
+  Number of subjects fixed (1)                 : 197.1 
+  Number of subjects fixed (2)                 : 197.1 
+  Analysis time                                : 30.00 
+  Study duration                               : 30.00 
+  Critical values (treatment effect scale)     : 0.779 
+
+Legend:
+  (i): values of treatment arm i
+ [1] "thetaH0"                        "typeOfComputation"             
+ [3] "directionUpper"                 "pi1"                           
+ [5] "pi2"                            "median1"                       
+ [7] "median2"                        "lambda1"                       
+ [9] "lambda2"                        "hazardRatio"                   
+[11] "maxNumberOfSubjects"            "maxNumberOfSubjects1"          
+[13] "maxNumberOfSubjects2"           "numberOfSubjects"              
+[15] "numberOfSubjects1"              "numberOfSubjects2"             
+[17] "maxNumberOfEvents"              "allocationRatioPlanned"        
+[19] "optimumAllocationRatio"         "accountForObservationTimes"    
+[21] "eventTime"                      "accrualTime"                   
+[23] "totalAccrualTime"               "accrualIntensity"              
+[25] "accrualIntensityRelative"       "kappa"                         
+[27] "piecewiseSurvivalTime"          "followUpTime"                  
+[29] "dropoutRate1"                   "dropoutRate2"                  
+[31] "dropoutTime"                    "chi"                           
+[33] "expectedNumberOfEvents"         "eventsFixed"                   
+[35] "nFixed"                         "nFixed1"                       
+[37] "nFixed2"                        "overallReject"                 
+[39] "rejectPerStage"                 "futilityStop"                  
+[41] "futilityPerStage"               "earlyStop"                     
+[43] "informationRates"               "analysisTime"                  
+[45] "studyDurationH1"                "studyDuration"                 
+[47] "maxStudyDuration"               "singleEventsPerStage"          
+[49] "cumulativeEventsPerStage"       "expectedEventsH0"              
+[51] "expectedEventsH01"              "expectedEventsH1"              
+[53] "expectedNumberOfSubjectsH1"     "expectedNumberOfSubjects"      
+[55] "criticalValuesEffectScale"      "criticalValuesEffectScaleLower"
+[57] "criticalValuesEffectScaleUpper" "criticalValuesPValueScale"     
+[59] "futilityBoundsEffectScale"      "futilityBoundsEffectScaleLower"
+[61] "futilityBoundsEffectScaleUpper" "futilityBoundsPValueScale"     
+  stages hazardRatio thetaH0 typeOfComputation directionUpper  median1 median2
+1      1         0.7       1        Schoenfeld          FALSE 17.14286      12
+     lambda1    lambda2 maxNumberOfEvents allocationRatioPlanned kappa
+1 0.04043359 0.05776227          246.7871                      1     1
+  piecewiseSurvivalTime followUpTime dropoutRate1 dropoutRate2 dropoutTime
+1                     0           12            0            0          12
+  eventsFixed   nFixed  nFixed1  nFixed2 analysisTime studyDuration
+1    246.7871 394.2844 197.1422 197.1422           30            30
+  criticalValuesEffectScale
+1                 0.7791696

@@ -1,0 +1,3 @@
+"scenario","expected","observed","nsim","seed","mcse","lower","upper","tolerance","passed","method"
+"integer sequential equality null",0.025,0.0282,5000,2026,0.00234114331043616,0.0237886027258195,0.0331730420888625,0.00883176086632785,TRUE,"rpact normalApproximation=FALSE; actual integer information recalibrated; four theoretical MCSE"
+"integer sequential alternative",0.80603576955967,0.8008,5000,2026,0.00564835126386453,0.789455209829305,0.811792494580959,0.0223672694980873,TRUE,"rpact normalApproximation=FALSE; actual integer information recalibrated; four theoretical MCSE"

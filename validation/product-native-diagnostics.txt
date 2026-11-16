@@ -1,0 +1,17 @@
+[1] "/workspace/toolchain/cache/R/OpenTrialDesign/library/0.2.0/R-4.5.0/x86_64-pc-linux-gnu"
+[2] "/workspace/R-library"                                                                  
+[3] "/workspace/r-local/usr/lib/R/site-library"                                             
+[4] "/workspace/r-local/usr/lib/R/library"                                                  
+   capability available version minimum usable
+1       stats      TRUE   4.5.0    <NA>   TRUE
+2    survival      TRUE   3.8.3    <NA>   TRUE
+3     ggplot2      TRUE   3.5.1    <NA>   TRUE
+4    gsDesign      TRUE  3.11.0  3.11.0   TRUE
+5       rpact      TRUE   4.4.0   4.4.0   TRUE
+6     simsurv      TRUE   1.0.1   1.0.1   TRUE
+7       shiny      TRUE  1.10.0    <NA>   TRUE
+8       callr      TRUE   3.7.6   3.7.6   TRUE
+9         zip      TRUE   3.0.2   2.3.0   TRUE
+10  rmarkdown      TRUE    2.29    <NA>   TRUE
+11     Pandoc      TRUE    <NA>    <NA>   TRUE
+12      LaTeX      TRUE    <NA>    <NA>   TRUE

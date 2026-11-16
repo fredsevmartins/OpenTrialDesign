@@ -1,0 +1,14 @@
+Final review identified an event-calendar floating-point defect in the initial
+simulation implementation. Before correction, simulate_survival(50, events=40,
+nsim=20, seed=42) returned target_attainment=1 but mean_events=39.7.
+
+Cause: selecting the calendar event time as end, then comparing eventtime <=
+end-entry, can round end-entry below the triggering eventtime. Corrected to
+compare entry+eventtime <= end, using the same calendar scale as event selection.
+Observed event times are retained exactly for uncensored events. A regression
+requires target_attainment=1 and mean_events=40 in this deterministic experiment.
+
+Earlier broad execution checks did not detect this defect. Earlier passing
+logs do not validate that initial event-driven implementation. Current results
+must be regenerated and checked after correction. Negative dropout values
+arbitrarily close to zero are now also rejected explicitly.

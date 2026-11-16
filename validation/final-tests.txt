@@ -1,0 +1,48 @@
+✔ | F W  S  OK | Context
+
+⠏ |          0 | boundaries                                                     
+⠏ |         10 | boundaries                                                     
+⠹ |         13 | boundaries                                                     
+✔ |         18 | boundaries
+
+⠏ |          0 | engines                                                        
+⠋ |         11 | engines                                                        
+⠏ |         20 | engines                                                        
+⠦ |         27 | engines                                                        
+✔ |         40 | engines [1.3s]
+
+⠏ |          0 | examples                                                       
+⠋ |         31 | examples                                                       
+⠇ |         49 | examples                                                       
+⠦ |         67 | examples                                                       
+⠹ |         73 | examples                                                       
+⠴ |         76 | examples                                                       
+⠇ |         79 | examples                                                       
+✔ |         90 | examples [2.2s]
+
+⠏ |          0 | fixed                                                          
+⠴ |         16 | fixed                                                          
+✔ |         16 | fixed
+
+⠏ |          0 | presentation                                                   
+⠼ |          5 | presentation                                                   
+⠴ |          6 | presentation                                                   
+⠦ |          7 | presentation                                                   
+Attaching package: 'shiny'
+
+The following object is masked from 'package:OpenTrialDesign':
+
+    need
+
+
+⠧ |          8 | presentation                                                   
+⠇ |          9 | presentation                                                   
+⠏ |         10 | presentation                                                   
+⠙ |         12 | presentation                                                   
+⠼ |         15 | presentation                                                   
+✔ |         17 | presentation [2.8s]
+
+══ Results ═════════════════════════════════════════════════════════════════════
+Duration: 7.2 s
+
+[ FAIL 0 | WARN 0 | SKIP 0 | PASS 181 ]

@@ -1,0 +1,24 @@
+First time using roxygen2. Upgrading automatically...
+Setting `RoxygenNote` to "7.3.2"
+ℹ Loading OpenTrialDesign
+Writing 'NAMESPACE'
+Writing 'sample_size.Rd'
+Writing 'trial_power.Rd'
+Writing 'simulate_trial.Rd'
+Writing 'trial_spec.Rd'
+
+Attaching package: ‘testthat’
+
+The following object is masked from ‘package:OpenTrialDesign’:
+
+    fail
+
+✔ | F W  S  OK | Context
+
+⠏ |          0 | fixed                                                          
+⠋ |         11 | fixed                                                          
+⠴ |         16 | fixed                                                          
+✔ |         16 | fixed
+
+══ Results ═════════════════════════════════════════════════════════════════════
+[ FAIL 0 | WARN 0 | SKIP 0 | PASS 16 ]

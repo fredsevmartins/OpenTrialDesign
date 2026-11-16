@@ -1,0 +1,49 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.97kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/rocker/r-ver:4.5.0@sha256:f97b4944221bdc309583dfbc37dc0bf2654cfbd1f330cded047aeec4ae5df7e3
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 150B done
+#3 DONE 0.0s
+
+#4 [stage-0 1/8] FROM docker.io/rocker/r-ver:4.5.0@sha256:f97b4944221bdc309583dfbc37dc0bf2654cfbd1f330cded047aeec4ae5df7e3
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 13.42kB 0.0s done
+#5 DONE 0.0s
+
+#6 [stage-0 4/8] COPY renv.lock ./
+#6 CACHED
+
+#7 [stage-0 2/8] RUN apt-get update && apt-get install -y --no-install-recommends     ca-certificates curl pandoc pkg-config libcurl4-openssl-dev libssl-dev     libxml2-dev libicu-dev libfontconfig1-dev libfreetype6-dev libharfbuzz-dev     libfribidi-dev libpng-dev libjpeg-dev libtiff-dev libnode-dev     texlive-latex-base texlive-latex-recommended texlive-fonts-recommended lmodern     && rm -rf /var/lib/apt/lists/*
+#7 CACHED
+
+#8 [stage-0 3/8] WORKDIR /opt/OpenTrialDesign
+#8 CACHED
+
+#9 [stage-0 5/8] RUN --mount=type=secret,id=extra_ca,required=false     if [ -f /run/secrets/extra_ca ]; then cat /run/secrets/extra_ca >> /etc/ssl/certs/ca-certificates.crt; fi
+#9 CACHED
+
+#10 [stage-0 6/8] RUN mkdir -p /opt/otd-library && Rscript -e 'options(Ncpus=2); install.packages("renv", repos="https://cloud.r-project.org"); renv::consent(provided=TRUE); renv::restore(lockfile="renv.lock", library="/opt/otd-library", prompt=FALSE)'
+#10 CACHED
+
+#11 [stage-0 7/8] COPY . .
+#11 ERROR: failed to prepare vl0uuhn6iof9pcyuwxqd46jc2 as ipjh6290q2l8o25m572iv5fw6: mkdir /home/dockerd/.local/share/docker/vfs/dir/ipjh6290q2l8o25m572iv5fw6/usr/local: no space left on device
+------
+ > [stage-0 7/8] COPY . .:
+------
+Dockerfile:20
+--------------------
+  18 |         if [ -f /run/secrets/extra_ca ]; then cat /run/secrets/extra_ca >> /etc/ssl/certs/ca-certificates.crt; fi
+  19 |     RUN mkdir -p /opt/otd-library && Rscript -e 'options(Ncpus=2); install.packages("renv", repos="https://cloud.r-project.org"); renv::consent(provided=TRUE); renv::restore(lockfile="renv.lock", library="/opt/otd-library", prompt=FALSE)'
+  20 | >>> COPY . .
+  21 |     RUN R CMD build . && R CMD INSTALL --install-tests OpenTrialDesign_0.2.0.tar.gz \
+  22 |         && Rscript -e 'library(OpenTrialDesign); stopifnot(sample_size(trial_spec())$data$n_per_arm == 64)' \
+--------------------
+ERROR: failed to build: failed to solve: ResourceExhausted: failed to prepare vl0uuhn6iof9pcyuwxqd46jc2 as ipjh6290q2l8o25m572iv5fw6: mkdir /home/dockerd/.local/share/docker/vfs/dir/ipjh6290q2l8o25m572iv5fw6/usr/local: no space left on device
