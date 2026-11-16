@@ -1,0 +1,34 @@
+{
+  "version": "0.4.0",
+  "source_commit": "6a7564be62553aed96e67dbc17e116ad5bb5d08c",
+  "verification": "local execution; hosted CI not executed",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "dependency_versions": "all locked installed versions matched; not a clean-OS restore",
+  "r_cmd_check": "Status: OK",
+  "unit_tests": {
+    "fail": 0,
+    "warn": 0,
+    "skip": 0,
+    "pass": 321
+  },
+  "browser_workflows": {
+    "product-browser.json": 16,
+    "improvements-browser.json": 7,
+    "method-browser.json": 9
+  },
+  "scientific_reference_rows": {
+    "scientific-reference.csv": 14,
+    "product-scientific-reference.csv": 2,
+    "method-reference.csv": 14
+  },
+  "not_verified": [
+    "Windows",
+    "macOS",
+    "clean-container execution",
+    "new published container image",
+    "independent scientific qualification"
+  ],
+  "release_tag_commit": "1ed5dbe73754ec93e6c90bc15d276c3dd729cdae",
+  "verified_source_tree": "f984b626eb4f37c6768019531483175ebc561b7a",
+  "release_tree_matches_verified_source": true
+}

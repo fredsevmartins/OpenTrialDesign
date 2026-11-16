@@ -130,3 +130,8 @@ records actual Linux verification and missing platform/container checks; it does
 not disable future CI or claim regulatory qualification. The 0.4.0 manual release
 has no new prebuilt container image. Build its Dockerfile separately if needed;
 the existing 0.3.0 registry image does not contain the new methods.
+
+The 0.4.0 manual distribution files are stored in dist/v0.4.0 because this
+session's uploads.github.com asset endpoint rejected credentials (HTTP 401),
+although repository Git/REST writes succeeded. GitHub release links point to
+these immutable committed files; checksums verify their unchanged content.

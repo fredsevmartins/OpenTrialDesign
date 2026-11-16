@@ -5,6 +5,15 @@ A reproducible R package and browser application for clinical trial planning
 and simulation, version 0.4.0. The statistical core is independent of Shiny.
 It delegates calculations to stats, gsDesign, rpact, survival and simsurv.
 
+## Local-validation prerelease 0.4.0
+
+The maintainer authorized proceeding without hosted CI after the account was
+blocked by GitHub billing/spending limits. Download the package, documentation,
+execution evidence and SHA256SUMS from [dist/v0.4.0](dist/v0.4.0).
+Verification is local Linux execution only; Windows, macOS and clean-container
+checks are not claimed. There is no new prebuilt 0.4.0 container image.
+The release's verification.json records the exact tested source and limitations.
+
 ## Start the product
 
 With Docker: `docker compose up --build -d`, then open **http://localhost:3838**.
