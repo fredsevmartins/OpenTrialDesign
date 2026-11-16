@@ -31,7 +31,6 @@ Reading man/render_report.Rd
 Reading man/result_table.Rd
 Reading man/run_app.Rd
 Reading man/run_example.Rd
-Writing `reference/run_example.html`
 Reading man/runtime_diagnostics.Rd
 Reading man/sample_size.Rd
 Reading man/sequential_design.Rd
@@ -49,9 +48,7 @@ Reading man/trial_spec.Rd
 Reading man/write_project.Rd
 ── Building articles ───────────────────────────────────────────────────────────
 Reading vignettes/user-guide.Rmd
-Writing `articles/user-guide.html`
 ── Building news ───────────────────────────────────────────────────────────────
-Writing `news/index.html`
 ── Building sitemap ────────────────────────────────────────────────────────────
 ── Building search index ───────────────────────────────────────────────────────
 ── Checking for problems ───────────────────────────────────────────────────────

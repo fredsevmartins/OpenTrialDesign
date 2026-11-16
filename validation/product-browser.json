@@ -1,11 +1,19 @@
 {
   "checks": [
     {
+      "workflow": "hidden-tab calculation freezes parameters at click time",
+      "passed": true
+    },
+    {
       "workflow": "fixed planning and achieved power",
       "passed": true
     },
     {
       "workflow": "invalid scientific input and recovery without session disconnect",
+      "passed": true
+    },
+    {
+      "workflow": "normal-only procedures reject binary endpoint controls",
       "passed": true
     },
     {

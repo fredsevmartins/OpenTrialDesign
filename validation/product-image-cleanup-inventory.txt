@@ -1,0 +1,6 @@
+REPOSITORY        TAG       IMAGE ID                                                                  CREATED          SIZE
+<none>            <none>    sha256:8d161adf037dbd012b0f28027ed5d1b9c843ff6f0f0c1ceb440a38081c1348c6   16 minutes ago   2.38GB
+<none>            <none>    sha256:a5230564d3f8acf2a38d04e325a5a3ebde7d39bb5281190c0861e8b84f7544ba   16 minutes ago   2.38GB
+opentrialdesign   0.2.0     sha256:7c088f83acfda809488a03381ed5be2c183298defad8cb3798386819725188f5   16 minutes ago   2.38GB
+<none>            <none>    sha256:3c7bbe7d1c60a1e5a4353d3c889e7e0baed436a1c3fb1b86ab5b97820a10706f   29 minutes ago   2.38GB
+rocker/r-ver      4.5.0     sha256:2ce42f88d12012b1cf39ab691893a70ac09e392b0984f683e6989b18ad7ec146   17 months ago    924MB

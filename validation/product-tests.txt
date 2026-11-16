@@ -1,32 +1,29 @@
 ✔ | F W  S  OK | Context
 
 ⠏ |          0 | boundaries                                                     
-⠴ |          6 | boundaries                                                     
+⠋ |          1 | boundaries                                                     
 ⠏ |         10 | boundaries                                                     
 ⠹ |         13 | boundaries                                                     
 ✔ |         18 | boundaries
 
 ⠏ |          0 | engines                                                        
-⠏ |         10 | engines                                                        
-⠼ |         15 | engines                                                        
+⠋ |         11 | engines                                                        
 ⠏ |         20 | engines                                                        
 ⠦ |         27 | engines                                                        
-⠴ |         36 | engines                                                        
-✔ |         40 | engines [1.2s]
+⠇ |         39 | engines                                                        
+✔ |         40 | engines
 
 ⠏ |          0 | examples                                                       
-⠸ |          4 | examples                                                       
 ⠴ |         26 | examples                                                       
-⠋ |         41 | examples                                                       
-⠼ |         55 | examples                                                       
-⠋ |         61 | examples                                                       
+⠧ |         28 | examples                                                       
+⠴ |         46 | examples                                                       
+⠸ |         64 | examples                                                       
 ⠹ |         73 | examples                                                       
 ⠴ |         76 | examples                                                       
 ⠇ |         79 | examples                                                       
-✔ |         90 | examples [3.5s]
+✔ |         90 | examples [2.7s]
 
 ⠏ |          0 | fixed                                                          
-⠙ |         12 | fixed                                                          
 ⠴ |         16 | fixed                                                          
 ✔ |         16 | fixed
 
@@ -49,21 +46,22 @@ The following object is masked from 'package:OpenTrialDesign':
 ⠹ |         13 | presentation                                                   
 ⠸ |         14 | presentation                                                   
 ⠼ |         15 | presentation                                                   
-⠴ |         16 | presentation                                                   
-✔ |         17 | presentation [9.9s]
+⠧ |         18 | presentation                                                   
+⠋ |         21 | presentation                                                   
+⠹ |         23 | presentation                                                   
+✔ |         25 | presentation [9.6s]
 
 ⠏ |          0 | product                                                        
-⠇ |          9 | product                                                        
+⠏ |         10 | product                                                        
 ⠋ |         11 | product                                                        
 ⠹ |         13 | product                                                        
-⠧ |         18 | product                                                        
+⠴ |         16 | product                                                        
 ⠸ |         24 | product                                                        
 ⠴ |         36 | product                                                        
-⠋ |         41 | product                                                        
 ⠴ |         46 | product                                                        
-✔ |         46 | product [1.8s]
+✔ |         46 | product [1.6s]
 
 ══ Results ═════════════════════════════════════════════════════════════════════
-Duration: 17.9 s
+Duration: 15.9 s
 
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 227 ]
+[ FAIL 0 | WARN 0 | SKIP 0 | PASS 235 ]

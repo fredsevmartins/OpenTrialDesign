@@ -10,7 +10,7 @@ It delegates calculations to stats, gsDesign, rpact, survival and simsurv.
 With Docker: `docker compose up --build -d`, then open **http://localhost:3838**.
 The default deployment stays on your computer; it does not expose a public site.
 
-With R: install R and Pandoc, run `Rscript scripts/install-product.R`, then
+With R: install R >= 4.5 and Pandoc, run `Rscript scripts/install-product.R`, then
 `OpenTrialDesign::run_app()`. The installer restores locked dependencies,
 builds the guide and installs the package. PDF additionally requires LaTeX.
 See [deployment and recovery instructions](deployment/README.md).

@@ -53,7 +53,7 @@ ui <- fluidPage(
         verbatimTextOutput("sequential_result"), plotOutput("sequential_plot"),
         tableOutput("seqsample_table"), verbatimTextOutput("seqsample_result")),
       tabPanel("Adaptive designs", h3("Two-stage inverse-normal adaptation"),
-        p("Prespecified combination weights and native conditional-power resizing. Both equality-null and alternative scenarios are evaluated."),
+        p("One-sided positive normal-mean superiority with common SD. Prespecified combination weights and native conditional-power resizing. Both equality-null and alternative scenarios are evaluated; the fixed-design alternative selector does not change this procedure."),
         numericInput("stage1", "First-stage total enrollment", 80, min=4, step=2),
         numericInput("planned", "Initially planned total enrollment", 160, min=8, step=2),
         numericInput("min2", "Minimum additional stage-two enrollment", 40, min=4, step=2),
@@ -120,14 +120,29 @@ server <- function(input, output, session) {
     accrual=value(input$accrual,18), followup=value(input$followup,12), dropout=value(input$dropout,0),
     dropout_time=value(input$dropouttime,12), alpha=value(input$gsalpha,.025)))
   make_project <- function(workflow, parameters, title) trial_project(workflow,parameters,title)
-  fixed <- eventReactive(input$calculate, safe(execute_project(make_project("fixed_sample_size",fixed_parameters(),"Fixed trial sample size"))))
-  power_result <- eventReactive(input$calculate, safe(execute_project(make_project("fixed_power",
-    c(fixed_parameters(),list(n_per_arm=value(input$n,64))),"Fixed trial power"))))
-  seq <- eventReactive(input$sequential, safe(execute_project(make_project("sequential_design",
+  planning<-reactiveValues(fixed=NULL,power=NULL,seq=NULL,seqsample=NULL,survival=NULL,comparison=NULL)
+  planning_errors<-reactiveValues()
+  eager<-function(key,expression)tryCatch({
+    answer<-force(expression);planning[[key]]<-answer;planning_errors[[key]]<-NULL
+  },error=function(e){planning_errors[[key]]<-conditionMessage(e);showNotification(conditionMessage(e),type="error")})
+  planned<-function(key){
+    validate(shiny::need(is.null(planning_errors[[key]]),planning_errors[[key]]))
+    planning[[key]]
+  }
+  fixed<-reactive(planned("fixed"));power_result<-reactive(planned("power"))
+  seq<-reactive(planned("seq"));seqsample<-reactive(planned("seqsample"));surv<-reactive(planned("survival"))
+  observeEvent(input$calculate,{
+    parameters<-fixed_parameters();n<-value(input$n,64)
+    eager("fixed",execute_project(make_project("fixed_sample_size",parameters,"Fixed trial sample size")))
+    eager("power",execute_project(make_project("fixed_power",c(parameters,list(n_per_arm=n)),"Fixed trial power")))
+  })
+  observeEvent(input$sequential,eager("seq",execute_project(make_project("sequential_design",
     c(list(engine=value(input$engine,"gsDesign")),seq_parameters()),"Sequential boundaries"))))
-  seqsample <- eventReactive(input$seqsample, safe(execute_project(make_project("sequential_means",
-    c(list(effect=value(input$effect,.5),sd=value(input$sd,1)),seq_parameters()),"Sequential enrollment"))))
-  surv <- eventReactive(input$survival,safe(execute_project(make_project("survival_design",
+  observeEvent(input$seqsample,eager("seqsample",{
+    validate(shiny::need(value(input$endpoint,"normal")=="normal","Integer mean enrollment requires the Normal mean endpoint."))
+    execute_project(make_project("sequential_means",c(list(effect=value(input$effect,.5),sd=value(input$sd,1)),seq_parameters()),"Sequential enrollment"))
+  }))
+  observeEvent(input$survival,eager("survival",execute_project(make_project("survival_design",
     c(survival_parameters(),list(power=value(input$power,.8))),"Survival planning"))))
   results <- reactiveValues(sim=NULL,adaptive=NULL,survsim=NULL,imported=NULL,example=NULL)
   active_job <- reactiveVal(NULL); job_message <- reactiveVal("Idle")
@@ -163,17 +178,22 @@ server <- function(input, output, session) {
   session$onSessionEnded(function(){current<-isolate(active_job());if(!is.null(current))cancel_simulation(current$handle)})
   observeEvent(input$simulate,launch(make_project("fixed_simulation",c(fixed_parameters(),
     list(n_per_arm=value(input$n,64),nsim=value(input$nsim,1000),seed=value(input$seed,2026),null=value(input$null,TRUE))),"Fixed trial Monte Carlo"),"sim"))
-  observeEvent(input$adaptive,launch(make_project("adaptive_simulation",list(effect=value(input$effect,.5),
+  observeEvent(input$adaptive,launch({
+    if(value(input$endpoint,"normal")!="normal")stop("Adaptive means simulation requires the Normal mean endpoint.")
+    make_project("adaptive_simulation",list(effect=value(input$effect,.5),
     sd=value(input$sd,1),stage1=value(input$stage1,80),planned_total=value(input$planned,160),
     min_stage2=value(input$min2,40),max_stage2=value(input$max2,240),target_cp=value(input$targetcp,.8),
-    alpha=value(input$gsalpha,.025),power=value(input$power,.8),nsim=value(input$nsim,1000),seed=value(input$seed,2026)),"Adaptive inverse-normal simulation"),"adaptive"))
+    alpha=value(input$gsalpha,.025),power=value(input$power,.8),nsim=value(input$nsim,1000),seed=value(input$seed,2026)),"Adaptive inverse-normal simulation")},"adaptive"))
   observeEvent(input$survsim,launch(make_project("survival_simulation",c(survival_parameters(),
     list(n_per_arm=value(input$n,64),events=if(value(input$events,0)==0)NULL else input$events,
       nsim=value(input$nsim,1000),seed=value(input$seed,2026),null=value(input$survnull,FALSE))),"Survival Monte Carlo"),"survsim"))
   sim<-reactive(results$sim);adaptive<-reactive(results$adaptive);survsim<-reactive(results$survsim)
-  comparison<-eventReactive(input$compare,safe({s<-specification();compare_scenarios(list(
-    `80% power`=trial_spec(s$endpoint,s$effect,s$sd,s$p_control,s$alpha,.8,s$alternative),
-    `90% power`=trial_spec(s$endpoint,s$effect,s$sd,s$p_control,s$alpha,.9,s$alternative)))}))
+  comparison<-reactive(planned("comparison"))
+  observeEvent(input$compare,eager("comparison",{
+    s<-specification();compare_scenarios(list(
+      `80% power`=trial_spec(s$endpoint,s$effect,s$sd,s$p_control,s$alpha,.8,s$alternative),
+      `90% power`=trial_spec(s$endpoint,s$effect,s$sd,s$p_control,s$alpha,.9,s$alternative)))
+  }))
   observeEvent(input$runexample,launch(make_project("example",list(id=input$example,
     nsim=value(input$nsim,1000),seed=value(input$seed,2026)),paste("Example",input$example)),"example"))
   example<-reactive(results$example)
@@ -191,9 +211,9 @@ server <- function(input, output, session) {
     seq=seq(),seqsample=seqsample(),adaptive=adaptive(),survival=surv(),sim=sim(),survsim=survsim(),imported=results$imported,example=example()))
   output$specification<-renderPrint(specification())
   output$fixed_table<-renderTable({req(fixed());result_table(fixed())})
-  output$fixed<-renderPrint({print(fixed());print(power_result())})
-  output$sequential_result<-renderPrint(seq());output$sequential_plot<-renderPlot(plot_design(seq()))
-  output$seqsample_table<-renderTable(result_table(seqsample()));output$seqsample_result<-renderPrint(seqsample())
+  output$fixed<-renderPrint({req(fixed());print(fixed());print(power_result())})
+  output$sequential_result<-renderPrint(seq());output$sequential_plot<-renderPlot({req(seq());plot_design(seq())})
+  output$seqsample_table<-renderTable({req(seqsample());result_table(seqsample())});output$seqsample_result<-renderPrint(seqsample())
   output$adaptive_result<-renderPrint({req(adaptive());print(adaptive())})
   output$survival_result<-renderPrint(surv());output$survsim_result<-renderPrint({req(survsim());print(survsim())})
   output$simulation_result<-renderPrint({req(sim());print(sim())});output$simulation_plot<-renderPlot({req(sim());plot_design(sim())})

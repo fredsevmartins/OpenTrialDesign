@@ -159,3 +159,19 @@ The version-1 product example specification is now defined in the repository;
 no mapping to an absent external TD plan is claimed. Local planning/simulation
 is the delivery scope. External hosting and protocol-specific/GxP qualification
 are not prerequisites invented for this local software release.
+
+A final browser audit found deferred hidden-tab calculations could use controls
+edited after a Calculate click. Planning now executes eagerly in observers and
+stores results/errors; it does not defer work until an output becomes visible.
+The defect and regression are recorded in product-snapshot-correction.txt.
+
+
+Final source verification now has 235 passing R expectations and 16 browser
+workflows, including hidden-tab click-time snapshots and rejection of binary
+controls by normal-only procedures. R CMD check remains Status OK. Product
+installation now requires R >= 4.5, matching the frozen dependency baseline.
+The final standard Dockerfile rebuilt successfully from the pinned base; the
+managed 32-GB VFS host then exhausted disk cloning another container root.
+No such failed start is a passing execution. The verified native R product is
+served on loopback port 3838; final Docker acceptance runs in clean CI. Earlier
+successful local container runs and their initial failures remain historical.

@@ -1,4 +1,1 @@
-[1] "/opt/otd-library"              "/usr/local/lib/R/site-library"
-[3] "/usr/local/lib/R/library"     
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 227 ]
-All installed tests and PDF passed
+service "opentrialdesign" is not running

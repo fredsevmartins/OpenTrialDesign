@@ -1,0 +1,11 @@
+A browser audit reproduced a hidden-output Shiny eventReactive defect:
+click Calculate at effect .5, change effect to .8 while the result tab remains
+hidden, then open results. The deferred calculation returned 26 per arm
+(effect .8), instead of 64 per arm for the clicked .5 assumptions.
+
+Planning handlers now compute eagerly in observeEvent and store immutable
+results/errors. The same change covers fixed sample size/power, sequential
+boundaries/enrollment, survival planning and comparisons. Simulations already
+freeze their projects in immediate job-launch observers. Regression tests check
+parameters/counts after edits without requesting the original output first;
+a browser regression explicitly keeps the tab hidden during parameter edits.

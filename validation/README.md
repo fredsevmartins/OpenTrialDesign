@@ -53,3 +53,13 @@ PDF behavior. product-image.txt identifies the actual local runtime image.
 The documentation archive is OpenTrialDesign-docs-0.2.0.zip. The old v0.1 logs
 are historical. See product-container-initial-observation.txt and runtime-layer
 logs for the initial container failure, VFS storage limitation and final fixes.
+
+
+Final source update: product-tests.txt has 235 passing expectations and
+product-browser.json has 16 passing workflows, including click-time snapshots
+with hidden outputs and normal-only endpoint guards. The native R server is
+used in the managed environment after its VFS Docker storage limit was reached.
+product-final-docker-build.txt records a successful image build; local VFS start
+failures are retained and are not passing tests. The definitive final container
+execution is the clean CI run linked in the PR, which checks every locked
+version, installed-package tests and browser workflows.

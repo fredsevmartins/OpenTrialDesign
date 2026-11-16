@@ -2,7 +2,7 @@
 
 ## Standard local installation
 
-Install R >= 4.2 and Pandoc. From the repository root, run
+Install R >= 4.5 and Pandoc. From the repository root, run
 `Rscript scripts/install-product.R`. This restores the locked dependencies,
 builds the vignette and installs the product. Start with
 `OpenTrialDesign::run_app()` in R. The browser opens the local application.
@@ -70,3 +70,10 @@ On space-constrained hosts, retire an unused previous container before creating
 its replacement, and remove only your unused intermediate build artifacts.
 Download projects and bundles before planned restarts. Standard overlay-based
 Docker installations avoid these VFS copy costs.
+
+In the managed 32-GB environment used during development, the VFS driver could
+build the final image but exhausted disk cloning its root for another container.
+The application was served with the verified native R runtime instead. Final
+container acceptance is run in CI using a standard Docker storage backend.
+Use the native R installation or a host with sufficient Docker storage when
+VFS does not meet this requirement; do not treat a failed start as a health pass.

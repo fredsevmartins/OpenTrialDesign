@@ -1,12 +1,3 @@
- Container opentrialdesign-opentrialdesign-1  Stopping
- Container opentrialdesign-opentrialdesign-1  Stopped
- Container opentrialdesign-opentrialdesign-1  Removing
- Container opentrialdesign-opentrialdesign-1  Removed
- Network opentrialdesign_default  Removing
- Network opentrialdesign_default  Removed
- Network opentrialdesign_default  Creating
- Network opentrialdesign_default  Created
  Container opentrialdesign-opentrialdesign-1  Creating
- Container opentrialdesign-opentrialdesign-1  Created
- Container opentrialdesign-opentrialdesign-1  Starting
- Container opentrialdesign-opentrialdesign-1  Started
+ Container opentrialdesign-opentrialdesign-1  Error response from daemon: mkdir /home/dockerd/.local/share/docker/vfs/dir/b109b59255bc08ac25466b55cf10b14572e967409c1b8875117f52e0088169fd/var/log/journal: no space left on device
+Error response from daemon: mkdir /home/dockerd/.local/share/docker/vfs/dir/b109b59255bc08ac25466b55cf10b14572e967409c1b8875117f52e0088169fd/var/log/journal: no space left on device

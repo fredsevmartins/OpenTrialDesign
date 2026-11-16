@@ -11,7 +11,7 @@ Description: Explicit trial specifications and reproducible adapters to establis
     assumptions and inferential limitations are retained.
 License: MIT + file LICENSE
 Encoding: UTF-8
-Depends: R (>= 4.2.0)
+Depends: R (>= 4.5.0)
 Imports: stats, utils, tools, jsonlite (>= 1.8.9), survival (>= 3.8.3), ggplot2 (>= 3.5.1), withr (>= 3.0.2)
 Suggests: gsDesign (>= 3.11.0), rpact (>= 4.4.0), simsurv (>= 1.0.1), shiny, rmarkdown, knitr, testthat (>= 3.0.0),
     roxygen2, renv, callr (>= 3.7.6), zip (>= 2.3.0), pkgdown

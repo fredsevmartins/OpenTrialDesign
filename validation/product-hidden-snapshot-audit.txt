@@ -1,0 +1,26 @@
+fixed sample size 
+Engine: stats 
+Method: Two-sample t test power calculation 
+$n_per_arm
+[1] 26
+
+$n_total
+[1] 52
+
+$unrounded_n_per_arm
+[1] 25.52457
+
+$achieved_power
+[1] 0.8074866
+
+Validation: execution is not independent scientific validation 
+analytical power 
+Engine: stats 
+Method: Two-sample t test power calculation 
+$power
+[1] 0.9943095
+
+$n_per_arm
+[1] 64
+
+Validation: execution is not independent scientific validation 

@@ -1,4 +1,5 @@
-# Run from the repository root with a standard R >= 4.2 installation.
+if (getRversion() < "4.5.0") stop("OpenTrialDesign product installation requires R >= 4.5.0")
+# Run from the repository root with a standard R >= 4.5 installation.
 if (!requireNamespace("renv", quietly=TRUE))
   install.packages("renv", repos="https://cloud.r-project.org")
 renv::restore(lockfile="renv.lock", prompt=FALSE)

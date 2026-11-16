@@ -15,7 +15,9 @@ Engineering gates (evidence in validation/product-* and Docker logs):
 - [x] Runtime diagnostics identify absent/incompatible optional capabilities.
 - [x] Version-1 example catalog and per-example rationales are defined.
 - [x] Complete user guide and navigable documentation are generated.
-- [ ] Final package check, clean-container tests and multi-platform CI for 0.2.0.
+Final release gate: the package-check, clean-container and multi-platform jobs
+must all succeed for the source revision. Their immutable run URL and revision
+are recorded in the pull request; this checklist is not a live CI status.
 
 Use-specific decisions, rather than universal software-installation blockers:
 - An actual deployment destination is required for institutional/public hosting.

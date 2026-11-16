@@ -1,0 +1,31 @@
+ Container opentrialdesign-opentrialdesign-1  Stopping
+ Container opentrialdesign-opentrialdesign-1  Stopped
+ Container opentrialdesign-opentrialdesign-1  Removing
+ Container opentrialdesign-opentrialdesign-1  Removed
+ Network opentrialdesign_default  Removing
+ Network opentrialdesign_default  Removed
+Untagged: opentrialdesign:0.2.0
+Deleted: sha256:7c088f83acfda809488a03381ed5be2c183298defad8cb3798386819725188f5
+Deleted: sha256:a5230564d3f8acf2a38d04e325a5a3ebde7d39bb5281190c0861e8b84f7544ba
+Deleted: sha256:8d161adf037dbd012b0f28027ed5d1b9c843ff6f0f0c1ceb440a38081c1348c6
+Deleted: sha256:3c7bbe7d1c60a1e5a4353d3c889e7e0baed436a1c3fb1b86ab5b97820a10706f
+ID						RECLAIMABLE	SIZE		LAST ACCESSED
+swd2kya1rc2zxuaicksvejxot*              	true 		90B       	10 minutes ago
+nklfodmbty8944i876qh8scd0               	true 	449.3kB   	16 minutes ago
+rhfob0upzovz3lpdgyzjx7t4e               	true 	0B        	10 minutes ago
+zotfidqyyuyd3dta6jxuhqg2d*              	true 	110B      	10 minutes ago
+enlzjyyi164l6wo4h8rmrzdmk               	true 	0B        	12 minutes ago
+4z5dvc125uc9kzryu1nuuzzdr               	true 	0B        	12 minutes ago
+m8yae1okxgotgd28wte3w73hi               	true 	0B        	12 minutes ago
+e7uk607q2j5w405b51yoh1joj               	true 	0B        	12 minutes ago
+ibdq9kgizk61t7uns5e4xvuys               	true 	0B        	12 minutes ago
+uq5q40geto1e7b5it8u93jrhy               	true 	0B        	12 minutes ago
+l0f8i8juv4a1o4l3s7ajfmuys               	true 	0B        	12 minutes ago
+kw9nqc404y84k0u8fxfcikjs9               	true 	0B        	12 minutes ago
+mzig54qwxp0yfugomb7su50f8               	true 	0B        	12 minutes ago
+9u8yvosdksulyvzrmas97w5s0               	true 	0B        	12 minutes ago
+blpf3b1grrizauzwboc2d9e96               	true 	0B        	12 minutes ago
+v5zypl77zs4fjqvqmw44168oq               	true 	0B        	12 minutes ago
+4b1mt2k8cd9bxwpxyq02nbick               	true 	0B        	12 minutes ago
+jdkdlecgesxryb4l900zupuhl               	true 	0B        	12 minutes ago
+Total:	449.5kB

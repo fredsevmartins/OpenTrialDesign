@@ -67,3 +67,31 @@ test_that("native-only planning results display scientific output", {
   expect_match(text, "Number of events")
   expect_match(text, "Hazard ratio")
 })
+test_that("planning snapshots are calculated on the click before any result is requested", {
+  skip_if_not_installed("shiny")
+  env<-new.env();sys.source(system.file("shiny/app.R",package="OpenTrialDesign"),env)
+  shiny::testServer(env$server,{
+    session$setInputs(endpoint="normal",effect=.5,sd=1,pcontrol=.3,alpha=.05,
+      power=.8,alternative="two.sided",n=64,calculate=1)
+    session$setInputs(effect=.8,n=100)
+    expect_equal(fixed()$data$n_per_arm,64)
+    expect_equal(fixed()$project$parameters$effect,.5)
+    expect_equal(power_result()$data$n_per_arm,64)
+    session$setInputs(calculate=2)
+    expect_equal(fixed()$project$parameters$effect,.8)
+    expect_equal(power_result()$data$n_per_arm,100)
+  })
+})
+test_that("normal-only workflows never silently interpret binary response inputs", {
+  skip_if_not_installed("shiny")
+  env<-new.env();sys.source(system.file("shiny/app.R",package="OpenTrialDesign"),env)
+  shiny::testServer(env$server,{
+    session$setInputs(endpoint="binary",effect=.15,pcontrol=.3,sd=1,alpha=.05,
+      power=.8,alternative="two.sided",information="0.5,1",gsalpha=.025,
+      spending="OF",futility="none",seqsample=1)
+    expect_match(planning_errors$seqsample,"Normal mean")
+    session$setInputs(adaptive=1)
+    expect_match(job_message(),"Normal mean")
+    expect_null(active_job())
+  })
+})
