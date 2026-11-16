@@ -5,7 +5,11 @@
 Install R >= 4.5 and Pandoc. From the repository root, run
 `Rscript scripts/install-product.R`. This restores the locked dependencies,
 builds the vignette and installs the product. Start with
-`OpenTrialDesign::run_app()` in R. The browser opens the local application.
+`Rscript scripts/start-product.R`, then open http://localhost:3838.
+The versioned library is isolated in the user application cache outside the checkout; no startup hook changes other projects.
+`Rscript scripts/start-product.R --check` verifies library selection;
+`Rscript scripts/start-product.R --test` runs the complete installed package suite.
+Use OTD_R_LIBRARY to select another isolated library location.
 Use `OpenTrialDesign::runtime_diagnostics()` to inspect optional capabilities.
 PDF output additionally requires a LaTeX installation.
 
@@ -77,3 +81,9 @@ The application was served with the verified native R runtime instead. Final
 container acceptance is run in CI using a standard Docker storage backend.
 Use the native R installation or a host with sufficient Docker storage when
 VFS does not meet this requirement; do not treat a failed start as a health pass.
+
+Native source installations need a C/C++/Fortran build toolchain and the system
+headers required by the locked R dependencies (Linux: libcurl, OpenSSL, libxml2,
+ICU, fontconfig/freetype, harfbuzz/fribidi and image libraries). Windows source
+builds require matching Rtools; macOS requires the matching command-line tools
+and Fortran compiler. The standard Dockerfile installs these requirements.

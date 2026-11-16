@@ -11,9 +11,7 @@
 * this is package ‘OpenTrialDesign’ version ‘0.2.0’
 * package encoding: UTF-8
 * checking package namespace information ... OK
-* checking package dependencies ...Warning: unable to access index for repository https://cloud.r-project.org/src/contrib:
-  cannot open URL 'https://cloud.r-project.org/src/contrib/PACKAGES'
- OK
+* checking package dependencies ... OK
 * checking if this is a source package ... OK
 * checking if there is a namespace ... OK
 * checking for executable files ... OK

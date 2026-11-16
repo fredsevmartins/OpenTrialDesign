@@ -29,7 +29,8 @@ test_that("Shiny server delegates calculations to shared API", {
       nsim = 20, seed = 42, calculate = 1)
     expect_equal(fixed()$data$n_per_arm, 64)
     session$setInputs(null = TRUE, simulate = 1)
-    active_job()$handle$process$wait(timeout=30000); harvest_job()
+    current_job<-active_job()
+    if(!is.null(current_job)){current_job$handle$process$wait(timeout=30000);harvest_job()}
     expect_equal(sim()$data, simulate_trial(trial_spec(), 64, 20, 42, TRUE)$data)
   })
 })
@@ -47,17 +48,20 @@ test_that("Shiny server executes sequential adaptive survival and library workfl
       gsalpha = .025, sequential = 1)
     expect_equal(seq()$kind, "group sequential design")
     session$setInputs(stage1 = 80, planned = 160, min2 = 40, max2 = 240, adaptive = 1)
-    active_job()$handle$process$wait(timeout=30000); harvest_job()
+    current_job<-active_job()
+    if(!is.null(current_job)){current_job$handle$process$wait(timeout=30000);harvest_job()}
     expect_equal(nrow(adaptive()$data$summary), 2)
     session$setInputs(hr = .7, median = 12, accrual = 18, followup = 12, dropout = 0,
       survival = 1, survnull = TRUE, survsim = 1)
     expect_equal(surv()$kind, "survival planning")
-    active_job()$handle$process$wait(timeout=30000); harvest_job()
+    current_job<-active_job()
+    if(!is.null(current_job)){current_job$handle$process$wait(timeout=30000);harvest_job()}
     expect_true(survsim()$specification$null)
     session$setInputs(compare = 1)
     expect_equal(nrow(comparison()), 2)
     session$setInputs(example = "TD-001", runexample = 1)
-    active_job()$handle$process$wait(timeout=30000); harvest_job()
+    current_job<-active_job()
+    if(!is.null(current_job)){current_job$handle$process$wait(timeout=30000);harvest_job()}
     expect_equal(example()$data$n_per_arm, 64)
   })
 })

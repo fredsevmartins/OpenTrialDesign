@@ -1,4 +1,9 @@
 #!/usr/bin/env Rscript
+if(file.exists("scripts/product-library.R")){
+  source("scripts/product-library.R")
+  candidate<-try(product_library(),silent=TRUE)
+  if(!inherits(candidate,"try-error"))activate_product_library()
+}
 suppressPackageStartupMessages(library(OpenTrialDesign))
 args <- commandArgs(trailingOnly = TRUE)
 if (!length(args) || "--help" %in% args) {

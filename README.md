@@ -11,7 +11,7 @@ With Docker: `docker compose up --build -d`, then open **http://localhost:3838**
 The default deployment stays on your computer; it does not expose a public site.
 
 With R: install R >= 4.5 and Pandoc, run `Rscript scripts/install-product.R`, then
-`OpenTrialDesign::run_app()`. The installer restores locked dependencies,
+`Rscript scripts/start-product.R`. The installer uses an isolated project library, restores locked dependencies,
 builds the guide and installs the package. PDF additionally requires LaTeX.
 See [deployment and recovery instructions](deployment/README.md).
 
@@ -34,6 +34,8 @@ controls change. Closing a session cancels its active worker.
 ## Reproduce an analysis
 
 ```r
+source("scripts/product-library.R")
+activate_product_library()
 library(OpenTrialDesign)
 project <- trial_project("fixed_simulation",
   list(effect = 0.5, n_per_arm = 64, nsim = 5000, seed = 2026, null = TRUE),

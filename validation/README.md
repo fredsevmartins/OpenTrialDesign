@@ -63,3 +63,16 @@ product-final-docker-build.txt records a successful image build; local VFS start
 failures are retained and are not passing tests. The definitive final container
 execution is the clean CI run linked in the PR, which checks every locked
 version, installed-package tests and browser workflows.
+
+Native installation acceptance: scripts/install-product.R restored all 109
+locked versions in a versioned library outside the checkout, built and installed
+the package with tests. scripts/start-product.R --test passed 235 expectations;
+--check and --diagnostics passed, and the starter served all 16 browser workflows.
+See product-native-* logs. Dependencies were restored from a prepared local renv
+cache; clean OS installation is covered separately by container CI.
+
+The first cross-platform run after the click-time fix found a Windows test
+harness race: a job could already have been harvested before the test waited
+on its process. The test now accepts an already completed job and retains all
+result assertions. The initial failure is retained in
+product-windows-initial-failure.txt. Final CI acceptance is linked in PR #1.

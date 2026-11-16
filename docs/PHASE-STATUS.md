@@ -175,3 +175,16 @@ managed 32-GB VFS host then exhausted disk cloning another container root.
 No such failed start is a passing execution. The verified native R product is
 served on loopback port 3838; final Docker acceptance runs in clean CI. Earlier
 successful local container runs and their initial failures remain historical.
+
+Native installation acceptance: scripts/install-product.R restored all 109
+locked versions in a versioned library outside the checkout, built and installed
+the package with tests. scripts/start-product.R --test passed 235 expectations;
+--check and --diagnostics passed, and the starter served all 16 browser workflows.
+See product-native-* logs. Dependencies were restored from a prepared local renv
+cache; clean OS installation is covered separately by container CI.
+
+The first cross-platform run after the click-time fix found a Windows test
+harness race: a job could already have been harvested before the test waited
+on its process. The test now accepts an already completed job and retains all
+result assertions. The initial failure is retained in
+product-windows-initial-failure.txt. Final CI acceptance is linked in PR #1.

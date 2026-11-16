@@ -13,7 +13,7 @@ library(OpenTrialDesign)
 
 ## Installation and scope
 
-Install from source with `install.packages("OpenTrialDesign_0.1.0.tar.gz",
+Install from source with `install.packages("OpenTrialDesign_0.2.0.tar.gz",
 repos = NULL, type = "source")`. Optional engines can be installed with
 `install.packages(c("gsDesign", "rpact", "simsurv"))`; the interface requires
 `shiny`, and reporting requires `rmarkdown` plus Pandoc. PDF additionally
@@ -275,3 +275,16 @@ The version-1 example catalog is now explicitly defined by the installed
 catalog and per-example rationales. It does not claim equivalence to an absent
 external project plan. These workflows support planning and simulation within
 the stated assumptions; they do not confer protocol-specific qualification.
+
+
+## Isolated native product installation
+
+From a writable repository checkout, `Rscript scripts/install-product.R`
+restores the locked graph into a versioned application-cache library outside
+the checkout. It does not overwrite the global R library or create a startup
+hook in another project. Start with `Rscript scripts/start-product.R` and open
+http://localhost:3838. Use `--check`, `--diagnostics` or `--test` to verify the
+selected installation. For API work in an R session from that checkout, source
+`scripts/product-library.R` and call `activate_product_library()` first.
+Native source dependencies require the compiler/system libraries documented
+in deployment/README.md; the Dockerfile provisions them automatically.
