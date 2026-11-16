@@ -13,9 +13,13 @@ prune_jobs <- function() {
 #' @return An otd_job handle, local to the current R session.
 #' @export
 start_simulation <- function(project) {
-  check_project(project); need("callr")
+  check_project(project)
   if (!project$workflow %in% c("fixed_simulation", "adaptive_simulation", "survival_simulation", "example"))
     fail("background jobs require a simulation or example project")
+  start_job(project,function(project)OpenTrialDesign::execute_project(project))
+}
+start_job <- function(project,execute) {
+  need("callr")
   prune_jobs()
   limit <- getOption("OpenTrialDesign.max_jobs",4L)
   integer_count(limit,"maximum active jobs")
@@ -23,10 +27,10 @@ start_simulation <- function(project) {
   job <- new.env(parent = emptyenv())
   job$project <- project; job$cancelled <- FALSE; job$collected <- FALSE
   job$created <- Sys.time(); job$finished <- NULL; job$id <- basename(tempfile("otd-job-"))
-  job$process <- callr::r_bg(function(project) {
-    tryCatch(list(ok = TRUE, result = OpenTrialDesign::execute_project(project)),
+  job$process <- callr::r_bg(function(project,execute) {
+    tryCatch(list(ok = TRUE, result = execute(project)),
       error = function(e) list(ok = FALSE, message = conditionMessage(e), classes = class(e)))
-  }, args = list(project = project), libpath = .libPaths(), supervise = TRUE, user_profile = FALSE, system_profile = FALSE)
+  }, args = list(project = project,execute=execute), libpath = .libPaths(), supervise = TRUE, user_profile = FALSE, system_profile = FALSE)
   class(job) <- "otd_job"
   job_registry[[job$id]] <- job
   job

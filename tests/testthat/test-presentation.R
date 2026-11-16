@@ -58,7 +58,7 @@ test_that("Shiny server executes sequential adaptive survival and library workfl
     if(!is.null(current_job)){current_job$handle$process$wait(timeout=30000);harvest_job()}
     expect_true(survsim()$specification$null)
     session$setInputs(compare = 1)
-    expect_equal(nrow(comparison()), 2)
+    expect_equal(length(unique(comparison()$scenario)), 4)
     session$setInputs(example = "TD-001", runexample = 1)
     current_job<-active_job()
     if(!is.null(current_job)){current_job$handle$process$wait(timeout=30000);harvest_job()}

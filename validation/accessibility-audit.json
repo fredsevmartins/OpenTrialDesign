@@ -1,0 +1,20 @@
+{
+  "axe_version": "4.10.3",
+  "states": [
+    {
+      "state": "fixed specification",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "state": "binding sequential specification",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "state": "completed sensitivity grid",
+      "violations": [],
+      "incomplete": []
+    }
+  ]
+}

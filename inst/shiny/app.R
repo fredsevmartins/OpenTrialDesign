@@ -1,8 +1,9 @@
 library(shiny)
 library(OpenTrialDesign)
-ui <- fluidPage(
+native_select <- function(...) selectInput(...,selectize=FALSE)
+ui <- fluidPage(title="OpenTrialDesign — Scientific trial planning",lang="en",
   tags$head(tags$style(HTML("
-    body{background:#f4f7fb;color:#152b42;font-family:system-ui,sans-serif}
+    .skip-link{position:absolute;left:-10000px}.skip-link:focus{position:static;background:white;color:#142d45;padding:12px}\n    :focus-visible{outline:3px solid #b15b00;outline-offset:3px}\n    body{background:#f4f7fb;color:#152b42;font-family:system-ui,sans-serif}
     .otd-header{background:#142d45;color:white;padding:24px 28px;margin:0 -15px 24px}
     .otd-header h1{font-size:28px;margin:0 0 6px;font-weight:700}.otd-header p{color:#c0d5e5;margin:0}
     .well{background:white;border:1px solid #dce5ef;border-radius:12px;box-shadow:none}
@@ -13,17 +14,18 @@ ui <- fluidPage(
     .form-control{border-color:#c9d6e4;border-radius:6px}pre{background:#f7fafc;border-color:#dce5ef;border-radius:8px;white-space:pre-wrap}
     .otd-note{padding:12px 16px;background:#e8f5f4;border-left:3px solid #087f82;margin:12px 0}
     .otd-status{padding:12px 16px;border:1px solid #c9d6e4;border-radius:8px;margin-bottom:16px}
-    .shiny-output-error{color:#a32328}.table{font-size:14px}label{font-weight:600}
+    .shiny-output-error{color:#a32328}.table{font-size:14px}caption{color:#40556b}label{font-weight:600}
     @media(max-width:767px){.tab-content{padding:14px}.otd-header{padding:18px}.nav-tabs>li>a{padding:9px}}
   "))),
+  tags$a(href="#main-content",class="skip-link","Skip to main content"),
   div(class="otd-header", h1("OpenTrialDesign"), p("Trial planning, simulation and reproducible scientific decisions")),
   sidebarLayout(sidebarPanel(
     h4("Fixed trial assumptions"),
-    selectInput("endpoint", "Endpoint", c("Normal mean"="normal", "Binary response"="binary")),
+    native_select("endpoint", "Endpoint", c("Normal mean"="normal", "Binary response"="binary")),
     numericInput("effect", "Treatment minus control effect", 0.5, step=0.05),
     conditionalPanel("input.endpoint === 'normal'", numericInput("sd", "Common standard deviation", 1, min=0.01)),
     conditionalPanel("input.endpoint === 'binary'", numericInput("pcontrol", "Control response probability", 0.3, min=0.001, max=0.999)),
-    selectInput("alternative", "Alternative hypothesis", c("Two-sided"="two.sided", "Treatment greater"="greater", "Treatment less"="less")),
+    native_select("alternative", "Alternative hypothesis", c("Two-sided"="two.sided", "Treatment greater"="greater", "Treatment less"="less")),
     numericInput("alpha", "Total fixed-design alpha", 0.05, min=0.001, max=0.2),
     numericInput("power", "Target power", 0.8, min=0.5, max=0.99),
     numericInput("n", "Participants per arm", 64, min=2),
@@ -32,10 +34,11 @@ ui <- fluidPage(
     numericInput("nsim", "Replications (maximum 100,000 in app)", 1000, min=2, max=100000),
     numericInput("seed", "Random seed", 2026, min=0),
     helpText("Jobs run in a separate R process. You can change tabs, inspect saved results or cancel a running job.")),
-    mainPanel(
-      div(class="otd-status", strong("Simulation: "), textOutput("job_status", inline=TRUE),
+    mainPanel(id="main-content",
+      div(class="otd-status", role="status", `aria-live`="polite", strong("Simulation: "), textOutput("job_status", inline=TRUE),
         actionButton("cancel", "Cancel active simulation")),
-      tabsetPanel(
+      uiOutput("scientific_review"),
+      tabsetPanel(id="workspace",
       tabPanel("Design configuration", h3("Define the question"),
         p("Two-arm superiority with equal allocation. Fixed effects are treatment minus control; survival effects are treatment/control hazard ratios."),
         div(class="otd-note", "Every result is a snapshot. After editing assumptions, calculate again; saved results retain their original settings."),
@@ -43,9 +46,9 @@ ui <- fluidPage(
       tabPanel("Sample size and power", h3("Fixed sample planning"), tableOutput("fixed_table"), verbatimTextOutput("fixed")),
       tabPanel("Group sequential designs", h3("Spending and enrollment"),
         textInput("information", "Cumulative information fractions (comma-separated)", "0.5,1"),
-        selectInput("engine", "Boundary engine", c("gsDesign", "rpact")),
-        selectInput("spending", "Alpha spending", c("OF", "Pocock")),
-        selectInput("futility", "Futility rule", c("none", "binding", "nonbinding")),
+        native_select("engine", "Boundary engine", c("gsDesign", "rpact")),
+        native_select("spending", "Alpha spending", c("OF", "Pocock")),
+        native_select("futility", "Futility rule", c("none", "binding", "nonbinding")),
         numericInput("gsalpha", "One-sided efficacy alpha", .025, min=.001, max=.2),
         actionButton("sequential", "Calculate boundaries"),
         actionButton("seqsample", "Plan integer enrollment with rpact"),
@@ -77,20 +80,28 @@ ui <- fluidPage(
         checkboxInput("null", "Equality-null scenario", TRUE),
         actionButton("simulate", "Start fixed trial simulation", class="btn-primary"),
         verbatimTextOutput("simulation_result"), plotOutput("simulation_plot")),
-      tabPanel("Scenario comparison", h3("Sensitivity to target power"),
-        p("Compare 80% and 90% target power using the current fixed-design assumptions."),
-        actionButton("compare", "Compare scenarios"), tableOutput("comparison")),
+      tabPanel("Scenario comparison", h3("Sensitivity analysis"),
+        p("Each scenario is a complete frozen project. The grid varies the current fixed-design assumptions; simulation intervals are marginal, not simultaneous."),
+        textInput("grid_effects","Effects (comma-separated)","0.3,0.5"),
+        textInput("grid_powers","Target powers (comma-separated)","0.8,0.9"),
+        checkboxInput("grid_simulate","Simulate each scenario at the sidebar enrollment",FALSE),
+        checkboxInput("grid_null","Evaluate equality null in batch simulations",TRUE),
+        p("Maximum 36 scenarios and 100,000 total replications in this app. Seeds increment from the sidebar seed. Simulation jobs can be cancelled."),
+        actionButton("compare", "Compare scenarios"),
+        div(role="region",`aria-label`="Scrollable scenario results",tabindex="0",style="overflow-x:auto;max-width:100%",tableOutput("comparison")),
+        downloadButton("comparison_csv","Export scenario CSV"),
+        downloadButton("comparison_bundle","Download complete scenario bundle")),
       tabPanel("Projects and exports", h3("Save, replay and share"),
-        selectInput("report_source", "Calculated result", c("Fixed sample size"="fixed", "Fixed power"="power", "Sequential boundaries"="seq", "Sequential enrollment"="seqsample", "Adaptive simulation"="adaptive", "Survival planning"="survival", "Fixed simulation"="sim", "Survival simulation"="survsim", "Imported project"="imported", "Example"="example")),
+        native_select("report_source", "Calculated result", c("Fixed sample size"="fixed", "Fixed power"="power", "Sequential boundaries"="seq", "Sequential enrollment"="seqsample", "Adaptive simulation"="adaptive", "Survival planning"="survival", "Fixed simulation"="sim", "Survival simulation"="survsim", "Imported project"="imported", "Example"="example")),
         uiOutput("downloads"), verbatimTextOutput("snapshot"),
         hr(), fileInput("project_file", "Open a project (.json)", accept=".json"),
         verbatimTextOutput("import_preview"), uiOutput("project_execute")),
       tabPanel("Scientific reporting", h3("Methodological report"),
         p("Choose a calculated result in Projects and exports. Reports include the exact specification, methods, assumptions, package versions, seed and validation status."),
-        selectInput("report_format", "Report format", c("HTML"="html", "PDF (requires LaTeX)"="pdf")),
+        native_select("report_format", "Report format", c("HTML"="html", "PDF (requires LaTeX)"="pdf")),
         uiOutput("report_download"), textOutput("report_help")),
       tabPanel("Example library", h3("Version-1 example catalog"),
-        selectInput("example", "Scientific example", sprintf("TD-%03d",1:30)),
+        native_select("example", "Scientific example", sprintf("TD-%03d",1:30)),
         actionButton("runexample", "Execute example"), verbatimTextOutput("example_assumptions"), verbatimTextOutput("example_result")),
       tabPanel("User guide", h3("From assumptions to an auditable result"),
         tags$ol(tags$li("Configure the endpoint, effect direction, alpha and target power."),
@@ -166,7 +177,8 @@ server <- function(input, output, session) {
     status <- simulation_status(current$handle)
     if(status$state=="running") return(invisible(NULL))
     if(status$state=="completed") {
-      results[[current$destination]] <- collect_simulation(current$handle)
+      if(current$destination=="batch")batch(collect_simulation(current$handle)) else
+        results[[current$destination]] <- collect_simulation(current$handle)
       job_message(paste("Completed:",current$handle$project$title))
     } else job_message(paste(status$state,value(status$message,"")))
     active_job(NULL)
@@ -188,12 +200,32 @@ server <- function(input, output, session) {
     list(n_per_arm=value(input$n,64),events=if(value(input$events,0)==0)NULL else input$events,
       nsim=value(input$nsim,1000),seed=value(input$seed,2026),null=value(input$survnull,FALSE))),"Survival Monte Carlo"),"survsim"))
   sim<-reactive(results$sim);adaptive<-reactive(results$adaptive);survsim<-reactive(results$survsim)
-  comparison<-reactive(planned("comparison"))
-  observeEvent(input$compare,eager("comparison",{
-    s<-specification();compare_scenarios(list(
-      `80% power`=trial_spec(s$endpoint,s$effect,s$sd,s$p_control,s$alpha,.8,s$alternative),
-      `90% power`=trial_spec(s$endpoint,s$effect,s$sd,s$p_control,s$alpha,.9,s$alternative)))
-  }))
+  batch<-reactiveVal(NULL)
+  comparison<-reactive({x<-batch();if(is.null(x))return(NULL);x$data$summary})
+  grid_projects<-reactive({
+    parse<-function(x){v<-suppressWarnings(as.numeric(strsplit(x,",",fixed=TRUE)[[1]]));
+      if(!length(v)||any(!is.finite(v)))stop("Provide comma-separated finite scenario values.");unique(v)}
+    simulated<-value(input$grid_simulate,FALSE)
+    args<-fixed_parameters()
+    if(simulated)args<-c(args,list(n_per_arm=value(input$n,64),nsim=value(input$nsim,1000),
+      seed=value(input$seed,2026),null=value(input$grid_null,TRUE)))
+    projects<-scenario_grid(trial_project(if(simulated)"fixed_simulation" else "fixed_sample_size",args),
+      list(effect=parse(value(input$grid_effects,"0.3,0.5")),power=parse(value(input$grid_powers,"0.8,0.9"))),max_scenarios=36)
+    if(simulated&&length(projects)*value(input$nsim,1000)>100000)stop("App limit: 100,000 total batch replications.")
+    projects
+  })
+  observeEvent(input$compare,tryCatch({
+    projects<-grid_projects()
+    if(value(input$grid_simulate,FALSE)){
+      previous<-active_job()
+      if(!is.null(previous)&&simulation_status(previous$handle)$state=="running")stop("Cancel or finish the active simulation first.")
+      handle<-start_scenarios(projects)
+      active_job(list(handle=handle,destination="batch"));job_message("Running: scenario sensitivity analysis")
+    } else batch(run_scenarios(projects))
+  },error=function(e){showNotification(conditionMessage(e),type="error")}))
+  output$comparison_csv<-downloadHandler(filename=function()"OpenTrialDesign-scenarios.csv",content=function(file){
+    req(batch());utils::write.csv(batch()$data$summary,file,row.names=FALSE)})
+  output$comparison_bundle<-downloadHandler(filename=function()"OpenTrialDesign-scenarios.zip",content=function(file){req(batch());export_bundle(batch(),file,include_report=FALSE)})
   observeEvent(input$runexample,launch(make_project("example",list(id=input$example,
     nsim=value(input$nsim,1000),seed=value(input$seed,2026)),paste("Example",input$example)),"example"))
   example<-reactive(results$example)
@@ -209,6 +241,36 @@ server <- function(input, output, session) {
   })
   selected<-reactive(switch(value(input$report_source,"fixed"),fixed=fixed(),power=power_result(),
     seq=seq(),seqsample=seqsample(),adaptive=adaptive(),survival=surv(),sim=sim(),survsim=survsim(),imported=results$imported,example=example()))
+  output$scientific_review<-renderUI({
+    tryCatch({
+      tab<-value(input$workspace,"Design configuration")
+      project<-switch(tab,
+        "Group sequential designs"=make_project("sequential_design",c(list(engine=value(input$engine,"gsDesign")),seq_parameters()),"Review boundaries"),
+        "Adaptive designs"=make_project("adaptive_simulation",list(effect=value(input$effect,.5),sd=value(input$sd,1),
+          stage1=value(input$stage1,80),planned_total=value(input$planned,160),min_stage2=value(input$min2,40),max_stage2=value(input$max2,240),
+          target_cp=value(input$targetcp,.8),alpha=value(input$gsalpha,.025),power=value(input$power,.8),nsim=value(input$nsim,1000),seed=value(input$seed,2026)),"Review adaptation"),
+        "Survival studies"=make_project("survival_simulation",c(survival_parameters(),list(n_per_arm=value(input$n,64),events=if(value(input$events,0)==0)NULL else input$events,
+          nsim=value(input$nsim,1000),seed=value(input$seed,2026),null=value(input$survnull,FALSE))),"Review survival simulation"),
+        "Monte Carlo simulation"=make_project("fixed_simulation",c(fixed_parameters(),list(n_per_arm=value(input$n,64),nsim=value(input$nsim,1000),seed=value(input$seed,2026),null=value(input$null,TRUE))),"Review fixed simulation"),
+        "Scenario comparison"=grid_projects()[[1]],
+        "Projects and exports"=opened(),
+        "Example library"=make_project("example",list(id=value(input$example,"TD-001"),nsim=value(input$nsim,1000),seed=value(input$seed,2026)),"Review example"),
+        make_project("fixed_sample_size",fixed_parameters(),"Review fixed planning"))
+      if(is.null(project))return(NULL)
+      d<-review_project(project)
+      if(tab=="Scenario comparison")d<-rbind(d,data.frame(field=c("Grid effects","Grid target powers","Scenario count"),
+        value=c(value(input$grid_effects,"0.3,0.5"),value(input$grid_powers,"0.8,0.9"),as.character(length(grid_projects())))))
+      extras<-switch(tab,
+        "Group sequential designs"=if(value(input$endpoint,"normal")=="normal")list(make_project("sequential_means",c(list(effect=value(input$effect,.5),sd=value(input$sd,1)),seq_parameters()),"Integer enrollment")) else list(),
+        "Survival studies"=list(make_project("survival_design",c(survival_parameters(),list(power=value(input$power,.8))),"Survival planning")),
+        "Design configuration"=list(make_project("fixed_power",c(fixed_parameters(),list(n_per_arm=value(input$n,64))),"Power at selected enrollment")),list())
+      review_table<-function(rows)tags$table(class="table",tags$tbody(lapply(seq_len(nrow(rows)),function(i)tags$tr(tags$th(scope="row",rows$field[i]),tags$td(rows$value[i])))))
+      tags$details(id="scientific-contract",open="open",tags$summary("Review scientific assumptions before execution"),
+        tags$table(class="table",tags$caption("Live specification; calculated results keep their own frozen settings"),
+          tags$tbody(lapply(seq_len(nrow(d)),function(i)tags$tr(tags$th(scope="row",d$field[i]),tags$td(d$value[i]))))),
+        lapply(extras,function(extra)tags$details(tags$summary(extra$title),review_table(review_project(extra)))))
+    },error=function(e)div(role="alert",conditionMessage(e)))
+  })
   output$specification<-renderPrint(specification())
   output$fixed_table<-renderTable({req(fixed());result_table(fixed())})
   output$fixed<-renderPrint({req(fixed());print(fixed());print(power_result())})

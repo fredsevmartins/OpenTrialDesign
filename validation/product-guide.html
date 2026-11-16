@@ -344,7 +344,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <div id="installation-and-scope" class="section level2">
 <h2>Installation and scope</h2>
 <p>Install from source with
-<code>install.packages(&quot;OpenTrialDesign_0.1.0.tar.gz&quot;, repos = NULL, type = &quot;source&quot;)</code>.
+<code>install.packages(&quot;OpenTrialDesign_0.3.0.tar.gz&quot;, repos = NULL, type = &quot;source&quot;)</code>.
 Optional engines can be installed with
 <code>install.packages(c(&quot;gsDesign&quot;, &quot;rpact&quot;, &quot;simsurv&quot;))</code>; the
 interface requires <code>shiny</code>, and reporting requires
@@ -787,7 +787,7 @@ analysis.</p>
 ## 
 ## $provenance$versions
 ## OpenTrialDesign           stats 
-##         &quot;0.2.0&quot;         &quot;4.5.0&quot; 
+##         &quot;0.3.0&quot;         &quot;4.5.0&quot; 
 ## 
 ## $provenance$R
 ## [1] &quot;R version 4.5.0 (2025-04-11)&quot;
@@ -995,6 +995,108 @@ installed catalog and per-example rationales. It does not claim
 equivalence to an absent external project plan. These workflows support
 planning and simulation within the stated assumptions; they do not
 confer protocol-specific qualification.</p>
+</div>
+<div id="isolated-native-product-installation" class="section level2">
+<h2>Isolated native product installation</h2>
+<p>From a writable repository checkout,
+<code>Rscript scripts/install-product.R</code> restores the locked graph
+into a versioned application-cache library outside the checkout. It does
+not overwrite the global R library or create a startup hook in another
+project. Start with <code>Rscript scripts/start-product.R</code> and
+open <a href="http://localhost:3838" class="uri">http://localhost:3838</a>. Use <code>--check</code>,
+<code>--diagnostics</code> or <code>--test</code> to verify the selected
+installation. For API work in an R session from that checkout, source
+<code>scripts/product-library.R</code> and call
+<code>activate_product_library()</code> first. Native source
+dependencies require the compiler/system libraries documented in
+deployment/README.md; the Dockerfile provisions them automatically.</p>
+</div>
+<div id="scientific-review-before-execution" class="section level2">
+<h2>Scientific review before execution</h2>
+<p><code>review_project(project)</code> displays the exact estimand,
+hypothesis direction, alpha definition, allocation, nuisance
+assumptions, stopping and simulation settings. It does not run
+simulations or confer scientific validation. The app shows the live
+review before execution; calculated outputs retain their frozen
+click-time specification even if inputs are later edited.</p>
+</div>
+<div id="sensitivity-analysis-and-batch-simulation" class="section level2">
+<h2>Sensitivity analysis and batch simulation</h2>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a>projects <span class="ot">&lt;-</span> <span class="fu">scenario_grid</span>(<span class="fu">trial_project</span>(),</span>
+<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a>  <span class="fu">list</span>(<span class="at">effect=</span><span class="fu">c</span>(.<span class="dv">3</span>,.<span class="dv">5</span>),<span class="at">power=</span><span class="fu">c</span>(.<span class="dv">8</span>,.<span class="dv">9</span>)))</span>
+<span id="cb28-3"><a href="#cb28-3" tabindex="-1"></a>comparison <span class="ot">&lt;-</span> <span class="fu">run_scenarios</span>(projects)</span>
+<span id="cb28-4"><a href="#cb28-4" tabindex="-1"></a>comparison<span class="sc">$</span>data<span class="sc">$</span>summary</span></code></pre></div>
+<pre><code>##        scenario          workflow engine                              method
+## S001.1     S001 fixed_sample_size  stats Two-sample t test power calculation
+## S001.2     S001 fixed_sample_size  stats Two-sample t test power calculation
+## S001.3     S001 fixed_sample_size  stats Two-sample t test power calculation
+## S001.4     S001 fixed_sample_size  stats Two-sample t test power calculation
+## S002.1     S002 fixed_sample_size  stats Two-sample t test power calculation
+## S002.2     S002 fixed_sample_size  stats Two-sample t test power calculation
+## S002.3     S002 fixed_sample_size  stats Two-sample t test power calculation
+## S002.4     S002 fixed_sample_size  stats Two-sample t test power calculation
+## S003.1     S003 fixed_sample_size  stats Two-sample t test power calculation
+## S003.2     S003 fixed_sample_size  stats Two-sample t test power calculation
+## S003.3     S003 fixed_sample_size  stats Two-sample t test power calculation
+## S003.4     S003 fixed_sample_size  stats Two-sample t test power calculation
+## S004.1     S004 fixed_sample_size  stats Two-sample t test power calculation
+## S004.2     S004 fixed_sample_size  stats Two-sample t test power calculation
+## S004.3     S004 fixed_sample_size  stats Two-sample t test power calculation
+## S004.4     S004 fixed_sample_size  stats Two-sample t test power calculation
+##        seed              metric             value
+## S001.1   NA           n_per_arm               176
+## S001.2   NA             n_total               352
+## S001.3   NA unrounded_n_per_arm  175.384669431952
+## S001.4   NA      achieved_power 0.801379443550296
+## S002.1   NA           n_per_arm                64
+## S002.2   NA             n_total               128
+## S002.3   NA unrounded_n_per_arm  63.7656101707822
+## S002.4   NA      achieved_power 0.801459557922328
+## S003.1   NA           n_per_arm               235
+## S003.2   NA             n_total               470
+## S003.3   NA unrounded_n_per_arm  234.462743534528
+## S003.4   NA      achieved_power 0.900652540390344
+## S004.1   NA           n_per_arm                86
+## S004.2   NA             n_total               172
+## S004.3   NA unrounded_n_per_arm  85.0312614647902
+## S004.4   NA      achieved_power 0.903229979990546</code></pre>
+<p>Any supported project can be executed in a batch; the grid helper
+varies scalar parameters. Simulation seeds increment deterministically
+by row unless <code>seed_strategy=&quot;preserve&quot;</code> is explicitly
+selected. Explicitly varying seeds requires preserve. Reusing seeds does
+not establish independence between scenario estimates. Information
+vectors require constructing separate projects.</p>
+<p>Use <code>start_scenarios(projects)</code>,
+<code>simulation_status(job)</code>,
+<code>collect_simulation(job)</code> and
+<code>cancel_simulation(job)</code> for asynchronous work. A cancelled
+run has no completed partial result. Errors abort by default;
+<code>continue_on_error=TRUE</code> retains failures separately, never
+as scientific estimates. Each successful result retains its engine and
+complete provenance. Monte Carlo confidence intervals are marginal, with
+no simultaneous coverage or inferential combination across engines.</p>
+<p><code>export_bundle(comparison,&quot;sensitivity.zip&quot;,include_report=FALSE)</code>
+includes all scenario JSON projects, a filename-to-scenario index,
+failures, results and integrity checks. The app supports up to 36
+fixed-design grid scenarios and 100,000 total simulation replications;
+the R grid helper permits up to 1000 scenarios. Larger scientific
+experiments should plan precision and resources explicitly.</p>
+</div>
+<div id="extended-verification-and-external-review" class="section level2">
+<h2>Extended verification and external review</h2>
+<p>The prespecified stress script evaluates 40 scenarios: normal
+small/large sample sizes and both directions, binary nuisance risks from
+.01 to .99, sequential spending and binding/nonbinding futility,
+survival dropout/event/calendar stops, and bounded native adaptive
+resizing. It reports estimates, MCSE, exact binomial intervals and a
+five-theoretical-MCSE screening band. Reference gates compare matched
+procedures. Sparse binary and low-event logrank cases are diagnostics;
+departures are retained and are not relabelled as exact calibration.</p>
+<p>Passing a finite grid does not establish uniform type I error
+control. Independent scientific review, real-user usability evaluation
+and external TD-plan mapping have not been performed. Reproducible
+protocols, blank observation forms and review criteria are supplied in
+docs/review of the source repository.</p>
 </div>
 
 

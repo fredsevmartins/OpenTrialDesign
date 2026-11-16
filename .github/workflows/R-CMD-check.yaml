@@ -1,5 +1,10 @@
 name: R scientific verification
-on: [push, pull_request, workflow_dispatch]
+on:
+  push:
+    branches: ['**']
+  pull_request:
+  workflow_dispatch:
+  workflow_call:
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.head.ref || github.ref_name }}
   cancel-in-progress: true
@@ -41,6 +46,7 @@ jobs:
         run: |
           source("scripts/scientific-reference.R")
           source("scripts/product-scientific-reference.R")
+          source("scripts/stress-validation.R")
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -58,12 +64,12 @@ jobs:
         with:
           context: .
           load: true
-          tags: opentrialdesign:0.2.0
+          tags: opentrialdesign:0.3.0
           cache-from: type=gha
           cache-to: type=gha,mode=max
       - name: Start local product
         run: |
-          docker run -d --name otd-product --read-only --tmpfs /tmp:size=512m,mode=1777 -p 127.0.0.1:3838:3838 opentrialdesign:0.2.0
+          docker run -d --name otd-product --read-only --tmpfs /tmp:size=512m,mode=1777 -p 127.0.0.1:3838:3838 opentrialdesign:0.3.0
           for attempt in $(seq 1 90); do
             if curl -fsS http://127.0.0.1:3838/ > /dev/null; then exit 0; fi
             sleep 2
@@ -84,6 +90,8 @@ jobs:
           pip install playwright
           python -m playwright install --with-deps chromium
           python scripts/product-browser.py
+          npm install --prefix /tmp/otd-a11y axe-core@4.10.3 --ignore-scripts --no-audit --no-fund
+          AXE_CORE_PATH=/tmp/otd-a11y/node_modules/axe-core/axe.min.js python scripts/improvements-browser.py
       - name: Container diagnostics
         if: always()
         run: |

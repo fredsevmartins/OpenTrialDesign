@@ -13,7 +13,7 @@ library(OpenTrialDesign)
 
 ## Installation and scope
 
-Install from source with `install.packages("OpenTrialDesign_0.2.0.tar.gz",
+Install from source with `install.packages("OpenTrialDesign_0.3.0.tar.gz",
 repos = NULL, type = "source")`. Optional engines can be installed with
 `install.packages(c("gsDesign", "rpact", "simsurv"))`; the interface requires
 `shiny`, and reporting requires `rmarkdown` plus Pandoc. PDF additionally
@@ -288,3 +288,57 @@ selected installation. For API work in an R session from that checkout, source
 `scripts/product-library.R` and call `activate_product_library()` first.
 Native source dependencies require the compiler/system libraries documented
 in deployment/README.md; the Dockerfile provisions them automatically.
+
+
+## Scientific review before execution
+
+`review_project(project)` displays the exact estimand, hypothesis direction,
+alpha definition, allocation, nuisance assumptions, stopping and simulation
+settings. It does not run simulations or confer scientific validation. The app
+shows the live review before execution; calculated outputs retain their frozen
+click-time specification even if inputs are later edited.
+
+## Sensitivity analysis and batch simulation
+
+```{r}
+projects <- scenario_grid(trial_project(),
+  list(effect=c(.3,.5),power=c(.8,.9)))
+comparison <- run_scenarios(projects)
+comparison$data$summary
+```
+
+Any supported project can be executed in a batch; the grid helper varies scalar
+parameters. Simulation seeds increment deterministically by row unless
+`seed_strategy="preserve"` is explicitly selected. Explicitly varying seeds
+requires preserve. Reusing seeds does not establish independence between
+scenario estimates. Information vectors require constructing separate projects.
+
+Use `start_scenarios(projects)`, `simulation_status(job)`,
+`collect_simulation(job)` and `cancel_simulation(job)` for asynchronous work.
+A cancelled run has no completed partial result. Errors abort by default;
+`continue_on_error=TRUE` retains failures separately, never as scientific
+estimates. Each successful result retains its engine and complete provenance.
+Monte Carlo confidence intervals are marginal, with no simultaneous coverage
+or inferential combination across engines.
+
+`export_bundle(comparison,"sensitivity.zip",include_report=FALSE)` includes all
+scenario JSON projects, a filename-to-scenario index, failures, results and
+integrity checks. The app supports up to 36 fixed-design grid scenarios and
+100,000 total simulation replications; the R grid helper permits up to 1000
+scenarios. Larger scientific experiments should plan precision and resources
+explicitly.
+
+## Extended verification and external review
+
+The prespecified stress script evaluates 40 scenarios: normal small/large sample
+sizes and both directions, binary nuisance risks from .01 to .99, sequential
+spending and binding/nonbinding futility, survival dropout/event/calendar stops,
+and bounded native adaptive resizing. It reports estimates, MCSE, exact binomial
+intervals and a five-theoretical-MCSE screening band. Reference gates compare
+matched procedures. Sparse binary and low-event logrank cases are diagnostics;
+departures are retained and are not relabelled as exact calibration.
+
+Passing a finite grid does not establish uniform type I error control. Independent
+scientific review, real-user usability evaluation and external TD-plan mapping
+have not been performed. Reproducible protocols, blank observation forms and
+review criteria are supplied in docs/review of the source repository.

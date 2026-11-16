@@ -1,0 +1,33 @@
+{
+  "checks": [
+    {
+      "workflow": "pre-execution review updates hypothesis direction and alpha",
+      "passed": true
+    },
+    {
+      "workflow": "keyboard skip navigation",
+      "passed": true
+    },
+    {
+      "workflow": "binding futility review before calculation",
+      "passed": true
+    },
+    {
+      "workflow": "analytical sensitivity grid and portable scenario bundle",
+      "passed": true
+    },
+    {
+      "workflow": "background sensitivity simulation retains four deterministic seeds",
+      "passed": true
+    },
+    {
+      "workflow": "batch cancellation discards partial results",
+      "passed": true
+    },
+    {
+      "workflow": "responsive sensitivity interface",
+      "passed": true
+    }
+  ],
+  "javascript_errors": []
+}

@@ -1,0 +1,40 @@
+normal 8 two.sided null : 0.05 expected 0.05 screen TRUE gate TRUE 
+normal 8 two.sided alternative : 0.1635 expected 0.1540475 screen TRUE gate TRUE 
+normal 8 greater null : 0.051 expected 0.05 screen TRUE gate TRUE 
+normal 8 greater alternative : 0.237 expected 0.2441842 screen TRUE gate TRUE 
+normal 8 less null : 0.0435 expected 0.05 screen TRUE gate TRUE 
+normal 8 less alternative : 0.245 expected 0.2441842 screen TRUE gate TRUE 
+normal 64 two.sided null : 0.057 expected 0.05 screen TRUE gate TRUE 
+normal 64 two.sided alternative : 0.7985 expected 0.8014596 screen TRUE gate TRUE 
+normal 64 greater null : 0.0515 expected 0.05 screen TRUE gate TRUE 
+normal 64 greater alternative : 0.867 expected 0.8786642 screen TRUE gate TRUE 
+normal 64 less null : 0.039 expected 0.05 screen TRUE gate TRUE 
+normal 64 less alternative : 0.8725 expected 0.8786642 screen TRUE gate TRUE 
+binary 10 0.01 null : 0 expected 0.05 screen FALSE gate FALSE 
+binary 10 0.1 null : 0.014 expected 0.05 screen FALSE gate FALSE 
+binary 10 0.5 null : 0.038 expected 0.05 screen TRUE gate FALSE 
+binary 10 0.9 null : 0.009 expected 0.05 screen FALSE gate FALSE 
+binary 10 0.99 null : 0 expected 0.05 screen FALSE gate FALSE 
+binary 100 0.01 null : 0.017 expected 0.05 screen FALSE gate FALSE 
+binary 100 0.1 null : 0.0485 expected 0.05 screen TRUE gate FALSE 
+binary 100 0.5 null : 0.05 expected 0.05 screen TRUE gate FALSE 
+binary 100 0.9 null : 0.0425 expected 0.05 screen TRUE gate FALSE 
+binary 100 0.99 null : 0.0165 expected 0.05 screen FALSE gate FALSE 
+sequential OF none enforced null : 0.028 expected 0.025 screen TRUE gate TRUE 
+sequential OF binding enforced null : 0.0255 expected 0.02500014 screen TRUE gate TRUE 
+sequential OF nonbinding enforced null : 0.023 expected 0.0235169 screen TRUE gate TRUE 
+sequential OF nonbinding ignored null : 0.027 expected 0.025 screen TRUE gate TRUE 
+sequential Pocock none enforced null : 0.026 expected 0.025 screen TRUE gate TRUE 
+sequential Pocock binding enforced null : 0.0205 expected 0.02500006 screen TRUE gate TRUE 
+sequential Pocock nonbinding enforced null : 0.027 expected 0.0243473 screen TRUE gate TRUE 
+sequential Pocock nonbinding ignored null : 0.0255 expected 0.025 screen TRUE gate TRUE 
+survival 30 0 administrative : 0.029 expected 0.025 screen TRUE gate FALSE 
+survival 30 0 20 events : 0.0235 expected 0.025 screen TRUE gate FALSE 
+survival 30 0.25 administrative : 0.0215 expected 0.025 screen TRUE gate FALSE 
+survival 30 0.25 20 events : 0.0205 expected 0.025 screen TRUE gate FALSE 
+survival 100 0 administrative : 0.0295 expected 0.025 screen TRUE gate FALSE 
+survival 100 0 20 events : 0.0275 expected 0.025 screen TRUE gate FALSE 
+survival 100 0.25 administrative : 0.027 expected 0.025 screen TRUE gate FALSE 
+survival 100 0.25 20 events : 0.028 expected 0.025 screen TRUE gate FALSE 
+adaptive null stage2 limit 120 : 0.023 expected 0.025 screen TRUE gate TRUE 
+adaptive null stage2 limit 240 : 0.0285 expected 0.025 screen TRUE gate TRUE 

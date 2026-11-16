@@ -177,10 +177,23 @@ export_bundle <- function(x, file, include_report = TRUE) {
   writeLines(capture.output(dput(x$specification)), file.path(scratch, "assumptions.txt"))
   writeLines(capture.output(dput(x$provenance)), file.path(scratch, "provenance.txt"))
   writeLines(capture.output(utils::sessionInfo()), file.path(scratch, "session.txt"))
-  if (!is.null(x$project)) write_project(x$project, file.path(scratch, "project.json"))
+  if (!is.null(x$project)) {
+    write_project(x$project, file.path(scratch, "project.json"))
+    utils::write.csv(review_project(x$project),file.path(scratch,"scientific-review.csv"),row.names=FALSE)
+  }
+  if (identical(x$kind,"scenario sensitivity analysis")) {
+    dir.create(file.path(scratch,"scenarios"))
+    for (i in seq_along(x$data$projects)) {
+      id<-sprintf("S%03d",i)
+      write_project(x$data$projects[[i]],file.path(scratch,"scenarios",paste0(id,".json")))
+    }
+    utils::write.csv(data.frame(file=sprintf("S%03d.json",seq_along(x$data$projects)),scenario=names(x$data$projects)),
+      file.path(scratch,"scenarios","index.csv"),row.names=FALSE)
+    utils::write.csv(x$data$failures,file.path(scratch,"failures.csv"),row.names=FALSE)
+  }
   if (include_report) render_report(x, file.path(scratch, "report.html"))
-  paths <- list.files(scratch, full.names = TRUE)
-  utils::write.csv(data.frame(file = basename(paths), md5 = unname(tools::md5sum(paths))),
+  paths <- list.files(scratch, full.names = TRUE, recursive = TRUE)
+  utils::write.csv(data.frame(file = substring(paths,nchar(scratch)+2), md5 = unname(tools::md5sum(paths))),
     file.path(scratch, "manifest.csv"), row.names = FALSE)
   writeLines(c("OpenTrialDesign reproducibility bundle", "CSV values are unrounded computational outputs.",
     "project.json (when present) is the non-executable replay configuration.",

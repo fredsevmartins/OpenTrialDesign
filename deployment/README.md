@@ -87,3 +87,24 @@ headers required by the locked R dependencies (Linux: libcurl, OpenSSL, libxml2,
 ICU, fontconfig/freetype, harfbuzz/fribidi and image libraries). Windows source
 builds require matching Rtools; macOS requires the matching command-line tools
 and Fortran compiler. The standard Dockerfile installs these requirements.
+
+## Versioned release installation
+
+Download OpenTrialDesign_0.3.0.tar.gz and SHA256SUMS from the GitHub release;
+verify `sha256sum -c SHA256SUMS` in the directory containing all release assets.
+The source package is installed with `R CMD INSTALL OpenTrialDesign_0.3.0.tar.gz`
+when its documented dependencies are present. For the complete frozen product,
+use the repository's native installer or the published container.
+
+The release's container-image.txt contains an immutable GHCR digest. For a
+private repository/package, authenticate with an authorized GitHub account and
+registry token with read:packages; do not paste credentials into projects or
+reports. Pull and run that digest, using the same read-only/tmpfs/loopback and
+resource options in compose.yaml. Override Compose's `image` value with the
+published digest and start with `docker compose up --no-build -d` after pulling.
+Registry access does not change the repository's visibility.
+
+The tag-triggered release workflow first reruns the full scientific and browser
+verification on that tag. It then builds source/documentation, publishes the
+container and creates release assets/checksums. Failed verification prevents
+publication. The verification URL and source commit accompany the assets.

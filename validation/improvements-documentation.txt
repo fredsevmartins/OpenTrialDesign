@@ -1,0 +1,98 @@
+── Building pkgdown site for package OpenTrialDesign ───────────────────────────
+Reading from: /workspace/OpenTrialDesign
+Writing to: /workspace/OpenTrialDesign/docs/site
+── Sitrep ──────────────────────────────────────────────────────────────────────
+✖ URLs not ok.
+  In DESCRIPTION, URL is missing package url
+  (https://fredsevmartins.github.io/OpenTrialDesign).
+  See details in `vignette(pkgdown::metadata)`.
+✔ Favicons ok.
+✔ Open graph metadata ok.
+✔ Articles metadata ok.
+✔ Reference metadata ok.
+── Initialising site ───────────────────────────────────────────────────────────
+── Building home ───────────────────────────────────────────────────────────────
+Reading README.md
+Writing `index.html`
+Writing `404.html`
+── Building function reference ─────────────────────────────────────────────────
+Writing `reference/index.html`
+Reading man/adaptive_simulation.Rd
+Writing `reference/adaptive_simulation.html`
+Reading man/cancel_simulation.Rd
+Writing `reference/cancel_simulation.html`
+Reading man/collect_simulation.Rd
+Writing `reference/collect_simulation.html`
+Reading man/compare_scenarios.Rd
+Writing `reference/compare_scenarios.html`
+Reading man/conditional_power.Rd
+Writing `reference/conditional_power.html`
+Reading man/diagnose_design.Rd
+Writing `reference/diagnose_design.html`
+Reading man/execute_project.Rd
+Writing `reference/execute_project.html`
+Reading man/export_bundle.Rd
+Writing `reference/export_bundle.html`
+Reading man/plot_design.Rd
+Writing `reference/plot_design.html`
+Reading man/print.otd_result.Rd
+Writing `reference/print.otd_result.html`
+Reading man/read_project.Rd
+Writing `reference/read_project.html`
+Reading man/render_report.Rd
+Writing `reference/render_report.html`
+Reading man/result_table.Rd
+Writing `reference/result_table.html`
+Reading man/review_project.Rd
+Writing `reference/review_project.html`
+Reading man/run_app.Rd
+Writing `reference/run_app.html`
+Reading man/run_example.Rd
+Writing `reference/run_example.html`
+Reading man/run_scenarios.Rd
+Writing `reference/run_scenarios.html`
+Reading man/runtime_diagnostics.Rd
+Writing `reference/runtime_diagnostics.html`
+Reading man/sample_size.Rd
+Writing `reference/sample_size.html`
+Reading man/scenario_grid.Rd
+Writing `reference/scenario_grid.html`
+Reading man/sequential_design.Rd
+Writing `reference/sequential_design.html`
+Reading man/sequential_power.Rd
+Writing `reference/sequential_power.html`
+Reading man/sequential_sample_size.Rd
+Writing `reference/sequential_sample_size.html`
+Reading man/simulate_sequential.Rd
+Writing `reference/simulate_sequential.html`
+Reading man/simulate_survival.Rd
+Writing `reference/simulate_survival.html`
+Reading man/simulate_trial.Rd
+Writing `reference/simulate_trial.html`
+Reading man/simulation_status.Rd
+Writing `reference/simulation_status.html`
+Reading man/start_scenarios.Rd
+Writing `reference/start_scenarios.html`
+Reading man/start_simulation.Rd
+Writing `reference/start_simulation.html`
+Reading man/survival_design.Rd
+Writing `reference/survival_design.html`
+Reading man/trial_power.Rd
+Writing `reference/trial_power.html`
+Reading man/trial_project.Rd
+Writing `reference/trial_project.html`
+Reading man/trial_spec.Rd
+Writing `reference/trial_spec.html`
+Reading man/write_project.Rd
+Writing `reference/write_project.html`
+── Building articles ───────────────────────────────────────────────────────────
+Writing `articles/index.html`
+Reading vignettes/user-guide.Rmd
+Writing `articles/user-guide.html`
+── Building news ───────────────────────────────────────────────────────────────
+Writing `news/index.html`
+── Building sitemap ────────────────────────────────────────────────────────────
+Writing `sitemap.xml`
+── Building search index ───────────────────────────────────────────────────────
+── Checking for problems ───────────────────────────────────────────────────────
+── Finished building pkgdown site for package OpenTrialDesign ──────────────────

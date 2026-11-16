@@ -32,3 +32,9 @@ A fresh-library source restoration also required libxml2-dev and ICU development
 headers discoverable through pkg-config on the minimal Debian host. These are
 OS build dependencies, separate from the R lockfile. The initial failed restore
 log is retained rather than being treated as successful.
+
+
+The optional browser audit uses axe-core 4.10.3 (MPL-2.0; Node >= 4), inspected
+through npm metadata before use. It is a test dependency, installed with lifecycle
+scripts disabled, and is not bundled into the R runtime or application. WCAG
+A/AA checks cover recorded browser states, not an accessibility certification.
