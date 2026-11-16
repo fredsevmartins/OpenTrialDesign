@@ -1,0 +1,21 @@
+{
+  "format": "OpenTrialDesign-project",
+  "schema_version": 1,
+  "created_with": "0.4.0",
+  "title": "Normal margin design",
+  "workflow": "means_design",
+  "parameters": {
+    "hypothesis": "equivalence",
+    "effect": 0,
+    "sd": 1,
+    "allocation_ratio": 2,
+    "alpha": 0.025000000000000001,
+    "power": 0.80000000000000004,
+    "alternative": "greater",
+    "margin": 0.29999999999999999,
+    "lower": -0.29999999999999999,
+    "upper": 0.29999999999999999,
+    "n_control": null,
+    "n_treatment": null
+  }
+}

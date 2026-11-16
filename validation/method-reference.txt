@@ -1,0 +1,14 @@
+unequal NI greater boundary null 0.0254 expected 0.025 passed TRUE 
+unequal NI greater alternative 0.7996 expected 0.8016193 passed TRUE 
+unequal NI less boundary null 0.0246 expected 0.025 passed TRUE 
+unequal NI less alternative 0.8016 expected 0.8016193 passed TRUE 
+asymmetric TOST lower boundary null 0.0234 expected 0.02499999 passed TRUE 
+asymmetric TOST upper boundary null 0.0244 expected 0.02499999 passed TRUE 
+asymmetric TOST alternative 0.7998 expected 0.8015079 passed TRUE 
+Fisher sparse null 0.01 0 expected 0.05 passed TRUE 
+Fisher sparse null 0.1 0.0016 expected 0.05 passed TRUE 
+Fisher sparse null 0.5 0.013 expected 0.05 passed TRUE 
+Fisher sparse null 0.99 0 expected 0.05 passed TRUE 
+piecewise logrank null PH 0.026 expected 0.025 passed TRUE 
+piecewise logrank null delayed 0.0284 expected 0.025 passed TRUE 
+piecewise logrank null crossing 0.024 expected 0.025 passed TRUE 

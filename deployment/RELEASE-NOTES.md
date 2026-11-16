@@ -1,18 +1,26 @@
-OpenTrialDesign 0.3.0 adds pre-execution scientific specification review,
-reproducible sensitivity grids, cancellable batch simulations and complete
-scenario exports. It expands prespecified scientific stress experiments and
-automated accessibility/keyboard/browser acceptance.
+OpenTrialDesign 0.4.0 adds visible sparse-binary diagnostics and explicit Fisher
+simulation; independent normal unequal-allocation superiority/noninferiority;
+exact parallel TOST equivalence through PowerTOST; and native rpact piecewise
+non-PH survival simulation with full-denominator event-target safeguards.
 
-Assets include the installable R source package, generated documentation,
-dependency lock, verification reference, SHA256 checksums and the exact GHCR
-container digest. Publication occurs only after Linux/macOS/Windows package,
-example/reference/stress and clean-container/browser verification succeeds.
+Mean effects/margins use treatment minus control. NI tests the loss margin;
+TOST requires both one-sided component rejections at alpha (global IUT level
+alpha, not 2*alpha). Margins require clinical justification. Lower-direction
+normal sizing explicitly reverses both outcome and null margin for the native
+engine and preserves the original reported estimand.
 
-The GHCR image follows the repository's existing access controls; private
-packages require authorized registry login. No repository visibility is changed.
+Fisher simulation never makes the approximate binary sample-size calculation
+exact. Piecewise survival evaluates a logrank decision, not a constant HR or
+uniform benefit under crossing hazards. Unreached event targets abort rather
+than silently omitting trials. See docs/METHOD-EXTENSIONS.md for complete scope.
 
-Computational verification is not independent scientific or regulatory review.
-The review and real-user usability protocols are supplied with an explicit
-not-performed status. The version-1 TD catalog remains authoritative; no mapping
-to the unavailable external plan is claimed. Sparse binary and low-event logrank
-results retain the limitations of their underlying approximations.
+This prerelease was authorized for publication without hosted CI after GitHub
+blocked jobs for account billing/spending limits. Source, documentation, locked
+dependencies, full local evidence, verification.json and SHA256 checksums are
+provided. Local Linux validation is the acceptance evidence; Windows, macOS and
+clean-container verification were not performed for 0.4.0. No new prebuilt
+container image is published, and the previous 0.3.0 image is not relabelled.
+
+Independent scientific/user evaluation remains unperformed; computational checks
+do not confer protocol-specific or regulatory qualification. Existing repository
+and package access controls are preserved.

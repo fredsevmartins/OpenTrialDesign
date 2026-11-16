@@ -13,7 +13,7 @@ library(OpenTrialDesign)
 
 ## Installation and scope
 
-Install from source with `install.packages("OpenTrialDesign_0.3.0.tar.gz",
+Install from source with `install.packages("OpenTrialDesign_0.4.0.tar.gz",
 repos = NULL, type = "source")`. Optional engines can be installed with
 `install.packages(c("gsDesign", "rpact", "simsurv"))`; the interface requires
 `shiny`, and reporting requires `rmarkdown` plus Pandoc. PDF additionally
@@ -342,3 +342,67 @@ Passing a finite grid does not establish uniform type I error control. Independe
 scientific review, real-user usability evaluation and external TD-plan mapping
 have not been performed. Reproducible protocols, blank observation forms and
 review criteria are supplied in docs/review of the source repository.
+
+
+## Sparse binary counts and explicit exact-test simulation
+
+```{r}
+sparse <- trial_spec("binary",effect=.005,p_control=.01)
+binary_diagnostics(sparse,10,null=TRUE)
+```
+
+The count threshold of five is only a heuristic. Historical score-test examples
+are downloadable in the app and installed validation folder. Use
+`simulate_trial(sparse,10,nsim=1000,seed=42,null=TRUE,binary_test="fisher")`
+to explicitly evaluate a conditional Fisher test. Its conservatism can reduce
+power. Approximate sample sizing remains separate; increasing the simulation
+count cannot repair miscalibration. Results and reports retain this distinction.
+
+## Unequal normal allocation and clinical margin tests
+
+```{r}
+if(requireNamespace("rpact",quietly=TRUE)){
+  ni <- means_design(allocation_ratio=2,margin=.3,effect=0)
+  ni$data[c("n_control","n_treatment","rejection_probability")]
+}
+if(requireNamespace("PowerTOST",quietly=TRUE)){
+  eq <- means_design(hypothesis="equivalence",effect=.02,lower=-.2,upper=.4,allocation_ratio=2)
+  eq$data[c("n_control","n_treatment","rejection_probability")]
+}
+```
+
+Effects and margins are treatment minus control in original response units.
+For higher-is-better NI, H0 is delta <= -margin; for lower-is-better it is delta
+>= margin. Margin values in these examples are synthetic and must not be adopted
+without clinical justification. TOST equivalence is the intersection of two
+one-sided rejections; global level is alpha, not twice alpha. Its matching CI
+has coverage 1-2*alpha. Nonsignificance is not equivalence.
+
+`simulate_means_design()` evaluates NI at the null margin or equivalence at
+both boundary nulls, plus the specified alternative. Use actual arm sizes.
+For fixed-size analytical evaluation, supply n_control and n_treatment to
+means_design. At a null effect the result reports rejection_probability and
+leaves achieved_power missing, rather than labelling type I error as power.
+The exact equivalence engine assumes independent parallel groups and common
+normal variance; crossover or binary equivalence is not supported here.
+
+## Nonproportional survival profiles
+
+```{r,eval=FALSE}
+simulate_nonph(times=c(0,6),lambda_control=c(.06,.06),
+  lambda_treatment=c(.08,.03),n_total=240,events=100,
+  allocation_treatment=2,allocation_control=1,nsim=1000,seed=42)
+```
+
+This uses native rpact piecewise-exponential simulation and ordinary one-sided
+logrank analysis. Intervals are follow-up times; the final interval is unbounded.
+The supplied profile crosses from higher to lower treatment hazards. No constant
+HR or uniform survival dominance is inferred. Recruitment is uniform; there is
+no additional administrative follow-up cap. A failed event target aborts the
+adapter instead of omitting trials. The equal-curve null is checked separately.
+
+Vary enrollment/events in explicit complete projects to evaluate simulation-based
+planning under non-PH. Never apply the older PH Schoenfeld planner to these
+profiles. All new workflows support JSON, reporting, scenario batches and
+cancellable workers. See docs/METHOD-EXTENSIONS.md in the repository for exact
+scope and the four-theoretical-MCSE scientific reference criteria.

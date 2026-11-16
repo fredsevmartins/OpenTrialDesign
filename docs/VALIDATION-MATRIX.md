@@ -48,3 +48,15 @@ Scientific review and real-user usability protocols in docs/review are pending
 external execution. Automated browser acceptance adds seven workflows and axe
 WCAG A/AA checks for three states, retaining incomplete/manual-review items.
 This is not an independent scientific or accessibility certification.
+
+
+## 0.4.0 method extensions
+
+The new reference script runs 14 prespecified comparisons with 5000 replications
+per scenario. NI is checked at the actual positive/negative loss margin and
+alternative; asymmetric unequal TOST is compared with exact PowerTOST rejection
+probability; sparse Fisher checks permit conservatism but screen excess null
+error; native non-PH logrank null checks vary baseline profile and allocation.
+Seeds, observed estimates, MCSE, exact intervals and tolerances are retained in
+method-reference.csv. The finite null grid is not uniform-error certification.
+Native non-PH incomplete event analyses abort rather than alter the denominator.

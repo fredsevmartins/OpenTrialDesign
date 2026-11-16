@@ -1,0 +1,52 @@
+Installing packages into ‘/workspace/R-library’
+(as ‘lib’ is unspecified)
+trying URL 'https://cloud.r-project.org/src/contrib/mvtnorm_1.4-2.tar.gz'
+trying URL 'https://cloud.r-project.org/src/contrib/PowerTOST_1.5-7.tar.gz'
+* installing *source* package ‘mvtnorm’ ...
+** this is package ‘mvtnorm’ version ‘1.4-2’
+** package ‘mvtnorm’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘gcc (Debian 14.2.0-19) 14.2.0’
+using Fortran compiler: ‘GNU Fortran (Debian 14.2.0-19) 14.2.0’
+gcc -std=gnu23 -I"/workspace/r-local/usr/share/R/include" -DNDEBUG      -fvisibility=hidden -fpic  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -Wdate-time -D_FORTIFY_SOURCE=2  -c C_FORTRAN_interface.c -o C_FORTRAN_interface.o
+gcc -std=gnu23 -I"/workspace/r-local/usr/share/R/include" -DNDEBUG      -fvisibility=hidden -fpic  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -Wdate-time -D_FORTIFY_SOURCE=2  -c lpmvnorm.c -o lpmvnorm.o
+gcc -std=gnu23 -I"/workspace/r-local/usr/share/R/include" -DNDEBUG      -fvisibility=hidden -fpic  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -Wdate-time -D_FORTIFY_SOURCE=2  -c ltMatrices.c -o ltMatrices.o
+gcc -std=gnu23 -I"/workspace/r-local/usr/share/R/include" -DNDEBUG      -fvisibility=hidden -fpic  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -Wdate-time -D_FORTIFY_SOURCE=2  -c miwa.c -o miwa.o
+gfortran  -fpic  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -fcf-protection  -c mvt.f -o mvt.o
+gcc -std=gnu23 -I"/workspace/r-local/usr/share/R/include" -DNDEBUG      -fvisibility=hidden -fpic  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -Wformat -Werror=format-security -fcf-protection -Wdate-time -D_FORTIFY_SOURCE=2  -c mvtnorm-init.c -o mvtnorm-init.o
+gfortran  -fpic  -g -O2 -ffile-prefix-map=/build/reproducible-path/r-base-4.5.0=. -fstack-protector-strong -fstack-clash-protection -fcf-protection  -c tvpack.f -o tvpack.o
+gcc -std=gnu23 -shared -L/workspace/r-local/usr/lib/R/lib -Wl,-z,relro -o mvtnorm.so C_FORTRAN_interface.o lpmvnorm.o ltMatrices.o miwa.o mvt.o mvtnorm-init.o tvpack.o -llapack -lblas -L/workspace/r-local/usr/lib/gcc/x86_64-linux-gnu/14 -lgfortran -lm -lquadmath -L/workspace/r-local/usr/lib/gcc/x86_64-linux-gnu/14 -lgfortran -lm -lquadmath -L/workspace/r-local/usr/lib/R/lib -lR
+installing to /workspace/R-library/00LOCK-mvtnorm/00new/mvtnorm/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (mvtnorm)
+* installing *source* package ‘PowerTOST’ ...
+** this is package ‘PowerTOST’ version ‘1.5-7’
+** package ‘PowerTOST’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (PowerTOST)
+
+The downloaded source packages are in
+	‘/tmp/RtmpX513ac/downloaded_packages’

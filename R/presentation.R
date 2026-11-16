@@ -8,6 +8,7 @@ print.otd_result <- function(x, ...) {
       "\nMethod:", x$provenance$method, "\n")
   visible <- x$data[setdiff(names(x$data), c("native", "design"))]
   if (length(visible)) print(visible) else if (!is.null(x$data$native)) print(x$data$native)
+  if(!is.null(x$diagnostics))print(x$diagnostics)
   cat("Validation:", x$provenance$validation, "\n")
   invisible(x)
 }
@@ -56,7 +57,7 @@ compare_scenarios <- function(specs) {
 #' @export
 diagnose_design <- function(x) {
   if (!inherits(x, "otd_result")) fail("x must be an otd_result")
-  list(kind = x$kind, provenance = x$provenance, specification = x$specification,
+  list(diagnostics=x$diagnostics,kind = x$kind, provenance = x$provenance, specification = x$specification,
     monte_carlo = x$data[intersect(names(x$data),
       c("nsim", "mcse", "lower", "upper", "target_attainment", "summary"))])
 }

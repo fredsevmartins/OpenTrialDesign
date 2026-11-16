@@ -3,7 +3,7 @@
 #' @export
 runtime_diagnostics <- function() {
   packages <- c("stats", "survival", "ggplot2", "gsDesign", "rpact", "simsurv",
-                "shiny", "callr", "zip", "rmarkdown")
+                "PowerTOST", "shiny", "callr", "zip", "rmarkdown")
   rows <- lapply(packages, function(p) {
     available <- requireNamespace(p, quietly = TRUE)
     version <- if (available) as.character(utils::packageVersion(p)) else NA_character_

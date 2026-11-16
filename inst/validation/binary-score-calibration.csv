@@ -1,0 +1,11 @@
+case,expected,observed,nsim,seed,mcse,lower,upper,tolerance,within_screen,release_gate,classification,method
+binary 10 0.01 null,0.05,0,2000,3212,0,0,0.00184273979340594,0.0243669858620224,FALSE,FALSE,discrete asymptotic test calibration diagnostic,empirical type I error at equality null
+binary 10 0.1 null,0.05,0.014,2000,3213,0.00262716577322406,0.00932252008878364,0.0201707512317948,0.0243669858620224,FALSE,FALSE,discrete asymptotic test calibration diagnostic,empirical type I error at equality null
+binary 10 0.5 null,0.05,0.038,2000,3214,0.00427527776875374,0.0300542754431091,0.0473338643050131,0.0243669858620224,TRUE,FALSE,discrete asymptotic test calibration diagnostic,empirical type I error at equality null
+binary 10 0.9 null,0.05,0.009,2000,3215,0.00211175282644537,0.00534244302339543,0.0141867144715145,0.0243669858620224,FALSE,FALSE,discrete asymptotic test calibration diagnostic,empirical type I error at equality null
+binary 10 0.99 null,0.05,0,2000,3216,0,0,0.00184273979340594,0.0243669858620224,FALSE,FALSE,discrete asymptotic test calibration diagnostic,empirical type I error at equality null
+binary 100 0.01 null,0.05,0.017,2000,3217,0.00289058817544112,0.0118009878973463,0.0236754062273399,0.0243669858620224,FALSE,FALSE,discrete asymptotic test calibration diagnostic,empirical type I error at equality null
+binary 100 0.1 null,0.05,0.0485,2000,3218,0.00480352734977121,0.0395034086292224,0.0588477051589763,0.0243669858620224,TRUE,FALSE,discrete asymptotic test calibration diagnostic,empirical type I error at equality null
+binary 100 0.5 null,0.05,0.05,2000,3219,0.00487339717240448,0.0408642677182513,0.0604817220831518,0.0243669858620224,TRUE,FALSE,discrete asymptotic test calibration diagnostic,empirical type I error at equality null
+binary 100 0.9 null,0.05,0.0425,2000,3220,0.00451075104611194,0.0340860745931509,0.0522859132423742,0.0243669858620224,TRUE,FALSE,discrete asymptotic test calibration diagnostic,empirical type I error at equality null
+binary 100 0.99 null,0.05,0.0165,2000,3221,0.00284848644019943,0.0113843583802351,0.0230946983238378,0.0243669858620224,FALSE,FALSE,discrete asymptotic test calibration diagnostic,empirical type I error at equality null

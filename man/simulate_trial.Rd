@@ -4,7 +4,14 @@
 \alias{simulate_trial}
 \title{Estimate operating characteristics with Monte Carlo uncertainty}
 \usage{
-simulate_trial(spec, n_per_arm, nsim = 1000, seed = 1, null = FALSE)
+simulate_trial(
+  spec,
+  n_per_arm,
+  nsim = 1000,
+  seed = 1,
+  null = FALSE,
+  binary_test = c("score", "fisher")
+)
 }
 \arguments{
 \item{spec}{A trial_spec object.}
@@ -16,6 +23,9 @@ simulate_trial(spec, n_per_arm, nsim = 1000, seed = 1, null = FALSE)
 \item{seed}{Deterministic integer seed.}
 
 \item{null}{If TRUE simulate the equality null (effect zero).}
+
+\item{binary_test}{Explicit binary analysis: asymptotic score or conditional
+Fisher exact test. Fisher simulation does not supply exact sample sizing.}
 }
 \value{
 An otd_result with rejection proportion, MCSE and exact binomial interval.

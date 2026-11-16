@@ -37,6 +37,7 @@ ui <- fluidPage(title="OpenTrialDesign — Scientific trial planning",lang="en",
     mainPanel(id="main-content",
       div(class="otd-status", role="status", `aria-live`="polite", strong("Simulation: "), textOutput("job_status", inline=TRUE),
         actionButton("cancel", "Cancel active simulation")),
+      uiOutput("binary_guidance"),
       uiOutput("scientific_review"),
       tabsetPanel(id="workspace",
       tabPanel("Design configuration", h3("Define the question"),
@@ -77,9 +78,38 @@ ui <- fluidPage(title="OpenTrialDesign — Scientific trial planning",lang="en",
         actionButton("survsim", "Start survival simulation", class="btn-primary"),
         verbatimTextOutput("survival_result"), verbatimTextOutput("survsim_result")),
       tabPanel("Monte Carlo simulation", h3("Power and null error"),
+        conditionalPanel("input.endpoint === 'binary'",native_select("binary_test","Binary analysis (explicit choice)",c("Asymptotic score"="score","Conditional Fisher exact"="fisher")),
+          p("Fisher is an alternative simulation analysis. The fixed sample-size planner remains asymptotic; exact power must be assessed separately.")),
         checkboxInput("null", "Equality-null scenario", TRUE),
         actionButton("simulate", "Start fixed trial simulation", class="btn-primary"),
         verbatimTextOutput("simulation_result"), plotOutput("simulation_plot")),
+      tabPanel("Margins and allocation",h3("Normal means: unequal allocation and margin tests"),
+        p("Independent normal groups with common variance; these settings are independent of the fixed-design sidebar. Margins must be justified clinically before seeing data."),
+        native_select("mean_hypothesis","Scientific objective",c("Noninferiority"="noninferiority","Equivalence (TOST)"="equivalence","Superiority"="superiority")),
+        numericInput("mean_effect","Assumed treatment minus control mean",0),numericInput("mean_sd","Common SD",1,min=.01),
+        conditionalPanel("input.mean_hypothesis !== 'equivalence'",native_select("mean_direction","Alternative direction",c("Greater"="greater","Less"="less","Two-sided (superiority only)"="two.sided"))),
+        conditionalPanel("input.mean_hypothesis === 'noninferiority'",numericInput("mean_margin","Positive allowable loss margin",.3,min=.001)),
+        conditionalPanel("input.mean_hypothesis === 'equivalence'",numericInput("mean_lower","Lower equivalence bound",-.3),numericInput("mean_upper","Upper equivalence bound",.3),
+          p("TOST requires both one-sided rejections. Alpha applies to each component; global intersection-union level is alpha, not twice alpha.")),
+        numericInput("mean_alpha","Alpha (one-sided NI/TOST; total for two-sided superiority)",.025,min=.001,max=.2),
+        numericInput("mean_power","Target power",.8,min=.5,max=.99),numericInput("mean_ratio","Planned treatment/control ratio",2,min=.1,max=10),
+        checkboxInput("mean_existing","Evaluate power at explicit arm sizes instead of planning enrollment",FALSE),
+        numericInput("mean_nc","Explicit control enrollment",100,min=2),numericInput("mean_nt","Explicit treatment enrollment",200,min=2),
+        actionButton("mean_calculate","Calculate normal margin design",class="btn-primary"),
+        actionButton("mean_simulate","Simulate margin boundaries and alternative"),
+        helpText("Simulation always uses the explicit arm sizes above, plus replications/seed from the sidebar. NI null is at the loss margin; equivalence evaluates both boundary nulls. It does not reuse the last planned sizes automatically."),
+        verbatimTextOutput("mean_result"),verbatimTextOutput("mean_mc_result")),
+      tabPanel("Non-PH survival",h3("Piecewise exponential survival profiles"),
+        p("Hazards depend on subject follow-up time. No single constant HR is estimated. An ordinary one-sided logrank test can have poor power under delayed or crossing effects; rejection does not imply benefit at every time."),
+        textInput("nph_times","Interval start times (first must be zero)","0,6"),
+        textInput("nph_control","Control hazard in each interval","0.06,0.06"),
+        textInput("nph_treatment","Treatment hazard in each interval","0.06,0.03"),
+        numericInput("nph_n","Maximum total enrollment (multiple of allocation block)",200,min=4),numericInput("nph_events","Final event target",100,min=2),
+        numericInput("nph_at","Treatment subjects per allocation block",1,min=1,max=20),numericInput("nph_ac","Control subjects per allocation block",1,min=1,max=20),
+        numericInput("nph_accrual","Uniform accrual duration",12,min=.01),numericInput("nph_dropout","Independent dropout probability",0,min=0,max=.99),
+        numericInput("nph_dropout_time","Duration defining dropout probability",12,min=.01),numericInput("nph_alpha","One-sided logrank alpha",.025,min=.001,max=.2),
+        p("Native rpact event-driven simulation has no additional administrative follow-up cap. If any replication cannot reach its event target, this adapter returns an error rather than omitting trials. All times use the same unit; final hazard interval is unbounded."),
+        actionButton("nph_simulate","Simulate equal-curve null and profile alternative",class="btn-primary"),verbatimTextOutput("nph_result")),
       tabPanel("Scenario comparison", h3("Sensitivity analysis"),
         p("Each scenario is a complete frozen project. The grid varies the current fixed-design assumptions; simulation intervals are marginal, not simultaneous."),
         textInput("grid_effects","Effects (comma-separated)","0.3,0.5"),
@@ -92,7 +122,7 @@ ui <- fluidPage(title="OpenTrialDesign — Scientific trial planning",lang="en",
         downloadButton("comparison_csv","Export scenario CSV"),
         downloadButton("comparison_bundle","Download complete scenario bundle")),
       tabPanel("Projects and exports", h3("Save, replay and share"),
-        native_select("report_source", "Calculated result", c("Fixed sample size"="fixed", "Fixed power"="power", "Sequential boundaries"="seq", "Sequential enrollment"="seqsample", "Adaptive simulation"="adaptive", "Survival planning"="survival", "Fixed simulation"="sim", "Survival simulation"="survsim", "Imported project"="imported", "Example"="example")),
+        native_select("report_source", "Calculated result", c("Fixed sample size"="fixed", "Fixed power"="power", "Sequential boundaries"="seq", "Sequential enrollment"="seqsample", "Adaptive simulation"="adaptive", "Survival planning"="survival", "Fixed simulation"="sim", "Survival simulation"="survsim", "Imported project"="imported", "Example"="example", "Normal margin design"="means", "Margin simulation"="means_mc", "Non-PH survival simulation"="nonph")),
         uiOutput("downloads"), verbatimTextOutput("snapshot"),
         hr(), fileInput("project_file", "Open a project (.json)", accept=".json"),
         verbatimTextOutput("import_preview"), uiOutput("project_execute")),
@@ -130,8 +160,24 @@ server <- function(input, output, session) {
   survival_parameters <- reactive(list(hazard_ratio=value(input$hr,.7), median_control=value(input$median,12),
     accrual=value(input$accrual,18), followup=value(input$followup,12), dropout=value(input$dropout,0),
     dropout_time=value(input$dropouttime,12), alpha=value(input$gsalpha,.025)))
+  mean_parameters<-reactive(list(hypothesis=value(input$mean_hypothesis,"noninferiority"),effect=value(input$mean_effect,0),sd=value(input$mean_sd,1),
+    alpha=value(input$mean_alpha,.025),power=value(input$mean_power,.8),alternative=if(value(input$mean_hypothesis,"noninferiority")=="equivalence")"greater" else value(input$mean_direction,"greater"),
+    margin=value(input$mean_margin,.3),lower=value(input$mean_lower,-.3),upper=value(input$mean_upper,.3)))
+  mean_plan<-reactive(trial_project("means_design",c(mean_parameters(),list(allocation_ratio=value(input$mean_ratio,2),
+    n_control=if(value(input$mean_existing,FALSE))value(input$mean_nc,100) else NULL,
+    n_treatment=if(value(input$mean_existing,FALSE))value(input$mean_nt,200) else NULL)),"Normal margin design"))
+  mean_mc<-reactive(trial_project("means_simulation",c(mean_parameters(),list(n_control=value(input$mean_nc,100),n_treatment=value(input$mean_nt,200),
+    nsim=value(input$nsim,1000),seed=value(input$seed,2026))),"Normal margin-test simulation"))
+  nph_project<-reactive({
+    parse<-function(x)as.numeric(strsplit(x,",",fixed=TRUE)[[1]])
+    trial_project("nonph_simulation",list(times=parse(value(input$nph_times,"0,6")),lambda_control=parse(value(input$nph_control,"0.06,0.06")),
+      lambda_treatment=parse(value(input$nph_treatment,"0.06,0.03")),n_total=value(input$nph_n,200),events=value(input$nph_events,100),
+      allocation_treatment=value(input$nph_at,1),allocation_control=value(input$nph_ac,1),accrual=value(input$nph_accrual,12),
+      dropout=value(input$nph_dropout,0),dropout_time=value(input$nph_dropout_time,12),alpha=value(input$nph_alpha,.025),
+      nsim=value(input$nsim,1000),seed=value(input$seed,2026)),"Non-PH survival profiles")
+  })
   make_project <- function(workflow, parameters, title) trial_project(workflow,parameters,title)
-  planning<-reactiveValues(fixed=NULL,power=NULL,seq=NULL,seqsample=NULL,survival=NULL,comparison=NULL)
+  planning<-reactiveValues(fixed=NULL,power=NULL,seq=NULL,seqsample=NULL,survival=NULL,comparison=NULL,means=NULL)
   planning_errors<-reactiveValues()
   eager<-function(key,expression)tryCatch({
     answer<-force(expression);planning[[key]]<-answer;planning_errors[[key]]<-NULL
@@ -155,7 +201,7 @@ server <- function(input, output, session) {
   }))
   observeEvent(input$survival,eager("survival",execute_project(make_project("survival_design",
     c(survival_parameters(),list(power=value(input$power,.8))),"Survival planning"))))
-  results <- reactiveValues(sim=NULL,adaptive=NULL,survsim=NULL,imported=NULL,example=NULL)
+  results <- reactiveValues(sim=NULL,adaptive=NULL,survsim=NULL,imported=NULL,example=NULL,means_mc=NULL,nonph=NULL)
   active_job <- reactiveVal(NULL); job_message <- reactiveVal("Idle")
   launch_body <- function(project, destination) {
     previous <- active_job()
@@ -190,7 +236,7 @@ server <- function(input, output, session) {
   })
   session$onSessionEnded(function(){current<-isolate(active_job());if(!is.null(current))cancel_simulation(current$handle)})
   observeEvent(input$simulate,launch(make_project("fixed_simulation",c(fixed_parameters(),
-    list(n_per_arm=value(input$n,64),nsim=value(input$nsim,1000),seed=value(input$seed,2026),null=value(input$null,TRUE))),"Fixed trial Monte Carlo"),"sim"))
+    list(n_per_arm=value(input$n,64),nsim=value(input$nsim,1000),seed=value(input$seed,2026),null=value(input$null,TRUE),binary_test=if(value(input$endpoint,"normal")=="binary")value(input$binary_test,"score") else "score")),"Fixed trial Monte Carlo"),"sim"))
   observeEvent(input$adaptive,launch({
     if(value(input$endpoint,"normal")!="normal")stop("Adaptive means simulation requires the Normal mean endpoint.")
     make_project("adaptive_simulation",list(effect=value(input$effect,.5),
@@ -200,6 +246,12 @@ server <- function(input, output, session) {
   observeEvent(input$survsim,launch(make_project("survival_simulation",c(survival_parameters(),
     list(n_per_arm=value(input$n,64),events=if(value(input$events,0)==0)NULL else input$events,
       nsim=value(input$nsim,1000),seed=value(input$seed,2026),null=value(input$survnull,FALSE))),"Survival Monte Carlo"),"survsim"))
+  observeEvent(input$mean_calculate,eager("means",execute_project(mean_plan())))
+  observeEvent(input$mean_simulate,launch(mean_mc(),"means_mc"))
+  observeEvent(input$nph_simulate,launch(nph_project(),"nonph"))
+  output$mean_result<-renderPrint(planned("means"))
+  output$mean_mc_result<-renderPrint({req(results$means_mc);print(results$means_mc)})
+  output$nph_result<-renderPrint({req(results$nonph);print(results$nonph)})
   sim<-reactive(results$sim);adaptive<-reactive(results$adaptive);survsim<-reactive(results$survsim)
   batch<-reactiveVal(NULL)
   comparison<-reactive({x<-batch();if(is.null(x))return(NULL);x$data$summary})
@@ -237,22 +289,40 @@ server <- function(input, output, session) {
   })
   observeEvent(input$runproject,{
     req(opened());p<-opened()
-    if(p$workflow %in% c("fixed_simulation","adaptive_simulation","survival_simulation","example"))launch(p,"imported")
+    if(p$workflow %in% c("fixed_simulation","adaptive_simulation","survival_simulation","example","means_simulation","nonph_simulation"))launch(p,"imported")
     else tryCatch({results$imported<-execute_project(p)},error=function(e)showNotification(conditionMessage(e),type="error"))
   })
   selected<-reactive(switch(value(input$report_source,"fixed"),fixed=fixed(),power=power_result(),
-    seq=seq(),seqsample=seqsample(),adaptive=adaptive(),survival=surv(),sim=sim(),survsim=survsim(),imported=results$imported,example=example()))
+    seq=seq(),seqsample=seqsample(),adaptive=adaptive(),survival=surv(),sim=sim(),survsim=survsim(),imported=results$imported,example=example(),means=planned("means"),means_mc=results$means_mc,nonph=results$nonph))
+  output$binary_guidance<-renderUI({
+    if(value(input$endpoint,"normal")!="binary"||!value(input$workspace,"Design configuration")%in%c("Design configuration","Sample size and power","Monte Carlo simulation","Scenario comparison"))return(NULL)
+    tryCatch({
+      spec<-do.call(trial_spec,fixed_parameters());n<-value(input$n,64)
+      d<-binary_diagnostics(spec,n,value(input$null,TRUE))
+      div(class="otd-note",id="binary-approximation-guidance",role=if(d$sparse)"alert" else "note",
+        h4(if(d$sparse)"Sparse binary counts: review the analysis" else "Binary approximation guidance"),
+        p(paste("At",n,"per arm, minimum expected count in the",d$scenario,"is",signif(d$minimum_expected_count,4))),
+        p(d$status),p("The threshold of five is only a screening heuristic. More simulations improve precision; they do not repair miscalibration."),
+        p("Choose score or conditional Fisher explicitly in Monte Carlo simulation. Fisher does not make the approximate sample-size calculation exact. Evaluate null error and alternative power."),
+        downloadButton("binary_calibration","Download historical score calibration examples"))
+    },error=function(e)div(role="alert",conditionMessage(e)))
+  })
+  output$binary_calibration<-downloadHandler(filename=function()"binary-score-calibration-v0.3.0.csv",content=function(file){
+    file.copy(system.file("validation/binary-score-calibration.csv",package="OpenTrialDesign"),file)
+  })
   output$scientific_review<-renderUI({
     tryCatch({
       tab<-value(input$workspace,"Design configuration")
       project<-switch(tab,
+        "Margins and allocation"=mean_plan(),
+        "Non-PH survival"=nph_project(),
         "Group sequential designs"=make_project("sequential_design",c(list(engine=value(input$engine,"gsDesign")),seq_parameters()),"Review boundaries"),
         "Adaptive designs"=make_project("adaptive_simulation",list(effect=value(input$effect,.5),sd=value(input$sd,1),
           stage1=value(input$stage1,80),planned_total=value(input$planned,160),min_stage2=value(input$min2,40),max_stage2=value(input$max2,240),
           target_cp=value(input$targetcp,.8),alpha=value(input$gsalpha,.025),power=value(input$power,.8),nsim=value(input$nsim,1000),seed=value(input$seed,2026)),"Review adaptation"),
         "Survival studies"=make_project("survival_simulation",c(survival_parameters(),list(n_per_arm=value(input$n,64),events=if(value(input$events,0)==0)NULL else input$events,
           nsim=value(input$nsim,1000),seed=value(input$seed,2026),null=value(input$survnull,FALSE))),"Review survival simulation"),
-        "Monte Carlo simulation"=make_project("fixed_simulation",c(fixed_parameters(),list(n_per_arm=value(input$n,64),nsim=value(input$nsim,1000),seed=value(input$seed,2026),null=value(input$null,TRUE))),"Review fixed simulation"),
+        "Monte Carlo simulation"=make_project("fixed_simulation",c(fixed_parameters(),list(n_per_arm=value(input$n,64),nsim=value(input$nsim,1000),seed=value(input$seed,2026),null=value(input$null,TRUE),binary_test=if(value(input$endpoint,"normal")=="binary")value(input$binary_test,"score") else "score")),"Review fixed simulation"),
         "Scenario comparison"=grid_projects()[[1]],
         "Projects and exports"=opened(),
         "Example library"=make_project("example",list(id=value(input$example,"TD-001"),nsim=value(input$nsim,1000),seed=value(input$seed,2026)),"Review example"),

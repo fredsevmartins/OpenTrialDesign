@@ -1,0 +1,35 @@
+
+X improvement/sparse-binary-and-design-methods R scientific verification fredsevmartins/OpenTrialDesign#3 · 43853719622
+Triggered via pull_request about 1 minute ago
+
+JOBS
+X check (macos-latest) in 1s (ID 133252542752)
+X check (ubuntu-latest) in 2s (ID 133252542932)
+X container in 1s (ID 133252542991)
+X check (windows-latest) in 1s (ID 133252543021)
+
+ANNOTATIONS
+X The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings
+check (macos-latest): .github#1
+
+- Due to capacity constraints, jobs targeting macOS arm64 runners may experience longer queue times.
+check (macos-latest): .github#1
+
+X The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings
+check (ubuntu-latest): .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+check (ubuntu-latest): .github#1
+
+X The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings
+container: .github#1
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+container: .github#1
+
+X The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings
+check (windows-latest): .github#1
+
+
+To see what failed, try: gh run view 43853719622 --log-failed
+View this run on GitHub: https://github.com/fredsevmartins/OpenTrialDesign/actions/runs/43853719622

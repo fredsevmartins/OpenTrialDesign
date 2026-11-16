@@ -31,3 +31,20 @@ Use-specific decisions, rather than universal software-installation blockers:
 
 Publishing a public endpoint or changing repository visibility is not part of
 local installation. No external clinical data or shared database are required.
+
+
+## Authorized local-validation release path (0.4.0)
+
+The user explicitly requested proceeding without hosted CI after GitHub blocked
+all jobs for account billing/spending limits. This overrides the earlier hosted
+CI gate for this release only; it does not convert missing checks into passes.
+Use scripts/prepare-local-release.py to archive a committed source snapshot,
+verify locked installed dependency versions, build/install/check the R package,
+execute all example/reference/stress scripts, and run the browser/PDF suite.
+The primary package is installed into a separate temporary library. Dependencies
+are the existing installed locked versions, not a clean OS restoration.
+
+Publish these artifacts as a prerelease with explicit local-only verification.
+Windows, macOS, clean-container checks and a new registry image remain unverified.
+Keep the ordinary CI/release workflows for future use. A [skip ci] marker records
+this manual publication without retrying the account-blocked hosted jobs.

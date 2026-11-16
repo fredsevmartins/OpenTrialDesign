@@ -90,9 +90,9 @@ and Fortran compiler. The standard Dockerfile installs these requirements.
 
 ## Versioned release installation
 
-Download OpenTrialDesign_0.3.0.tar.gz and SHA256SUMS from the GitHub release;
+Download OpenTrialDesign_0.4.0.tar.gz and SHA256SUMS from the GitHub release;
 verify `sha256sum -c SHA256SUMS` in the directory containing all release assets.
-The source package is installed with `R CMD INSTALL OpenTrialDesign_0.3.0.tar.gz`
+The source package is installed with `R CMD INSTALL OpenTrialDesign_0.4.0.tar.gz`
 when its documented dependencies are present. For the complete frozen product,
 use the repository's native installer or the published container.
 
@@ -108,3 +108,25 @@ The tag-triggered release workflow first reruns the full scientific and browser
 verification on that tag. It then builds source/documentation, publishes the
 container and creates release assets/checksums. Failed verification prevents
 publication. The verification URL and source commit accompany the assets.
+
+Stop a running native app before reinstalling/upgrading its package library, then
+restart it. Replacing installed app files while sessions remain open can invalidate
+their working directory and bindings. Save JSON/bundles before the restart.
+
+
+## Preparing a release without GitHub Actions
+
+After committing a source snapshot, run `python scripts/prepare-local-release.py
+--output /path/to/new/artifacts --axe-core /path/to/axe.min.js --chromium
+/path/to/chromium` from an environment with R/dependencies, Pandoc, LaTeX,
+Playwright and axe-core 4.10.3. The script requires a clean checkout, verifies the
+scientific-core baseline hashes, and tests a git-archived source snapshot with
+an isolated primary-package install and locked installed dependencies.
+
+The generated package, documentation, evidence ZIP, verification.json and
+SHA256SUMS can be uploaded manually using gh release create --prerelease.
+The script does not upload files or change GitHub/account settings. This path
+records actual Linux verification and missing platform/container checks; it does
+not disable future CI or claim regulatory qualification. The 0.4.0 manual release
+has no new prebuilt container image. Build its Dockerfile separately if needed;
+the existing 0.3.0 registry image does not contain the new methods.

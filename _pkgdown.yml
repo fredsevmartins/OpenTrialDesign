@@ -7,7 +7,7 @@ articles:
     contents: user-guide
 reference:
   - title: Specifications and fixed designs
-    contents: [trial_spec, sample_size, trial_power, compare_scenarios, review_project, scenario_grid, run_scenarios, start_scenarios]
+    contents: [trial_spec, sample_size, trial_power, binary_diagnostics, means_design, simulate_means_design, simulate_nonph, compare_scenarios, review_project, scenario_grid, run_scenarios, start_scenarios]
   - title: Sequential and adaptive methods
     contents: [sequential_design, sequential_power, conditional_power, simulate_sequential, adaptive_simulation, sequential_sample_size]
   - title: Simulation and survival
