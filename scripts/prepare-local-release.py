@@ -78,13 +78,20 @@ with zipfile.ZipFile(out/'local-validation-evidence.zip','w',zipfile.ZIP_DEFLATE
   if file.is_file():z.write(file,Path('logs')/file.relative_to(logs))
  for file in sorted((source/'OpenTrialDesign.Rcheck').rglob('*')):
   if file.is_file():z.write(file,Path('R-CMD-check')/file.relative_to(source/'OpenTrialDesign.Rcheck'))
+ included=set()
  for pattern in ['*reference*.csv','*session*.txt','stress-*.txt','stress-*.csv','*browser.json','*accessibility*.json','accessibility-audit.json']:
   for file in sorted((source/'validation').glob(pattern)):
-   if file.is_file():z.write(file,Path('validation')/file.name)
-(source/'validation/method-ci-account-blocker.txt').is_file() or (_ for _ in ()).throw(RuntimeError('Missing original CI blocker record'))
+   if file.is_file() and file not in included:
+    included.add(file);z.write(file,Path('validation')/file.name)
+if not (source/'validation/method-ci-account-blocker.txt').is_file():raise RuntimeError('Missing original CI blocker record')
+rout=(source/'OpenTrialDesign.Rcheck/tests/testthat.Rout').read_text(errors='replace')
+matches=re.findall(r'\[\s*FAIL\s+(\d+)\s*\|\s*WARN\s+(\d+)\s*\|\s*SKIP\s+(\d+)\s*\|\s*PASS\s+(\d+)\s*\]',rout)
+if not matches:raise RuntimeError('No executed test counts found in R CMD check log')
+counts=tuple(map(int,matches[-1]))
+if counts[:3]!=(0,0,0) or counts[3]<1:raise RuntimeError('Installed test evidence is not entirely passing')
 summary={'version':version,'source_commit':sha,'verification':'local execution; hosted CI not executed',
  'platform':platform.platform(),'dependency_versions':'all locked installed versions matched; not a clean-OS restore',
- 'r_cmd_check':'Status: OK','browser_workflows':{},'scientific_reference_rows':{},
+ 'r_cmd_check':'Status: OK','unit_tests':{'fail':counts[0],'warn':counts[1],'skip':counts[2],'pass':counts[3]},'browser_workflows':{},'scientific_reference_rows':{},
  'not_verified':['Windows','macOS','clean-container execution','new published container image','independent scientific qualification']}
 for file in ['product-browser.json','improvements-browser.json','method-browser.json']:
  data=json.loads((source/'validation'/file).read_text());checks=data['checks']
