@@ -1,0 +1,148 @@
+inst/examples/EXT-001-unequal-ni.R 
+extended normal mean design 
+Engine: rpact 
+Method: native rpact fixed t-approximation with realized allocation 
+$n_control
+[1] 132
+
+$n_treatment
+[1] 264
+
+$n_total
+[1] 396
+
+$allocation_ratio_realized
+[1] 2
+
+$rejection_probability
+[1] 0.8016193
+
+$achieved_power
+[1] 0.8016193
+
+$evaluated_scenario
+[1] "alternative"
+
+Validation: execution is not independent scientific validation 
+inst/examples/EXT-002-equivalence.R 
+extended normal mean design 
+Engine: PowerTOST 
+Method: exact parallel pooled-t TOST power (Owen Q) 
+$n_control
+[1] 246
+
+$n_treatment
+[1] 492
+
+$n_total
+[1] 738
+
+$allocation_ratio_realized
+[1] 2
+
+$rejection_probability
+[1] 0.8015079
+
+$achieved_power
+[1] 0.8015079
+
+$evaluated_scenario
+[1] "alternative"
+
+Validation: execution is not independent scientific validation 
+inst/examples/EXT-003-nonph.R 
+nonproportional hazards operating characteristics 
+Engine: rpact 
+Method: native piecewise-exponential generation and one-sided logrank analysis 
+$summary
+             scenario nsim seed rejections estimate        mcse      lower
+1    equal-curve null 1000   42         27    0.027 0.005125524 0.01786691
+2 alternative profile 1000   43          5    0.005 0.002230471 0.00162542
+       upper mean_analysis_time  time_mcse time_lower time_upper
+1 0.03904175           14.36885 0.03065232   14.30870   14.42900
+2 0.01162947           14.04112 0.02898998   13.98423   14.09801
+  target_attainment
+1                 1
+2                 1
+
+Validation: execution is not independent scientific validation 
+inst/examples/EXT-004-sparse-fisher.R 
+$scenario
+[1] "equality null"
+
+$expected_counts
+        arm  n probability expected_successes expected_failures
+1   control 10        0.01                0.1               9.9
+2 treatment 10        0.01                0.1               9.9
+
+$minimum_expected_count
+[1] 0.1
+
+$sparse
+[1] TRUE
+
+$status
+[1] "Sparse expected counts: asymptotic calibration may be poor"
+
+$guidance
+[1] "Five expected observations per cell is a screening heuristic, not validation."                                                        
+[2] "Score planning and score simulation are asymptotic and may be conservative or anti-conservative in finite samples."                   
+[3] "Fisher simulation is an explicit conditional exact-test alternative; it does not convert approximate planning into exact sample size."
+[4] "Evaluate both null error and alternative power at the actual integer enrollment; report Monte Carlo uncertainty."                     
+[5] "More replications reduce Monte Carlo uncertainty; they do not fix test miscalibration."                                               
+
+Monte Carlo operating characteristics 
+Engine: stats 
+Method: empirical type I error at equality null using conditional Fisher exact test 
+$rejections
+[1] 0
+
+$nsim
+[1] 1000
+
+$estimate
+[1] 0
+
+$mcse
+[1] 0
+
+$conf_level
+[1] 0.95
+
+$lower
+[1] 0
+
+$upper
+[1] 0.003682084
+
+$n_per_arm
+[1] 10
+
+$effect_simulated
+[1] 0
+
+$scenario
+[1] "equality null"
+
+$expected_counts
+        arm  n probability expected_successes expected_failures
+1   control 10        0.01                0.1               9.9
+2 treatment 10        0.01                0.1               9.9
+
+$minimum_expected_count
+[1] 0.1
+
+$sparse
+[1] TRUE
+
+$status
+[1] "Sparse expected counts: asymptotic calibration may be poor"
+
+$guidance
+[1] "Five expected observations per cell is a screening heuristic, not validation."                                                        
+[2] "Score planning and score simulation are asymptotic and may be conservative or anti-conservative in finite samples."                   
+[3] "Fisher simulation is an explicit conditional exact-test alternative; it does not convert approximate planning into exact sample size."
+[4] "Evaluate both null error and alternative power at the actual integer enrollment; report Monte Carlo uncertainty."                     
+[5] "More replications reduce Monte Carlo uncertainty; they do not fix test miscalibration."                                               
+
+Validation: execution is not independent scientific validation 

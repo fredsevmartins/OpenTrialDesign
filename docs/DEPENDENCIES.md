@@ -38,3 +38,12 @@ The optional browser audit uses axe-core 4.10.3 (MPL-2.0; Node >= 4), inspected
 through npm metadata before use. It is a test dependency, installed with lifecycle
 scripts disabled, and is not bundled into the R runtime or application. WCAG
 A/AA checks cover recorded browser states, not an accessibility certification.
+
+For 0.4.0, PowerTOST 1.5-7 (GPL >= 2), mvtnorm 1.4-2 and cubature 2.1.4-1
+were checked for availability, metadata and API before integration. Its TOST
+parallel/logscale=FALSE/exact interface was inspected from installed formals
+and help. All three versions are added to the lockfile (112 packages total).
+Native local mvtnorm compilation initially lacked BLAS/LAPACK linker aliases;
+a task-specific compiler search directory resolved that managed-environment
+limitation. The package/runtime does not rely on that local directory. Standard
+R development BLAS/LAPACK libraries are required for source dependency builds.

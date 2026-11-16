@@ -1,0 +1,456 @@
+$Version
+[1] "1.5-7"
+
+$License
+[1] "GPL (>= 2)"
+
+$Imports
+[1] "mvtnorm, stats, utils, graphics, grDevices, cubature (>=\n1.3-6)"
+
+$alpha
+[1] 0.05
+
+$targetpower
+[1] 0.8
+
+$logscale
+[1] TRUE
+
+$theta0
+
+
+$theta1
+
+
+$theta2
+
+
+$CV
+
+
+$design
+[1] "2x2"
+
+$method
+[1] "exact"
+
+$robust
+[1] FALSE
+
+$print
+[1] TRUE
+
+$details
+[1] FALSE
+
+$imax
+[1] 100
+
+_S_a_m_p_l_e _s_i_z_e _b_a_s_e_d _o_n _p_o_w_e_r _o_f _T_O_S_T
+
+_D_e_s_c_r_i_p_t_i_o_n:
+
+     Estimates the necessary sample size to obtain at least a target
+     (desired) power.
+
+_U_s_a_g_e:
+
+     sampleN.TOST(alpha = 0.05, targetpower = 0.8, logscale = TRUE,
+                  theta0, theta1, theta2, CV, design = "2x2",
+                  method = "exact", robust = FALSE, print = TRUE,
+                  details = FALSE, imax=100)
+     
+_A_r_g_u_m_e_n_t_s:
+
+   alpha: Significance level (one-sided). Commonly set to 0.05.
+
+targetpower: Power to achieve at least. Must be >0 and <1.
+          Typical values are 0.8 or 0.9.
+
+logscale: Should the data used on log-transformed (‘TRUE’) or on
+          original scale (‘FALSE’)? Defaults to ‘TRUE’.
+
+  theta0: ‘True’ or assumed T/R ratio or difference.
+          In case of ‘logscale = TRUE’ it must be given as ratio T/R.
+          If ‘logscale = FALSE’, the difference in means. In this case,
+          the difference may be expressed in two ways: relative to the
+          same (underlying) reference mean, _i.e._, as (T-R)/R = T/R -
+          1; or as difference in means T-R. Note that in the former
+          case the units of ‘CV’, ‘theta1’ and ‘theta2’ need also be
+          given relative to the reference mean (specified as ratio).
+          Defaults to 0.95 if ‘logscale = TRUE’ or to 0.05 if ‘logscale
+          = FALSE’
+
+  theta1: Lower (bio-)equivalence limit.
+          In case of ‘logscale = TRUE’ it is given as ratio.
+          If ‘logscale = FALSE’, the limit may be expressed in two
+          ways: difference of means relative to the same (underlying)
+          reference mean or in units of the difference of means. Note
+          that in the former case the units of ‘CV’, ‘theta0’ and
+          ‘theta2’ need also be given relative to the reference mean
+          (specified as ratio).
+          Defaults to 0.8 if ‘logscale = TRUE’ or to -0.2 if ‘logscale
+          = FALSE’.
+
+  theta2: Upper (bio-)equivalence limit.
+          In case of ‘logscale = TRUE’ it is given as ratio. If
+          ‘logscale = FALSE’, the limit may be expressed in two ways:
+          difference of means relative to the same (underlying)
+          reference mean or in units of the difference of means. Note
+          that in the former case the units of ‘CV’, ‘theta0’ and
+          ‘theta1’ need also be given relative to the reference mean
+          (specified as ratio).
+          If not given, ‘theta2’ will be calculated as ‘1/theta1’ if
+          ‘logscale = TRUE’ or as ‘-theta1’ if ‘logscale = FALSE’.
+
+      CV: In case of ‘logscale=TRUE’ the (geometric) coefficient of
+          variation given as ratio.
+          If ‘logscale=FALSE’ the argument refers to (residual)
+          standard deviation of the response. In this case, standard
+          deviation may be expressed two ways: relative to a reference
+          mean (specified as ratio sigma/muR), _i.e._, again as a
+          coefficient of variation; or untransformed, _i.e._, as
+          standard deviation of the response. Note that in the former
+          case the units of ‘theta0’, ‘theta1’ and ‘theta2’ need also
+          be given relative to the reference mean (specified as ratio).
+          In case of cross-over studies this is the within-subject CV,
+          in case of a parallel-group design the CV of the total
+          variability.
+
+  design: Character string describing the study design.
+          See ‘known.designs()’ for designs covered in this package.
+
+  method: Method for calculation of the power.
+          Defaults to ‘"exact"’ in which case the calculation is done
+          based on formulas with Owen’s Q. The calculation via Owen’s Q
+          can also be choosen with ‘method = "owenq"’.
+          Another exact method via direct use of the bivariate
+          non-central _t_-distribution may be chosen with method =
+          "mvt". This may have somewhat lower precision compared to
+          Owen’s Q and has a much longer run-time.
+          Approximate calculations can be choosen via method =
+          "noncentral" or method = "nct" for the approximation using
+          the non-central _t_-distribution. With method = "central" or
+          method = "shifted" the relatively crude approximation via the
+          ‘shifted’ central _t_-distribution is chosen.
+          The strings for method may be abbreviated.
+
+  robust: Defaults to ‘FALSE’. With that value the usual degrees of
+          freedom will be used.
+          Set to ‘TRUE’ will use the degrees of freedom according to
+          the ‘robust’ evaluation (aka Senn’s basic estimator). These
+          df are calculated as ‘n-seq’.
+          See ‘known.designs()$df2’ for designs covered in this
+          package.
+          Has only effect for higher-order crossover designs.
+
+   print: If ‘TRUE’ (default) the function prints its results. If
+          ‘FALSE’ only the data frame with the results will be
+          returned.
+
+ details: If ‘TRUE’ the design characteristics and the steps during
+          sample size calculations will be shown. Defaults to ‘FALSE’.
+
+    imax: Maximum number of steps in sample size search.
+          Defaults to 100. Adaption only in rare cases needed.
+
+_D_e_t_a_i_l_s:
+
+     The sample size is estimated via iterative evaluation of power of
+     the TOST procedure.
+     Start value for the sample size search is taken from a large
+     sample approximation according to Zhang, modified.
+     The sample size is bound to 4 as minimum.
+
+     The estimated sample size gives always the _total_ number of
+     subjects (not subject/sequence in crossovers or subjects/group in
+     parallel designs - like in some other software packages).
+
+_V_a_l_u_e:
+
+     A data frame with the input and results will be returned.
+     The ‘Sample size’ column contains the total sample size.
+
+_W_a_r_n_i_n_g:
+
+     The function does not vectorize properly.
+     If you need sample sizes with varying CVs, use f.i. for-loops or
+     the apply-family.
+
+_N_o_t_e:
+
+     Of course it is highly recommended to use the default method =
+     "exact". :-)
+     There is no reason besides testing and for comparative purposes to
+     use an approximation if the exact method is available at no extra
+     costs.
+
+_A_u_t_h_o_r(_s):
+
+     D. Labes
+
+_R_e_f_e_r_e_n_c_e_s:
+
+     Phillips KF. _Power of the Two One-Sided Tests Procedure in
+     Bioequivalence._ J Pharmacokin Biopharm. 1990;18:137-44.
+     doi:10.1007/BF01063556 <https://doi.org/10.1007/BF01063556>
+
+     Diletti D, Hauschke D, Steinijans VW. _Sample Size Determination
+     for Bioequivalence Assessment by Means of Confidence Intervals._
+     Int J Clin Pharmacol Ther Toxicol. 1991;29(1):1-8.
+
+     Diletti D, Hauschke D, Steinijans VW. _Sample size determination:
+     Extended tables for the multiplicative model and bioequivalence
+     ranges of 0.9 to 1.11 and 0.7 to 1.43._ Int J Clin Pharmacol Ther
+     Toxicol. 1992;30(Suppl 1):S59-62.
+
+     Zhang P. _A Simple Formula for Sample Size Calculation in
+     Equivalence Studies._ J Biopharm Stat. 2003;13(3):529-38.
+     doi:10.1081/BIP-120022772 <https://doi.org/10.1081/BIP-120022772>
+
+_S_e_e _A_l_s_o:
+
+     ‘power.TOST, known.designs’
+
+_E_x_a_m_p_l_e_s:
+
+     # Exact calculation for a classical 2x2 cross-over (TR/RT),
+     # BE limits 80 ... 125%, assumed true BE ratio 0.95, intra-subject CV=30%,
+     # using all the default values
+     # should give n=40 power=0.815845
+     sampleN.TOST(CV = 0.3)
+     
+     # Exact calculation for a parallel group design
+     # evaluation on the original (untransformed) scale
+     # BE limits 80 ... 120% = -20% ... +20% of reference,
+     # assumed true BE ratio 0.95% = -5% to reference mean,
+     # total CV=20%
+     # should give n=48 (total) power=0.815435
+     sampleN.TOST(logscale = FALSE, theta1 = -0.2, theta0 = -0.05,
+                  CV = 0.2, design = "parallel")
+     
+     # A rather strange setting of theta0! Have a look at n.
+     # It would be better this is not the sample size but the running total
+     # of my bank account. But the first million is the hardest. ;-)
+     sampleN.TOST(CV = 0.2, theta0 = 0.8005)
+     
+$alpha
+[1] 0.05
+
+$logscale
+[1] TRUE
+
+$theta1
+
+
+$theta2
+
+
+$theta0
+
+
+$CV
+
+
+$n
+
+
+$design
+[1] "2x2"
+
+$method
+[1] "exact"
+
+$robust
+[1] FALSE
+
+_P_o_w_e_r _o_f _t_h_e _c_l_a_s_s_i_c_a_l _T_O_S_T _p_r_o_c_e_d_u_r_e
+
+_D_e_s_c_r_i_p_t_i_o_n:
+
+     Calculates the exact or approximate power of the two-one-sided
+     t-tests (TOST) procedure for various study designs used in BE
+     studies.
+
+_U_s_a_g_e:
+
+     power.TOST(alpha = 0.05, logscale = TRUE, theta1, theta2, theta0, CV, n, 
+                design = "2x2", method="exact", robust=FALSE)
+     
+_A_r_g_u_m_e_n_t_s:
+
+   alpha: Significance level (one-sided). Commonly set to 0.05.
+
+logscale: Should the data used on log-transformed or on original scale?
+          ‘TRUE’ (default) or ‘FALSE’.
+
+  theta0: ‘True’ or assumed T/R ratio or difference.
+          In case of ‘logscale=TRUE’ it must be given as ratio T/R.
+          If ‘logscale=FALSE’, the difference in means. In this case,
+          the difference may be expressed in two ways: relative to the
+          same (underlying) reference mean, i.e. as (T-R)/R = T/R - 1;
+          or as difference in means T-R. Note that in the former case
+          the units of ‘CV’, ‘theta1’ and ‘theta2’ need also be given
+          relative to the reference mean (specified as ratio).
+          Defaults to 0.95 if ‘logscale=TRUE’ or to 0.05 if
+          ‘logscale=FALSE’
+
+  theta1: Lower (bio-)equivalence limit.
+          In case of ‘logscale=TRUE’ it is given as ratio.
+          If ‘logscale=FALSE’, the limit may be expressed in two ways:
+          difference of means relative to the same (underlying)
+          reference mean or in units of the difference of means. Note
+          that in the former case the units of ‘CV’, ‘theta0’ and
+          ‘theta2’ need also be given relative to the reference mean
+          (specified as ratio).
+          Defaults to 0.8 if ‘logscale=TRUE’ or to -0.2 if
+          ‘logscale=FALSE’.
+
+  theta2: Upper (bio-)equivalence limit.
+          In case of ‘logscale=TRUE’ it is given as ratio. If
+          ‘logscale=FALSE’, the limit may be expressed in two ways:
+          difference of means relative to the same (underlying)
+          reference mean or in units of the difference of means. Note
+          that in the former case the units of ‘CV’, ‘theta0’ and
+          ‘theta1’ need also be given relative to the reference mean
+          (specified as ratio).
+          If not given, ‘theta2’ will be calculated as ‘1/theta1’ if
+          ‘logscale=TRUE’ or as ‘-theta1’ if ‘logscale=FALSE’.
+
+      CV: In case of ‘logscale=TRUE’ the (geometric) coefficient of
+          variation given as ratio.
+          If ‘logscale=FALSE’ the argument refers to (residual)
+          standard deviation of the response. In this case, standard
+          deviation may be expressed two ways: relative to a reference
+          mean (specified as ratio sigma/muR), i.e. again as a
+          coefficient of variation; or untransformed, i.e. as standard
+          deviation of the response. Note that in the former case the
+          units of ‘theta0’, ‘theta1’ and ‘theta2’ need also be given
+          relative to the reference mean (specified as ratio).
+          In case of cross-over studies this is the within-subject CV,
+          in case of a parallel-group design the CV of the total
+          variability.
+
+       n: Number of subjects under study.
+          Is total number if given as scalar, else number of subjects
+          in the (sequence) groups. In the latter case the length of
+          ‘n’ vector has to be equal to the number of (sequence)
+          groups.
+
+  design: Character string describing the study design.
+          See ‘known.designs()’ for designs covered in this package.
+
+  method: Method for calculation of the power.
+          Defaults to ‘"exact"’ in which case the calculation is done
+          based on formulas with Owen’s Q. The calculation via Owen’s Q
+          can also be choosen with ‘method="owenq"’.
+          Another exact method via direct integration of the bivariate
+          non-central _t_-distribution may be chosen with
+          ‘method="mvt"’. This may have somewhat lower precision
+          compared to Owen’s Q and longer run-time.
+          Approximate calculations can be choosen via
+          ‘method="noncentral"’ or ‘method="nct"’ for the approximation
+          using the non-central _t_-distribution. With
+          ‘method="central"’ or ‘method="shifted"’ the relative crude
+          approximation via ‘shifted’ central _t_-distribution is
+          chosen.
+          The strings for ‘method’ may be abbreviated.
+
+  robust: Defaults to ‘FALSE’. With that value the usual degrees of
+          freedom will be used.
+          Set to ‘TRUE’ will use the degrees of freedom according to
+          the ‘robust’ evaluation (aka Senn’s basic estimator). These
+          degrees of freedom are calculated as ‘n-seq’.
+          See ‘known.designs()$df2’ for designs covered in this
+          package.
+          Has only effect for higher-order crossover designs.
+
+_D_e_t_a_i_l_s:
+
+     The exact calculations of power are based on Owen’s Q-function or
+     by direct integration of the bivariate non-central
+     _t_-distribution via function ‘pmvt’ of package ‘mvtnorm’.
+     Approximate power is implemented via the non-central
+     _t_-distribution or the ‘shifted’ central _t_-distribution.
+
+     The formulas cover balanced and unbalanced studies w.r.t
+     (sequence) groups.
+
+     In case of parallel group design and higher order crossover
+     designs (replicate crossover or crossover with more than two
+     treatments) the calculations are based on the assumption of equal
+     variances for Test and Reference products under consideration.
+
+     The formulas for the paired means 'design' do not take a
+     correlation parameter into account. They are solely based on the
+     paired _t_-test (TOST of differences = zero).
+
+_V_a_l_u_e:
+
+     Value of power according to the input arguments.
+
+_N_o_t_e:
+
+     Of course it is highly recommended to use the default
+     ‘method="exact"’ :-).
+     There is no reason beside testing and for comparative purposes to
+     use an approximation if the exact method is available.
+
+     If ‘n’ is given as scalar (total sample size) and this number is
+     not divisible by the number of (sequence) groups of the design an
+     unbalanced design with small imbalance is assumed. A corresponding
+     message is thrown showing the assumed numbers of subjects in
+     (sequence) groups.
+     The function does not vectorize properly if design is a vector.
+     The function vectorizes properly if CV or theta0 are vectors.
+     Other vector input is not tested yet.
+
+     The former function ‘power2.TOST()’ designd to handle unbalanced
+     studies is defunct since ‘power.TOST()’ handles balanced as well
+     as unbalanced designs.
+
+_A_u_t_h_o_r(_s):
+
+     D. Labes, direct integration of bivariate non-central
+     _t_-distribution by B. Lang
+
+_R_e_f_e_r_e_n_c_e_s:
+
+     Phillips KF. _Power of the Two One-Sided Tests Procedure in
+     Bioequivalence._ J Pharmacokin Biopharm. 1990;18(2):137-44.
+     doi:10.1007/BF01063556 <https://doi.org/10.1007/BF01063556>
+
+     Diletti D, Hauschke D, Steinijans VW. _Sample Size Determination
+     for Bioequivalence Assessment by Means of Confidence Intervals._
+     Int J Clin Pharmacol Ther Toxicol. 1991;29(1):1-8.
+
+_S_e_e _A_l_s_o:
+
+     ‘sampleN.TOST, known.designs’
+
+_E_x_a_m_p_l_e_s:
+
+     # power for the 2x2 cross-over design with 24 subjects and CV 25%
+     # using all the other default values
+     power.TOST(CV = 0.25, n = 24)
+     # should give: [1] 0.7391155
+     # nct approximation very good for this configuration
+     power.TOST(CV = 0.25, n = 24, method = "nct")
+     # gives also: [1] 0.7391155
+     # shifted-central-t  approximation 
+     power.TOST(CV = 0.25, n = 24, method = "shifted")
+     # gives:      [1] 0.7328894
+     
+     # power for the 2x2 cross-over study with 24 subjects, CV 25%
+     # and 2 drop-outs in the same sequence group (unbalanced study)
+     power.TOST(CV=0.25, n=c(10,12))
+     # should give: [1] 0.6912935
+     # not the same compared to the balanced setting
+     power.TOST(CV=0.25, n=22)
+     # should give: [1] 0.6953401
+     
+    Design alpha CV theta0 theta1 theta2 Sample size Achieved power
+1 parallel 0.025  1      0   -0.3    0.3         470      0.8013049
+  Target power
+1          0.8
+[1] 0.3699278

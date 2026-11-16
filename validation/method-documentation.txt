@@ -1,0 +1,64 @@
+── Building pkgdown site for package OpenTrialDesign ───────────────────────────
+Reading from: /workspace/OpenTrialDesign
+Writing to: /workspace/OpenTrialDesign/docs/site
+── Sitrep ──────────────────────────────────────────────────────────────────────
+✖ URLs not ok.
+  In DESCRIPTION, URL is missing package url
+  (https://fredsevmartins.github.io/OpenTrialDesign).
+  See details in `vignette(pkgdown::metadata)`.
+✔ Favicons ok.
+✔ Open graph metadata ok.
+✔ Articles metadata ok.
+✔ Reference metadata ok.
+── Initialising site ───────────────────────────────────────────────────────────
+── Building home ───────────────────────────────────────────────────────────────
+Reading README.md
+Writing `index.html`
+Writing `404.html`
+── Building function reference ─────────────────────────────────────────────────
+Reading man/adaptive_simulation.Rd
+Reading man/binary_diagnostics.Rd
+Reading man/cancel_simulation.Rd
+Reading man/collect_simulation.Rd
+Reading man/compare_scenarios.Rd
+Reading man/conditional_power.Rd
+Reading man/diagnose_design.Rd
+Reading man/execute_project.Rd
+Reading man/export_bundle.Rd
+Reading man/means_design.Rd
+Reading man/plot_design.Rd
+Reading man/print.otd_result.Rd
+Reading man/read_project.Rd
+Reading man/render_report.Rd
+Reading man/result_table.Rd
+Reading man/review_project.Rd
+Reading man/run_app.Rd
+Reading man/run_example.Rd
+Reading man/run_scenarios.Rd
+Reading man/runtime_diagnostics.Rd
+Reading man/sample_size.Rd
+Reading man/scenario_grid.Rd
+Reading man/sequential_design.Rd
+Reading man/sequential_power.Rd
+Reading man/sequential_sample_size.Rd
+Reading man/simulate_means_design.Rd
+Reading man/simulate_nonph.Rd
+Writing `reference/simulate_nonph.html`
+Reading man/simulate_sequential.Rd
+Reading man/simulate_survival.Rd
+Reading man/simulate_trial.Rd
+Reading man/simulation_status.Rd
+Reading man/start_scenarios.Rd
+Reading man/start_simulation.Rd
+Reading man/survival_design.Rd
+Reading man/trial_power.Rd
+Reading man/trial_project.Rd
+Reading man/trial_spec.Rd
+Reading man/write_project.Rd
+── Building articles ───────────────────────────────────────────────────────────
+Reading vignettes/user-guide.Rmd
+── Building news ───────────────────────────────────────────────────────────────
+── Building sitemap ────────────────────────────────────────────────────────────
+── Building search index ───────────────────────────────────────────────────────
+── Checking for problems ───────────────────────────────────────────────────────
+── Finished building pkgdown site for package OpenTrialDesign ──────────────────

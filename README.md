@@ -2,7 +2,7 @@
 Scientific Clinical Trial Design, Simulation &amp; Operating Characteristics in R
 
 A reproducible R package and browser application for clinical trial planning
-and simulation, version 0.3.0. The statistical core is independent of Shiny.
+and simulation, version 0.4.0. The statistical core is independent of Shiny.
 It delegates calculations to stats, gsDesign, rpact, survival and simsurv.
 
 ## Start the product
@@ -14,6 +14,18 @@ With R: install R >= 4.5 and Pandoc, run `Rscript scripts/install-product.R`, th
 `Rscript scripts/start-product.R`. The installer uses an isolated project library, restores locked dependencies,
 builds the guide and installs the package. PDF additionally requires LaTeX.
 See [deployment and recovery instructions](deployment/README.md).
+
+## New in 0.4.0
+
+* Visible sparse-binary guidance, expected-count diagnostics and an explicit
+  Fisher simulation option; approximate sizing is never relabelled exact.
+* Unequal-allocation normal superiority and noninferiority with clinically
+  prespecified margins and verified direction handling.
+* Normal equivalence via exact parallel TOST power from PowerTOST.
+* Native piecewise exponential delayed/crossing survival simulation with an
+  equal-curve null, event-target safeguards and no constant-HR claim.
+
+See [method scope, assumptions and references](docs/METHOD-EXTENSIONS.md).
 
 ## New in 0.3.0
 
@@ -105,7 +117,7 @@ Rscript -e 'testthat::test_local()'
 Rscript scripts/run-examples.R
 Rscript scripts/scientific-reference.R
 R CMD build .
-R CMD check OpenTrialDesign_0.3.0.tar.gz
+R CMD check OpenTrialDesign_0.4.0.tar.gz
 ```
 
 [Architecture](docs/ARCHITECTURE.md) · [Readiness scope](docs/PRODUCT-READINESS.md)

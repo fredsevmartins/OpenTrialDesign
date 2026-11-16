@@ -4,17 +4,146 @@
     {
       "state": "fixed specification",
       "violations": [],
-      "incomplete": []
+      "incomplete": [
+        {
+          "id": "duplicate-id-aria",
+          "impact": "critical",
+          "tags": [
+            "cat.parsing",
+            "wcag2a",
+            "wcag412",
+            "EN-301-549",
+            "EN-9.4.1.2"
+          ],
+          "description": "Ensure every id attribute value used in ARIA and in labels is unique",
+          "help": "IDs used in ARIA and labels must be unique",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/duplicate-id-aria?application=axeAPI",
+          "nodes": [
+            {
+              "any": [
+                {
+                  "id": "duplicate-id-aria",
+                  "data": "ui-tab-488",
+                  "relatedNodes": [
+                    {
+                      "html": "<a href=\"#tab-6126-4\" data-toggle=\"tab\" data-bs-toggle=\"tab\" data-value=\"Adaptive designs\" role=\"tab\" id=\"ui-tab-488\" tabindex=\"-1\" aria-selected=\"false\" aria-controls=\"tab-6126-4\">Adaptive designs</a>",
+                      "target": [
+                        "a[href$=\"#tab-6126-4\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "critical",
+                  "message": "Document has multiple elements referenced with ARIA with the same id attribute: ui-tab-488"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "critical",
+              "html": "<a href=\"#tab-6126-2\" data-toggle=\"tab\" data-bs-toggle=\"tab\" data-value=\"Sample size and power\" role=\"tab\" id=\"ui-tab-488\" tabindex=\"-1\" aria-selected=\"false\" aria-controls=\"tab-6126-2\">Sample size and power</a>",
+              "target": [
+                "a[href$=\"#tab-6126-2\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Document has multiple elements referenced with ARIA with the same id attribute: ui-tab-488"
+            }
+          ]
+        }
+      ]
     },
     {
       "state": "binding sequential specification",
       "violations": [],
-      "incomplete": []
+      "incomplete": [
+        {
+          "id": "duplicate-id-aria",
+          "impact": "critical",
+          "tags": [
+            "cat.parsing",
+            "wcag2a",
+            "wcag412",
+            "EN-301-549",
+            "EN-9.4.1.2"
+          ],
+          "description": "Ensure every id attribute value used in ARIA and in labels is unique",
+          "help": "IDs used in ARIA and labels must be unique",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/duplicate-id-aria?application=axeAPI",
+          "nodes": [
+            {
+              "any": [
+                {
+                  "id": "duplicate-id-aria",
+                  "data": "ui-tab-488",
+                  "relatedNodes": [
+                    {
+                      "html": "<a href=\"#tab-6126-4\" data-toggle=\"tab\" data-bs-toggle=\"tab\" data-value=\"Adaptive designs\" role=\"tab\" id=\"ui-tab-488\" tabindex=\"-1\" aria-selected=\"false\" aria-controls=\"tab-6126-4\">Adaptive designs</a>",
+                      "target": [
+                        "a[href$=\"#tab-6126-4\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "critical",
+                  "message": "Document has multiple elements referenced with ARIA with the same id attribute: ui-tab-488"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "critical",
+              "html": "<a href=\"#tab-6126-2\" data-toggle=\"tab\" data-bs-toggle=\"tab\" data-value=\"Sample size and power\" role=\"tab\" id=\"ui-tab-488\" tabindex=\"-1\" aria-selected=\"false\" aria-controls=\"tab-6126-2\">Sample size and power</a>",
+              "target": [
+                "a[href$=\"#tab-6126-2\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Document has multiple elements referenced with ARIA with the same id attribute: ui-tab-488"
+            }
+          ]
+        }
+      ]
     },
     {
       "state": "completed sensitivity grid",
       "violations": [],
-      "incomplete": []
+      "incomplete": [
+        {
+          "id": "duplicate-id-aria",
+          "impact": "critical",
+          "tags": [
+            "cat.parsing",
+            "wcag2a",
+            "wcag412",
+            "EN-301-549",
+            "EN-9.4.1.2"
+          ],
+          "description": "Ensure every id attribute value used in ARIA and in labels is unique",
+          "help": "IDs used in ARIA and labels must be unique",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/duplicate-id-aria?application=axeAPI",
+          "nodes": [
+            {
+              "any": [
+                {
+                  "id": "duplicate-id-aria",
+                  "data": "ui-tab-488",
+                  "relatedNodes": [
+                    {
+                      "html": "<a href=\"#tab-6126-4\" data-toggle=\"tab\" data-bs-toggle=\"tab\" data-value=\"Adaptive designs\" role=\"tab\" id=\"ui-tab-488\" tabindex=\"-1\" aria-selected=\"false\" aria-controls=\"tab-6126-4\">Adaptive designs</a>",
+                      "target": [
+                        "a[href$=\"#tab-6126-4\"]"
+                      ]
+                    }
+                  ],
+                  "impact": "critical",
+                  "message": "Document has multiple elements referenced with ARIA with the same id attribute: ui-tab-488"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "critical",
+              "html": "<a href=\"#tab-6126-2\" data-toggle=\"tab\" data-bs-toggle=\"tab\" data-value=\"Sample size and power\" role=\"tab\" id=\"ui-tab-488\" tabindex=\"-1\" aria-selected=\"false\" aria-controls=\"tab-6126-2\">Sample size and power</a>",
+              "target": [
+                "a[href$=\"#tab-6126-2\"]"
+              ],
+              "failureSummary": "Fix any of the following:\n  Document has multiple elements referenced with ARIA with the same id attribute: ui-tab-488"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

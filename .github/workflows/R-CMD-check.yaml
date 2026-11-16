@@ -47,6 +47,7 @@ jobs:
           source("scripts/scientific-reference.R")
           source("scripts/product-scientific-reference.R")
           source("scripts/stress-validation.R")
+          source("scripts/method-reference.R")
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -64,12 +65,12 @@ jobs:
         with:
           context: .
           load: true
-          tags: opentrialdesign:0.3.0
+          tags: opentrialdesign:0.4.0
           cache-from: type=gha
           cache-to: type=gha,mode=max
       - name: Start local product
         run: |
-          docker run -d --name otd-product --read-only --tmpfs /tmp:size=512m,mode=1777 -p 127.0.0.1:3838:3838 opentrialdesign:0.3.0
+          docker run -d --name otd-product --read-only --tmpfs /tmp:size=512m,mode=1777 -p 127.0.0.1:3838:3838 opentrialdesign:0.4.0
           for attempt in $(seq 1 90); do
             if curl -fsS http://127.0.0.1:3838/ > /dev/null; then exit 0; fi
             sleep 2
@@ -92,6 +93,7 @@ jobs:
           python scripts/product-browser.py
           npm install --prefix /tmp/otd-a11y axe-core@4.10.3 --ignore-scripts --no-audit --no-fund
           AXE_CORE_PATH=/tmp/otd-a11y/node_modules/axe-core/axe.min.js python scripts/improvements-browser.py
+          AXE_CORE_PATH=/tmp/otd-a11y/node_modules/axe-core/axe.min.js python scripts/method-browser.py
       - name: Container diagnostics
         if: always()
         run: |

@@ -344,7 +344,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <div id="installation-and-scope" class="section level2">
 <h2>Installation and scope</h2>
 <p>Install from source with
-<code>install.packages(&quot;OpenTrialDesign_0.3.0.tar.gz&quot;, repos = NULL, type = &quot;source&quot;)</code>.
+<code>install.packages(&quot;OpenTrialDesign_0.4.0.tar.gz&quot;, repos = NULL, type = &quot;source&quot;)</code>.
 Optional engines can be installed with
 <code>install.packages(c(&quot;gsDesign&quot;, &quot;rpact&quot;, &quot;simsurv&quot;))</code>; the
 interface requires <code>shiny</code>, and reporting requires
@@ -417,6 +417,30 @@ hidden attrition inflation is applied.</p>
 ## 
 ## $achieved_power
 ## [1] 0.8016169
+## 
+## $scenario
+## [1] &quot;alternative&quot;
+## 
+## $expected_counts
+##         arm   n probability expected_successes expected_failures
+## 1   control 163        0.30              48.90            114.10
+## 2 treatment 163        0.45              73.35             89.65
+## 
+## $minimum_expected_count
+## [1] 48.9
+## 
+## $sparse
+## [1] FALSE
+## 
+## $status
+## [1] &quot;Count screen does not establish test calibration&quot;
+## 
+## $guidance
+## [1] &quot;Five expected observations per cell is a screening heuristic, not validation.&quot;                                                        
+## [2] &quot;Score planning and score simulation are asymptotic and may be conservative or anti-conservative in finite samples.&quot;                   
+## [3] &quot;Fisher simulation is an explicit conditional exact-test alternative; it does not convert approximate planning into exact sample size.&quot;
+## [4] &quot;Evaluate both null error and alternative power at the actual integer enrollment; report Monte Carlo uncertainty.&quot;                     
+## [5] &quot;More replications reduce Monte Carlo uncertainty; they do not fix test miscalibration.&quot;                                               
 ## 
 ## Validation: execution is not independent scientific validation</code></pre>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">compare_scenarios</span>(<span class="fu">list</span>(<span class="at">base =</span> spec, <span class="at">smaller_effect =</span> <span class="fu">trial_spec</span>(<span class="at">effect =</span> <span class="fl">0.3</span>)))</span></code></pre></div>
@@ -769,7 +793,10 @@ analysis.</p>
 <div id="reports-diagnostics-and-application" class="section level2">
 <h2>Reports, diagnostics and application</h2>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="fu">diagnose_design</span>(<span class="fu">simulate_trial</span>(spec, <span class="dv">64</span>, <span class="at">nsim =</span> <span class="dv">50</span>, <span class="at">seed =</span> <span class="dv">2026</span>))</span></code></pre></div>
-<pre><code>## $kind
+<pre><code>## $diagnostics
+## NULL
+## 
+## $kind
 ## [1] &quot;Monte Carlo operating characteristics&quot;
 ## 
 ## $provenance
@@ -787,7 +814,7 @@ analysis.</p>
 ## 
 ## $provenance$versions
 ## OpenTrialDesign           stats 
-##         &quot;0.3.0&quot;         &quot;4.5.0&quot; 
+##         &quot;0.4.0&quot;         &quot;4.5.0&quot; 
 ## 
 ## $provenance$R
 ## [1] &quot;R version 4.5.0 (2025-04-11)&quot;
@@ -1097,6 +1124,103 @@ control. Independent scientific review, real-user usability evaluation
 and external TD-plan mapping have not been performed. Reproducible
 protocols, blank observation forms and review criteria are supplied in
 docs/review of the source repository.</p>
+</div>
+<div id="sparse-binary-counts-and-explicit-exact-test-simulation" class="section level2">
+<h2>Sparse binary counts and explicit exact-test simulation</h2>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a>sparse <span class="ot">&lt;-</span> <span class="fu">trial_spec</span>(<span class="st">&quot;binary&quot;</span>,<span class="at">effect=</span>.<span class="dv">005</span>,<span class="at">p_control=</span>.<span class="dv">01</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a><span class="fu">binary_diagnostics</span>(sparse,<span class="dv">10</span>,<span class="at">null=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## $scenario
+## [1] &quot;equality null&quot;
+## 
+## $expected_counts
+##         arm  n probability expected_successes expected_failures
+## 1   control 10        0.01                0.1               9.9
+## 2 treatment 10        0.01                0.1               9.9
+## 
+## $minimum_expected_count
+## [1] 0.1
+## 
+## $sparse
+## [1] TRUE
+## 
+## $status
+## [1] &quot;Sparse expected counts: asymptotic calibration may be poor&quot;
+## 
+## $guidance
+## [1] &quot;Five expected observations per cell is a screening heuristic, not validation.&quot;                                                        
+## [2] &quot;Score planning and score simulation are asymptotic and may be conservative or anti-conservative in finite samples.&quot;                   
+## [3] &quot;Fisher simulation is an explicit conditional exact-test alternative; it does not convert approximate planning into exact sample size.&quot;
+## [4] &quot;Evaluate both null error and alternative power at the actual integer enrollment; report Monte Carlo uncertainty.&quot;                     
+## [5] &quot;More replications reduce Monte Carlo uncertainty; they do not fix test miscalibration.&quot;</code></pre>
+<p>The count threshold of five is only a heuristic. Historical
+score-test examples are downloadable in the app and installed validation
+folder. Use
+<code>simulate_trial(sparse,10,nsim=1000,seed=42,null=TRUE,binary_test=&quot;fisher&quot;)</code>
+to explicitly evaluate a conditional Fisher test. Its conservatism can
+reduce power. Approximate sample sizing remains separate; increasing the
+simulation count cannot repair miscalibration. Results and reports
+retain this distinction.</p>
+</div>
+<div id="unequal-normal-allocation-and-clinical-margin-tests" class="section level2">
+<h2>Unequal normal allocation and clinical margin tests</h2>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">requireNamespace</span>(<span class="st">&quot;rpact&quot;</span>,<span class="at">quietly=</span><span class="cn">TRUE</span>)){</span>
+<span id="cb32-2"><a href="#cb32-2" tabindex="-1"></a>  ni <span class="ot">&lt;-</span> <span class="fu">means_design</span>(<span class="at">allocation_ratio=</span><span class="dv">2</span>,<span class="at">margin=</span>.<span class="dv">3</span>,<span class="at">effect=</span><span class="dv">0</span>)</span>
+<span id="cb32-3"><a href="#cb32-3" tabindex="-1"></a>  ni<span class="sc">$</span>data[<span class="fu">c</span>(<span class="st">&quot;n_control&quot;</span>,<span class="st">&quot;n_treatment&quot;</span>,<span class="st">&quot;rejection_probability&quot;</span>)]</span>
+<span id="cb32-4"><a href="#cb32-4" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## $n_control
+## [1] 132
+## 
+## $n_treatment
+## [1] 264
+## 
+## $rejection_probability
+## [1] 0.8016193</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">requireNamespace</span>(<span class="st">&quot;PowerTOST&quot;</span>,<span class="at">quietly=</span><span class="cn">TRUE</span>)){</span>
+<span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a>  eq <span class="ot">&lt;-</span> <span class="fu">means_design</span>(<span class="at">hypothesis=</span><span class="st">&quot;equivalence&quot;</span>,<span class="at">effect=</span>.<span class="dv">02</span>,<span class="at">lower=</span><span class="sc">-</span>.<span class="dv">2</span>,<span class="at">upper=</span>.<span class="dv">4</span>,<span class="at">allocation_ratio=</span><span class="dv">2</span>)</span>
+<span id="cb34-3"><a href="#cb34-3" tabindex="-1"></a>  eq<span class="sc">$</span>data[<span class="fu">c</span>(<span class="st">&quot;n_control&quot;</span>,<span class="st">&quot;n_treatment&quot;</span>,<span class="st">&quot;rejection_probability&quot;</span>)]</span>
+<span id="cb34-4"><a href="#cb34-4" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## $n_control
+## [1] 246
+## 
+## $n_treatment
+## [1] 492
+## 
+## $rejection_probability
+## [1] 0.8015079</code></pre>
+<p>Effects and margins are treatment minus control in original response
+units. For higher-is-better NI, H0 is delta &lt;= -margin; for
+lower-is-better it is delta &gt;= margin. Margin values in these
+examples are synthetic and must not be adopted without clinical
+justification. TOST equivalence is the intersection of two one-sided
+rejections; global level is alpha, not twice alpha. Its matching CI has
+coverage 1-2*alpha. Nonsignificance is not equivalence.</p>
+<p><code>simulate_means_design()</code> evaluates NI at the null margin
+or equivalence at both boundary nulls, plus the specified alternative.
+Use actual arm sizes. For fixed-size analytical evaluation, supply
+n_control and n_treatment to means_design. At a null effect the result
+reports rejection_probability and leaves achieved_power missing, rather
+than labelling type I error as power. The exact equivalence engine
+assumes independent parallel groups and common normal variance;
+crossover or binary equivalence is not supported here.</p>
+</div>
+<div id="nonproportional-survival-profiles" class="section level2">
+<h2>Nonproportional survival profiles</h2>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a><span class="fu">simulate_nonph</span>(<span class="at">times=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">6</span>),<span class="at">lambda_control=</span><span class="fu">c</span>(.<span class="dv">06</span>,.<span class="dv">06</span>),</span>
+<span id="cb36-2"><a href="#cb36-2" tabindex="-1"></a>  <span class="at">lambda_treatment=</span><span class="fu">c</span>(.<span class="dv">08</span>,.<span class="dv">03</span>),<span class="at">n_total=</span><span class="dv">240</span>,<span class="at">events=</span><span class="dv">100</span>,</span>
+<span id="cb36-3"><a href="#cb36-3" tabindex="-1"></a>  <span class="at">allocation_treatment=</span><span class="dv">2</span>,<span class="at">allocation_control=</span><span class="dv">1</span>,<span class="at">nsim=</span><span class="dv">1000</span>,<span class="at">seed=</span><span class="dv">42</span>)</span></code></pre></div>
+<p>This uses native rpact piecewise-exponential simulation and ordinary
+one-sided logrank analysis. Intervals are follow-up times; the final
+interval is unbounded. The supplied profile crosses from higher to lower
+treatment hazards. No constant HR or uniform survival dominance is
+inferred. Recruitment is uniform; there is no additional administrative
+follow-up cap. A failed event target aborts the adapter instead of
+omitting trials. The equal-curve null is checked separately.</p>
+<p>Vary enrollment/events in explicit complete projects to evaluate
+simulation-based planning under non-PH. Never apply the older PH
+Schoenfeld planner to these profiles. All new workflows support JSON,
+reporting, scenario batches and cancellable workers. See
+docs/METHOD-EXTENSIONS.md in the repository for exact scope and the
+four-theoretical-MCSE scientific reference criteria.</p>
 </div>
 
 

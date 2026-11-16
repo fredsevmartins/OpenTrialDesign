@@ -1,0 +1,15 @@
+"case","expected","observed","tolerance","passed","kind","criterion","nsim","seed","mcse","lower","upper"
+"unequal NI greater boundary null",0.025,0.0254,0.00883176086632785,TRUE,"matched pooled-t Monte Carlo diagnostic","absolute",5000,4401,0.00222507707731665,0.0212177905997308,0.0301479928839351
+"unequal NI greater alternative",0.801619314198132,0.7996,0.0225584247182394,TRUE,"matched pooled-t Monte Carlo diagnostic","absolute",5000,4401,0.00566109247407247,0.788230959211964,0.810618159890883
+"unequal NI less boundary null",0.025,0.0246,0.00883176086632785,TRUE,"matched pooled-t Monte Carlo diagnostic","absolute",5000,4401,0.00219065469666034,0.0204857471868513,0.0292812454400311
+"unequal NI less alternative",0.801619314198132,0.8016,0.0225584247182394,TRUE,"matched pooled-t Monte Carlo diagnostic","absolute",5000,4401,0.00563981276284949,0.79027146374195,0.812575297442841
+"asymmetric TOST lower boundary null",0.0249999944737619,0.0234,0.00883175991522845,TRUE,"exact PowerTOST versus stats TOST","absolute",5000,4402,0.00213786996798215,0.0193899418361027,0.0279788904184046
+"asymmetric TOST upper boundary null",0.024999994473762,0.0244,0.00883175991522847,TRUE,"exact PowerTOST versus stats TOST","absolute",5000,4402,0.00218195508661384,0.0203029208839412,0.0290643761154648
+"asymmetric TOST alternative",0.801507912693893,0.7998,0.0225631897449255,TRUE,"exact PowerTOST versus stats TOST","absolute",5000,4402,0.00565897446539565,0.788434990163884,0.810813893168909
+"Fisher sparse null 0.01",0.05,0,0.012328828005938,TRUE,"one-sided screen for excess unconditional error; conservatism permitted","upper",5000,4403,0,0,0.000737503801108105
+"Fisher sparse null 0.1",0.05,0.0016,0.012328828005938,TRUE,"one-sided screen for excess unconditional error; conservatism permitted","upper",5000,4403,0.000565232695444982,0.000691011552617631,0.00315019076305953
+"Fisher sparse null 0.5",0.05,0.013,0.012328828005938,TRUE,"one-sided screen for excess unconditional error; conservatism permitted","upper",5000,4403,0.0016019363283227,0.0100470655017612,0.0165399363166403
+"Fisher sparse null 0.99",0.05,0,0.012328828005938,TRUE,"one-sided screen for excess unconditional error; conservatism permitted","upper",5000,4403,0,0,0.000737503801108105
+"piecewise logrank null PH",0.025,0.026,0.00883176086632785,TRUE,"native equal-curve null across control profiles and allocation; no composite-null claim","absolute",5000,4405,0.00225051105307217,0.0217675745830485,0.0307973103615655
+"piecewise logrank null delayed",0.025,0.0284,0.00883176086632785,TRUE,"native equal-curve null across control profiles and allocation; no composite-null claim","absolute",5000,4406,0.00234918879615922,0.0239727129374398,0.0333886411957172
+"piecewise logrank null crossing",0.025,0.024,0.00883176086632785,TRUE,"native equal-curve null across control profiles and allocation; no composite-null claim","absolute",5000,4407,0.00216443988135499,0.0199374959636407,0.0286304124043421

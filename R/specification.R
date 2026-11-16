@@ -55,7 +55,7 @@ check_spec <- function(spec) {
   if (!identical(spec, rebuilt)) fail("spec was modified; construct a new trial_spec")
 }
 engine_minimum <- c(gsDesign = "3.11.0", rpact = "4.4.0", simsurv = "1.0.1",
-                    callr = "3.7.6", zip = "2.3.0")
+                    callr = "3.7.6", zip = "2.3.0", PowerTOST = "1.5.7")
 need <- function(package) {
   if (!requireNamespace(package, quietly = TRUE))
     fail(paste("Install optional dependency", package), "otd_dependency_error")

@@ -1,0 +1,20 @@
+{
+  "axe_version": "4.10.3",
+  "states": [
+    {
+      "state": "sparse binary warning",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "state": "equivalence margins and alpha",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "state": "crossing hazard profile",
+      "violations": [],
+      "incomplete": []
+    }
+  ]
+}

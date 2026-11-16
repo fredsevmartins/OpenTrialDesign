@@ -202,3 +202,20 @@ failed locally. Independent scientific and real-user review remain unperformed;
 review packets/templates are supplied without invented endorsements.
 A tag-gated workflow publishes verified source, documentation, lock/checksums
 and an immutable GHCR image; final run/release URLs are recorded in the PR.
+
+
+## Sparse-binary and method extensions (0.4.0)
+
+Added binary_diagnostics and explicit Fisher simulation, normal means_design
+and simulate_means_design (unequal allocation, NI, exact TOST), and native
+simulate_nonph. Methods remain separate from PH/sequential/adaptive adapters.
+The lower-direction NI sizing API required a verified sign transformation of
+both effect and margin; native lower-direction power and original-scale pooled-t
+simulation check that equivalence. Native non-PH getData omits unreached targets,
+so the adapter rejects incomplete replications rather than change denominators.
+Methods and API/license evidence are recorded in METHOD-EXTENSIONS.md and
+method-/PowerTOST-* logs. The locked graph now contains 112 packages.
+Local verification passed 321 expectations and 14 prespecified reference cases.
+Nine new Chromium workflows and three WCAG A/AA states passed; independent
+scientific and real-user review remain pending. Final CI/release URLs belong to
+the corresponding pull request and are not inferred from local execution.

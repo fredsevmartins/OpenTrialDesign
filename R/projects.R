@@ -4,7 +4,10 @@ project_arguments <- function(workflow) {
     example = c("id", "nsim", "seed"),
     fixed_sample_size = fixed,
     fixed_power = c(fixed, "n_per_arm"),
-    fixed_simulation = c(fixed, "n_per_arm", "nsim", "seed", "null"),
+    fixed_simulation = c(fixed, "n_per_arm", "nsim", "seed", "null", "binary_test"),
+    means_design=names(formals(means_design)),
+    means_simulation=names(formals(simulate_means_design)),
+    nonph_simulation=names(formals(simulate_nonph)),
     sequential_design = names(formals(sequential_design)),
     sequential_means = names(formals(sequential_sample_size)),
     adaptive_simulation = names(formals(adaptive_simulation)),
@@ -14,7 +17,7 @@ project_arguments <- function(workflow) {
 }
 project_workflows <- c("example", "fixed_sample_size", "fixed_power", "fixed_simulation",
   "sequential_design", "sequential_means", "adaptive_simulation",
-  "survival_design", "survival_simulation")
+  "survival_design", "survival_simulation", "means_design", "means_simulation", "nonph_simulation")
 project_defaults <- function(workflow) {
   defaults <- function(fn) {
     values <- formals(fn)
@@ -27,6 +30,9 @@ project_defaults <- function(workflow) {
   }
   fixed <- defaults(trial_spec)
   switch(workflow, example = list(id="TD-001",nsim=1000,seed=2026),
+    means_design=defaults(means_design),
+    means_simulation=defaults(simulate_means_design),
+    nonph_simulation=defaults(simulate_nonph),
     fixed_sample_size = fixed,
     fixed_power = c(fixed, list(n_per_arm=64)),
     fixed_simulation = c(fixed, list(n_per_arm=64), defaults(simulate_trial)),
@@ -62,18 +68,18 @@ trial_project <- function(workflow = "fixed_sample_size", parameters = list(),
     fail("parameters must be a uniquely named list")
   unknown <- setdiff(names(parameters), project_arguments(workflow))
   if (length(unknown)) fail(paste("unknown project parameters:", paste(unknown, collapse = ", ")))
-  chars <- c("id", "endpoint", "alternative", "engine", "spending", "futility")
+  chars <- c("id", "endpoint", "alternative", "engine", "spending", "futility", "binary_test", "hypothesis")
   logicals <- "null"
   for (key in names(parameters)) {
     value <- parameters[[key]]
-    if (is.null(value) && key == "events") next
+    if (is.null(value) && key %in% c("events","n_control","n_treatment")) next
     if (key %in% chars) {
       if (!is.character(value) || length(value) != 1 || is.na(value)) fail(paste(key, "must be one string"))
     } else if (key %in% logicals) {
       if (!is.logical(value) || length(value) != 1 || is.na(value)) fail(paste(key, "must be logical"))
     } else {
       if (!is.numeric(value) || !length(value) || any(!is.finite(value)) ||
-          (key != "information" && length(value) != 1)) fail(paste(key, "must be finite numeric data"))
+          (!key %in% c("information","times","lambda_control","lambda_treatment") && length(value) != 1)) fail(paste(key, "must be finite numeric data"))
     }
   }
   frozen <- project_defaults(workflow)
@@ -108,7 +114,8 @@ execute_project <- function(project) {
   } else {
     fn <- switch(workflow, example = run_example, sequential_design = sequential_design,
       sequential_means = sequential_sample_size, adaptive_simulation = adaptive_simulation,
-      survival_design = survival_design, survival_simulation = simulate_survival)
+      survival_design = survival_design, survival_simulation = simulate_survival,
+      means_design=means_design,means_simulation=simulate_means_design,nonph_simulation=simulate_nonph)
     x <- do.call(fn, args)
   }
   x$project <- project

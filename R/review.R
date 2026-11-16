@@ -15,7 +15,30 @@ review_project <- function(project) {
   fields<-list(Workflow=w,Review="Specification review only; engine checks occur on execution",
     Validation="No independent scientific or protocol-specific validation is claimed",
     Allocation="1:1 control:treatment")
-  if(startsWith(w,"fixed_")){
+  if(w%in%c("means_design","means_simulation")){
+    fields$Allocation<-if(w=="means_design"&&is.null(p$n_control))paste("Planned treatment/control ratio",p$allocation_ratio) else
+      paste("Treatment",p$n_treatment,"; control",p$n_control)
+    fields<-c(fields,list(Estimand="Treatment minus control normal mean",Effect=text(p$effect),Nuisance=paste("Common SD",p$sd),
+      Hypothesis=if(p$hypothesis=="equivalence")paste("H0: effect <=",p$lower,"OR effect >=",p$upper,"; H1: strictly inside both bounds") else
+        if(p$hypothesis=="noninferiority")if(p$alternative=="greater")paste("H0: effect <=",-p$margin,"; H1: effect >",-p$margin) else
+          paste("H0: effect >=",p$margin,"; H1: effect <",p$margin) else switch(p$alternative,
+          greater="H0: effect <= 0; H1: effect > 0",less="H0: effect >= 0; H1: effect < 0",two.sided="H0: effect = 0; H1: effect != 0"),
+      Alpha=paste(p$alpha,if(p$hypothesis=="equivalence")"per one-sided TOST component; global IUT level alpha, not 2*alpha" else
+        if(p$alternative=="two.sided")"total two-sided" else "one-sided"),
+      Stopping="One fixed final analysis; no sequential or adaptive extension",
+      Margins="Prespecify and clinically justify margins; equivalence is not inferred from a nonsignificant superiority test",
+      Assumptions="Independent normal groups, common variance; rpact t approximation for NI/superiority, PowerTOST exact TOST power for equivalence"))
+  } else if(w=="nonph_simulation"){
+    fields$Allocation<-paste(p$allocation_treatment,":",p$allocation_control,"treatment:control block allocation")
+    fields<-c(fields,list(Estimand="Prespecified survival hazard profiles; logrank decision contrast, no constant HR estimand",
+      Hypothesis="Equal-curve null and specified alternative profiles; one-sided logrank targeting lower treatment hazards",
+      Alpha=paste(p$alpha,"one-sided"),Intervals=text(p$times),Control_hazards=text(p$lambda_control),Treatment_hazards=text(p$lambda_treatment),
+      Recruitment=paste("Uniform recruitment over",p$accrual,"; maximum enrollment",p$n_total),
+      Stopping=paste("One analysis at",p$events,"events; no administrative follow-up cap; abort if any target is unreached"),
+      Nuisance=paste("Independent dropout",p$dropout,"by time",p$dropout_time),
+      Assumptions="Native rpact piecewise exponential survival; rates depend on follow-up time; final interval unbounded",
+      Limitations="Crossing hazards: logrank may have poor power; rejection is not uniform survival dominance; no Schoenfeld sample size"))
+  } else if(startsWith(w,"fixed_")){
     symbol<-if(p$endpoint=="normal")"mean difference" else "risk difference"
     hypothesis<-switch(p$alternative,greater="H0: effect <= 0; H1: effect > 0",less="H0: effect >= 0; H1: effect < 0",
       two.sided="H0: effect = 0; H1: effect != 0")
@@ -65,6 +88,7 @@ review_project <- function(project) {
     fields$Expected_cell_counts<-paste("Minimum expected successes/failures per arm:",signif(minimum,4),
       if(minimum<5)"; sparse counts: asymptotic calibration may be poor" else "; this count diagnostic does not establish calibration")
   }
+  if(!is.null(p$binary_test))fields$Binary_analysis<-if(p$binary_test=="fisher")"Explicit conditional Fisher exact test; sample size planning remains asymptotic" else "Uncorrected asymptotic score test"
   if(!is.null(p$power))fields$Target_power<-text(p$power)
   if(!is.null(p$n_per_arm))fields$Enrollment<-paste(p$n_per_arm,"per arm")
   if(!is.null(p$null))fields$Scenario<-if(p$null)"Equality null" else "Alternative"

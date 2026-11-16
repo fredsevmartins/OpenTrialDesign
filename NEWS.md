@@ -1,3 +1,16 @@
+# OpenTrialDesign 0.4.0
+
+* Added expected-count diagnostics, visible sparse-binary guidance, downloadable
+  historical calibration evidence and explicit Fisher exact simulation.
+* Added unequal normal allocation, directional noninferiority and exact TOST
+  equivalence through rpact and PowerTOST, with actual integer-arm power.
+* Added native piecewise-exponential non-PH simulation, including delayed/crossing
+  profiles, equal-curve nulls and full-denominator event-target safeguards.
+* Extended JSON, scenario grids, cancellable jobs, reports, scientific review and
+  Shiny with the same underlying engine APIs.
+* Added 14 new prespecified scientific reference experiments and method-specific
+  boundary, regression and browser tests; PowerTOST dependency graph is frozen.
+
 # OpenTrialDesign 0.3.0
 
 * Added pre-execution scientific review of frozen project specifications.

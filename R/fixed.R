@@ -21,12 +21,13 @@ fixed_engine <- function(spec, n = NULL) {
 #' sample_size(trial_spec(effect = 0.5))
 sample_size <- function(spec) {
   raw <- fixed_engine(spec)
-  n <- ceiling(raw$n)
-  result("fixed sample size", list(n_per_arm = n, n_total = 2 * n,
+  n <- max(2,ceiling(raw$n))
+  x<-result("fixed sample size", list(n_per_arm = n, n_total = 2 * n,
     unrounded_n_per_arm = raw$n, achieved_power = fixed_engine(spec, n)$power),
     spec, "stats", raw$method,
     c("equal allocation; independent observations", "normal: common variance t test",
       "binary: asymptotic normal approximation; no continuity correction"))
+  attach_binary_diagnostics(x,spec,n)
 }
 #' Calculate analytical power at an integer sample size
 #' @param spec A trial_spec object.
@@ -38,6 +39,7 @@ sample_size <- function(spec) {
 trial_power <- function(spec, n_per_arm) {
   integer_count(n_per_arm, "n_per_arm", 2)
   raw <- fixed_engine(spec, n_per_arm)
-  result("analytical power", list(power = raw$power, n_per_arm = n_per_arm),
+  x<-result("analytical power", list(power = raw$power, n_per_arm = n_per_arm),
     spec, "stats", raw$method, "equal allocation; see trial_spec assumptions")
+  attach_binary_diagnostics(x,spec,n_per_arm)
 }

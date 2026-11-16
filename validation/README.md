@@ -102,3 +102,30 @@ hiding permission failures; worker termination is confirmed before marking
 cancellation. Four deterministic assertions cover this path. The corrected
 suite has 266 passing expectations. Initial failures remain in
 improvements-container-initial-failure.txt and improvements-cancellation-race.txt.
+
+
+## Sparse-binary and method extensions (0.4.0)
+
+Added binary_diagnostics and explicit Fisher simulation, normal means_design
+and simulate_means_design (unequal allocation, NI, exact TOST), and native
+simulate_nonph. Methods remain separate from PH/sequential/adaptive adapters.
+The lower-direction NI sizing API required a verified sign transformation of
+both effect and margin; native lower-direction power and original-scale pooled-t
+simulation check that equivalence. Native non-PH getData omits unreached targets,
+so the adapter rejects incomplete replications rather than change denominators.
+Methods and API/license evidence are recorded in METHOD-EXTENSIONS.md and
+method-/PowerTOST-* logs. The locked graph now contains 112 packages.
+Local verification passed 321 expectations and 14 prespecified reference cases.
+Nine new Chromium workflows and three WCAG A/AA states passed; independent
+scientific and real-user review remain pending. Final CI/release URLs belong to
+the corresponding pull request and are not inferred from local execution.
+
+Final local method-extension acceptance: 321 passing assertions, R CMD check
+Status OK, all 32 browser workflows passed on a freshly started app (16 product,
+7 prior improvements, 9 new methods). Six axe-audited states had zero automated
+WCAG A/AA violations. Upgrading a live installed library initially invalidated
+the older app process; the documented stop/upgrade/restart sequence resolved
+that environment issue without weakening tests. The local server used for final
+acceptance was restarted after installation. Scientific comparisons and four
+standalone EXT examples executed successfully. Reports for equivalence and
+non-PH were rendered with methodological provenance. CI is a separate gate.

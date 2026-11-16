@@ -14,7 +14,7 @@ prune_jobs <- function() {
 #' @export
 start_simulation <- function(project) {
   check_project(project)
-  if (!project$workflow %in% c("fixed_simulation", "adaptive_simulation", "survival_simulation", "example"))
+  if (!project$workflow %in% c("fixed_simulation", "adaptive_simulation", "survival_simulation", "example", "means_simulation", "nonph_simulation"))
     fail("background jobs require a simulation or example project")
   start_job(project,function(project)OpenTrialDesign::execute_project(project))
 }

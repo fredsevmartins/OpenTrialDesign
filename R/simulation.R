@@ -8,13 +8,18 @@
 #' @param n_per_arm Integer size in each arm.
 #' @param nsim Number of independent replications.
 #' @param seed Deterministic integer seed.
+#' @param binary_test Explicit binary analysis: asymptotic score or conditional
+#'   Fisher exact test. Fisher simulation does not supply exact sample sizing.
 #' @param null If TRUE simulate the equality null (effect zero).
 #' @return An otd_result with rejection proportion, MCSE and exact binomial interval.
 #' @export
 #' @examples
 #' simulate_trial(trial_spec(), 64, nsim = 100, seed = 42)
-simulate_trial <- function(spec, n_per_arm, nsim = 1000, seed = 1, null = FALSE) {
-  check_spec(spec); integer_count(n_per_arm, "n_per_arm", 2)
+simulate_trial <- function(spec, n_per_arm, nsim = 1000, seed = 1, null = FALSE, binary_test=c("score","fisher")) {
+  binary_test<-match.arg(binary_test)
+  check_spec(spec)
+  if(spec$endpoint!="binary"&&binary_test!="score")fail("Fisher analysis requires a binary endpoint")
+  integer_count(n_per_arm, "n_per_arm", 2)
   integer_count(nsim, "nsim", 2); integer_count(seed, "seed", 0)
   if (!is.logical(null) || length(null) != 1 || is.na(null)) fail("null must be TRUE or FALSE")
   effect <- if (null) 0 else spec$effect
@@ -29,16 +34,23 @@ simulate_trial <- function(spec, n_per_arm, nsim = 1000, seed = 1, null = FALSE)
                   stats::rbinom(1, n_per_arm, spec$p_control))
       # With no successes or no failures the score statistic is undefined;
       # these identical outcomes provide no evidence against equality.
-      p <- if (sum(counts) %in% c(0, 2 * n_per_arm)) 1 else
+      p <- if(binary_test=="fisher")stats::fisher.test(cbind(counts,n_per_arm-counts),
+        alternative=spec$alternative)$p.value else if (sum(counts) %in% c(0, 2 * n_per_arm)) 1 else
         suppressWarnings(stats::prop.test(counts, rep(n_per_arm, 2),
           alternative = spec$alternative, correct = FALSE)$p.value)
     }
     if (!is.finite(p)) fail("nonfinite simulation p-value", "otd_simulation_error")
     p <= spec$alpha
   }))
-  oc_result(sum(rejected), nsim, spec, "stats", seed,
+  x<-oc_result(sum(rejected), nsim, spec, "stats", seed,
             if (null) "empirical type I error at equality null" else "empirical power",
             list(n_per_arm = n_per_arm, effect_simulated = effect))
+  if(spec$endpoint=="binary"){
+    x$provenance$method<-paste(x$provenance$method,if(binary_test=="fisher")"using conditional Fisher exact test" else "using asymptotic score test")
+    x$provenance$assumptions<-c(x$provenance$assumptions,
+      if(binary_test=="fisher")"Conditional exact inference; risk-difference planning remains asymptotic" else "Uncorrected Pearson score approximation; sparse-count calibration is not assured")
+  }
+  attach_binary_diagnostics(x,spec,n_per_arm,null)
 }
 oc_result <- function(rejections, nsim, spec, engine, seed, method, extra = list()) {
   estimate <- rejections / nsim

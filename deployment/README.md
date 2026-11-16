@@ -90,9 +90,9 @@ and Fortran compiler. The standard Dockerfile installs these requirements.
 
 ## Versioned release installation
 
-Download OpenTrialDesign_0.3.0.tar.gz and SHA256SUMS from the GitHub release;
+Download OpenTrialDesign_0.4.0.tar.gz and SHA256SUMS from the GitHub release;
 verify `sha256sum -c SHA256SUMS` in the directory containing all release assets.
-The source package is installed with `R CMD INSTALL OpenTrialDesign_0.3.0.tar.gz`
+The source package is installed with `R CMD INSTALL OpenTrialDesign_0.4.0.tar.gz`
 when its documented dependencies are present. For the complete frozen product,
 use the repository's native installer or the published container.
 
@@ -108,3 +108,7 @@ The tag-triggered release workflow first reruns the full scientific and browser
 verification on that tag. It then builds source/documentation, publishes the
 container and creates release assets/checksums. Failed verification prevents
 publication. The verification URL and source commit accompany the assets.
+
+Stop a running native app before reinstalling/upgrading its package library, then
+restart it. Replacing installed app files while sessions remain open can invalidate
+their working directory and bindings. Save JSON/bundles before the restart.
