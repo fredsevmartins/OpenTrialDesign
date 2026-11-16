@@ -75,9 +75,19 @@ collect_simulation <- function(job) {
 cancel_simulation <- function(job) {
   check_job(job)
   if (job$process$is_alive()) {
+    terminate_worker(job$process)
     job$cancelled <- TRUE
-    job$process$kill_tree()
-    job$process$wait(timeout = 1000)
   }
   invisible(simulation_status(job))
+}
+
+# A child may disappear between ps's process enumeration and signal delivery.
+# Handle only that race; permission and other termination failures must surface.
+terminate_worker <- function(process) {
+  tryCatch(process$kill_tree(),no_such_process=function(e){
+    if(process$is_alive())process$kill()
+  })
+  process$wait(timeout=1000)
+  if(process$is_alive())fail("Worker termination could not be confirmed; retry cancellation.","otd_job_error")
+  invisible(TRUE)
 }

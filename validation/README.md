@@ -96,3 +96,9 @@ all 16 prior product browser workflows plus seven new sensitivity/review/keyboar
 workflows, and zero axe WCAG A/AA violations/incomplete items in three audited
 states. See improvements-* and accessibility-audit.json. Older product-* hashes
 refer to the 0.2.0 source baseline; improvements-SHA256SUMS covers 0.3.0.
+
+The container's ps/processx disappearing-process race is corrected without
+hiding permission failures; worker termination is confirmed before marking
+cancellation. Four deterministic assertions cover this path. The corrected
+suite has 266 passing expectations. Initial failures remain in
+improvements-container-initial-failure.txt and improvements-cancellation-race.txt.

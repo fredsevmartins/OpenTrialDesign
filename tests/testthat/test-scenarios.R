@@ -54,3 +54,15 @@ test_that("scientific review preserves direction, alpha and stopping semantics w
   expect_match(sparse$value[sparse$field=="Expected cell counts"],"sparse counts")
   expect_identical(.Random.seed,before)
 })
+
+test_that("cancellation handles disappearing processes but never hides other failures", {
+  alive<-TRUE
+  process<-list(kill_tree=function()stop(structure(list(message="already gone",call=NULL),class=c("no_such_process","error","condition"))),
+    is_alive=function()alive,kill=function()alive<<-FALSE,wait=function(timeout)NULL)
+  expect_true(OpenTrialDesign:::terminate_worker(process))
+  expect_false(alive)
+  process$kill_tree<-function()stop("permission denied")
+  expect_error(OpenTrialDesign:::terminate_worker(process),"permission denied")
+  alive<-TRUE;process$kill_tree<-function()NULL
+  expect_error(OpenTrialDesign:::terminate_worker(process),"could not be confirmed")
+})

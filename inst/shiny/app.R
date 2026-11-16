@@ -185,7 +185,8 @@ server <- function(input, output, session) {
   }
   observe({invalidateLater(300,session);harvest_job()})
   observeEvent(input$cancel,{
-    current<-active_job();if(!is.null(current)){cancel_simulation(current$handle);harvest_job()}
+    current<-active_job();if(!is.null(current))tryCatch({cancel_simulation(current$handle);harvest_job()},
+      error=function(e){job_message(paste("Cancellation failed:",conditionMessage(e)));showNotification(conditionMessage(e),type="error")})
   })
   session$onSessionEnded(function(){current<-isolate(active_job());if(!is.null(current))cancel_simulation(current$handle)})
   observeEvent(input$simulate,launch(make_project("fixed_simulation",c(fixed_parameters(),
