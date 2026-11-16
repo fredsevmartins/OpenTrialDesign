@@ -1,3 +1,16 @@
+# OpenTrialDesign 0.3.0
+
+* Added pre-execution scientific review of frozen project specifications.
+* Added reproducible sensitivity grids, cancellable scenario workers and complete
+  batch exports with per-scenario JSON, errors and provenance.
+* Added 40 prespecified stress scenarios with MC uncertainty and explicit
+  separation of critical reference gates from approximate-test diagnostics.
+* Improved keyboard navigation, document language/title, native labelled controls,
+  live job status and contrast; added axe WCAG A/AA browser checks.
+* Added independent scientific review and real-user usability protocols, with
+  honest not-performed status and no invented external-plan mapping.
+* Added gated GitHub source/documentation/checksum and GHCR image publication.
+
 # OpenTrialDesign 0.2.0
 
 * Added portable JSON projects with frozen defaults, replay and schema validation.

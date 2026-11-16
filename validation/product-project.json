@@ -1,7 +1,7 @@
 {
   "format": "OpenTrialDesign-project",
   "schema_version": 1,
-  "created_with": "0.2.0",
+  "created_with": "0.3.0",
   "title": "Fixed trial sample size",
   "workflow": "fixed_sample_size",
   "parameters": {

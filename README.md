@@ -2,7 +2,7 @@
 Scientific Clinical Trial Design, Simulation &amp; Operating Characteristics in R
 
 A reproducible R package and browser application for clinical trial planning
-and simulation, version 0.2.0. The statistical core is independent of Shiny.
+and simulation, version 0.3.0. The statistical core is independent of Shiny.
 It delegates calculations to stats, gsDesign, rpact, survival and simsurv.
 
 ## Start the product
@@ -14,6 +14,32 @@ With R: install R >= 4.5 and Pandoc, run `Rscript scripts/install-product.R`, th
 `Rscript scripts/start-product.R`. The installer uses an isolated project library, restores locked dependencies,
 builds the guide and installs the package. PDF additionally requires LaTeX.
 See [deployment and recovery instructions](deployment/README.md).
+
+## New in 0.3.0
+
+Review the hypothesis, alpha definition, estimand and stopping rules before
+execution. Build sensitivity grids, run cancellable batches and export every
+scenario as replayable JSON with results and provenance.
+
+```r
+library(OpenTrialDesign)
+projects <- scenario_grid(trial_project(),
+  list(effect = c(.3, .5), power = c(.8, .9)))
+review_project(projects[[1]])
+batch <- run_scenarios(projects)
+export_bundle(batch, "sensitivity.zip", include_report = FALSE)
+```
+
+[Versioned releases](https://github.com/fredsevmartins/OpenTrialDesign/releases)
+provide installable source, generated documentation, dependency lock, SHA256
+checksums and the verified GHCR image digest. Releases preserve repository and
+package access controls; a private repository is not made public.
+See [release installation](deployment/README.md#versioned-release-installation).
+
+Scientific and usability review protocols are in [docs/review](docs/review).
+Independent review and real-user evaluation remain explicitly unperformed.
+The extended stress screen retains sparse-data calibration departures; it does
+not claim uniform error control across all possible settings.
 
 ## Workflows
 
@@ -79,7 +105,7 @@ Rscript -e 'testthat::test_local()'
 Rscript scripts/run-examples.R
 Rscript scripts/scientific-reference.R
 R CMD build .
-R CMD check OpenTrialDesign_0.2.0.tar.gz
+R CMD check OpenTrialDesign_0.3.0.tar.gz
 ```
 
 [Architecture](docs/ARCHITECTURE.md) · [Readiness scope](docs/PRODUCT-READINESS.md)

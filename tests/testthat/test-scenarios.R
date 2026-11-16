@@ -1,0 +1,68 @@
+test_that("sensitivity grids freeze each row, limit size and explicitly manage seeds", {
+  p<-trial_project("fixed_simulation",list(seed=42,nsim=20))
+  xs<-scenario_grid(p,list(effect=c(.3,.5),null=c(TRUE,FALSE)))
+  expect_length(xs,4)
+  expect_equal(vapply(xs,function(x)x$parameters$seed,numeric(1)),setNames(42:45,names(xs)))
+  expect_equal(p$parameters$seed,42)
+  expect_error(scenario_grid(p,list(effect=1:20,sd=1:20),max_scenarios=36),"exceeds")
+  expect_error(scenario_grid(p,list(information=c(.5,1))),"vector-valued")
+  expect_error(scenario_grid(p,list(seed=1:2)),"preserve")
+  expect_equal(scenario_grid(p,list(seed=1:2),"preserve")[[2]]$parameters$seed,2)
+  expect_error(scenario_grid(p,list(effect=NA_real_)),"missing")
+  expect_error(scenario_grid(trial_project("fixed_simulation",list(seed=.Machine$integer.max-1)),list(effect=c(.3,.5))),"seed")
+})
+test_that("batch execution matches independent calls and reports failures separately", {
+  xs<-scenario_grid(trial_project(),list(effect=c(.3,.5)))
+  x<-run_scenarios(xs)
+  expect_equal(x$data$results$S002$data,execute_project(xs$S002)$data)
+  expect_equal(length(unique(x$data$summary$scenario)),2)
+  xs$S002<-trial_project(parameters=list(alpha=2))
+  expect_error(run_scenarios(xs),"alpha")
+  y<-run_scenarios(xs,TRUE)
+  expect_equal(y$data$failures$scenario,"S002")
+  expect_equal(unique(y$data$summary$scenario),"S001")
+  z<-tempfile(fileext=".zip");export_bundle(y,z,FALSE)
+  folder<-tempfile();dir.create(folder);utils::unzip(z,exdir=folder)
+  expect_equal(read_project(file.path(folder,"scenarios","S001.json")),xs$S001)
+  manifest<-utils::read.csv(file.path(folder,"manifest.csv"))
+  expect_equal(unname(tools::md5sum(file.path(folder,manifest$file))),manifest$md5)
+})
+test_that("background batch results preserve exact seeds and support cancellation", {
+  skip_if_not_installed("callr")
+  xs<-scenario_grid(trial_project("fixed_simulation",list(nsim=20,seed=2026)),list(effect=c(.3,.5)))
+  j<-start_scenarios(xs);on.exit(cancel_simulation(j),add=TRUE);j$process$wait(timeout=30000)
+  expect_equal(simulation_status(j)$state,"completed")
+  expect_equal(collect_simulation(j)$data,run_scenarios(xs)$data)
+  xs[[1]]$parameters$nsim<-100000
+  # Rebuild the frozen schema before execution.
+  xs[[1]]<-trial_project(xs[[1]]$workflow,xs[[1]]$parameters,xs[[1]]$title)
+  k<-start_scenarios(xs);on.exit(cancel_simulation(k),add=TRUE);cancel_simulation(k)
+  expect_equal(simulation_status(k)$state,"cancelled")
+  expect_error(collect_simulation(k),class="otd_job_error")
+})
+test_that("scientific review preserves direction, alpha and stopping semantics without running RNG", {
+  set.seed(42);before<-.Random.seed
+  d<-review_project(trial_project(parameters=list(effect=-.3,alternative="less")))
+  expect_match(d$value[d$field=="Hypothesis"],"effect < 0")
+  expect_match(d$value[d$field=="Alpha"],"one-sided")
+  d<-review_project(trial_project("sequential_design",list(futility="binding")))
+  expect_match(d$value[d$field=="Futility"],"must be followed")
+  d<-review_project(trial_project("survival_simulation",list(events=40,n_per_arm=50,null=TRUE)))
+  expect_match(d$value[d$field=="Stopping"],"40 events")
+  expect_equal(d$value[d$field=="Scenario"],"Equality null")
+  sparse<-review_project(trial_project("fixed_simulation",list(endpoint="binary",p_control=.01,effect=.005,n_per_arm=10,null=TRUE)))
+  expect_match(sparse$value[sparse$field=="Expected cell counts"],"sparse counts")
+  expect_identical(.Random.seed,before)
+})
+
+test_that("cancellation handles disappearing processes but never hides other failures", {
+  alive<-TRUE
+  process<-list(kill_tree=function()stop(structure(list(message="already gone",call=NULL),class=c("no_such_process","error","condition"))),
+    is_alive=function()alive,kill=function()alive<<-FALSE,wait=function(timeout)NULL)
+  expect_true(OpenTrialDesign:::terminate_worker(process))
+  expect_false(alive)
+  process$kill_tree<-function()stop("permission denied")
+  expect_error(OpenTrialDesign:::terminate_worker(process),"permission denied")
+  alive<-TRUE;process$kill_tree<-function()NULL
+  expect_error(OpenTrialDesign:::terminate_worker(process),"could not be confirmed")
+})

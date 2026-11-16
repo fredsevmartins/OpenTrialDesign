@@ -1,0 +1,5 @@
+Prespecified screen: see scripts/stress-validation.R.
+Diagnostic departures are retained, especially sparse binary and low-event asymptotic tests.
+A screen pass does not establish uniform null control or independent scientific validation.
+Cases: 40 ; diagnostic departures: 6
+Critical reference failures: 0

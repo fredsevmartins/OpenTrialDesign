@@ -14,7 +14,7 @@
 | Schoenfeld target | Independent closed form within 1e-4 events | Formula and adapter agreement |
 | Survival simulation | 2000 null replications; nominal .025; four-MCSE tolerance | Limited exponential/null scenario diagnostic |
 | Event stopping/dropout | Deterministic seed; target attainment and calendar cap | Operational assumptions exercised |
-| Provisional examples | All 30 at nsim=1000, seed=2026; 30 saved result objects; synthetic assumptions and rationales documented | Executed, not individually independently validated |
+| Version-1 examples | All 30 at nsim=1000, seed=2026; 30 saved result objects; synthetic assumptions and rationales documented | Executed, not individually independently validated |
 | Shiny | testServer exercises all calculation families | Shared-engine server verification; separate Chromium smoke test passed |
 | HTML/PDF | Actual rendered reference files | Rendering dependencies verified locally |
 | Package | R CMD build, install, fresh-library tests and R CMD check Status OK | Current Linux/R/dependency baseline only |
@@ -33,3 +33,18 @@ sequential design with a rendered plot, adaptive simulation, survival planning,
 and HTML report download. There were no JavaScript page errors. Evidence is in
 validation/browser-smoke.json and validation/shiny-browser.png. This does not
 constitute exhaustive usability, mobile, or accessibility acceptance.
+
+
+## Version 0.3.0 additional verification
+
+The executed stress suite in validation/stress-validation.csv covers 40
+prespecified scenarios with 2000 replications each (per adaptive scenario).
+All critical matched-reference gates passed locally. Six sparse binary cases
+fell outside the prespecified five-theoretical-MCSE diagnostic band; these are
+retained as approximation limitations, not release gates or fabricated passes.
+Each row includes its seed, estimate, MCSE, exact 95% interval and classification.
+
+Scientific review and real-user usability protocols in docs/review are pending
+external execution. Automated browser acceptance adds seven workflows and axe
+WCAG A/AA checks for three states, retaining incomplete/manual-review items.
+This is not an independent scientific or accessibility certification.

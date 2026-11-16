@@ -188,3 +188,17 @@ harness race: a job could already have been harvested before the test waited
 on its process. The test now accepts an already completed job and retains all
 result assertions. The initial failure is retained in
 product-windows-initial-failure.txt. Final CI acceptance is linked in PR #1.
+
+
+## Improvements 0.3.0
+
+Added review_project, scenario_grid, run_scenarios and cancellable
+start_scenarios; per-scenario JSON exports and separate failure tables; live
+scientific contracts; labelled native controls, keyboard skip link, page language,
+contrast and scrollable mobile scenario results. Tests and R CMD check are in
+improvements-* logs. Stress verification records 40 executed scenarios and
+retains six sparse-binary calibration departures; zero critical reference gates
+failed locally. Independent scientific and real-user review remain unperformed;
+review packets/templates are supplied without invented endorsements.
+A tag-gated workflow publishes verified source, documentation, lock/checksums
+and an immutable GHCR image; final run/release URLs are recorded in the PR.

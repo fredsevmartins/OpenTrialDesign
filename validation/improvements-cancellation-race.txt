@@ -1,0 +1,22 @@
+2026-11-16T05:15:34.5678594Z 
+2026-11-16T05:15:34.5810561Z ══ Failed ══════════════════════════════════════════════════════════════════════
+2026-11-16T05:15:34.6533980Z ── 1. Error ('test-scenarios.R:39:65'): background batch results preserve exact 
+2026-11-16T05:15:34.6535272Z <no_such_process/ps_error/error/condition>
+2026-11-16T05:15:34.6536062Z Error: Failed to send signal to some processes: 275 (???)
+2026-11-16T05:15:34.6536781Z Backtrace:
+2026-11-16T05:15:34.6537242Z     ▆
+2026-11-16T05:15:34.6538220Z  1. └─OpenTrialDesign::cancel_simulation(k) at test-scenarios.R:39:65
+2026-11-16T05:15:34.6539112Z  2.   └─job$process$kill_tree()
+2026-11-16T05:15:34.6541285Z  3.     └─processx:::process_kill_tree(self, private, grace, close_connections) at processx/R/process.R:259:17
+2026-11-16T05:15:34.6542572Z  4.       └─get("ps_kill_tree", asNamespace("ps"))(private$tree_id) at processx/R/process.R:752:3
+2026-11-16T05:15:34.6543596Z  5.         └─ps::ps_send_signal(procs, sig) at ps/R/kill-tree.R:159:5
+2026-11-16T05:15:34.6551828Z  6.           └─ps:::process_signal_result(p, res, "Failed to send signal to") at ps/R/low-level.R:712:3
+2026-11-16T05:15:34.6552551Z 
+2026-11-16T05:15:34.6553102Z ══ DONE ════════════════════════════════════════════════════════════════════════
+2026-11-16T05:15:34.7187258Z Error: Test failures
+
+Run 43808769005, source 84f3e39. A process exited between enumeration and
+signal delivery during cancellation. The correction catches only the known
+no_such_process race and confirms worker death before marking cancellation.
+Permission and other termination errors remain visible. Deterministic regression
+tests cover the disappearing process, permission error and unconfirmed death.

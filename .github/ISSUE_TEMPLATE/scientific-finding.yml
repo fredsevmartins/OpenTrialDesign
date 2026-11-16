@@ -1,0 +1,23 @@
+name: Scientific finding
+description: Report a reproducible methodological concern or independent review finding
+title: '[Scientific] '
+body:
+  - type: textarea
+    id: specification
+    attributes:
+      label: Design and expected scientific behavior
+      description: Specify estimand, hypotheses, sidedness, alpha and stopping rules; use synthetic data only.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproducible evidence
+      description: Include release/commit, code or JSON project, engine versions, seed, expected/observed values and justified tolerance.
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact and independent review context
+      description: State affected workflows and review scope/conflicts if applicable. Do not claim independent review without identifying its evidence.

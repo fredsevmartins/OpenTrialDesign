@@ -1,0 +1,71 @@
+name: Publish verified release
+on:
+  push:
+    tags: ['v*']
+permissions:
+  contents: write
+  packages: write
+jobs:
+  verify:
+    uses: ./.github/workflows/R-CMD-check.yaml
+    secrets: inherit
+  publish:
+    needs: verify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify immutable release version
+        shell: bash
+        run: |
+          [[ "$GITHUB_REF_NAME" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]
+          test "$GITHUB_REF_NAME" = "v$(sed -n 's/^Version: //p' DESCRIPTION)"
+      - uses: r-lib/actions/setup-pandoc@v2
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          needs: check
+      - name: Build installable source and documentation
+        run: |
+          mkdir -p release
+          R CMD build .
+          mv OpenTrialDesign_*.tar.gz release/
+          R CMD INSTALL --install-tests release/OpenTrialDesign_*.tar.gz
+          Rscript -e 'pkgdown::build_site(new_process=FALSE,install=FALSE)'
+          (cd docs/site && zip -qr ../../release/OpenTrialDesign-documentation.zip .)
+          cp renv.lock release/
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Set image reference
+        id: image
+        shell: bash
+        run: |
+          echo "name=ghcr.io/${GITHUB_REPOSITORY,,}" >> "$GITHUB_OUTPUT"
+          echo "version=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
+      - uses: docker/build-push-action@v6
+        id: image_build
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.image.outputs.name }}:${{ steps.image.outputs.version }}
+          cache-from: type=gha
+          labels: |
+            org.opencontainers.image.source=https://github.com/${{ github.repository }}
+            org.opencontainers.image.revision=${{ github.sha }}
+            org.opencontainers.image.version=${{ steps.image.outputs.version }}
+      - name: Publish source, documentation and exact image identity
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          IMAGE: ${{ steps.image.outputs.name }}
+          IMAGE_DIGEST: ${{ steps.image_build.outputs.digest }}
+        shell: bash
+        run: |
+          printf '%s@%s\n' "$IMAGE" "$IMAGE_DIGEST" > release/container-image.txt
+          printf 'Source commit: %s\nVerification run: https://github.com/%s/actions/runs/%s\n' "$GITHUB_SHA" "$GITHUB_REPOSITORY" "$GITHUB_RUN_ID" > release/verification.txt
+          (cd release && sha256sum OpenTrialDesign_*.tar.gz OpenTrialDesign-documentation.zip renv.lock container-image.txt verification.txt > SHA256SUMS)
+          gh release create "$GITHUB_REF_NAME" release/* --verify-tag --title "OpenTrialDesign $GITHUB_REF_NAME" --notes-file deployment/RELEASE-NOTES.md
