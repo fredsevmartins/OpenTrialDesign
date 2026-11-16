@@ -227,3 +227,10 @@ blocker, not an executed R/package failure. No macOS, Windows or clean-container
 pass is claimed for 0.4.0. PR #3 contains the concrete implementation and local
 evidence; integration/release remains gated on actual CI execution after the
 account is unblocked. Existing v0.3.0 remains the published stable release.
+
+
+The user subsequently authorized proceeding without CI. The 0.4.0 integration
+and manual prerelease use the reproducible local runner and explicit local-only
+verification metadata. Hosted checks are not claimed, account settings are not
+changed, and CI remains configured for future runs. See the release verification
+assets for the exact committed source and final execution logs.

@@ -134,3 +134,10 @@ non-PH were rendered with methodological provenance. CI is a separate gate.
 spending-limit policy. See method-ci-account-blocker.txt and run 43853719622.
 All four job step lists are empty. Local tests are not relabelled remote passes;
 release and stable integration have not been performed for this revision.
+
+
+The user subsequently authorized proceeding without CI. The 0.4.0 integration
+and manual prerelease use the reproducible local runner and explicit local-only
+verification metadata. Hosted checks are not claimed, account settings are not
+changed, and CI remains configured for future runs. See the release verification
+assets for the exact committed source and final execution logs.

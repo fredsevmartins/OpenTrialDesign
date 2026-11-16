@@ -14,8 +14,13 @@ exact. Piecewise survival evaluates a logrank decision, not a constant HR or
 uniform benefit under crossing hazards. Unreached event targets abort rather
 than silently omitting trials. See docs/METHOD-EXTENSIONS.md for complete scope.
 
-Assets include source, documentation, the 112-package dependency lock, checksums
-and an immutable GHCR image reference after successful release verification.
+This prerelease was authorized for publication without hosted CI after GitHub
+blocked jobs for account billing/spending limits. Source, documentation, locked
+dependencies, full local evidence, verification.json and SHA256 checksums are
+provided. Local Linux validation is the acceptance evidence; Windows, macOS and
+clean-container verification were not performed for 0.4.0. No new prebuilt
+container image is published, and the previous 0.3.0 image is not relabelled.
+
 Independent scientific/user evaluation remains unperformed; computational checks
 do not confer protocol-specific or regulatory qualification. Existing repository
 and package access controls are preserved.
