@@ -1,0 +1,20 @@
+2026-11-16T05:09:42.4994016Z ##[group]Run docker exec -w /tmp otd-product Rscript -e 'p <- jsonlite::fromJSON("/opt/OpenTrialDesign/renv.lock",simplifyVector=FALSE)$Packages; i <- installed.packages(); stopifnot(all(vapply(p,function(x)x$Version,character(1)) == i[names(p),"Version"])); testthat::test_package("OpenTrialDesign"); OpenTrialDesign::render_report(OpenTrialDesign::sample_size(OpenTrialDesign::trial_spec()),"/tmp/report.pdf","pdf"); stopifnot(file.exists("/tmp/report.pdf"))'
+2026-11-16T05:09:42.4996974Z [36;1mdocker exec -w /tmp otd-product Rscript -e 'p <- jsonlite::fromJSON("/opt/OpenTrialDesign/renv.lock",simplifyVector=FALSE)$Packages; i <- installed.packages(); stopifnot(all(vapply(p,function(x)x$Version,character(1)) == i[names(p),"Version"])); testthat::test_package("OpenTrialDesign"); OpenTrialDesign::render_report(OpenTrialDesign::sample_size(OpenTrialDesign::trial_spec()),"/tmp/report.pdf","pdf"); stopifnot(file.exists("/tmp/report.pdf"))'[0m
+2026-11-16T05:09:42.5027119Z shell: /usr/bin/bash -e {0}
+2026-11-16T05:09:42.5027357Z ##[endgroup]
+2026-11-16T05:09:58.1053815Z Error in gzfile(file, mode) : cannot open the connection
+2026-11-16T05:09:58.1054240Z [ FAIL 1 | WARN 0 | SKIP 0 | PASS 260 ]
+2026-11-16T05:09:58.1054920Z Calls: <Anonymous> ... o_apply -> lapply -> FUN -> <Anonymous> -> saveRDS -> gzfile
+2026-11-16T05:09:58.1055245Z 
+2026-11-16T05:09:58.1055479Z In addition: Warning message:
+2026-11-16T05:09:58.1055791Z In gzfile(file, mode) :
+2026-11-16T05:09:58.1057574Z   cannot open compressed file 'testthat-problems.rds', probable reason 'Read-only file system'
+2026-11-16T05:09:58.1058295Z Execution halted
+2026-11-16T05:09:58.1378489Z ##[error]Process completed with exit code 1.
+2026-11-16T05:09:58.1432121Z ##[group]Run docker logs otd-product || true
+2026-11-16T05:09:58.1432412Z [36;1mdocker logs otd-product || true[0m
+
+Source revision 26cfde8, run 43808173835. The default testthat check reporter
+attempted to save failure details inside the read-only installed tests directory,
+masking the underlying test failure. The CI reporter is changed to summary so
+that failure details are printed without writing into the installed package.

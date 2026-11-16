@@ -78,7 +78,7 @@ jobs:
           exit 1
       - name: Installed package and PDF in clean container
         run: |
-          docker exec -w /tmp otd-product Rscript -e 'p <- jsonlite::fromJSON("/opt/OpenTrialDesign/renv.lock",simplifyVector=FALSE)$Packages; i <- installed.packages(); stopifnot(all(vapply(p,function(x)x$Version,character(1)) == i[names(p),"Version"])); testthat::test_package("OpenTrialDesign"); OpenTrialDesign::render_report(OpenTrialDesign::sample_size(OpenTrialDesign::trial_spec()),"/tmp/report.pdf","pdf"); stopifnot(file.exists("/tmp/report.pdf"))'
+          docker exec -w /tmp otd-product Rscript -e 'p <- jsonlite::fromJSON("/opt/OpenTrialDesign/renv.lock",simplifyVector=FALSE)$Packages; i <- installed.packages(); stopifnot(all(vapply(p,function(x)x$Version,character(1)) == i[names(p),"Version"])); testthat::test_package("OpenTrialDesign",reporter="summary"); OpenTrialDesign::render_report(OpenTrialDesign::sample_size(OpenTrialDesign::trial_spec()),"/tmp/report.pdf","pdf"); stopifnot(file.exists("/tmp/report.pdf"))'
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
