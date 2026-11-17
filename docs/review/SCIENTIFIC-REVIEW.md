@@ -7,10 +7,12 @@ No named reviewer or endorsement is fabricated.
 
 ## Reproducible review packet
 
-1. Obtain the release source, SHA256SUMS, dependency lock and CI artifact logs.
+1. Obtain the release source, SHA256SUMS, dependency lock and execution logs for the exact revision under review.
+   Record whether checks ran locally or on CI and identify the operating system.
 2. Run `Rscript scripts/audit-dependencies.R`, the installed package tests,
    `scripts/run-examples.R`, `scripts/scientific-reference.R`,
-   `scripts/product-scientific-reference.R` and `scripts/stress-validation.R`.
+   `scripts/product-scientific-reference.R` `scripts/stress-validation.R` and
+   `scripts/method-reference.R`.
 3. Inspect each public adapter against the documented engine interface and
    references in the user guide. Reproduce selected cases independently.
 4. Record findings in findings.csv, with severity, affected workflows, evidence,
@@ -25,6 +27,10 @@ No named reviewer or endorsement is fabricated.
   normal variance assumptions and binary score approximations consistent?
 - Do integer sequential information, spending, futility semantics and actual
   stopping rules match the same native inferential procedure?
+- For directional noninferiority and equivalence, are the margin signs, null
+  boundaries and per-component alpha consistent with the clinical question?
+- For piecewise hazards, do simulated trials reach the event target, and does
+  the reported logrank rejection probability answer the intended question?
 - Are inverse-normal weights fixed before resizing and stage data independent?
   Do resizing bounds and null checks match the intended use?
 - Do survival enrollment, calendar stopping, dropout, event counting and signed
