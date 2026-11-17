@@ -24,7 +24,10 @@ sequential_sample_size <- function(effect = 0.5, sd = 1, information = c(0.5, 1)
   n <- max(ceiling(as.numeric(raw$maxNumberOfSubjects)/2), ceiling(2/min(information)))
   for (iteration in seq_len(500)) {
     integer_count(n, "maximum per-arm enrollment", 2)
-    stages <- ceiling(n * information)
+    stages <- round(n * information)
+    # Compare fractions because multiplication can place an exact stage size
+    # just above its integer value.
+    stages <- stages + (stages/n < information)
     if (all(diff(stages) > 0)) {
       realized <- stages/n
       d <- sequential_design("rpact", realized, alpha, power, spending, futility)

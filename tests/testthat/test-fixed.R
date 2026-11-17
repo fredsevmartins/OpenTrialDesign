@@ -37,3 +37,19 @@ test_that("normal equality-null type I error is compatible with nominal alpha", 
   # A deterministic reference experiment with a predeclared 4-MCSE tolerance.
   expect_lt(abs(x$data$estimate - 0.05), 4 * sqrt(0.05 * 0.95 / 5000))
 })
+
+test_that("integer fixed plans meet the target at the smallest supported size", {
+  for (endpoint in c("normal", "binary")) {
+    effect <- if (endpoint == "normal") .5 else .1
+    spec <- trial_spec(endpoint, effect = effect)
+    boundary <- trial_power(spec, 20)$data$power
+    for (offset in c(0, 1e-10)) {
+      target <- boundary + offset
+      design <- trial_spec(endpoint, effect = effect, power = target)
+      plan <- sample_size(design)$data
+      expect_equal(plan$n_per_arm, if (offset == 0) 20 else 21)
+      expect_gte(plan$achieved_power, target)
+      expect_lt(trial_power(design, plan$n_per_arm - 1)$data$power, target)
+    }
+  }
+})

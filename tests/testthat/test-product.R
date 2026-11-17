@@ -55,6 +55,16 @@ test_that("sequential integer enrollment recalibrates native information and pow
     expect_equal(as.numeric(ref$numberOfSubjects),stages$n_total,tolerance=1e-8)
   }
 })
+test_that("sequential analysis uses the first integer enrollment meeting the requested information", {
+  skip_if_not_installed("rpact")
+  information <- 55/202
+  for (first_look in c(information, information + 1e-10)) {
+    x <- sequential_sample_size(effect = .28, information = c(first_look, 1))
+    first_stage <- x$data$stage_plan$n_per_arm[1]
+    expect_gte(first_stage/x$data$n_per_arm, first_look)
+    expect_lt((first_stage - 1)/x$data$n_per_arm, first_look)
+  }
+})
 test_that("reproducibility bundles include replay settings and matching checksums", {
   skip_if_not_installed("zip")
   x<-execute_project(trial_project(parameters=list(effect=.5)))

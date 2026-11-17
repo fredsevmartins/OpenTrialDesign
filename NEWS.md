@@ -1,3 +1,11 @@
+# Development version
+
+* Fixed-sample planning now checks achieved power at adjacent integer arm sizes
+  to select the smallest supported size meeting the requested power.
+* Sequential normal planning preserves exact integer interim looks when the
+  product of enrollment and an information fraction rounds upward in floating
+  point arithmetic.
+
 # OpenTrialDesign 0.4.0
 
 * Added expected-count diagnostics, visible sparse-binary guidance, downloadable

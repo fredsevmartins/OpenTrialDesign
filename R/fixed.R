@@ -21,9 +21,24 @@ fixed_engine <- function(spec, n = NULL) {
 #' sample_size(trial_spec(effect = 0.5))
 sample_size <- function(spec) {
   raw <- fixed_engine(spec)
-  n <- max(2,ceiling(raw$n))
+  n <- max(2, ceiling(raw$n))
+  integer_count(n, "required n_per_arm", 2)
+  # The engine solves for a continuous root with finite numerical tolerance.
+  # Verify both sides of the integer decision with the same power function.
+  achieved <- fixed_engine(spec, n)$power
+  while (achieved < spec$power) {
+    n <- n + 1
+    integer_count(n, "required n_per_arm", 2)
+    achieved <- fixed_engine(spec, n)$power
+  }
+  while (n > 2) {
+    previous <- fixed_engine(spec, n - 1)$power
+    if (previous < spec$power) break
+    n <- n - 1
+    achieved <- previous
+  }
   x<-result("fixed sample size", list(n_per_arm = n, n_total = 2 * n,
-    unrounded_n_per_arm = raw$n, achieved_power = fixed_engine(spec, n)$power),
+    unrounded_n_per_arm = raw$n, achieved_power = achieved),
     spec, "stats", raw$method,
     c("equal allocation; independent observations", "normal: common variance t test",
       "binary: asymptotic normal approximation; no continuity correction"))
