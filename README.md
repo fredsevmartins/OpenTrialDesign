@@ -2,17 +2,17 @@
 Scientific Clinical Trial Design, Simulation &amp; Operating Characteristics in R
 
 A reproducible R package and browser application for clinical trial planning
-and simulation, version 0.4.0. The statistical core is independent of Shiny.
+and simulation, version 0.4.1. The statistical core is independent of Shiny.
 It delegates calculations to stats, gsDesign, rpact, survival and simsurv.
 
-## Local-validation prerelease 0.4.0
+## MVP 0.4.1
 
-The maintainer authorized proceeding without hosted CI after the account was
-blocked by GitHub billing/spending limits. Download the package, documentation,
-execution evidence and SHA256SUMS from [dist/v0.4.0](dist/v0.4.0).
-Verification is local Linux execution only; Windows, macOS and clean-container
-checks are not claimed. There is no new prebuilt 0.4.0 container image.
-The release's verification.json records the exact tested source and limitations.
+This minimum viable product packages the established trial-design workflows,
+reproducible projects, browser interface and version-1 example catalog. It
+includes corrected fixed-sample sizing and exact sequential enrollment rounding.
+See the [MVP scope and acceptance criteria](docs/PRODUCT-READINESS.md) and
+[scientific scope](docs/METHOD-EXTENSIONS.md). It is an analysis aid, not a
+qualified clinical system; study-specific review remains necessary.
 
 ## Start the product
 
@@ -20,11 +20,12 @@ With Docker: `docker compose up --build -d`, then open **http://localhost:3838**
 The default deployment stays on your computer; it does not expose a public site.
 
 With R: install R >= 4.5 and Pandoc, run `Rscript scripts/install-product.R`, then
-`Rscript scripts/start-product.R`. The installer uses an isolated project library, restores locked dependencies,
-builds the guide and installs the package. PDF additionally requires LaTeX.
+`Rscript scripts/start-product.R`. The installer uses an isolated project
+library, restores locked dependencies, builds the guide and installs the
+package. PDF additionally requires LaTeX.
 See [deployment and recovery instructions](deployment/README.md).
 
-## New in 0.4.0
+## Included methods
 
 * Visible sparse-binary guidance, expected-count diagnostics and an explicit
   Fisher simulation option; approximate sizing is never relabelled exact.
@@ -35,6 +36,8 @@ See [deployment and recovery instructions](deployment/README.md).
   equal-curve null, event-target safeguards and no constant-HR claim.
 
 See [method scope, assumptions and references](docs/METHOD-EXTENSIONS.md).
+Version 0.4.1 also fixes smallest-supported fixed-sample sizing and floating
+point rounding at integer sequential interim looks.
 
 ## New in 0.3.0
 
@@ -100,12 +103,14 @@ replay settings and integrity checks. Do not import untrusted RDS objects.
 
 ## Scientific scope and evidence
 
-Supported adapters assume equal-allocation two-arm superiority, and the specific
-models described in the [user guide](vignettes/user-guide.Rmd). Sequential alpha
-is one-sided. Adaptive resizing remains inside the inverse-normal procedure.
-Noninferiority, equivalence, nonproportional hazards, cluster and competing-risk
-methods are outside this version's adapters; no compatibility across engines
-is inferred. Monte Carlo estimates are distinguished from analytical results.
+Adapters support the specific methods described in the [user guide](vignettes/user-guide.Rmd),
+including unequal-allocation normal noninferiority, normal equivalence, sparse
+binary diagnostics/Fisher simulation, and piecewise-exponential nonproportional
+hazards simulation. They do not provide a general-purpose implementation of
+cluster or competing-risk designs. Sequential alpha is one-sided; adaptive
+resizing remains within the inverse-normal procedure. Compatibility across
+engines is not inferred. Monte Carlo estimates are distinguished from analytical
+results.
 
 The installed version-1 example catalog defines TD-001 through TD-030 for this
 product. Its assumptions and rationales are explicit. No equivalence to an
@@ -126,7 +131,7 @@ Rscript -e 'testthat::test_local()'
 Rscript scripts/run-examples.R
 Rscript scripts/scientific-reference.R
 R CMD build .
-R CMD check OpenTrialDesign_0.4.0.tar.gz
+R CMD check OpenTrialDesign_0.4.1.tar.gz
 ```
 
 [Architecture](docs/ARCHITECTURE.md) · [Readiness scope](docs/PRODUCT-READINESS.md)

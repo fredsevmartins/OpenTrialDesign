@@ -20,7 +20,7 @@ RUN --mount=type=secret,id=extra_ca,required=false \
     if [ -f /run/secrets/extra_ca ]; then cat /run/secrets/extra_ca >> /etc/ssl/certs/ca-certificates.crt; fi
 RUN mkdir -p /opt/otd-library && Rscript -e 'options(Ncpus=2); install.packages("renv", repos="https://cloud.r-project.org"); renv::consent(provided=TRUE); renv::restore(lockfile="renv.lock", library="/opt/otd-library", prompt=FALSE)'
 COPY . .
-RUN R CMD build . && R CMD INSTALL --install-tests OpenTrialDesign_0.4.0.tar.gz \
+RUN R CMD build . && R CMD INSTALL --install-tests OpenTrialDesign_0.4.1.tar.gz \
     && Rscript -e 'library(OpenTrialDesign); stopifnot(sample_size(trial_spec())$data$n_per_arm == 64)' \
     && useradd --uid 10001 --create-home otd && chmod -R a+rX /opt/otd-library /opt/OpenTrialDesign
 ENV OTD_MAX_JOBS=2

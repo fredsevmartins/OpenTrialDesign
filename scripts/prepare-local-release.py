@@ -22,7 +22,8 @@ sha=subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True).strip
 # Preserve the linkage to the already executed scientific-core baseline.
 for line in (root/'validation/method-SHA256SUMS').read_text().splitlines():
  digest,name=line.split('  ',1)
- if hashlib.sha256((root/name).read_bytes()).hexdigest()!=digest:raise SystemExit('Baseline integrity mismatch: '+name)
+ baseline=subprocess.check_output(['git','show','6a7564be62553aed96e67dbc17e116ad5bb5d08c:'+name],cwd=root)
+ if hashlib.sha256(baseline).hexdigest()!=digest:raise SystemExit('Baseline integrity mismatch: '+name)
 archive=subprocess.check_output(['git','archive',sha],cwd=root)
 out.mkdir(parents=True);work=out/'_work';source=work/'source';source.mkdir(parents=True)
 with tarfile.open(fileobj=io.BytesIO(archive),mode='r:') as t:t.extractall(source,filter='data')
@@ -102,7 +103,7 @@ for file in ['scientific-reference.csv','product-scientific-reference.csv','meth
  if not rows or not all(r['passed']=='TRUE' for r in rows):raise RuntimeError('Reference evidence failed')
  summary['scientific_reference_rows'][file]=len(rows)
 (out/'verification.json').write_text(json.dumps(summary,indent=2)+'\n')
-(out/'README-local-validation.txt').write_text('Locally verified OpenTrialDesign '+version+' prerelease.\nSource commit: '+sha+'\nHosted CI could not start due to the recorded account billing/spending limit.\nThe user authorized this local-validation release. No Windows, macOS or clean-container pass is claimed.\nNo new container image is published; do not relabel the previous 0.3.0 image as 0.4.0.\nSee verification.json and local-validation-evidence.zip for actual logs and limits.\nComputational checks do not confer independent scientific or regulatory qualification.\n')
+(out/'README-local-validation.txt').write_text('Locally verified OpenTrialDesign '+version+' research MVP.\nSource commit: '+sha+'\nVerification was executed locally on Linux.\nThe user authorized this local-validation release. No Windows, macOS or clean-container pass is claimed.\nNo new container image is published.\nSee verification.json and local-validation-evidence.zip for actual logs and limits.\nComputational checks do not confer independent scientific or regulatory qualification.\n')
 files=sorted(f for f in out.iterdir() if f.is_file())
 (out/'SHA256SUMS').write_text(''.join(hashlib.sha256(f.read_bytes()).hexdigest()+'  '+f.name+'\n' for f in files))
 print(json.dumps(summary,indent=2));print('Artifacts ready in '+str(out),flush=True)

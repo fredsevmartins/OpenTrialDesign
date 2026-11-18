@@ -65,12 +65,12 @@ jobs:
         with:
           context: .
           load: true
-          tags: opentrialdesign:0.4.0
+          tags: opentrialdesign:0.4.1
           cache-from: type=gha
           cache-to: type=gha,mode=max
       - name: Start local product
         run: |
-          docker run -d --name otd-product --read-only --tmpfs /tmp:size=512m,mode=1777 -p 127.0.0.1:3838:3838 opentrialdesign:0.4.0
+          docker run -d --name otd-product --read-only --tmpfs /tmp:size=512m,mode=1777 -p 127.0.0.1:3838:3838 opentrialdesign:0.4.1
           for attempt in $(seq 1 90); do
             if curl -fsS http://127.0.0.1:3838/ > /dev/null; then exit 0; fi
             sleep 2

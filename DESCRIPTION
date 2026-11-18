@@ -1,7 +1,7 @@
 Package: OpenTrialDesign
 Type: Package
 Title: Reproducible Clinical Trial Design and Operating Characteristics
-Version: 0.4.0
+Version: 0.4.1
 Authors@R: c(person("Frederico", "Martins", role = c("aut", "cre"),
     email = "45317633+fredsevmartins@users.noreply.github.com"),
     person("OpenTrialDesign contributors", role = "aut"))
