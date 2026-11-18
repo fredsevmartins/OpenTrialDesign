@@ -14,6 +14,11 @@ See the [MVP scope and acceptance criteria](docs/PRODUCT-READINESS.md) and
 [scientific scope](docs/METHOD-EXTENSIONS.md). It is an analysis aid, not a
 qualified clinical system; study-specific review remains necessary.
 
+Download the [0.4.1 package, guide, execution logs and checksums](dist/v0.4.1).
+Local Linux acceptance covered 337 test assertions, 30 scientific comparisons
+and 32 browser workflows. Windows, macOS and clean-container execution remain
+unverified for this version.
+
 ## Start the product
 
 With Docker: `docker compose up --build -d`, then open **http://localhost:3838**.
