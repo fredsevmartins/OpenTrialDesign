@@ -1,24 +1,26 @@
-# Product acceptance scope
+# Product scope and release criteria
 
-This iteration makes the supported planning/simulation workflows usable as a
-reproducible desktop or container product. It does not declare qualification
-for a specific confirmatory protocol or regulated environment.
+OpenTrialDesign supports reproducible clinical trial planning and simulation
+through a browser application, an R package, and a command-line runner.
+The criteria below describe software acceptance. Review designs and analyses
+against the specific study protocol and applicable requirements.
 
-Acceptance gates:
-1. Version-aware runtime diagnostics and structured dependency failures.
-2. Versioned, validated JSON project persistence; no executable user imports.
-3. Sequential normal sample-size and power through the same rpact procedure.
-4. Background simulation with observable state, cancellation and error recovery.
-5. Results, project settings and provenance downloadable independently of HTML/PDF.
-6. Responsive application; capabilities, input relevance and computed snapshots clear.
-7. Documented local/container installation, health checks and batch execution.
-8. Executed package, scientific, project, job, browser and distribution tests.
-9. A versioned published-in-repository example specification: retain historical
-   uncertainty about the absent external TD plan rather than claim equivalence.
+| Area | Acceptance criterion |
+| --- | --- |
+| Supported methods | Document each model, statistical engine, and interpretation limit. Use the same rpact procedure for sequential normal enrollment and power. |
+| Reproducibility | Validate versioned JSON projects, preserve resolved inputs, and replay calculations through the shared engine. |
+| Results | Export project settings, results, and provenance independently of HTML and PDF rendering. |
+| Background execution | Expose job state, support cancellation, and provide actionable errors. |
+| Browser experience | Keep relevant inputs identifiable and distinguish current controls from the settings used for a stored result. |
+| Operations | Document installation, runtime diagnostics, health checks, and command-line execution. |
+| Verification | Record the tested revision, platforms, methods, and outcomes for package, browser, scientific, and distribution checks. |
 
-The existing 30 examples become the explicitly defined version-1 product catalog.
-Their definitions and assumptions are authoritative for this product version;
-reconciliation to an unidentified external plan is not claimed.
+The versioned example catalog documents the assumptions for 30 synthetic
+designs. See the [catalog](../inst/examples/catalog.csv),
+[method specifications](METHOD-EXTENSIONS.md), and
+[validation matrix](VALIDATION-MATRIX.md).
 
-Remote hosting requires an actual deployment destination. Local/container
-readiness and scientific scope do not imply public hosting or third-party review.
+Deployment and release verification have separate records. The
+[operations guide](../deployment/README.md) describes installation and hosting.
+The [0.4.1 verification record](../dist/v0.4.1/verification.json) records the
+checks run for that release.

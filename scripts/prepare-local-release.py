@@ -103,7 +103,17 @@ for file in ['scientific-reference.csv','product-scientific-reference.csv','meth
  if not rows or not all(r['passed']=='TRUE' for r in rows):raise RuntimeError('Reference evidence failed')
  summary['scientific_reference_rows'][file]=len(rows)
 (out/'verification.json').write_text(json.dumps(summary,indent=2)+'\n')
-(out/'README-local-validation.txt').write_text('Locally verified OpenTrialDesign '+version+' research MVP.\nSource commit: '+sha+'\nVerification was executed locally on Linux.\nThe user authorized this local-validation release. No Windows, macOS or clean-container pass is claimed.\nNo new container image is published.\nSee verification.json and local-validation-evidence.zip for actual logs and limits.\nComputational checks do not confer independent scientific or regulatory qualification.\n')
+(out/'README-local-validation.txt').write_text(
+ f"OpenTrialDesign {version}\n"
+ f"Source commit: {sha}\n"
+ "Verification was performed locally on Linux. The verification scope excludes "
+ "Windows, macOS, and clean-container execution.\n"
+ "This distribution contains the source package, documentation, dependency lockfile, "
+ "and verification evidence. A container image is not included.\n"
+ "See verification.json for the verification summary and local-validation-evidence.zip "
+ "for the execution records.\n"
+ "Independent scientific review and regulatory qualification are outside this verification.\n"
+)
 files=sorted(f for f in out.iterdir() if f.is_file())
 (out/'SHA256SUMS').write_text(''.join(hashlib.sha256(f.read_bytes()).hexdigest()+'  '+f.name+'\n' for f in files))
 print(json.dumps(summary,indent=2));print('Artifacts ready in '+str(out),flush=True)

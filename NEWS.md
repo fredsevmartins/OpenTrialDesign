@@ -6,9 +6,8 @@
   product of enrollment and an information fraction rounds upward in floating
   point arithmetic.
 
-* Prepared the minimum viable product release with corrected fixed-sample sizing
-  and exact sequential enrollment rounding. Existing scientific scope and
-  documented method limitations remain in effect.
+* Published the source package, documentation, dependency lockfile, and
+  Linux verification record for this version.
 
 # OpenTrialDesign 0.4.0
 

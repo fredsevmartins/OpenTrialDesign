@@ -1,7 +1,7 @@
 library(shiny)
 library(OpenTrialDesign)
 native_select <- function(...) selectInput(...,selectize=FALSE)
-ui <- fluidPage(title="OpenTrialDesign — Scientific trial planning",lang="en",
+ui <- fluidPage(title="OpenTrialDesign — Clinical trial design and simulation",lang="en",
   tags$head(tags$style(HTML("
     .skip-link{position:absolute;left:-10000px}.skip-link:focus{position:static;background:white;color:#142d45;padding:12px}\n    :focus-visible{outline:3px solid #b15b00;outline-offset:3px}\n    body{background:#f4f7fb;color:#152b42;font-family:system-ui,sans-serif}
     .otd-header{background:#142d45;color:white;padding:24px 28px;margin:0 -15px 24px}
@@ -18,7 +18,7 @@ ui <- fluidPage(title="OpenTrialDesign — Scientific trial planning",lang="en",
     @media(max-width:767px){.tab-content{padding:14px}.otd-header{padding:18px}.nav-tabs>li>a{padding:9px}}
   "))),
   tags$a(href="#main-content",class="skip-link","Skip to main content"),
-  div(class="otd-header", h1("OpenTrialDesign"), p("Trial planning, simulation and reproducible scientific decisions")),
+  div(class="otd-header", h1("OpenTrialDesign"), p("Clinical trial design and simulation")),
   sidebarLayout(sidebarPanel(
     h4("Fixed trial assumptions"),
     native_select("endpoint", "Endpoint", c("Normal mean"="normal", "Binary response"="binary")),
