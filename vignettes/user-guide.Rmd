@@ -11,20 +11,33 @@ vignette: >
 library(OpenTrialDesign)
 ```
 
+OpenTrialDesign supports trial planning, simulation, and reproducible analysis.
+Use this guide to choose a method, assess its assumptions, and preserve the
+inputs and outputs needed to replay a result.
+
 ## Installation and scope
 
-Install from source with `install.packages("OpenTrialDesign_0.4.0.tar.gz",
-repos = NULL, type = "source")`. Optional engines can be installed with
-`install.packages(c("gsDesign", "rpact", "simsurv"))`; the interface requires
-`shiny`, and reporting requires `rmarkdown` plus Pandoc. PDF additionally
-requires a working LaTeX installation. The package core does not depend on Shiny.
+Use R 4.5 or later. From a writable repository checkout, run
+`Rscript scripts/install-product.R` to restore the lockfile and install the
+package into an isolated application library. Start the browser application
+with `Rscript scripts/start-product.R`. For an interactive R session started
+from that checkout, activate the same library with
+`source("scripts/product-library.R")` and `activate_product_library()`.
 
-The first release supports equal-allocation, two-arm superiority calculations,
-canonical one-sided sequential designs, a specific two-stage adaptive
-inverse-normal procedure, and exponential proportional hazards survival trials.
-Noninferiority, equivalence, cluster trials, recurrent events, competing risks,
-and nonproportional hazards are outside these adapters' present scope. Such
-analyses require an appropriate validated engine and explicit estimand.
+For an existing R library with the package dependencies installed, use
+`R CMD INSTALL OpenTrialDesign_0.4.1.tar.gz` with the verified release archive.
+Install the relevant optional engines for the intended workflows. The browser
+interface requires Shiny, HTML reporting requires rmarkdown and Pandoc, and
+PDF reporting additionally requires LaTeX. The repository's Docker image
+provides the application and reporting tools.
+
+The supported designs include fixed normal and binary superiority,
+normal-means designs with unequal allocation and superiority, noninferiority,
+or equivalence objectives, one-sided group sequential and two-stage adaptive
+normal designs, exponential proportional-hazards planning and simulation,
+and piecewise-exponential nonproportional-hazards simulation. Choose the
+specific adapter whose assumptions match the proposed trial. Cluster,
+recurrent-event, and competing-risk designs are outside the supported scope.
 
 ## Specify the scientific question
 
@@ -69,8 +82,9 @@ simulate_trial(spec, 64, nsim = 200, seed = 2026, null = TRUE)
 ```
 
 The equality null uses treatment effect zero, not the planning alternative.
-The normal test is the pooled t test. The binary analysis is `prop.test` with
-no continuity correction. All-zero or all-one binary samples cannot reject
+The normal test is the pooled t test. The default binary analysis uses
+`prop.test` without continuity correction. A conditional Fisher test is
+available as an explicit simulation option. All-zero or all-one binary samples cannot reject
 equality and are assigned p=1. Discreteness can affect nominal type I error.
 The equality null alone does not establish uniform control across all nuisance
 parameters. Broader null grids and multiplicity control are study-specific work.
@@ -197,26 +211,6 @@ for limitations. No result should be described as scientifically validated
 solely because a function returned successfully. rpact installation
 qualification for GxP environments is separate and has not been performed here.
 
-## References
-
-Schoenfeld DA (1981). The asymptotic properties of nonparametric tests for
-comparing survival distributions. *Biometrika*, 68, 316-319.
-
-Lan KKG, DeMets DL (1983). Discrete sequential boundaries for clinical trials.
-*Biometrika*, 70, 659-663.
-
-Hwang IK, Shih WJ, DeCani JS (1990). Group sequential designs using a family
-of type I error probability spending functions. *Statistics in Medicine*, 9,
-1439-1445.
-
-Lehmacher W, Wassmer G (1999). Adaptive sample size calculations in group
-sequential trials. *Biometrics*, 55, 1286-1290.
-
-Brilleman SL, Wolfe R, Moreno-Betancur M, Crowther MJ (2021). Simulating
-survival data using the simsurv R package. *Journal of Statistical Software*,
-97(3), 1-27. Use `citation("rpact")`, `citation("gsDesign")`,
-`citation("survival")` and `citation("simsurv")` for current engine citations.
-
 ## Portable projects and batch replay
 
 ```{r projects}
@@ -275,19 +269,6 @@ The version-1 example catalog is now explicitly defined by the installed
 catalog and per-example rationales. It does not claim equivalence to an absent
 external project plan. These workflows support planning and simulation within
 the stated assumptions; they do not confer protocol-specific qualification.
-
-
-## Isolated native product installation
-
-From a writable repository checkout, `Rscript scripts/install-product.R`
-restores the locked graph into a versioned application-cache library outside
-the checkout. It does not overwrite the global R library or create a startup
-hook in another project. Start with `Rscript scripts/start-product.R` and open
-http://localhost:3838. Use `--check`, `--diagnostics` or `--test` to verify the
-selected installation. For API work in an R session from that checkout, source
-`scripts/product-library.R` and call `activate_product_library()` first.
-Native source dependencies require the compiler/system libraries documented
-in deployment/README.md; the Dockerfile provisions them automatically.
 
 
 ## Scientific review before execution
@@ -406,3 +387,23 @@ planning under non-PH. Never apply the older PH Schoenfeld planner to these
 profiles. All new workflows support JSON, reporting, scenario batches and
 cancellable workers. See docs/METHOD-EXTENSIONS.md in the repository for exact
 scope and the four-theoretical-MCSE scientific reference criteria.
+
+## References
+
+Schoenfeld DA (1981). The asymptotic properties of nonparametric tests for
+comparing survival distributions. *Biometrika*, 68, 316-319.
+
+Lan KKG, DeMets DL (1983). Discrete sequential boundaries for clinical trials.
+*Biometrika*, 70, 659-663.
+
+Hwang IK, Shih WJ, DeCani JS (1990). Group sequential designs using a family
+of type I error probability spending functions. *Statistics in Medicine*, 9,
+1439-1445.
+
+Lehmacher W, Wassmer G (1999). Adaptive sample size calculations in group
+sequential trials. *Biometrics*, 55, 1286-1290.
+
+Brilleman SL, Wolfe R, Moreno-Betancur M, Crowther MJ (2021). Simulating
+survival data using the simsurv R package. *Journal of Statistical Software*,
+97(3), 1-27. Use `citation("rpact")`, `citation("gsDesign")`,
+`citation("survival")` and `citation("simsurv")` for current engine citations.

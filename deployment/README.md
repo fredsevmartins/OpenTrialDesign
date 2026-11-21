@@ -1,137 +1,122 @@
-# Running OpenTrialDesign
+# Installation and operations
 
-## Standard local installation
+Choose Docker Compose to run the browser application locally, or install
+natively for R and command-line workflows. Both builds resolve the committed
+`renv.lock`. The local application binds to loopback on port 3838.
 
-Install R >= 4.5 and Pandoc. From the repository root, run
-`Rscript scripts/install-product.R`. This restores the locked dependencies,
-builds the vignette and installs the product. Start with
-`Rscript scripts/start-product.R`, then open http://localhost:3838.
-The versioned library is isolated in the user application cache outside the checkout; no startup hook changes other projects.
-`Rscript scripts/start-product.R --check` verifies library selection;
-`Rscript scripts/start-product.R --test` runs the complete installed package suite.
-Use OTD_R_LIBRARY to select another isolated library location.
-Use `OpenTrialDesign::runtime_diagnostics()` to inspect optional capabilities.
-PDF output additionally requires a LaTeX installation.
+## Docker Compose
 
-## Container
+From the repository root, with Docker and Compose v2 installed, run:
 
-Run `docker compose up --build -d`, then open http://localhost:3838.
-Check health with `docker compose ps` and logs with `docker compose logs -f`.
-Stop with `docker compose down`. The container runs as UID 10001, with a
-read-only filesystem and writable temporary storage. The default port binds
-only to the local machine. CPU/memory limits are set in compose.yaml.
+```sh
+docker compose up --build -d
+docker compose ps
+```
 
-No patient-level data are required or collected. Projects contain design
-assumptions and simulation settings; downloads remain on the user's computer.
-The application has no permanent server-side project database. Keep the JSON
-project and reproducibility bundle to preserve work across sessions/restarts.
-Running jobs are cancelled when their browser session ends.
+Open [localhost:3838](http://localhost:3838) once the service is healthy. Use
+`docker compose logs --tail=100 opentrialdesign` for startup diagnostics and
+`docker compose down` to stop the service. The container runs as UID 10001
+with a read-only filesystem, writable temporary storage, and CPU and memory
+limits. The Dockerfile pins the R base image and includes Pandoc and LaTeX.
 
-For institutional hosting, put the application behind the institution's
-reverse proxy and access controls, including TLS and WebSocket forwarding.
-Do not change repository visibility or expose the local port as part of a
-local installation. Set OTD_HOST/OTD_PORT for the container listener as needed.
-An actual public deployment requires a selected hosting destination.
+The build needs access to the base image, Ubuntu package repositories, and
+CRAN. If an organizational proxy inspects TLS, provide its trusted CA bundle
+using BuildKit's `extra_ca` secret:
 
-## Batch execution
+```sh
+docker build --secret id=extra_ca,src=/path/to/trusted-ca-bundle.pem \
+  -t opentrialdesign:0.4.1 .
+```
 
-Create a project using `write_project(trial_project(...), "design.json")`.
-Run `Rscript exec/opentrialdesign.R --project design.json --output results.zip`.
-The runner returns a nonzero exit code on an invalid project or engine failure.
-The ZIP contains CSV, exact assumptions, provenance, an R archival object and
-checksums. Import only JSON projects in the UI; never load untrusted RDS files.
+For a VFS Docker host, allow space for full copies of image layers and container
+filesystems. If a build succeeds but the container cannot start because of
+disk space, use a host with adequate storage or the native installation.
 
-## Upgrades and recovery
+## Native R installation
 
-Keep existing project JSON and bundles before upgrading. Schema version and
-originating software version are recorded in JSON. Unsupported schema versions
-fail explicitly. Projects freeze defaults, so changing an application's default
-alpha or power cannot silently change an existing saved design. Re-execution
-records the versions actually used in the new result. Use the lockfile or the
-same container version for numerical reproduction.
+Install R 4.5 or later and Pandoc. For source packages, use a C/C++/Fortran
+toolchain and the required system headers. On Linux, see the [Dockerfile](../Dockerfile)
+for the dependency list. On macOS use matching command-line tools and
+Fortran, and on Windows use matching Rtools. Install LaTeX to generate PDFs.
 
-A failed simulation reports its error and does not produce partial estimates.
-Correct the settings and launch a new job. Cancelled runs never appear as
-completed results. The application permits one active simulation per session
-and limits UI jobs to 100,000 replications; larger experiments use the R API.
+From the repository root, run:
 
-For an enterprise TLS-inspecting proxy, build with
-`docker build --secret id=extra_ca,src=/path/to/trusted-ca-bundle.pem -t opentrialdesign:0.2.0 .`.
-Only add your trusted organizational CA bundle; certificate verification remains enabled.
+```sh
+Rscript scripts/install-product.R
+Rscript scripts/start-product.R --check
+Rscript scripts/start-product.R
+```
 
-The server limits concurrent workers (option `OpenTrialDesign.max_jobs`, default
-4 in R; OTD_MAX_JOBS=2 in the container). Full capacity produces a recoverable
-message rather than silently overcommitting resources. Worker startup does not
-execute project or user R profiles.
+The installer restores dependencies into a versioned library outside the
+checkout and installs the package, tests, and rendered guide. Set
+`OTD_R_LIBRARY` to select a different isolated library. Use the same value
+for installation and startup.
 
-The image sets R_LIBS explicitly so that the locked library precedes packages
-bundled with the base image. R_PROFILE disables the base image's repository
-profile; workers also disable startup profiles. The standard Dockerfile pins
-the base-image digest and restores the committed R dependency graph.
+- `Rscript scripts/start-product.R --diagnostics` reports library selection and available engines and report tools.
+- `Rscript scripts/start-product.R --test` runs the installed package tests.
 
-VFS Docker storage drivers make full filesystem copies for layers/containers.
-On space-constrained hosts, retire an unused previous container before creating
-its replacement, and remove only your unused intermediate build artifacts.
-Download projects and bundles before planned restarts. Standard overlay-based
-Docker installations avoid these VFS copy costs.
+## Install a versioned source package
 
-In the managed 32-GB environment used during development, the VFS driver could
-build the final image but exhausted disk cloning its root for another container.
-The application was served with the verified native R runtime instead. Final
-container acceptance is run in CI using a standard Docker storage backend.
-Use the native R installation or a host with sufficient Docker storage when
-VFS does not meet this requirement; do not treat a failed start as a health pass.
+The [0.4.1 release directory](../dist/v0.4.1) contains the source archive,
+generated documentation, evidence archive, and dependency lockfile. With all
+listed files present in one directory, verify them before installing:
 
-Native source installations need a C/C++/Fortran build toolchain and the system
-headers required by the locked R dependencies (Linux: libcurl, OpenSSL, libxml2,
-ICU, fontconfig/freetype, harfbuzz/fribidi and image libraries). Windows source
-builds require matching Rtools; macOS requires the matching command-line tools
-and Fortran compiler. The standard Dockerfile installs these requirements.
+```sh
+sha256sum -c SHA256SUMS
+R CMD INSTALL OpenTrialDesign_0.4.1.tar.gz
+```
 
-## Versioned release installation
+Source installation requires the package dependencies to be available in R.
+Use the native installer from the corresponding source revision for a locked
+dependency restore. The 0.4.1 release was verified locally on Linux and
+includes no prebuilt container image. Build it from source for Docker use.
 
-Download OpenTrialDesign_0.4.0.tar.gz and SHA256SUMS from the GitHub release;
-verify `sha256sum -c SHA256SUMS` in the directory containing all release assets.
-The source package is installed with `R CMD INSTALL OpenTrialDesign_0.4.0.tar.gz`
-when its documented dependencies are present. For the complete frozen product,
-use the repository's native installer or the published container.
+## Run a saved design from the command line
 
-The release's container-image.txt contains an immutable GHCR digest. For a
-private repository/package, authenticate with an authorized GitHub account and
-registry token with read:packages; do not paste credentials into projects or
-reports. Pull and run that digest, using the same read-only/tmpfs/loopback and
-resource options in compose.yaml. Override Compose's `image` value with the
-published digest and start with `docker compose up --no-build -d` after pulling.
-Registry access does not change the repository's visibility.
+Save a project as JSON in the application or with
+`write_project(trial_project(), "design.json")`. From the repository root:
 
-The tag-triggered release workflow first reruns the full scientific and browser
-verification on that tag. It then builds source/documentation, publishes the
-container and creates release assets/checksums. Failed verification prevents
-publication. The verification URL and source commit accompany the assets.
+```sh
+Rscript exec/opentrialdesign.R --project design.json --output results.zip
+```
 
-Stop a running native app before reinstalling/upgrading its package library, then
-restart it. Replacing installed app files while sessions remain open can invalidate
-their working directory and bindings. Save JSON/bundles before the restart.
+The runner uses the installed product library and exits with a nonzero status
+if the input is invalid or an engine fails. The bundle includes the replayable
+project, result tables, provenance, and file-integrity checks. Import only JSON
+projects into the application. Treat serialized R objects from outside your
+trust boundary as untrusted.
 
+## Operate the application
 
-## Preparing a release without GitHub Actions
+- **Save work before a restart.** Sessions and running jobs are temporary.
+  Download the JSON and result bundle to retain the project and outputs.
+- **Reproduce with a pinned version.** JSON freezes defaults and records the
+  schema and originating package version. A replay records the versions it
+  actually used. Keep the corresponding lockfile or container image.
+- **Monitor job capacity.** The application permits one simulation per session.
+  The R option `OpenTrialDesign.max_jobs` controls total worker capacity.
+  The Docker image uses `OTD_MAX_JOBS` and defaults to two workers. Cancelled
+  and failed simulations never appear as completed estimates.
+- **Restart after upgrading.** Stop the running process before reinstalling
+  its package library. Restart and verify a calculation after installation.
 
-After committing a source snapshot, run `python scripts/prepare-local-release.py
---output /path/to/new/artifacts --axe-core /path/to/axe.min.js --chromium
-/path/to/chromium` from an environment with R/dependencies, Pandoc, LaTeX,
-Playwright and axe-core 4.10.3. The script requires a clean checkout, verifies the
-scientific-core baseline hashes, and tests a git-archived source snapshot with
-an isolated primary-package install and locked installed dependencies.
+For institutional hosting, put Shiny behind a TLS reverse proxy that forwards
+WebSocket connections and enforces the institution's access policy. Keep the
+application port private. Projects contain design assumptions and simulation
+settings. Use synthetic assumptions in shared testing and avoid patient-level
+or confidential information in uploads and feedback. The application has no
+persistent project database.
 
-The generated package, documentation, evidence ZIP, verification.json and
-SHA256SUMS can be uploaded manually using gh release create --prerelease.
-The script does not upload files or change GitHub/account settings. This path
-records actual Linux verification and missing platform/container checks; it does
-not disable future CI or claim regulatory qualification. The 0.4.0 manual release
-has no new prebuilt container image. Build its Dockerfile separately if needed;
-the existing 0.3.0 registry image does not contain the new methods.
+## Release engineering
 
-The 0.4.0 manual distribution files are stored in dist/v0.4.0 because this
-session's uploads.github.com asset endpoint rejected credentials (HTTP 401),
-although repository Git/REST writes succeeded. GitHub release links point to
-these immutable committed files; checksums verify their unchanged content.
+The [tag workflow](../.github/workflows/release.yaml) verifies the tag before
+building source and documentation, publishing the container, and attaching
+checksums and the image digest. Use `container-image.txt` to select the exact
+image for releases that publish one.
+
+For a locally verified prerelease, run the
+[local release builder](../scripts/prepare-local-release.py) from a clean
+checkout with locked R dependencies, Pandoc, LaTeX, Chromium, Playwright, and
+axe-core 4.10.3. It builds artifacts and records the actual verification
+scope. See the [release checklist](../docs/RELEASE-CHECKLIST.md) for the
+manual release procedure.
