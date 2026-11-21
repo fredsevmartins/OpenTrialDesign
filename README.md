@@ -12,6 +12,8 @@ and export results with their statistical methods and software versions.
 [User guide](vignettes/user-guide.Rmd) · [Deployment](deployment/README.md) ·
 [Version 0.4.1](dist/v0.4.1)
 
+![OpenTrialDesign 0.4.1 workflow from setup to reusable results. The worked example requires 64 evaluable participants per arm.](docs/assets/opentrialdesign-overview.png)
+
 ## Get started
 
 ### Browser application
